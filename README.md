@@ -20,7 +20,7 @@ A cross-platform application for [TCOAAL](https://store.steampowered.com/app/237
 <!-- Navigation + Preview -->
 <div align="center">
 
-[Features 🐰](#features-) • [Install ☕](#install-) • [Documentation 📻](#guides--faq-) • [Contribute 👨🏻‍🤝‍👩🏻](#contribute-) • [Credits & Licenses 🎉](#credits--licenses-)
+[Features 🐰](#features-) • [Install ☕](#install-) • [Documentation 📻](#guides--faq-) • [Contribute 🩷](#contribute-) • [Credits & Licenses 🎉](#credits--licenses-)
 
 <br>
 
@@ -65,7 +65,7 @@ TBA!
 DOCUMENTATION.md TBA!
 
 <!-- Contribute -->
-# Contribute 👨🏻‍🤝‍👩🏻
+# Contribute 🩷
 **For development**, Burial uses a Rust backend and a Web frontend with Tauri bridging the two. Additionally, some python scripts are used to assist in development. **For bugs and requests**, these are highly welcomed too! Please note that this was developed and tested on Windows, so Mac and Linux users please let me know of any bugs. Detailed programming information and other contributing information will come soon - **CONTRIBUTING.md TBA**!
 
 <!-- Credits & Licenses -->
