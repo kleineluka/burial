@@ -1,0 +1,40 @@
+/* Warning Page Styles */
+.warning-container {
+    text-align: left;
+}
+
+.warning-title {
+    font-size: 2em;
+    color: #6e4826;
+}
+
+.warning-subheader {
+    font-size: 1.2em;
+    color: #6e4826;
+    margin-top: -20px;
+}
+
+.warning-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.list-item {
+    font-size: 1.1em;
+    color: #432b16;
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.warning-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #6ed5a4;
+    background-color: #6e4826;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

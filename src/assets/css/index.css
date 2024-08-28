@@ -1,0 +1,63 @@
+/* Center Image */
+.center-image {
+  max-width: 100px;
+  margin-bottom: 5px;
+  margin-top: -20px;
+}/
+
+/* Start Text */
+.center-text {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #030000;
+}
+
+/* List */
+.center-list {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  color: #030000;
+}
+
+.center-list li {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* Button */
+.center-button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #F595B2;
+  background-color: #030000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Footer */
+.footer-container {
+  position: absolute;
+  bottom: 10px;
+  width: calc(100% - 25%);
+}
+
+.footer {
+  margin-right: 25px; /* Hacky? Yes. CSS? Sadge. */
+  text-align: center;
+}
+
+/* Adjust Sidebar for Image */
+.start-image {
+  height: 15%;
+  width: 80%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.start-sidebar {
+  /* move up 20% */
+  margin-top: -12.5%;
+}

@@ -7,7 +7,7 @@
 A cross-platform application for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) decryption, modding, content creation, and development. 
 
 
-[Straight to Downloads 🕯️](https://www.github.com/kleineluka/burial) • [View Changelog 🍅](https://www.github.com/kleineluka/burial)
+[Straight to Downloads 🕯️](https://www.github.com/kleineluka/burial) • [View Changelog 🍅](https://www.github.com/kleineluka/burial) • [Tech Stack & Insights 🍰](https://www.github.com/kleineluka/burial)
 
 **Current Status:** 🚧 In Development! 🚧 
 <br>
@@ -38,23 +38,22 @@ A cross-platform application for [TCOAAL](https://store.steampowered.com/app/237
 - **Mod Creator** 🪄: Please see the below list, as this is the feature that is in heavy development!
 - **Persistant Settings** 🍪: Automatically configure and save things like your TCOAAL installation folder to avoid having to input it a million trillion times..
 - **Optimised and Cross-Platform** 🦄: Executables are provided for Windows, Linux, and MacOS - and by using a Rust backend with OS native frontends, it's a super duper tiny program that can run on any potato!
-- **Pretty GUI** 🌸: Based on Ashley's colours, scales with your screen size, easy to navigate, all that stuff..
+- **Pretty GUI** 🌸: Based on Ashley's colours, responsive, scales with your screen size, easy to navigate, all that stuff..
 - **By Fans, Not Thieves** 🥰: Burial uses byte-patching to modify/create game content so that assets don't need to be redistributed and a legal copy is required to use Burial.
-  
-<br>
 
 While not yet implemented, here are some further planned and in development features..
 - **Sprite Builder -> Mixer** 🍸: Combine faces and busts to make cursed new things, or use your own artwork.
 - **Mod Creator -> Encrypt** 🩹: Easily encrypt your edited or new resource files back into .k9a format to be used in the game.
-- **Mod Creator -> Dialogue Creator** 💬: Create new dialogue or edit old dialogue in the game.
+- **Mod Creator -> Dialogue Creator** 💬: Create new dialogue scenes or edit old dialogue in the game.
 - **Mod Creator -> Replacer** 👝: Replace audio, sprites, etc. from the game.
+- **Mod Creator -> Additions** 🧩: Add new content into the game, like new sprites, audio, etc.
 - **Mod Creator -> Map Maker** 🗺️: Create your own maps!
 - **Mod Creator -> Voice Support** 🦜: TBA..
 - **Mod Creator -> Mod Bundler** 🎁: Bundle your mod up in one little preset to distribute!
   
 And much more, but this list and the software's organisation will probably change as I understand the game's code better and establish a modding framework.. 
 
-Burial will **always be open-source** and will **never** implement any anti-DRM tools.
+Burial will **always be open-source** and will **never** implement any anti-DRM tools. Support the game, sillies.
 
 
 <!-- Install -->
@@ -67,7 +66,7 @@ DOCUMENTATION.md TBA!
 
 <!-- Contribute -->
 # Contribute 👨🏻‍🤝‍👩🏻
-Burial uses a Rust backend and a Web frontend with Tauri bridging the two. Additionally, some python scripts are used to assist in development. CONTRIBUTING.md TBA!
+**For development**, Burial uses a Rust backend and a Web frontend with Tauri bridging the two. Additionally, some python scripts are used to assist in development. **For bugs and requests**, these are highly welcomed too! Please note that this was developed and tested on Windows, so Mac and Linux users please let me know of any bugs. Detailed programming information and other contributing information will come soon - **CONTRIBUTING.md TBA**!
 
 <!-- Credits & Licenses -->
 # Credits & Licenses 🎉

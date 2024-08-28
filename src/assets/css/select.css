@@ -1,0 +1,29 @@
+/* File Path */ 
+.file-path-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.file-path-input {
+    width: 280px;
+    padding: 10px;
+    border: 2px solid #5ca8a3;
+    border-radius: 5px 0 0 5px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.browse-button {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    font-size: 1em;
+    color: #6ed5a4;
+    background-color: #6e4826;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

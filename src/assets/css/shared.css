@@ -1,0 +1,95 @@
+/* Font */
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../Fonts/NotoSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('../Fonts/NotoSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* General layout */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html,
+body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #F595B2 0%, #C37084 100%); /* ashley's Eyes + Background */
+    font-family: 'Noto Sans', sans-serif;
+    overflow: hidden;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow: auto;
+}
+
+/* Container */
+.container {
+    max-width: calc(100% - 25%);
+    margin: 0 auto;
+    text-align: center;
+    width: calc(100% - 25%);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 25%;
+    background-color: #F1E2C5; /* Ashley's Skin */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar-items {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-family: 'Noto Sans';
+    font-size: 2vmax;
+}
+
+.sidebar-current {
+    background-color: #F595B2;
+}
+
+.sidebar-items a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sidebar-hide-link {
+    text-decoration: none;
+}
+
+.sidebar-github {
+    width: 30px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
