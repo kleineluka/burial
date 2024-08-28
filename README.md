@@ -41,7 +41,7 @@ A cross-platform application for [TCOAAL](https://store.steampowered.com/app/237
 - **Pretty GUI** 🌸: Based on Ashley's colours, responsive, scales with your screen size, easy to navigate, all that stuff..
 - **By Fans, Not Thieves** 🥰: Burial uses byte-patching to modify/create game content so that assets don't need to be redistributed and a legal copy is required to use Burial.
 
-While not yet implemented, here are some further planned and in development features..
+While not yet implemented (and even a lot of the above are WIP), here are some further planned and in development features..
 - **Sprite Builder -> Mixer** 🍸: Combine faces and busts to make cursed new things, or use your own artwork.
 - **Mod Creator -> Encrypt** 🩹: Easily encrypt your edited or new resource files back into .k9a format to be used in the game.
 - **Mod Creator -> Dialogue Creator** 💬: Create new dialogue scenes or edit old dialogue in the game.
@@ -71,4 +71,4 @@ DOCUMENTATION.md TBA!
 <!-- Credits & Licenses -->
 # Credits & Licenses 🎉
 - **Burial** is provided under the [MIT](https://github.com/kleineluka/burial/blob/main/LICENSE) license.
-- **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([GLWTPL](https://github.com/me-shaon/GLWTPL)) was referenced for Burial's cipher.rs implementation - which saved a lot of time! 
+- **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([GLWTPL](https://github.com/me-shaon/GLWTPL)) was referenced for Burial's [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/cipher.rs) implementation - which saved a lot of time! 
