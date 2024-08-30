@@ -9,20 +9,21 @@
   <link rel="stylesheet" href="assets/ext/animate.min.css">
   <link rel="stylesheet" href="assets/ext/hover.min.css">
   <link rel="stylesheet" href="assets/css/shared.css">
-  <link rel="stylesheet" href="assets/css/settings.css">
+  <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <!-- body -->
 <body>
   <!-- sidebar -->
   <div id="sidebar" class="sidebar">
     <div class="sidebar-items">
-      <a class="navigate-button hvr-grow" data-page="index.html">Home Page 🍅</a>
+      <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
+      <a class="navigate-button sidebar-current" data-page="index.html">Home Page 🍅</a>
       <a class="navigate-button hvr-grow" data-page="decryption.html">Decryption Tool ✂️</a>
       <a class="navigate-button hvr-grow" data-page="sift.html">Resource Sifting 🐠</a>
       <a class="navigate-button hvr-grow" data-page="sprite.html">Sprite Builder 🥺</a>
       <a class="navigate-button hvr-grow" data-page="game.html">Game Tools 🧬</a>
       <a class="navigate-button hvr-grow" data-page="modding.html">Mod Creator 🪄</a>
-      <a class="navigate-button sidebar-current" data-page="settings.html">Settings 🍪</a>
+      <a class="navigate-button hvr-grow" data-page="settings.html">Settings 🍪</a>
     </div>
     <div class="sidebar-footer wow fadeIn">
       <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
@@ -33,31 +34,26 @@
       </div>
     </div>
   </div>
+  <button id="sidebar-toggle" class="sidebar-toggle hvr-shrink">☰</button>
   <!-- main content -->
   <div class="main-content">
     <div class="container wow fadeIn">
-      <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
-      <div class="file-path-container">
-        <input id="input-tcoaal" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
-        <button id="browse-button-tcoaal" class="browse-button">Browse</button>
-      </div>
-      <div class="file-path-container">
-        <input id="input-output" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
-        <button id="browse-button-out" class="browse-button">Browse</button>
-      </div>
-      <div>
-        <!-- ui theme option will go here -->
-      </div>
-      <div>
-        <!-- language option will go here -->
-      </div>
-      <button id="decrypt-button" class="decrypt-button center-button hvr-shrink">Save 🖍️</button>
-      <button id="decrypt-button" class="decrypt-button center-button hvr-shrink">Reset 🧼</button>
+      <button id="update-button" class="update-button center-button hvr-pulse-grow" data-page="warning.html">Update Available 🎉</button>
+      <img src="assets/img/leyley.png" alt="Leyley Emoji" class="center-image">
+      <h1 class="center-text">Burial</h1>
+      <ul class="center-list">
+        <li><span>🔪</span> <b>Decrypt</b> and <b>explore</b> game files.</li>
+        <li><span>🐰</span> Easily create <b>modded content.</b></li>
+        <li><span>❤️‍🔥</span> <b>Open-source</b>, made with love!</li>
+      </ul>
+      <button class="center-button hvr-pulse-grow" data-page="warning.html">Open the Docs 📖</button>
     </div>
     <!-- footer -->
     <div id="footer" class="footer-container wow fadeIn">
       <div class="footer-text">
-        The settings file is stored at %x%/burial/config.json.
+        <b>Not affiliated with Kit9.</b> Art is property of Kit9. 🌈
+        <br>
+        A <b>legal copy</b> of the game is <b>required</b> to use Burial! 🕯️
       </div>
     </div>
   </div>
@@ -65,5 +61,5 @@
 <!-- javascript -->
 <script src="assets/ext/wow.min.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/settings.js"></script>
+<script src="assets/js/index.js"></script>
 </html>

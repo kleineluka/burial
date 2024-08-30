@@ -7,7 +7,7 @@
 A cross-platform application for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) decryption, modding, content creation, and development. 
 
 
-[Straight to Downloads 🕯️](https://www.github.com/kleineluka/burial) • [View Changelog 🍅](https://www.github.com/kleineluka/burial) • [Tech Stack & Insights 🍰](https://www.github.com/kleineluka/burial)
+[Straight to Downloads 🕯️](https://www.github.com/kleineluka/burial) • [View Changelog 🍅](https://www.github.com/kleineluka/burial/knowledge/CHANGELOD.md) • [Tech Stack & Insights 🍰](https://www.github.com/kleineluka/burial)
 
 **Current Status:** 🚧 In Development! 🚧 
 <br>

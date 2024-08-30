@@ -1,6 +1,6 @@
 [package]
 name = "burial"
-version = "0.0.0"
+version = "0.0.1"
 description = "Tools for TCOAAL"
 authors = ["kleineluka"]
 edition = "2021"

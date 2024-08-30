@@ -2,7 +2,6 @@
 <html lang="en">
 
 <!-- head -->
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +13,9 @@
   <link rel="stylesheet" href="assets/css/sprite.css">
 </head>
 <!-- body -->
-
 <body>
   <!-- sidebar -->
-  <div class="sidebar">
+  <div id="sidebar" class="sidebar">
     <div class="sidebar-items">
       <a class="navigate-button hvr-grow" data-page="index.html">Home Page 🍅</a>
       <a class="navigate-button hvr-grow" data-page="decryption.html">Decryption Tool ✂️</a>
@@ -27,9 +25,14 @@
       <a class="navigate-button hvr-grow" data-page="modding.html">Mod Creator 🪄</a>
       <a class="navigate-button hvr-grow" data-page="settings.html">Settings 🍪</a>
     </div>
-    <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
-      <img src="assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
-    </a>
+    <div class="sidebar-footer wow fadeIn">
+      <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+        <img src="assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
+      </a>
+      <div class="sidebar-version hvr-shrink">
+        0.0.0
+      </div>
+    </div>
   </div>
   <!-- main content -->
   <div class="main-content">

@@ -12,6 +12,7 @@ use utils::files;
 use utils::commands;
 use utils::cryptography;
 use utils::cipher;
+use config::version;
 use pages::decryption;
 use pages::sprite;
 
@@ -19,6 +20,7 @@ use pages::sprite;
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
+            version::get_version,
             commands::navigate,
             decryption::decrypt,
             sprite::make_sprite])

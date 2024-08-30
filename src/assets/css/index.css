@@ -3,7 +3,8 @@
   max-width: 100px;
   margin-bottom: 5px;
   margin-top: -20px;
-}/
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.5));
+}
 
 /* Start Text */
 .center-text {
@@ -37,27 +38,26 @@
   transition: background-color 0.3s ease;
 }
 
-/* Footer */
-.footer-container {
-  position: absolute;
-  bottom: 10px;
-  width: calc(100% - 25%);
-}
-
-.footer {
-  margin-right: 25px; /* Hacky? Yes. CSS? Sadge. */
-  text-align: center;
-}
-
 /* Adjust Sidebar for Image */
 .start-image {
   height: 15%;
-  width: 80%;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 90%;
+  margin-left: 0%;
+  margin-right: 0%;
 }
 
 .start-sidebar {
-  /* move up 20% */
   margin-top: -12.5%;
+}
+
+/* Update Button - top rigt corner */
+.update-button {
+  font-size: 1.75vw;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.update-button-hide {
+  display: none;
 }
