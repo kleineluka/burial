@@ -1,14 +1,13 @@
 /* Center Image */
 .center-image {
-  max-width: 100px;
-  margin-bottom: 5px;
+  max-width: 25vmin;
   margin-top: -20px;
   filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.5));
 }
 
 /* Start Text */
 .center-text {
-  font-size: 2em;
+  font-size: 5vmin;
   margin-bottom: 20px;
   color: #030000;
 }
@@ -22,14 +21,14 @@
 }
 
 .center-list li {
-  font-size: 1.2em;
+  font-size: 3vmin;
   margin-bottom: 10px;
 }
 
 /* Button */
 .center-button {
   padding: 10px 20px;
-  font-size: 1em;
+  font-size: 3vmin;
   color: #F595B2;
   background-color: #030000;
   border: none;
@@ -50,9 +49,9 @@
   margin-top: -12.5%;
 }
 
-/* Update Button - top rigt corner */
+/* Update Button */
 .update-button {
-  font-size: 1.75vw;
+  font-size: 3vmin;
   position: absolute;
   top: 10px;
   right: 10px;

@@ -1,0 +1,55 @@
+{
+  "categories": {
+    "Music": {
+      "All Music": {
+        "path": "music_all.json"
+      },
+      "Background": {
+        "path": "music_background.json"
+      }
+    },
+    "JSONs": {
+      "All JSONs": {
+        "path": "json_all.json"
+      },
+      "Maps": {
+        "path": "json_maps.json"
+      }
+    },
+    "Art - Busts": {
+      "All Busts": {
+        "path": "art_all_busts.json"
+      },
+      "Ashley Busts": {
+        "path": "art_busts_ashley.json"
+      },
+      "Leyley Busts": {
+        "path": "art_busts_andrew.json"
+      }
+    },
+    "Art - Cutscenes": {
+      "All Cutscenes": {
+        "path": "art_cutscenes_all.json"
+      }
+    },
+    "Art - Sprites": {
+      "All Sprites": {
+        "path": "art_sprites_all.json"
+      },
+      "Character Sprites": {
+        "path": "art_sprites_character.json"
+      },
+      "Other Sprites": {
+        "path": "art_sprites_other.json"
+      }
+    },
+    "Art - Characters": {
+      "All Characters": {
+        "path": "art_characters_all.json"
+      },
+      "Ashley": {
+        "path": "art_characters_ashley.json"
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
 // modules (see more about them in their mod.rs)
 mod utils;
 mod config;
-mod pages;
+mod resources;
 
 // imports
 use utils::files;
@@ -13,8 +13,9 @@ use utils::commands;
 use utils::cryptography;
 use utils::cipher;
 use config::version;
-use pages::decryption;
-use pages::sprite;
+use resources::decryption;
+use resources::encryption;
+use resources::sprite;
 
 // main
 fn main() {
@@ -22,7 +23,10 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             version::get_version,
             commands::navigate,
+            commands::folder_dialog,
+            commands::file_dialog,
             decryption::decrypt,
+            encryption::encrypt,
             sprite::make_sprite])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");

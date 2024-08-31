@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burial</title>
+  <link rel="stylesheet" href="../../assets/ext/animate.min.css">
+  <link rel="stylesheet" href="../../assets/ext/hover.min.css">
+  <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+  <link rel="stylesheet" href="../../assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/decryption.css">
+</head>
+<!-- body -->
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-items">
+      <a class="navigate-button hvr-grow" data-page="index.html">Resources ✂️</a>
+      <a class="navigate-button sidebar-current" data-page="decryption.html">Decryption 🔪</a>
+      <a class="navigate-button hvr-grow" data-page="encryption.html">Encryption 🩹</a>
+      <a class="navigate-button hvr-grow" data-page="sift.html">Sift 🫧</a>
+      <a class="navigate-button hvr-grow" data-page="templates.html">Templates 🥺</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
+      </a>
+      <div id="version" class="sidebar-version hvr-shrink">
+        0.0.0
+      </div>
+    </div>
+  </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="sidebar-top-menu">
+      <button id="toggleSidebar" class="hvr-shrink">☰</button>
+      <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home
+        🍅</button>
+    </div>
+    <div class="container">
+      <div class="kind-container">
+        <button id="select-folder" class="install-type-button selected">Folder</button>
+        <button id="select-file" class="install-type-button">Single File</button>
+      </div>
+      <div class="file-path-container">
+        <input id="input-path" type="text" class="file-path-input" placeholder="Enter your folder or file.." value="">
+        <button id="browse-button-in" class="browse-button hvr-shrink">Browse</button>
+      </div>
+      <div class="file-path-container">
+        <input id="output-path" type="text" class="file-path-output" placeholder="Where do you wanna save?" value="">
+        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+      </div>
+      <button id="decrypt-button" class="decrypt-button center-button hvr-pulse-grow">Decrypt 🔪</button>
+    </div>
+  </div>
+  <!-- Progress -->
+  <div class="progress-container">
+    <a id="status" class="progress-text"></a>
+  </div>
+</body>
+<!-- javascript -->
+<script src="../../assets/ext/wow.min.js"></script>
+<script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/js/shared.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/decryption.js"></script>
+</html>

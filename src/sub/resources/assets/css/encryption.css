@@ -1,0 +1,110 @@
+/* Button */
+.center-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #F595B2;
+    background-color: #030000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Path Type Selection */
+.kind-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.install-type-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #F595B2;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.install-type-button.selected {
+    background-color: #000;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.install-type-button:last-child {
+    margin-right: 0;
+}
+
+.install-type-button:hover {
+    background-color: #3c3c3c;
+}
+
+/* File Path Selection */
+.file-path-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-path-input,
+.file-path-output {
+    width: 50vmin;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.browse-button {
+    padding: 10px 20px;
+    width: 25%;
+    margin-left: 5px;
+    font-size: 1.15em;
+    color: #F595B2;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Advanced Settings */
+.advanced-settings-container {
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.advanced-settings-contents {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.advanced-settings-contents.expanded {
+    max-height: 400px; 
+    margin-top: 2%;
+    padding: 10px;
+    background-color: #F1E2C5;
+    border-radius: 5px;
+    border: 2px solid #000;
+    width: 80%;
+}
+
+.advanced-settings-kind-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#advanced-settings-toggle {
+  cursor: pointer;
+}

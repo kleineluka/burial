@@ -1,17 +1,30 @@
-// command tauri to open a file browser
-async function select_folder() {
-    await window.__TAURI__.invoke('folderwalk', {});
-}
-
 // listen for button click to move to index.html on back
 document.getElementById('browse-button-in').addEventListener('click', (event) => {
-    select_folder();
+    var emitEvent = 'selected-input-folder';
+    if (document.getElementById('select-file').classList.contains('selected')) {
+        var fileType = 'k9a';
+        window.__TAURI__.invoke('file_dialog', { emitEvent, fileType });
+    } else {
+        window.__TAURI__.invoke('folder_dialog', { emitEvent });
+    }
 });
 
-// listen to put the selected data back in the path
+document.getElementById('browse-button-out').addEventListener('click', (event) => {
+    var emitEvent = 'selected-output-folder';
+    window.__TAURI__.invoke('folder_dialog', { emitEvent });
+});
+
+// listen to put the selected data back in the input path
 document.addEventListener('DOMContentLoaded', () => {
-    listen('selected-folder', (event) => {
-        document.querySelector('.file-path-input').value = event.payload;
+    listen('selected-input-folder', (event) => {
+        document.getElementById('input-path').value = event.payload;
+    });
+});
+
+// listen to put the selected data back in the output path
+document.addEventListener('DOMContentLoaded', () => {
+    listen('selected-output-folder', (event) => {
+        document.getElementById('output-path').value = event.payload;
     });
 });
 
@@ -22,19 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const folderButton = document.getElementById('select-folder');
         const fileButton = document.getElementById('select-file');
         let pathKind = (folderButton.classList.contains('selected')) ? 'folder' : 'file';
-        // get the input path
+        // get paths and send to rust
         const inPath = document.getElementById('input-path').value;
-        // get the output path
         const outPath = document.getElementById('output-path').value;
-        // show logs
-        const showLogs = true;
-        // send to rust
-        invoke('decrypt', { pathKind, inPath, outPath, showLogs });
+        invoke('decrypt', { pathKind, inPath, outPath });
     });
 });
 
 // listen for updates to the log
-listen('log', (event) => {
+listen('status', (event) => {
     const logElement = document.getElementById('status');
     logElement.innerHTML = event.payload;
 });

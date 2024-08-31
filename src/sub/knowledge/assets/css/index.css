@@ -1,0 +1,14 @@
+/* Header Image */
+.header-image {
+    width: 60%;
+    height: auto;
+}
+
+/* Fonts */
+.small-title {
+    font-size: 2vw;
+}
+
+.items-list {
+    font-size: 1.75vw;
+}

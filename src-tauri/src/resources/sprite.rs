@@ -6,14 +6,14 @@ use std::path::Path;
 use crate::utils::game;
 use crate::utils::files;
 use crate::utils::bytes;
-use crate::pages::decryption;
+use crate::resources::decryption;
 
 // get old file, copy to new folder, patch the new file
 // please forgive me for this messy, daisy-chained code...
 #[command]
 pub fn make_sprite(window: Window, game_path: String, sprite_path: String, out_path: String, sprite_name: String, byte_list: String) {
     // verify the path is the game path
-    if !game::verify_game(&game_path).unwrap() {
+    /*if !game::verify_game(&game_path).unwrap() {
         window.emit("error", Some("Invalid game path!".to_string())).unwrap();
         return;
     }
@@ -45,5 +45,5 @@ pub fn make_sprite(window: Window, game_path: String, sprite_path: String, out_p
     // patch the file
     bytes::patch_file(&out_path_new.to_string_lossy(), &byte_list).unwrap();
     // log success
-    window.emit("log", Some("Sprite created successfully!")).unwrap();
+    window.emit("log", Some("Sprite created successfully!")).unwrap();*/
 }

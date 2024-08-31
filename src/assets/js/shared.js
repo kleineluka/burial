@@ -32,30 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (version) {
         invoke('get_version').then((res) => {
             version.innerText = res;
+            // fetch the latest version + compare (if update button is present)
+            if (!document.getElementById('update-button')) return;
+            let latestVersion = 'nan';
+            fetch('https://raw.githubusercontent.com/kleineluka/burial/main/api/version.txt')
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    latestVersion = data;
+                    if (latestVersion !== 'nan') {
+                        // compare version and latest (format x.x.x)
+                        const currentVersionArray = res.split('.');
+                        const latestVersionArray = latestVersion.split('.');
+                        let updateAvailable = false;
+                        for (let i = 0; i < currentVersionArray.length; i++) {
+                            if (parseInt(currentVersionArray[i]) < parseInt(latestVersionArray[i])) {
+                                updateAvailable = true;
+                                console.log('update available');
+                                break;
+                            }
+                        }
+                        if (updateAvailable) {
+                            const updateButton = document.getElementById('update-button');
+                            updateButton.classList.remove('update-button-hide');
+                        }
+                    }
+                });
         });
-    }
-    // fetch the latest version + compare
-    let latestVersion = 'nan';
-    fetch('https://raw.githubusercontent.com/kleineluka/burial/main/api/version.txt')
-        .then(response => response.text())
-        .then(data => {
-            latestVersion = data;
-        });
-    if (latestVersion !== 'nan') {
-        // compare version and latest (format x.x.x)
-        const currentVersion = version.innerText;
-        const currentVersionArray = currentVersion.split('.');
-        const latestVersionArray = latestVersion.split('.');
-        let updateAvailable = false;
-        for (let i = 0; i < currentVersionArray.length; i++) {
-            if (parseInt(currentVersionArray[i]) < parseInt(latestVersionArray[i])) {
-                updateAvailable = true;
-                break;
-            }
-        }
-        if (updateAvailable) {
-            const updateButton = document.getElementById('update-button');
-            updateButton.classList.remove('update-button-hide');
-        }
     }
 });
