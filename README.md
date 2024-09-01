@@ -4,10 +4,10 @@
 <img src="https://github.com/kleineluka/burial/blob/main/preview/leyley.png" width="100" height="100">
 
 # Burial
-A cross-platform application for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) decryption, modding, content creation, and development. 
+A cross-platform suite of tools for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding.
 
 
-[Straight to Downloads 🕯️](https://www.github.com/kleineluka/burial) • [View Changelog 🍅](https://www.github.com/kleineluka/burial/knowledge/CHANGELOD.md) • [Tech Stack & Insights 🍰](https://www.github.com/kleineluka/burial)
+[Straight to Downloads 🕯️](https://www.github.com/kleineluka/burial) • [View Changelog 🍅](https://www.github.com/kleineluka/burial/knowledge/CHANGELOD.md) 
 
 **Current Status:** 🚧 In Development! 🚧 
 <br>
@@ -31,30 +31,14 @@ A cross-platform application for [TCOAAL](https://store.steampowered.com/app/237
 
 <!-- Features -->
 # Features 🐰
-- **Decryption Tool** ✂️: Easily decrypt .k9a files (images, audio, etc.) individually and recursively in folders.
-- **Resource Sifting** 🐠: Automatically export what you want: only want Ashley sprites? Of course you do! Or what about background audio only? Surprisingly good ost..
-- **Sprite Builder** 🥺: Create templates based on the sprites in game and export them to create your own new sprites!
-- **Game Tools** 🧬: Dump code from the game with various injection methods and enable tools like developer console inside the game.
-- **Mod Creator** 🪄: Please see the below list, as this is the feature that is in heavy development!
-- **Persistant Settings** 🍪: Automatically configure and save things like your TCOAAL installation folder to avoid having to input it a million trillion times..
-- **Optimised and Cross-Platform** 🦄: Executables are provided for Windows, Linux, and MacOS - and by using a Rust backend with OS native frontends, it's a super duper tiny program that can run on any potato!
+- **Decryption** ✂️: Decrypt files to .k9a, encrypt files to .k9a, sift through and export categories of resources, and generate templates of assets to make your own.
+- **Reversing** 🧬: Inject code into the game, export and deobfuscate the game's run-time code, manage NW.js SDK's, enable developer tools, and create/manage backups of your game files.
+- **Modding** 🖍️: WIP.
+- **Knowledge** 📔: WIP.
+- **Settings** 🍪: Save default configurations to reduce repetitive tasks.
+- **Optimised and Cross-Platform** 🦄: Executables are provided for Windows, Linux, and MacOS - plus, it's a super duper tiny program that can run on any potato!
 - **Pretty GUI** 🌸: Based on Ashley's colours, responsive, scales with your screen size, easy to navigate, all that stuff..
-- **By Fans, Not Thieves** 🥰: Burial uses byte-patching to modify/create game content so that assets don't need to be redistributed and a legal copy is required to use Burial.
-
-While not yet implemented (and even a lot of the above are WIP), here are some further planned and in development features..
-- **Sprite Builder -> Mixer** 🍸: Combine faces and busts to make cursed new things, or use your own artwork.
-- **Mod Creator -> Encrypt** 🩹: Easily encrypt your edited or new resource files back into .k9a format to be used in the game.
-- **Mod Creator -> Dialogue Creator** 💬: Create new dialogue scenes or edit old dialogue in the game.
-- **Mod Creator -> Replacer** 👝: Replace audio, sprites, etc. from the game.
-- **Mod Creator -> Additions** 🧩: Add new content into the game, like new sprites, audio, etc.
-- **Mod Creator -> Map Maker** 🗺️: Create your own maps!
-- **Mod Creator -> Voice Support** 🦜: TBA..
-- **Mod Creator -> Mod Bundler** 🎁: Bundle your mod up in one little preset to distribute!
-  
-And much more, but this list and the software's organisation will probably change as I understand the game's code better and establish a modding framework.. 
-
-Burial will **always be open-source** and will **never** implement any anti-DRM tools. Support the game, sillies.
-
+- **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial. Burial will **never** implement any anti-DRM tools.
 
 <!-- Install -->
 # Install ☕
@@ -62,13 +46,18 @@ TBA!
 
 <!-- Documentation -->
 # Documentation 📻
-DOCUMENTATION.md TBA!
+TBA!
 
 <!-- Contribute -->
 # Contribute 🩷
-**For development**, Burial uses a Rust backend and a Web frontend with Tauri bridging the two. Additionally, some python scripts are used to assist in development. **For bugs and requests**, these are highly welcomed too! Please note that this was developed and tested on Windows, so Mac and Linux users please let me know of any bugs. Detailed programming information and other contributing information will come soon - **CONTRIBUTING.md TBA**!
+**For development**, Burial uses a Rust backend and a Web frontend with Tauri bridging the two. Additionally, some python scripts are used to assist in development. **For bugs and requests**, these are highly welcomed too! Please note that this was developed and tested on Windows, so Mac and Linux users please let me know of any bugs.
+
+Detailed programming information and other contributing information will come soon - TBA!
 
 <!-- Credits & Licenses -->
 # Credits & Licenses 🎉
 - **Burial** is provided under the [MIT](https://github.com/kleineluka/burial/blob/main/LICENSE) license.
-- **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([GLWTPL](https://github.com/me-shaon/GLWTPL)) was referenced for Burial's [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/cipher.rs) implementation - which saved a lot of time! 
+- **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([GLWTPL](https://github.com/me-shaon/GLWTPL)) was referenced for Burial's [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/cipher.rs) implementation - which saved a lot of time!
+-  **[Tauri](https://github.com/tauri-apps/tauri)**, the Rust-based front-end framework, is licensed under MIT/Apache.
+-  **JS libraries** used include [Wow.JS](https://wowjs.uk) (MIT), [SweetAlert2](https://github.com/sweetalert2/sweetalert2) (MIT), [Hover.CSS](https://github.com/IanLunn/Hover) (MIT), and [Animate.CSS](https://github.com/animate-css/animate.css) (Hippocratic License 2.1).
+-  **NotoSans** is us under the [Open Font License](https://fonts.google.com/noto/specimen/Noto+Sans/about).
