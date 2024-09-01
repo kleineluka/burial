@@ -80,7 +80,7 @@ fn encrypt_folder_output(window: &Window, in_path: String, out_path: String, adv
     window.emit("status", Some("All files have been encrypted.")).unwrap();
 }
 
-// perform cipher, recieve three values from front-end: kind of path (file or folder), path to decrypt, and path to save
+// perform cipher to encrypt
 #[command]
 pub fn encrypt(window: Window, path_kind: String, in_path: String, out_path: String, advanced_positions: bool) {
     // sanitize if ""

@@ -62,6 +62,34 @@ pub fn copy_file(from: &str, to: &str) {
     fs::copy(from, to).unwrap();
 }
 
+// copy folder from a to b
+pub fn copy_folder(from: &str, to: &str) {
+    fs::create_dir_all(to).unwrap();
+    for entry in fs::read_dir(from).unwrap() {
+        let entry = entry.unwrap();
+        let path = entry.path();
+        if path.is_dir() {
+            copy_folder(&path.to_string_lossy(), &format!("{}/{}", to, path.file_name().unwrap().to_string_lossy()));
+        } else {
+            copy_file(&path.to_string_lossy(), &format!("{}/{}", to, path.file_name().unwrap().to_string_lossy()));
+        }
+    }
+}
+
+// delete folder
+pub fn delete_folder(folder_path: &str) {
+    fs::remove_dir_all(folder_path).unwrap();
+}
+
+// create a folder if it does not already exist
+pub fn verify_folder(path: &PathBuf) -> std::io::Result<()> {
+    if !path.exists() {
+        // Create the directory if it doesn't exist
+        fs::create_dir_all(path)?;
+    } 
+    Ok(())
+}
+
 // index directory recursively (return amount of .<x> files and what folders they are in)
 pub fn index_directory_single<P: AsRef<Path>>(dir: P, extension: &str) -> (usize, Vec<String>) {
     // store for later..

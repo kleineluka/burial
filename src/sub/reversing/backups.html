@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burial</title>
+    <link rel="stylesheet" href="../../assets/ext/animate.min.css">
+    <link rel="stylesheet" href="../../assets/ext/hover.min.css">
+    <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/backups.css">
+</head>
+<!-- body -->
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-items wow fadeIn">
+            <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
+            <a class="navigate-button hvr-grow" data-page="index.html">Reversing 🧬</a>
+            <a class="navigate-button hvr-grow" data-page="sift.html">Injection 💉</a>
+            <a class="navigate-button hvr-grow" data-page="sprite.html">Export Code 💘</a>
+            <a class="navigate-button hvr-grow" data-page="sdk.html">SDK Manager 🍡</a>
+            <a class="navigate-button hvr-grow" data-page="game.html">Dev Tools 🔍</a>
+            <a class="navigate-button sidebar-current" data-page="backups.html">Backups 🧺</a>
+        </div>
+        <div class="sidebar-footer wow fadeIn">
+            <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+                <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
+            </a>
+            <div id="version" class="sidebar-version hvr-shrink">
+                0.0.0
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="sidebar-top-menu">
+        <button id="toggleSidebar" class="wow fadeIn hvr-shrink">☰</button>
+        <button id="sidebarHome" class="navigate-button wow fadeIn hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+        </div>
+        <div class="container">
+            <!-- Backups List -->
+            <button id="backup-make" class="center-button hvr-shrink">Make New Backup</button>
+            <button id="backup-clean" class="center-button hvr-shrink">Delete Backups</button>
+            <div class="backups-list-container">
+                <div id="advanced-contents" class="backups-list-contents">
+                    <div class="backups-list-kind-container">
+                        <!--<div class="backup-entry">
+                            <span class="backup-path">01-09-2024-39383.zip</span>
+                            <div class="backup-buttons">
+                                <button class="backup-button restore">Restore</button>
+                                <button class="backup-button delete">Delete</button>
+                            </div>-->
+                            <div>Loading backups..</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="file-path-container">
+                <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Folder" value="">
+                <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+            </div>
+            <!-- Optiona: Settings -->
+            <div class="optional-settings-container">
+                <button id="optional-settings-toggle" class="center-button">Optional Settings ▼</button>
+                <div id="optional-contents" class="optional-settings-contents file-path-container">
+                    <input id="backup-name" type="text" class="file-path-input" placeholder="Optionally, use a custom backup name.." value="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Progress -->
+    <div class="progress-container">
+        <a id="status" class="progress-text"></a>
+    </div>
+</body>
+<!-- javascript -->
+<script src="../../assets/ext/wow.min.js"></script>
+<script src="../../assets/js/shared.js"></script>
+<script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/backups.js"></script>
+</html>

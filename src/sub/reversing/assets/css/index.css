@@ -1,14 +1,15 @@
 /* Header Image */
 .header-image {
-    width: 60%;
+    width: 60vmin;
     height: auto;
+    margin-bottom: 2vmin;
 }
 
 /* Fonts */
 .small-title {
-    font-size: 2vw;
+    font-size: 2.8vmin;
 }
 
 .items-list {
-    font-size: 1.75vw;
+    font-size: 2.3vmin;
 }

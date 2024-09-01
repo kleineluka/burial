@@ -84,7 +84,7 @@ fn decrypt_folder_output(window: &Window, in_path: String, out_path: String) {
     window.emit("status", Some("All .k9a files have been decrypted.")).unwrap();
 }
 
-// perform cipher, recieve three values from front-end: kind of path (file or folder), path to decrypt, and path to save
+// perform cipher to decrypt
 #[command]
 pub fn decrypt(window: Window, path_kind: String, in_path: String, out_path: String) {
     // sanitize if ""

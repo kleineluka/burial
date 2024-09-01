@@ -6,6 +6,7 @@
 mod utils;
 mod config;
 mod resources;
+mod reversing;
 
 // imports
 use utils::files;
@@ -16,6 +17,7 @@ use config::version;
 use resources::decryption;
 use resources::encryption;
 use resources::sprite;
+use reversing::backups;
 
 // main
 fn main() {
@@ -27,7 +29,12 @@ fn main() {
             commands::file_dialog,
             decryption::decrypt,
             encryption::encrypt,
-            sprite::make_sprite])
+            sprite::make_sprite,
+            backups::create_backup,
+            backups::get_backups,
+            backups::delete_backup,
+            backups::clean_backups,
+            backups::restore_backup])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }
