@@ -61,3 +61,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// listeners for various updates and conditions
+listen('status', (event) => {
+    const logElement = document.getElementById('status');
+    logElement.innerHTML = event.payload;
+});
+
+listen('error', (event) => {
+    const error = event.payload;
+    Swal.fire({
+        icon: "error",
+        title: error,
+        showConfirmButton: true
+    });
+});
+
+listen('success', (event) => {
+    const success = event.payload;
+    Swal.fire({
+        icon: "success",
+        title: success,
+        showConfirmButton: true
+    });
+});
+
+// manually set the status
+function set_status(status) {
+    const logElement = document.getElementById('status');
+    logElement.innerHTML = status;
+}

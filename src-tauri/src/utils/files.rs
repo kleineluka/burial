@@ -1,12 +1,10 @@
 // imports
 use std::fs;
 use std::fs::File;
-use std::io::Read;
-use std::io::Write;
+use std::io::{Read, Write};
 use std::collections::HashSet;
 use std::path::{Path, PathBuf};
-
-use tauri::api::dialog::FileDialogBuilder;
+use std::process::Command;
 
 // get the file name (without extension) from a file path
 pub fn file_name(file_path: &str) -> String {
@@ -81,12 +79,79 @@ pub fn delete_folder(folder_path: &str) {
     fs::remove_dir_all(folder_path).unwrap();
 }
 
+// rename file
+pub fn rename_file(from: &str, to: &str) {
+    fs::rename(from, to).unwrap();
+}
+
+// open os file explorer at a given path
+pub fn open_folder(path: &str) -> std::io::Result<()> {
+    let path = Path::new(path);
+    if !path.exists() {
+        return Err(std::io::Error::new(
+            std::io::ErrorKind::NotFound,
+            "The specified path does not exist.",
+        ));
+    }
+    #[cfg(target_os = "windows")]
+    Command::new("explorer").arg(path).spawn()?;
+    #[cfg(target_os = "macos")]
+    Command::new("open").arg(path).spawn()?;
+    #[cfg(target_os = "linux")]
+    Command::new("xdg-open").arg(path).spawn()?;
+    Ok(())
+}
+
+
+// delete all files in a folder
+pub fn clear_folder(folder_path: &str) {
+    for entry in fs::read_dir(folder_path).unwrap() {
+        let entry = entry.unwrap();
+        let path = entry.path();
+        if path.is_file() {
+            delete_file(&path.to_string_lossy());
+        }
+    }
+}
+
 // create a folder if it does not already exist
 pub fn verify_folder(path: &PathBuf) -> std::io::Result<()> {
     if !path.exists() {
         // Create the directory if it doesn't exist
         fs::create_dir_all(path)?;
     } 
+    Ok(())
+}
+
+// backup file (make a copy and append .bak)
+pub fn backup_file(file_path: &str) {
+    let backup_path = format!("{}.bak", file_path);
+    copy_file(file_path, &backup_path);
+}
+
+// restore a backup (take a file, remove it, and rename the .bak file to the original name)
+pub fn restore_backup(file_path: &str) {
+    let backup_path = format!("{}.bak", file_path);
+    delete_file(file_path);
+    rename_file(&backup_path, file_path);
+}
+
+// recursively copy all files in a directory to another directory (and match file structure)
+pub fn copy_directory(src_dir: &str, dest_dir: &str) -> std::io::Result<()> {
+    // make directory if it doesn't exist
+    fs::create_dir_all(dest_dir)?;
+    // copy all files in the source directory to the destination directory
+    for entry in fs::read_dir(src_dir)? {
+        let entry = entry?;
+        let path = entry.path();
+        let file_name = path.file_name().unwrap().to_str().unwrap();
+        let dest_path = format!("{}/{}", dest_dir, file_name);
+        if path.is_dir() {
+            copy_directory(&path.to_string_lossy(), &dest_path)?;
+        } else {
+            copy_file(&path.to_string_lossy(), &dest_path);
+        }
+    }
     Ok(())
 }
 

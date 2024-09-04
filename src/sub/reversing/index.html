@@ -8,6 +8,7 @@
     <title>Burial</title>
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
+    <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/index.css">
@@ -16,16 +17,16 @@
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="sidebar-items wow fadeIn">
-            <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
+        <div class="sidebar-items">
             <a class="navigate-button sidebar-current" data-page="index.html">Reversing 🧬</a>
-            <a class="navigate-button hvr-grow" data-page="sift.html">Injection 💉</a>
-            <a class="navigate-button hvr-grow" data-page="sprite.html">Export Code 💘</a>
+            <a class="navigate-button hvr-grow" data-page="injection.html">Injection 💉</a>
+            <a class="navigate-button hvr-grow" data-page="code.html">Game Code 💘</a>
             <a class="navigate-button hvr-grow" data-page="sdk.html">SDK Manager 🍡</a>
             <a class="navigate-button hvr-grow" data-page="game.html">Dev Tools 🔍</a>
+            <a class="navigate-button hvr-grow" data-page="info.html">Game Info 🌮</a>
             <a class="navigate-button hvr-grow" data-page="backups.html">Backups 🧺</a>
         </div>
-        <div class="sidebar-footer wow fadeIn">
+        <div class="sidebar-footer">
             <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
                 <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
             </a>
@@ -37,8 +38,8 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class="wow fadeIn hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button wow fadeIn hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+        <button id="toggleSidebar" class="hvr-shrink">☰</button>
+        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
             <img src="assets/img/resources.png" alt="" class="header-image hvr-shrink">
@@ -47,12 +48,18 @@
             </div>
             <div class="items-list">
                 <p>💉 <b>Injection</b> lets you insert your own code into the game at run-time.</p>
+                <p>💘 <b>Game Code</b> views and deobfuscates the game's run-time code.</p>
+                <p>🍡 <b>SDK Manager</b> lets you manage NW.js SDK versions.</p>
+                <p>🔍 <b>Dev Tools</b> enables additional tools in the game.</p>
+                <p>🌮 <b>Game Info</b> shows and edits information about the game.</p>
+                <p>🧺 <b>Backups</b> lets you backup and restore the game.</p>
             </div>
         </div>
     </div>
 </body>
 <!-- javascript -->
 <script src="../../assets/ext/wow.min.js"></script>
+<script src="../../assets/ext/sweetalert2.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/index.js"></script>

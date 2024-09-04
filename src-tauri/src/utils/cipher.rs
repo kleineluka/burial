@@ -96,15 +96,30 @@ pub fn encrypt(data: &[u8], file_path: &str, advanced_positions: bool) -> Vec<u8
         .unwrap_or("");
     // create the header
     let mut encrypted_data = create_header(extension);
-    // Add the data length (use 0 for files larger than 255 bytes)
+    // add the data length (use 0 for files larger than 255 bytes)
     encrypted_data.push(if data.len() > 255 { 0 } else { data.len() as u8 });
     // create a mask from the file path
     let mut mask = make_mask(file_path);
-    // encrypt the data
-    for &byte in data {
-        let encrypted_byte = ((byte as i32 ^ mask) % 256) as u8;
-        encrypted_data.push(encrypted_byte);
-        mask = (mask << 1) ^ encrypted_byte as i32;
+    // determine what length of bytes to encrypt
+    let (start, end) = if advanced_positions {
+        match extension {
+            "json" => (0, data.len()),           // fully encrypt
+            "png" => (0, 100.min(data.len())),   // encrypt first 100 bytes, or fewer if the file is smaller
+            "ogg" => (0, 200.min(data.len())),   // encrypt first 200 bytes, or fewer if the file is smaller
+            _ => (0, data.len()),                // default: fully encrypt
+        }
+    } else {
+        (0, data.len()) // default: fully encrypt  
+    };
+    // encrypt the data with the given range
+    for (i, &byte) in data.iter().enumerate() {
+        if i >= start && i < end {
+            let encrypted_byte = ((byte as i32 ^ mask) % 256) as u8;
+            encrypted_data.push(encrypted_byte);
+            mask = (mask << 1) ^ encrypted_byte as i32;
+        } else {
+            encrypted_data.push(byte);  // Append unencrypted data
+        }
     }
     encrypted_data
 }

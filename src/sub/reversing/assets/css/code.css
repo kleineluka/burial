@@ -1,0 +1,70 @@
+/* Information */
+.info-section {
+    font-size: 3vmin;
+    margin-bottom: 3vmin;
+}
+
+.info-section div {
+    font-size: 2.5vmin;
+}
+
+/* Footer */
+.footer-container {
+    font-size: 2vmin;
+    margin-top: 2vmin;
+}
+
+/* Horizontal Navbar */
+.horizontal-navbar {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    margin-bottom: 20px;
+    padding: 10px 0;
+    background-color: #000; 
+    border-top-left-radius: 8px;  
+    border-top-right-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    width: 90%;
+    margin: 0 auto;
+    font-size: 3vmin;
+}
+
+.horizontal-nav-option {
+    text-decoration: none;
+    color: #F595B2; 
+    font-weight: 600; 
+    padding: 5px 15px; 
+    transition: color 0.3s ease, background-color 0.3s ease; 
+}
+
+.horizontal-nav-option.selected {
+    color: #fff; 
+    background-color: #F595B2;
+    border-radius: 5px; 
+}
+
+.horizontal-nav-option.hvr-underline-from-center:before {
+    background-color: #F595B2; /* Unused for now, looks clunky.. but I want to rework it eventually */
+}
+
+.horizontal-nav-option:hover {
+    color: #fff; 
+    background-color: #F595B2;
+    border-radius: 5px; 
+}
+
+/* Sub Container Contents */
+.sub-container {
+    padding: 10px 0;
+    background-color: #F1E2C5;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 0 auto;
+}
+
+.sub-container.hidden {
+    display: none;
+}

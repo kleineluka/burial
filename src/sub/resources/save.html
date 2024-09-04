@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burial</title>
+  <link rel="stylesheet" href="../../assets/ext/animate.min.css">
+  <link rel="stylesheet" href="../../assets/ext/hover.min.css">
+  <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+  <link rel="stylesheet" href="../../assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/save.css">
+</head>
+<!-- body -->
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-items">
+      <a class="navigate-button hvr-grow" data-page="index.html">Resources ✂️</a>
+      <a class="navigate-button hvr-grow" data-page="decryption.html">Decryption 🔪</a>
+      <a class="navigate-button hvr-grow" data-page="encryption.html">Encryption 🩹</a>
+      <a class="navigate-button hvr-grow" data-page="sift.html">Sift 🫧</a>
+      <a class="navigate-button hvr-grow" data-page="templates.html">Templates 🥺</a>
+      <a class="navigate-button sidebar-current" data-page="save.html">Save Editor ✏️</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
+      </a>
+      <div id="version" class="sidebar-version hvr-shrink">
+        0.0.0
+      </div>
+    </div>
+  </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="sidebar-top-menu">
+      <button id="toggleSidebar" class="hvr-shrink">☰</button>
+      <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home
+        🍅</button>
+    </div>
+    <div class="container">
+      <!-- Main Sub Menu -->
+      <div id="sub-main" class="sub-container">
+        <div class="button-options-container">
+          <button id="open-button" class="button-option hvr-shrink">Open Saves 📂</button>
+          <button id="navigate-backup-button" class="button-option hvr-shrink">Backups ♻️</button>
+        </div>
+        <div class="file-path-container dropdown-container">
+          <label for="dropdown-menu-save-main" class=>Choose Save File:</label>
+          <select id="dropdown-menu-save-main" class="dropdown-menu">
+            <option value="0">Loading Saves..</option>
+          </select>
+        </div>
+        <div class="button-options-container">
+          <button id="navigate-edit-button" class="button-option hvr-shrink">Edit ✏️</button>
+          <button id="duplicate-button" class="button-option hvr-shrink">Clone 🐑</button>
+        </div>
+        <br>
+        <div class="button-options-container">
+          <button id="duplicate-button" class="button-option hvr-shrink">Delete All 🧼</button>
+          <button id="duplicate-button" class="button-option hvr-shrink">Delete Auto 🧽</button>
+        </div>
+      </div>
+      <!-- Backup Sub Menu -->
+      <div id="sub-backup" class="sub-container hidden">
+        <button class="button-action back-button hvr-shrink">Back To Options 🔙</button>
+        <div class="file-path-container dropdown-container">
+          <label for="dropdown-menu-save-backup" class=>Choose Save File:</label>
+          <select id="dropdown-menu-save-backup" class="dropdown-menu"></select>
+        </div>
+        <div class="file-path-container">
+          <input id="input-backup-out" type="text" class="file-path-input" placeholder="Where do you want to back up to?" value="">
+          <button id="browse-button-in" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <button id="backup-button" class="button-action hvr-shrink">Backup ♻️</button>
+      </div>
+      <!-- Edit Sub Menu -->
+      <div id="sub-edit" class="sub-container hidden">
+        <button class="button-action back-button hvr-shrink">Back To Options 🔙</button>
+        <br>
+        <textarea id="textarea-save" class="editable-textarea" placeholder="Loading your save.."></textarea>
+        <br>
+        <button id="edit-copy-button" class="button-action hvr-shrink">Copy ⬆️</button>
+        <button id="edit-paste-button" class="button-action hvr-shrink">Paste ⬇️</button>
+        <button id="edit-revert-button" class="button-action hvr-shrink">Revert ✨</button>
+        <button id="edit-save-button" class="button-action hvr-shrink">Save 💾</button>
+      </div>
+    </div>
+  </div>
+  <!-- Progress -->
+  <div class="progress-container">
+    <a id="status" class="progress-text"></a>
+  </div>
+</body>
+<!-- javascript -->
+<script src="../../assets/ext/wow.min.js"></script>
+<script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/js/shared.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/save.js"></script>
+
+</html>

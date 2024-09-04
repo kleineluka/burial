@@ -1,5 +1,5 @@
-use std::fs::{File, OpenOptions};
-use std::io::{self, Read, Seek, SeekFrom, Write};
+use std::fs::OpenOptions;
+use std::io::{self, Seek, SeekFrom, Write};
 use std::str::FromStr;
 
 // patch files to make a new file 

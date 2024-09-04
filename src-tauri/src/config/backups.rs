@@ -15,7 +15,7 @@ pub fn backup_folder() -> PathBuf {
 // make sure backups folder exists
 pub fn verify_backups() -> std::io::Result<()> {
     cache::verify_cache()?;
-    let mut burial_dir: PathBuf = backup_folder();
+    let burial_dir: PathBuf = backup_folder();
     files::verify_folder(&burial_dir)?;
     Ok(())
 }

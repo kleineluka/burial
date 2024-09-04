@@ -38,7 +38,7 @@ pub fn create_backup(window: Window, in_path: String, in_name: String) {
     let backup_path = backup_folder.join(&backup_name);
     files::copy_folder(&in_path.to_string_lossy(), &backup_path.to_string_lossy());
     // zip the backup folder
-    window.emit("status", Some("Compressing the backup folder..".to_string())).unwrap();
+    window.emit("status", Some("Compressing the backup folder.. (this may take some time)".to_string())).unwrap();
     let zip_path = backup_folder.join(backup_name.clone() + ".zip");
     let file = fs::File::create(&zip_path).unwrap();
     compression::compress_directory(&backup_path, file).unwrap();
@@ -135,5 +135,19 @@ pub fn restore_backup(window: Window, in_path: String, in_name: String) {
         window.emit("error", Some("That backup does not exist!".to_string())).unwrap();
         return;
     }
-    // 
+    // delete all contents of the game folder
+    window.emit("status", Some("Deleting current game contents..".to_string())).unwrap();
+    files::clear_folder(&in_path.to_string_lossy());
+    // decompress the backup to the game folder
+    window.emit("status", Some("Restoring backup to game folder..".to_string())).unwrap();
+    compression::decompress_directory(&zip_path, &in_path).unwrap();
+    window.emit("status", Some("Backup restored!".to_string())).unwrap();
+}
+
+// open backups folder
+#[command]
+pub fn open_backups() {
+    backups::verify_backups().unwrap();
+    let backup_folder = backups::backup_folder();
+    files::open_folder(&backup_folder.to_string_lossy()).unwrap();
 }

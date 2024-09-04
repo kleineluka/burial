@@ -1,0 +1,35 @@
+{
+  "Index.html": {
+    "Head - Before": {
+      "Location": "value",
+      "Kind": "HTML"
+    },
+    "Head - After": {
+      "Location": "value",
+      "Kind": "HTML"
+    },
+    "Body - Before": {
+      "Location": "value",
+      "Kind": "HTML"
+    },
+    "Body - Before RPG Maker": {
+      "Location": "value",
+      "Kind": "HTML"
+    },
+    "Body - Before Plugins": {
+      "Location": "value",
+      "Kind": "HTML"
+    },
+    "Body - Before Main": {
+      "Location": "value",
+      "Kind": "HTML"
+    },
+    "Body - After": {
+      "Location": "value",
+      "Kind": "HTML"
+    }
+  },
+  "Main.js": {
+    "Location": "value"
+  }
+}

@@ -1,29 +1,3 @@
-// listen for updates to the log
-listen('status', (event) => {
-    const logElement = document.getElementById('status');
-    logElement.innerHTML = event.payload;
-});
-
-// listen for errors
-listen('error', (event) => {
-    const error = event.payload;
-    Swal.fire({
-        icon: "error",
-        title: error,
-        showConfirmButton: true
-    });
-});
-
-// listen for success mesasges
-listen('success', (event) => {
-    const success = event.payload;
-    Swal.fire({
-        icon: "success",
-        title: success,
-        showConfirmButton: true
-    });
-});
-
 // show optional settings
 document.getElementById('optional-settings-toggle').addEventListener('click', function () {
     var advancedContents = document.getElementsByClassName('optional-settings-contents')[0];
@@ -47,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // get list of backups
 function updateBackupsList(csv) {
     // clear container and see if empty
-    const container = document.querySelector(".backups-list-kind-container");
+    const container = document.querySelector(".backups-list-container");
     container.innerHTML = '';
     if (csv === "null") {
         const noBackupsMessage = document.createElement("div");
@@ -92,7 +66,8 @@ function updateBackupsList(csv) {
                 confirmButtonColor: "#F595B2",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log('Confirmed');
+                    let inPath = document.getElementById('tcoaal-path').value;
+                    invoke('restore_backup', { inPath, inName: backup });
                 } 
             });
         });
@@ -103,7 +78,7 @@ function updateBackupsList(csv) {
 }
 
 listen('reload-backups', (event) => {
-    const container = document.querySelector(".backups-list-kind-container");
+    const container = document.querySelector(".backups-list-container");
     container.innerHTML = '';
     const loading = document.createElement("div");
     loading.innerHTML = "Loading backups..";
@@ -129,5 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('backup-clean').addEventListener('click', () => {
         invoke('clean_backups', {});
+    });
+});
+
+// open backups folder
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('backup-open').addEventListener('click', () => {
+        invoke('open_backups', {});
     });
 });

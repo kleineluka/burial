@@ -46,32 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// listen for updates to the log
-listen('status', (event) => {
-    const logElement = document.getElementById('status');
-    logElement.innerHTML = event.payload;
-});
-
-// listen for errors
-listen('error', (event) => {
-    const error = event.payload;
-    Swal.fire({
-        icon: "error",
-        title: error,
-        showConfirmButton: true
-    });
-});
-
-// listen for success mesasges
-listen('success', (event) => {
-    const success = event.payload;
-    Swal.fire({
-        icon: "success",
-        title: success,
-        showConfirmButton: true
-    });
-});
-
 // switch between encrypting a single file and decrypting a folder
 document.addEventListener('DOMContentLoaded', () => {
     const folderButton = document.getElementById('select-folder');

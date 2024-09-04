@@ -13,7 +13,6 @@ tauri-build = { version = "1", features = [ ] }
 [dependencies]
 tauri = { version = "1", features = [ "api-all"] }
 serde = { version = "1", features = ["derive"] }
-serde_json = "1"
 sha2 = "0.10.8"
 sysinfo = "0.30.12"
 fs_extra = "1.3.0"
@@ -24,6 +23,11 @@ dirs = "5.0.1"
 zip = "2.2.0"
 chrono = "0.4.38"
 walkdir = "2.5.0"
+tokio = "1.40.0"
+reqwest = "0.12.7"
+lz-str = "0.2.1"
+base64 = "0.22.1"
+jsonxf = "1.1.1"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

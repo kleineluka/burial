@@ -52,3 +52,108 @@ body {
     text-align: center;
     width: calc(100% - 25%);
 }
+
+/* File Path Selection */
+.file-path-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5vmin;
+    margin-bottom: 1.5vmin;
+}
+
+.file-path-input {
+    width: 50vmin;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 2.5vmin;
+}
+
+.browse-button {
+    padding: 10px 20px;
+    width: 25%;
+    margin-left: 5px;
+    font-size: 3vmin;
+    color: #F595B2;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Options */
+.button-options-container {
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    gap: 1vmin;
+    margin-bottom: 1vmin;
+}
+
+.button-option {
+    padding: 10px 20px;
+    font-size: 3vmin;
+    color: #F595B2;
+    background-color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-option.selected {
+    background-color: #000;
+    color: #fff;
+    text-decoration: underline;
+}
+
+.button-option:last-child {
+    margin-right: 0;
+}
+
+.button-option:hover {
+    background-color: #3c3c3c;
+}
+
+/* Action Button */
+.button-action {
+    padding: 10px 20px;
+    font-size: 3vmin;
+    color: #F595B2;
+    background-color: #030000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 1.5vmin;
+    margin-top: 1.5vmin;
+}
+
+/* Dropdown Selection */
+.dropdown-menu {
+    padding: 5px;
+    font-size: 3vmin;
+    border-radius: 5px;
+    border: 1px solid #030000;
+    background-color: #030000;
+    color: #F595B2;
+    width: 50%;
+    text-align: center;
+}
+
+.dropdown-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vmin;
+    margin-top: 2vmin;
+}
+
+.dropdown-container label {
+    font-size: 3vmin;
+    margin-right: 30px;
+    text-align: center;
+}
+
+/* set max dropdown height */

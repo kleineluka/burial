@@ -31,8 +31,8 @@ pub fn compress_directory<T>(src_dir: &Path, output_file: T) -> zip::result::Zip
     Ok(())
 }
 
-// decompress a zip file to a directory and delete the zip
-fn extract_and_delete(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
+// decompress a zip file to a directory (don't delete zip for now..)
+pub fn decompress_directory(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
     let file = File::open(zip_file_path)?;
     let mut archive = zip::ZipArchive::new(file)?;
     for i in 0..archive.len() {
@@ -64,6 +64,6 @@ fn extract_and_delete(zip_file_path: &Path, output_folder: &Path) -> io::Result<
         }
     }
     // delete the zip file after extraction is complete
-    fs::remove_file(zip_file_path)?;
+    // fs::remove_file(zip_file_path)?;
     Ok(())
 }

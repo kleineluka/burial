@@ -2,3 +2,4 @@
 pub mod decryption;
 pub mod encryption;
 pub mod sprite;
+pub mod save;

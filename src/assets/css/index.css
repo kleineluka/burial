@@ -25,18 +25,6 @@
   margin-bottom: 10px;
 }
 
-/* Button */
-.center-button {
-  padding: 10px 20px;
-  font-size: 3vmin;
-  color: #F595B2;
-  background-color: #030000;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 /* Adjust Sidebar for Image */
 .start-image {
   height: 15%;
