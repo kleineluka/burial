@@ -24,7 +24,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 
 <br>
 
-<img src="https://github.com/kleineluka/burial/blob/main/preview/app.gif" style="width: 50%; height: auto;">
+<img src="https://github.com/kleineluka/burial/blob/main/preview/app.gif" style="width: 75%; height: auto;">
 
 </div>
 
