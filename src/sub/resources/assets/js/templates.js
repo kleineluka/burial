@@ -102,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 fetch(`/data/sprite_byte/${bytePath}`)
                     .then(response => response.text())
                     .then(byteList => {
-                        //pub fn make_sprite(window: Window, game_path: String, sprite_path: String, out_path: String, sprite_name: String, byte_list: String) {
                         const gamePath = document.getElementById('tcoaal-path').value;
                         const spritePath = selectedData.sprite_location;
                         const outPath = document.getElementById('output-path').value;

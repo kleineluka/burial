@@ -26,7 +26,6 @@ walkdir = "2.5.0"
 tokio = "1.40.0"
 reqwest = "0.12.7"
 lz-str = "0.2.1"
-base64 = "0.22.1"
 jsonxf = "1.1.1"
 
 [features]

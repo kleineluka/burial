@@ -1,14 +1,67 @@
 {
   "categories": {
+    "Art": {
+      "All Art": {
+        "path": "art_all.json"
+      },
+      "Busts": {
+        "path": "art_busts.json"
+      },
+      "Cutscenes": {
+        "path": "art_cutscenes.json"
+      },
+      "Sprites": {
+        "path": "art_sprites.json"
+      },
+      "Backgrounds": {
+        "path": "art_backgrounds.json"
+      },
+      "Others": {
+        "path": "art_others.json"
+      }
+    },
+    "Characters": {
+      "Ashley": {
+        "path": "characters_ashley.json"
+      },
+      "Leyley": {
+        "path": "characters_leyley.json"
+      },
+      "Andrew": {
+        "path": "characters_andrew.json"
+      },
+      "Andy": {
+        "path": "characters_andy.json"
+      },
+      "Renee": {
+        "path": "characters_renee.json"
+      },
+      "Julia": {
+        "path": "characters_julia.json"
+      },
+      "Nina": {
+        "path": "characters_nina.json"
+      },
+      "Cultist": {
+        "path": "characters_cultist.json"
+      },
+      "Apartment Lady":
+      {
+        "path": "characters_apartment_lady.json"
+      }
+    },
     "Music": {
       "All Music": {
         "path": "music_all.json"
       },
       "Background": {
         "path": "music_background.json"
+      },
+      "Sounds": {
+        "path": "music_sounds.json"
       }
     },
-    "JSONs": {
+    "JSON": {
       "All JSONs": {
         "path": "json_all.json"
       },
@@ -16,39 +69,29 @@
         "path": "json_maps.json"
       }
     },
-    "Art - Busts": {
-      "All Busts": {
-        "path": "art_all_busts.json"
+    "Javascript": {
+      "All Javascript": {
+        "path": "javascript_all.json"
       },
-      "Ashley Busts": {
-        "path": "art_busts_ashley.json"
+      "Plugins": {
+        "path": "javascript_plugins.json"
       },
-      "Leyley Busts": {
-        "path": "art_busts_andrew.json"
+      "Libraries": {
+        "path": "javascript_libraries.json"
       }
     },
-    "Art - Cutscenes": {
-      "All Cutscenes": {
-        "path": "art_cutscenes_all.json"
-      }
-    },
-    "Art - Sprites": {
-      "All Sprites": {
-        "path": "art_sprites_all.json"
+    "Other Assets": {
+      "Fonts": {
+        "path": "other_assets_fonts.json"
       },
-      "Character Sprites": {
-        "path": "art_sprites_character.json"
+      "Languages": {
+        "path": "other_assets_languages.json"
       },
-      "Other Sprites": {
-        "path": "art_sprites_other.json"
-      }
-    },
-    "Art - Characters": {
-      "All Characters": {
-        "path": "art_characters_all.json"
+      "Text Documents": {
+        "path": "other_assets_text_documents.json"
       },
-      "Ashley": {
-        "path": "art_characters_ashley.json"
+      "Icons": {
+        "path": "other_assets_icons.json"
       }
     }
   }

@@ -1,0 +1,14 @@
+{
+    "paths": [
+        "www\\js\\libs"
+    ],
+    "files": [
+        "all"
+    ],
+    "prefixes": [
+        "all"
+    ],
+    "extensions": [
+        "js"
+    ]
+}

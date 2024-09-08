@@ -1,0 +1,14 @@
+{
+    "paths": [
+        "www\\audio\\bgm"
+    ],
+    "files": [
+        "all"
+    ],
+    "prefixes": [
+        "all"
+    ],
+    "extensions": [
+        "k9a"
+    ]
+}

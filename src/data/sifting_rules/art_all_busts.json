@@ -1,8 +1,0 @@
-{
-    "Rule": {
-        "Kind": "folders",
-        "Included": [
-            "www\\img\\faces\\"
-        ]
-    }
-}

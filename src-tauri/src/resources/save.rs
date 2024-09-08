@@ -50,7 +50,7 @@ pub fn find_saves(window: Window) {
     }
 }
 
-// backup all rm files to a given path
+// backup all rpgsave files to a given path
 #[command]
 pub fn backup_saves(window: Window, backup_path: String) {
     // get the save folder path
@@ -96,7 +96,102 @@ pub fn open_saves(window: Window) {
     files::open_folder(&save_folder.to_string_lossy()).unwrap();
 }
 
-// read and decrypt a save
+// create a copy of a save file by appending "_copy_timestamp" to the file name (before the extension)
+#[command]
+pub fn copy_save(window: Window, save_name: String) {
+    // get the save folder path
+    window.emit("status", Some("Copying save file.")).unwrap();
+    let save_folder = appdata::save_folder();
+    // sanity check
+    if !save_folder.exists() {
+        window.emit("status", "Save folder does not exist.").unwrap();
+        window.emit("copy-save", "error").unwrap();
+        return;
+    }
+    // get the save file path and read it
+    let save_path = save_folder.join(save_name);
+    // get the file name and extension
+    let file_name = save_path.file_stem().expect("Failed to get file name");
+    let file_extension = save_path.extension().expect("Failed to get file extension");
+    // create the copy file path
+    let copy_name = format!("{}_copy_{}", file_name.to_string_lossy(), chrono::Local::now().timestamp());
+    let copy_path = save_folder.join(format!("{}.{}", copy_name, file_extension.to_string_lossy()));
+    // copy the file
+    fs::copy(&save_path, &copy_path).expect("Failed to copy file");
+    // return results to front end with the name of the new file in the status message
+    window.emit("status", Some(format!("Save file copied to {}.", copy_path.file_name().unwrap().to_string_lossy()))).unwrap();
+}
+
+// delete all saves
+#[command]
+pub fn delete_all(window: Window) {
+    // get the save folder path
+    window.emit("status", Some("Deleting save files.")).unwrap();
+    let save_folder = appdata::save_folder();
+    // sanity check
+    if !save_folder.exists() {
+        window.emit("error", "Save folder does not exist.").unwrap();
+        return;
+    }
+    // iterate over the save folder (recursive)
+    fn delete_rpgsave_files(dir: &PathBuf) {
+        if dir.is_dir() {
+            for entry in fs::read_dir(dir).expect("Failed to read directory") {
+                let entry = entry.expect("Failed to get directory entry");
+                let path = entry.path();
+                if path.is_dir() {
+                    delete_rpgsave_files(&path);
+                } else if let Some(extension) = path.extension() {
+                    if extension == "rpgsave" {
+                        fs::remove_file(&path).expect("Failed to delete file");
+                    }
+                }
+            }
+        }
+    }
+    // call the recursive function
+    delete_rpgsave_files(&save_folder);
+    // return results to front end
+    window.emit("status", Some("Save files deleted!")).unwrap();
+}
+
+// delete all auto saves (saves that start with "auto")
+#[command]
+pub fn delete_auto(window: Window) {
+    // get the save folder path
+    window.emit("status", Some("Deleting auto save files.")).unwrap();
+    let save_folder = appdata::save_folder();
+    // sanity check
+    if !save_folder.exists() {
+        window.emit("error", "Save folder does not exist.").unwrap();
+        return;
+    }
+    // iterate over the save folder (recursive)
+    fn delete_auto_rpgsave_files(dir: &PathBuf) {
+        if dir.is_dir() {
+            for entry in fs::read_dir(dir).expect("Failed to read directory") {
+                let entry = entry.expect("Failed to get directory entry");
+                let path = entry.path();
+                if path.is_dir() {
+                    delete_auto_rpgsave_files(&path);
+                } else if let Some(extension) = path.extension() {
+                    if extension == "rpgsave" {
+                        let file_name = path.file_stem().expect("Failed to get file name");
+                        if file_name.to_string_lossy().starts_with("auto") {
+                            fs::remove_file(&path).expect("Failed to delete file");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // call the recursive function
+    delete_auto_rpgsave_files(&save_folder);
+    // return results to front end
+    window.emit("status", Some("Auto save files deleted!")).unwrap();
+}
+
+// read and decompress a save
 #[command]
 pub fn read_save(window: Window, save_name: String) {
     // get the save folder path
@@ -122,4 +217,32 @@ pub fn read_save(window: Window, save_name: String) {
     // send back the decoded save data
     window.emit("status", Some("Save file decoded!")).unwrap();
     window.emit("load-save", Some(decoded_string)).unwrap();
+}
+
+// write and compress a save
+#[command]
+pub fn write_save(window: Window, save_name: String, save_data: String) {
+    // get the save folder path
+    window.emit("status", Some("Writing save file.")).unwrap();
+    let save_folder = appdata::save_folder();
+    // sanity check
+    if !save_folder.exists() {
+        window.emit("status", "Save folder does not exist.").unwrap();
+        window.emit("write-save", "error").unwrap();
+        return;
+    }
+    // get the save file path and write it
+    let save_path = save_folder.join(save_name);
+    // attempt to encode it
+    window.emit("status", Some("Encoding save file.")).unwrap();
+    let encoded = rpgsave::encode(&save_data);
+    let encoded_string = match encoded {
+        Ok(data) => data,
+        Err(_) => String::from("Failed to encode save file."),
+    };
+    // write the encoded save data
+    let save_data = encoded_string.as_bytes();
+    files::write_file(&save_path.to_string_lossy(), save_data);
+    // send back the status message
+    window.emit("status", Some("Save file written!")).unwrap();
 }

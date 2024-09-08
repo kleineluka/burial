@@ -27,3 +27,21 @@ pub fn patch_file(file_path: &str, diff_list: &str) -> io::Result<()> {
     }
     Ok(())
 }
+
+// patch bytes to data (not from a file like above)
+pub fn patch_data(data: &mut Vec<u8>, diff_list: &str) -> Vec<u8> {
+    // iterate over each diff entry in the byte list
+    for diff in diff_list.split(',') {
+        // split each entry into position and byte value
+        let parts: Vec<&str> = diff.split(':').collect();
+        if parts.len() != 2 {
+            return data.clone();
+        }
+        // parse position and byte value
+        let pos = u64::from_str(parts[0]).unwrap();
+        let byte_value = u8::from_str_radix(parts[1], 16).unwrap();
+        // write the new byte
+        data[pos as usize] = byte_value;
+    }
+    data.clone()
+}

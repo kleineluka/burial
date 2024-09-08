@@ -14,8 +14,9 @@ use utils::commands;
 use config::version;
 use resources::decryption;
 use resources::encryption;
-use resources::sprite;
+use resources::templates;
 use resources::save;
+use resources::sift;
 use reversing::backups;
 use reversing::sdk;
 use reversing::info;
@@ -31,11 +32,16 @@ fn main() {
             commands::file_dialog,
             decryption::decrypt,
             encryption::encrypt,
-            sprite::make_sprite,
+            templates::make_sprite,
+            sift::export_resources,
             save::find_saves,
             save::backup_saves,
             save::open_saves,
             save::read_save,
+            save::write_save,
+            save::copy_save,
+            save::delete_all,
+            save::delete_auto,
             backups::create_backup,
             backups::get_backups,
             backups::delete_backup,

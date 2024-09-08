@@ -1,13 +1,15 @@
 // populate and update dropdown menus via local json
+let siftData = {};
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/data/sifting_list/list.json')
         .then(response => response.json())
-        .then(data => {
+        .then(listData => {
+            siftData = listData;
             // get the dropdown elements
             const typeDropdown = document.getElementById('dropdown-menu-type');
             const categoryDropdown = document.getElementById('dropdown-menu-category');
             // populate type dropdown
-            const topLevelCategories = Object.keys(data.categories);
+            const topLevelCategories = Object.keys(listData.categories);
             topLevelCategories.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category;
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             // populate category dropdown based on selected type
             function populateCategoryDropdown(type) {
-                const categories = data.categories[type] ? Object.keys(data.categories[type]) : [];
+                const categories = listData.categories[type] ? Object.keys(listData.categories[type]) : [];
                 categoryDropdown.innerHTML = ''; // Clear previous options
                 categories.forEach(category => {
                     const option = document.createElement('option');
@@ -43,4 +45,50 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error fetching the JSON data:', error);
         });
+});
+
+// send selected sift data to rust
+document.getElementById('sift-button').addEventListener('click', () => {
+    // get the in and out paths (input is input-path-tcoaal and output is output-path)
+    const inPath = document.getElementById('input-path-tcoaal').value;
+    const outPath = document.getElementById('output-path').value
+    // get selected caategory
+    const type = document.getElementById('dropdown-menu-type').value;
+    const category = document.getElementById('dropdown-menu-category').value;
+    const result = siftData.categories[type][category].path;  
+    // fetch data at that path
+    fetch('/data/sifting_rules/' + result) 
+        .then(response => response.json())
+        .then(ruleData => {
+            const rulePaths = ruleData.paths;
+            const ruleFiles = ruleData.files;
+            const rulePrefixes = ruleData.prefixes;
+            const ruleExtensions = ruleData.extensions;
+            // send data to rust
+            invoke ('export_resources', { inPath, outPath, rulePaths, ruleFiles, rulePrefixes, ruleExtensions });
+        }) 
+});
+
+// send and listen for the selected input path
+document.getElementById('browse-button-in').addEventListener('click', (event) => {
+    var emitEvent = 'selected-input-folder';
+    window.__TAURI__.invoke('folder_dialog', { emitEvent });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    listen('selected-input-folder', (event) => {
+        document.getElementById('input-path-tcoaal').value = event.payload;
+    });
+});
+
+// send and listen for the selected output path
+document.getElementById('browse-button-out').addEventListener('click', (event) => {
+    var emitEvent = 'selected-output-folder';
+    window.__TAURI__.invoke('folder_dialog', { emitEvent });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    listen('selected-output-folder', (event) => {
+        document.getElementById('output-path').value = event.payload;
+    });
 });

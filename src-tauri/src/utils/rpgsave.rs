@@ -1,17 +1,14 @@
-use lz_str::compress_to_utf16;
-use lz_str::decompress_from_utf16;
+use lz_str::compress_to_base64;
 use lz_str::decompress_from_base64;
 use jsonxf::pretty_print;
-use base64::{engine::general_purpose, Engine as _};
+use jsonxf::minimize;
 use std::error::Error;
 
 /// Encodes a string into Base64 LZString compressed data.
-pub fn encode(data: &str) -> String {
-    // Compress the data using LZString
-    let compressed = compress_to_utf16(data);
-    
-    // Encode the compressed data into base64 using the default engine
-    general_purpose::STANDARD.encode(compressed)
+pub fn encode(data: &str) -> Result<String, Box<dyn Error>> {
+    let decompressed_minified = minimize(data)?;
+    let compressed = compress_to_base64(&decompressed_minified);
+    Ok(compressed)
 }
 
 /// decodes base64 lzstring compressed data

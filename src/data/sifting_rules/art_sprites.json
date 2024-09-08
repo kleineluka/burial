@@ -1,0 +1,15 @@
+{
+    "paths": [
+        "www\\img\\system",
+        "www\\img\\characters"
+    ],
+    "files": [
+        "all"
+    ],
+    "prefixes": [
+        "all"
+    ],
+    "extensions": [
+        "k9a"
+    ]
+}

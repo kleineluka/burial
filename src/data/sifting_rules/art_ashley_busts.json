@@ -1,8 +1,0 @@
-{
-    "Rule": {
-        "Kind": "prefix",
-        "Included": [
-            "s_"
-        ]
-    }
-}

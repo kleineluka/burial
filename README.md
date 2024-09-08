@@ -20,7 +20,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 <!-- Navigation + Preview -->
 <div align="center">
 
-[Features 🐰](#features-) • [Install ☕](#install-) • [Documentation 📻](#guides--faq-) • [Roadmap 🚧](#roadmap-) • [Contribute 🩷](#contribute-) • [Credits, Licenses, & Acknowledgements 🎉](#credits--licenses-)
+[Features 🐰](#features-) • [Install ☕](#install-) • [Documentation 📻](#guides--faq-) • [Roadmap 🚧](#roadmap-) • [Contribute 🩷](#contribute-) • [Credits 🎉](#credits--licenses-)
 
 <br>
 
@@ -31,7 +31,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 
 <!-- Features -->
 # Features 🐰
-- **Decryption** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, and generate templates of assets to make your own.
+- **Resources** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, generate templates of assets to make your own, and decrypt/modify/manage save files.
 - **Reversing** 🧬: Inject code into the game, export and deobfuscate the game's run-time code, manage NW.js SDK's, enable developer tools, view/edit game information, and create/manage backups of your game files.
 - **Mod Tools** 🖍️: WIP.
 - **Mod Manager** 🍱: WIP.
@@ -40,6 +40,8 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 - **Optimised and Cross-Platform** 🦄: Executables are provided for Windows, Linux, and MacOS - plus, it's a super duper tiny program that can run on any potato!
 - **Pretty GUI** 🌸: Based on Ashley's colours, responsive, scales with your screen size, easy to navigate, all that stuff.. ~~and a lot of emojis~~
 - **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial. Burial will **never** implement any anti-DRM tools. 
+
+Development Progress: **Resources** (100%), **Reversing** (40%), **Mod Tools** (0%), **Mod Manager** (0%), **Knowledge** (20%), **Settings** (50%). Binaries will be provided when all features are complete.
 
 <!-- Install -->
 # Install ☕

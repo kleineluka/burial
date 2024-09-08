@@ -1,4 +1,4 @@
-// listen for button click to move to index.html on back
+// determine if finding a file or folder and launch dialog
 document.getElementById('browse-button-in').addEventListener('click', (event) => {
     var emitEvent = 'selected-input-folder';
     if (document.getElementById('select-file').classList.contains('selected')) {
@@ -9,6 +9,7 @@ document.getElementById('browse-button-in').addEventListener('click', (event) =>
     }
 });
 
+// launch folder dialog for output path
 document.getElementById('browse-button-out').addEventListener('click', (event) => {
     var emitEvent = 'selected-output-folder';
     window.__TAURI__.invoke('folder_dialog', { emitEvent });

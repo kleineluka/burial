@@ -1,0 +1,14 @@
+{
+    "paths": [
+        "www\\img\\faces"
+    ],
+    "files": [
+        "all"
+    ],
+    "prefixes": [
+        "all"
+    ],
+    "extensions": [
+        "k9a"
+    ]
+}

@@ -7,27 +7,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // listen for save files loaded and put into dropdown
 listen('load-saves', (event) => {
-    // fill to all dropdowns
     const fileNames = event.payload.split(',');
     const dropdownMain = document.getElementById('dropdown-menu-save-main');
-    const dropdownBackup = document.getElementById('dropdown-menu-save-backup');
     dropdownMain.innerHTML = '';
-    dropdownBackup.innerHTML = '';
     fileNames.forEach((fileName) => {
         const optionMain = document.createElement('option');
         optionMain.value = fileName;
         optionMain.textContent = fileName;
         dropdownMain.appendChild(optionMain);
-        const optionBackup = document.createElement('option');
-        optionBackup.value = fileName;
-        optionBackup.textContent = fileName;
-        dropdownBackup.appendChild(optionBackup);
     });
 });
 
 // open saves folder
 document.getElementById('open-button').addEventListener('click', (event) => {
     invoke('open_saves', {});   
+});
+
+// copy save file
+document.getElementById('copy-button').addEventListener('click', (event) => {
+    let saveName = document.getElementById('dropdown-menu-save-main').value;
+    invoke('copy_save', { saveName });
+});
+
+// delete all save files
+document.getElementById('delete-all-button').addEventListener('click', (event) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Deleting all saves is not reversible. Are you sure you want to continue?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete All Saves",
+        closeOnConfirm: true,
+        reverseButtons: true,
+        confirmButtonColor: "#F595B2",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            invoke('delete_all', {  });
+        }
+    });
+});
+
+// delete auto save files
+document.getElementById('delete-auto-button').addEventListener('click', (event) => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Deleting automatic saves is not reversible. Are you sure you want to continue?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Delete Auto Saves",
+        closeOnConfirm: true,
+        reverseButtons: true,
+        confirmButtonColor: "#F595B2",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            invoke('delete_auto', {});
+        }
+    });
 });
 
 // backup menu change
@@ -49,7 +84,7 @@ document.getElementById('backup-button').addEventListener('click', (event) => {
             text: 'Please enter a backup path.',
         });
     }
-    invoke('backup', {backupPath});
+    invoke('backup_saves', { backupPath });
 });
 
 // edit menu change
@@ -95,5 +130,17 @@ document.querySelectorAll('.back-button').forEach((element) => {
         document.getElementById('sub-edit').classList.add('hidden');
         // show main menu
         document.getElementById('sub-main').classList.remove('hidden');
+    });
+});
+
+// listen to put the selected data back in the backup path
+document.getElementById('browse-button-out').addEventListener('click', (event) => {
+    var emitEvent = 'selected-output-folder';
+    window.__TAURI__.invoke('folder_dialog', { emitEvent });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    listen('selected-output-folder', (event) => {
+        document.getElementById('input-backup-out').value = event.payload;
     });
 });

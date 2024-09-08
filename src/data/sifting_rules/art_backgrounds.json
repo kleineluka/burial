@@ -1,0 +1,14 @@
+{
+    "paths": [
+        "www\\img\\parallaxes"
+    ],
+    "files": [
+        "all"
+    ],
+    "prefixes": [
+        "all"
+    ],
+    "extensions": [
+        "k9a"
+    ]
+}

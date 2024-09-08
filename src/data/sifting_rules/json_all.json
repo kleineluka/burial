@@ -1,0 +1,14 @@
+{
+    "paths": [
+        "www\\data"
+    ],
+    "files": [
+        "all"
+    ],
+    "prefixes": [
+        "all"
+    ],
+    "extensions": [
+        "k9a"
+    ]
+}
