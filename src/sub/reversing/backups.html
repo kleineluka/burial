@@ -27,7 +27,7 @@
             <a class="navigate-button sidebar-current" data-page="backups.html">Backups 🧺</a>
         </div>
         <div class="sidebar-footer">
-            <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+            <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
                 <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
             </a>
             <div id="version" class="sidebar-version hvr-shrink">
@@ -43,8 +43,6 @@
         </div>
         <div class="container">
             <!-- Backups List -->
-            <button id="backup-make" class="button-action hvr-shrink">Make New Backup</button>
-            <button id="backup-clean" class="button-action hvr-shrink">Delete Backups</button>
             <button id="backup-open" class="button-action hvr-shrink">Open Backups Folder</button>
             <div class="backups-list-container">
                 <div id="advanced-contents" class="backups-list-contents">
@@ -71,6 +69,11 @@
                     <input id="backup-name" type="text" class="file-path-input" placeholder="Optionally, use a custom backup name.." value="">
                 </div>
             </div>
+            <!-- Make / Delete -->
+             <div class="button-options-container">
+                <button id="backup-make" class="button-option hvr-shrink">Make New Backup</button>
+                <button id="backup-clean" class="button-option hvr-shrink">Delete Backups</button>
+             </div>
         </div>
     </div>
     <!-- Progress -->

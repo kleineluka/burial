@@ -11,3 +11,11 @@ pub fn verify_cache() -> std::io::Result<()> {
     files::verify_folder(&burial_dir)?;
     Ok(())
 }
+
+// get the cache folder
+pub fn cache_folder() -> PathBuf {
+    verify_cache();
+    let mut burial_dir: PathBuf = config_dir().unwrap_or_else(|| PathBuf::from("."));
+    burial_dir.push("burial");
+    burial_dir
+}

@@ -29,19 +29,31 @@ pub fn patch_file(file_path: &str, diff_list: &str) -> io::Result<()> {
 }
 
 // patch bytes to data (not from a file like above)
-pub fn patch_data(data: &mut Vec<u8>, diff_list: &str) -> Vec<u8> {
-    // iterate over each diff entry in the byte list
+pub fn patch_data(mut data: Vec<u8>, diff_list: &str) -> Vec<u8> {
+    // iterate over each diff entry in the diff list
     for diff in diff_list.split(',') {
         // split each entry into position and byte value
         let parts: Vec<&str> = diff.split(':').collect();
         if parts.len() != 2 {
-            return data.clone();
+            continue; 
         }
         // parse position and byte value
-        let pos = u64::from_str(parts[0]).unwrap();
-        let byte_value = u8::from_str_radix(parts[1], 16).unwrap();
-        // write the new byte
-        data[pos as usize] = byte_value;
+        let pos = match u64::from_str(parts[0]) {
+            Ok(p) => p as usize,
+            Err(_) => continue, 
+        };
+        let byte_value = match u8::from_str_radix(parts[1], 16) {
+            Ok(bv) => bv,
+            Err(_) => continue, 
+        };
+        // ensure the vector has enough capacity to accommodate the new byte position
+        if pos >= data.len() {
+            // resize the vector, filling new space with 0s
+            data.resize(pos + 1, 0); 
+        }
+        // apply the patch by setting the byte at the specified position
+        data[pos] = byte_value;
     }
-    data.clone()
+    // return the modified data
+    data
 }

@@ -1,18 +1,16 @@
-/* Header Image */
-.header-image {
-    width: 60%;
-    height: auto;
-    padding-bottom: 5%;
+/* Hidden */
+.hidden {
+    display: none;
 }
 
-/* Start Text */
-.center-text {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #030000;
-}
-
-/* Log */
-.log {
-    margin-top: 10px;
+/* Preview Image */
+.preview-image {
+    height: 60vmin;
+    width: auto;
+    /* center */
+    margin-left: auto;
+    margin-right: auto;
+    /* border */
+    border: 4px solid #000;
+    border-radius: 10px;
 }

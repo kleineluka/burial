@@ -91,11 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const spriteData = data[sprite];
                 const characterData = spriteData ? spriteData[character] : null;
                 const selectedData = characterData ? characterData.find(item => item.sprite_name === template) : null;
-                if (selectedData) {
-                    console.log('Found Data:', selectedData);
-                } else {
-                    console.log('No matching data found.');
-                }
                 // gather all data to send
                 const bytePath = selectedData.sprite_bytes;
                 // read from /data/sprite_byte/bytePath (its just raw data)
@@ -117,4 +112,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching the JSON data:', error);
             });
     });
+});
+
+// handle logic for switching between main menu and preview menu
+document.addEventListener('DOMContentLoaded', () => {
+    const mainMenu = document.getElementById('sub-main');
+    const previewMenu = document.getElementById('sub-preview');
+    document.getElementById('preview-button').addEventListener('click', () => {
+        const gamePath = document.getElementById('tcoaal-path');
+        if (!gamePath.value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Please enter the path to the game folder.',
+            });
+            return;
+        }
+        // load the preview image
+        fetch('/data/sprite_list/supported.json')
+            .then(response => response.json())
+            .then(data => {
+                // get values from dopdown menus
+                const spriteDropdown = document.getElementById('dropdown-menu-sprite');
+                const characterDropdown = document.getElementById('dropdown-menu-character');
+                const templateDropdown = document.getElementById('dropdown-menu-template');
+                const sprite = spriteDropdown.value;
+                const character = characterDropdown.value;
+                const template = templateDropdown.value;
+                // find in json
+                const spriteData = data[sprite];
+                const characterData = spriteData ? spriteData[character] : null;
+                const selectedData = characterData ? characterData.find(item => item.sprite_name === template) : null;
+                // gather all data to send
+                const bytePath = selectedData.sprite_bytes;
+                fetch(`/data/sprite_byte/${bytePath}`)
+                    .then(response => response.text())
+                    .then(byteList => {
+                        const gamePath = document.getElementById('tcoaal-path').value;
+                        const spritePath = selectedData.sprite_location;
+                        const spriteName = selectedData.sprite_name;
+                        invoke('make_preview', { gamePath, spritePath, spriteName, byteList });
+                        mainMenu.classList.add('hidden');
+                        previewMenu.classList.remove('hidden');
+                    })
+            })
+    });
+    document.getElementById('back-button').addEventListener('click', () => {
+        mainMenu.classList.remove('hidden');
+        previewMenu.classList.add('hidden');
+    });
+});
+
+// listen for loading the preview image (from rust backend as base64)
+listen('load-preview', (event) => {
+    const previewImage = document.getElementById('preview-image');
+    previewImage.src = `data:image/png;base64,${event.payload}`;
 });

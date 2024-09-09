@@ -26,7 +26,7 @@
       <a class="navigate-button hvr-grow" data-page="save.html">Save Editor ✏️</a>
     </div>
     <div class="sidebar-footer">
-      <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+      <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
         <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
       </a>
       <div id="version" class="sidebar-version hvr-shrink">
@@ -42,31 +42,38 @@
         🍅</button>
     </div>
     <div class="container">
-      <div class="file-path-container dropdown-container">
-        <label for="dropdown-menu-sprite" class=>Kind of Sprite:</label>
-        <select id="dropdown-menu-sprite" class="dropdown-menu">
-        </select>
+      <div id="sub-main" class="">
+        <div class="file-path-container dropdown-container">
+          <label for="dropdown-menu-sprite" class=>Kind of Sprite:</label>
+          <select id="dropdown-menu-sprite" class="dropdown-menu">
+          </select>
+        </div>
+        <div class="file-path-container dropdown-container">
+          <label for="dropdown-menu-character" class=>Character:</label>
+          <select id="dropdown-menu-character" class="dropdown-menu">
+          </select>
+        </div>
+        <div class="file-path-container dropdown-container">
+          <label for="dropdown-menu-template" class=>Template:</label>
+          <select id="dropdown-menu-template" class="dropdown-menu">
+          </select>
+        </div>
+        <div class="file-path-container">
+          <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL game folder." value="">
+          <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <div class="file-path-container">
+          <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save?" value="">
+          <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <button id="preview-button" class="button-action hvr-shrink">Preview 🍀</button>
+        <button id="paint-button" class="button-action hvr-shrink">Paint 🖌️</button>
       </div>
-      <div class="file-path-container dropdown-container">
-        <label for="dropdown-menu-character" class=>Character:</label>
-        <select id="dropdown-menu-character" class="dropdown-menu">
-        </select>
+      <div id="sub-preview" class="hidden">
+        <button id="back-button" class="button-action hvr-shrink">Go Back 🔙</button>
+        <br>
+        <img id="preview-image" class="preview-image" src="" alt="Loading Preview Image..">
       </div>
-      <div class="file-path-container dropdown-container">
-        <label for="dropdown-menu-template" class=>Template:</label>
-        <select id="dropdown-menu-template" class="dropdown-menu">
-        </select>
-      </div>
-      <div class="file-path-container">
-        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL game folder." value="">
-        <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
-      </div>
-      <div class="file-path-container">
-        <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save?" value="">
-        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-      </div>
-      <button id="preview-button" class="button-action hvr-shrink">Preview 🍀</button>
-      <button id="paint-button" class="button-action hvr-shrink">Paint 🖌️</button>
     </div>
   </div>
   <!-- Progress -->

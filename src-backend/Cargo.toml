@@ -27,6 +27,9 @@ tokio = "1.40.0"
 reqwest = "0.12.7"
 lz-str = "0.2.1"
 jsonxf = "1.1.1"
+base64 = "0.22.1"
+serde_json = "1.0.128"
+webbrowser = "1.0.1"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

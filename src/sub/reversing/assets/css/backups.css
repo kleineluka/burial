@@ -14,7 +14,8 @@
     background-color: #F1E2C5;
     border-radius: 5px;
     border: 2px solid #000;
-    width: 80%;
+    min-width: 80%;
+    max-width: 80%;
 }
 
 .backups-list-container div {
@@ -86,3 +87,4 @@
 #optional-settings-toggle {
     cursor: pointer;
 }
+

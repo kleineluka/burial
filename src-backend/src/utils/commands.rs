@@ -2,11 +2,20 @@
 use tauri::api::dialog::FileDialogBuilder;
 use tauri::command;
 use tauri::Window;
+use webbrowser;
 
 // navigate to different pages
 #[command]
 pub async fn navigate(window: Window, page: String) {
     let _ = window.eval(&format!("window.location.replace('{}')", page));
+}
+
+// open a web page in default browser
+#[command]
+pub async fn open_browser(url: String) {
+    if let Err(e) = webbrowser::open(&url) {
+        println!("Failed to open browser: {:?}", e);
+    }
 }
 
 // open a folder dialog to select a folder (and accept a string input for the emit event)

@@ -3,6 +3,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 // modules (see more about them in their mod.rs)
+mod settings;
 mod utils;
 mod config;
 mod resources;
@@ -26,13 +27,18 @@ use reversing::code;
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
+            settings::load_settings,
+            settings::save_settings,
+            settings::reset_settings,
             version::get_version,
             commands::navigate,
             commands::folder_dialog,
             commands::file_dialog,
+            commands::open_browser,
             decryption::decrypt,
             encryption::encrypt,
             templates::make_sprite,
+            templates::make_preview,
             sift::export_resources,
             save::find_saves,
             save::backup_saves,

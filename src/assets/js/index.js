@@ -16,3 +16,8 @@ function moveImageRandomly() {
 
 // move leyley around randomly on an interval
 setInterval(moveImageRandomly, 100);
+
+// open docs
+function openDocs() {
+    invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki'});
+}

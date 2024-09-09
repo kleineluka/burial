@@ -16,8 +16,8 @@
 <!-- body -->
 <body>
   <!-- sidebar -->
-  <div id="sidebar" class="sidebar wow fadeIn">
-    <div class="sidebar-items wow fadeIn">
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-items">
       <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
       <a class="navigate-button hvr-grow" data-page="index.html">Home 🍅</a>
       <a class="navigate-button hvr-grow" data-page="sub/resources/index.html">Resources ✂️</a>
@@ -27,8 +27,8 @@
       <a class="navigate-button hvr-grow" data-page="sub/knowledge/index.html">Knowledge 📔</a>
       <a class="navigate-button sidebar-current" data-page="settings.html">Settings 🍪</a>
     </div>
-    <div class="sidebar-footer wow fadeIn">
-      <a href="https://github.com/kleineluka" class="sidebar-hide-link" target="_blank">
+    <div class="sidebar-footer">
+      <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
         <img src="assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
       </a>
       <div id="version" class="sidebar-version hvr-shrink">
@@ -38,15 +38,15 @@
   </div>
   <!-- main content -->
   <div class="main-content">
-    <div class="container wow fadeIn">
+    <div class="container">
       <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
       <div class="file-path-container">
         <input id="input-path-tcoaal" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
-        <button id="browse-button-tcoaal" class="browse-button">Browse</button>
+        <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
       </div>
       <div class="file-path-container">
         <input id="input-path-output" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
-        <button id="browse-button-out" class="browse-button">Browse</button>
+        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
       </div>
       <div>
         <!-- target game version -->
@@ -57,13 +57,13 @@
       <div>
         <!-- language option will go here -->
       </div>
-      <button id="decrypt-button" class="decrypt-button button-action hvr-shrink">Save 🖍️</button>
-      <button id="decrypt-button" class="decrypt-button button-action hvr-shrink">Reset 🧼</button>
+      <button id="save-button" class="decrypt-button button-action hvr-shrink">Save 🖍️</button>
+      <button id="reset-button" class="decrypt-button button-action hvr-shrink">Reset 🧼</button>
     </div>
     <!-- footer -->
-    <div id="footer" class="footer-container wow fadeIn">
+    <div id="footer" class="footer-container">
       <div class="footer-text">
-        The settings file is stored at %x%/burial/config.json.
+        The settings file is stored at %x%/burial/settings.json.
       </div>
     </div>
   </div>

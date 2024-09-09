@@ -57,19 +57,13 @@ Development Progress: **Resources** (100%), **Reversing** (40%), **Mod Tools** (
 
 <!-- Contribute -->
 # Contribute 🩷
-**For development**, Burial uses a `Rust backend` and a `Web frontend` with Tauri bridging the two. Additionally, some `Python scripts` are used to assist in development. Burial also utilises data storage techniques such as `JSON` and `Byte Patching`. The game uses `Javascript` to run, so modifications are made in that. If any of this interests you~ please feel free to start opening pull requests!
-
-**For bugs and requests**, these are highly welcomed too! Please note that this was developed and tested on Windows, so Mac and Linux users pplease let me know of any bugs. Some files are specific to Windows as well (such as Game.exe).. so it will be interesting to deal with, eventually.
-
-I also maintain a **Trello**, so if you are interested in being a frequent contributor, please let me know and I can add you to the board!
-
-Detailed programming information and other contributing information will come soon - **TBA!**
+Please refer to [CONTRIBUTING.md](https://github.com/kleineluka/burial/blob/main/docs/CONTRIBUTING.md) to help with development, submit bug reports, or request features. I also maintain a **Trello**, so if you are interested in being a frequent contributor, please let me know and I can add you to the board!
 
 <!-- Credits & Licenses -->
 # Credits, Licenses, & Acknowledgements 🎉
 - **[The Coffin of Andy and Leyley](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/)** is developed and published by Kit9 Studios. Please support the developers by purchasing the game on Steam. Kit9 Studios has no affiliation with Burial.
 - **Burial** is provided under the [MIT](https://github.com/kleineluka/burial/blob/main/LICENSE) license.
-- **[Basil's Wiki](https://coffin-wiki.basil.cafe/)** has been a great resource for getting started with modifying the game- and Basil has been kind as well.
+- **[Basil's Wiki](https://coffin-wiki.basil.cafe/)** has been a great resource for getting started with modifying the game. Furthermore, Burial's [obfuscation.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/obfuscation.rs) is partially a reimplementation of Basil's [Grimoire](https://codeberg.org/basil/grimoire/) in Rust.
 - **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([GLWTPL](https://github.com/me-shaon/GLWTPL)) was referenced for portions of Burial's original [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/cipher.rs) implementation.
 - **[RPG Save Converter](https://github.com/13xforever/rpgsave-converter)** (MIT) was referenced for the save file format.
 -  **[Tauri](https://github.com/tauri-apps/tauri)**, the Rust-based front-end framework, is licensed under MIT/Apache.

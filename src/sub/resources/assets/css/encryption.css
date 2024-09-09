@@ -29,6 +29,11 @@
     align-items: center;
 }
 
+.advanced-settings-button-options-container button {
+    margin-right: 0.5vmin;
+    margin-left: 0.5vmin;
+}
+
 #advanced-settings-toggle {
   cursor: pointer;
 }
