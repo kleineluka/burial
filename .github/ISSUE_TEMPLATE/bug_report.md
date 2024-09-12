@@ -2,37 +2,26 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
-assignees: ''
+labels: 'bug'
+assignees: 'kleineluka'
 
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+What is happening? (ex. my program crashes!)
+
+**Expected Behaviour**
+What should be happening? (ex. it shouldn't crash.)
 
 **To Reproduce**
-Steps to reproduce the behavior:
+Steps to recreate the bug:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Device** 
+Please include operating sysstem and any applicable hardware (ex. if a keyboard is not working with Burial, what keyboard is it?).
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**Additional Information**
+Feel free to leave this blank! Feel free to include screenshots here (or even a video) - if you do, please use Imgur or Youtube to host them.
