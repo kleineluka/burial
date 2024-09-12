@@ -1,20 +1,20 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+title: 'My Amazing Feature Idea!'
+labels: 'request'
+assignees: 'kleineluka'
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Where would this feature go?**
+What portion of Burial is this related to? For example: would it be part of the mod manager, or maybe part of the decryption tool? 
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Is this an improvement of something that exists, or a brand new idea?**
+Can we do something better, or did you think of an original idea?
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**What does this feature do?**
+Generates 9000 kittens and gives them all to Ashley!
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Are you able to help?**
+Can you open a pull request? Does the feature require other assets (ex. art) that you can provide? 
