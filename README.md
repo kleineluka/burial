@@ -5,13 +5,13 @@
 
 # Burial
 A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding!
+<br>
+**Please** leave a ⭐ Star ⭐ on Github to support!
 
 
 [Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
 
 **Current Status:** 🚧 In Development! 🚧 
-<br>
-**Please** leave a ⭐ Star ⭐ on Github to support!
 
 </div>
 
@@ -43,15 +43,23 @@ Development Progress: **Resources** (100%), **Reversing** (40%), **Mod Tools** (
 
 <!-- Install -->
 # Install ☕
-**TBA!** Version 1 will feature provided executables.
+**Executables will not be provided until a stable version is completed.**
+1. **Download** the latest release from the [Releases](https://github.com/kleineluka/burial/releases).
+2. **Run** the installer, silly! Questions you may have:
+    <br>
+    2.1. [Why is it flagged as unknown/malicious?]()
+    <br>
+    2.2. [Why can't the program be portable?]()
+3. **Open** the program and **enjoy**! If you have any issues, please refer to the [Documentation](#documentation-).
 
 <!-- Documentation -->
 # Documentation 📻
-**TBA!** Version 1 will feature complete documentation.
+Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want to skip right to help with installation, please head over to the [Installation and Help](https://github.com/kleineluka/burial/wiki/Installation-and-Help) page. If you are having trouble with the program beyond installation, check out the [Problems and Questions](https://github.com/kleineluka/burial/wiki/Problems-and-Questions) page. I hope these help! 😇
 
 <!-- Roadmap -->
 # Roadmap 🚧
-**TBA!** Version 1 will feature a roadmap.
+- [ ] Language Support
+- [ ] Steam Deck Compatibility
 
 <!-- Contribute -->
 # Contribute 🩷
@@ -66,5 +74,5 @@ Please refer to the [Contributing Wiki Page](https://github.com/kleineluka/buria
 - **[RPG Save Converter](https://github.com/13xforever/rpgsave-converter)** (MIT) was referenced for the save file format.
 -  **[Tauri](https://github.com/tauri-apps/tauri)**, the Rust-based front-end framework, is licensed under MIT/Apache.
 - **Rust Crates** can be seen in the [Cargo.toml](https://github.com/kleineluka/burial/blob/main/src-backend/Cargo.toml) file.
--  **Front-end libraries** used include [Wow.JS](https://wowjs.uk) (MIT), [SweetAlert2](https://github.com/sweetalert2/sweetalert2) (MIT), [Hover.CSS](https://github.com/IanLunn/Hover) (MIT), [Rough Notation](https://github.com/rough-stuff/rough-notation) (MIT), [Grapheme Splitter](https://github.com/orling/grapheme-splitter) (MIT), and [Animate.CSS](https://github.com/animate-css/animate.css) (Hippocratic License 2.1).
+- **JavaScript Libraries** can be seen in both [package.json](https://github.com/kleineluka/burial/blob/main/package.json) and [src/assets/ext](https://github.com/kleineluka/burial/tree/main/src/assets/ext).
 -  **NotoSans** is under the [Open Font License](https://fonts.google.com/noto/specimen/Noto+Sans/about).

@@ -43,13 +43,13 @@
         </div>
         <div class="container">
             <!-- Horizontal Navbar -->
-            <div class="horizontal-navbar">
-                <a href="#" id="extract" class="horizontal-nav-option selected">Extract</a>
-                <a href="#" id="deobfuscate" class="horizontal-nav-option">Deobfuscate</a>
-                <a href="#" id="beautify" class="horizontal-nav-option">Beautify</a>
+            <div class="page-navbar">
+                <a href="#" id="extract" class="page-navbar-option selected">Extract</a>
+                <a href="#" id="deobfuscate" class="page-navbar-option">Deobfuscate</a>
+                <a href="#" id="beautify" class="page-navbar-option">Beautify</a>
             </div>
             <!-- Sub Container -->
-            <div id="sub-extract" class="sub-container">
+            <div id="sub-extract" class="page-container">
                 <div class="file-path-container dropdown-container">
                     <label for="dropdown-menu-method" class=>Extraction Method:</label>
                     <select id="dropdown-menu-method" class="dropdown-menu"></select>
@@ -85,13 +85,13 @@
                 </div>
                 <button id="extract-code" class="button-action hvr-shrink">Extract Game Code</button>
             </div>
-            <div id="sub-deobfuscate" class="sub-container hidden">
+            <div id="sub-deobfuscate" class="page-container hidden">
                 <div class="file-path-container">
                     <input id="code-path" type="text" class="file-path-input" placeholder="Extracted game code.." value="">
                     <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
                 </div>
             </div>
-            <div id="sub-beautify" class="sub-container hidden">
+            <div id="sub-beautify" class="page-container hidden">
             </div>
         </div>
     </div>

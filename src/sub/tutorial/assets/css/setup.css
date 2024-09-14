@@ -1,0 +1,43 @@
+/* Overwrite the Sidebar */
+.main-content {
+    margin-left: 0 !important;
+}
+
+/* Steps */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.steps-header {
+    font-size: 3vmin;
+    font-weight: bold;
+    margin-bottom: -1vmin;
+}
+
+.steps-subheader {
+    font-size: 2.5vmin;
+    margin-bottom: 1vmin;
+}
+
+.steps-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 0.5vmin;
+    margin-right: 0.5vmin;
+    gap: 1vmin;
+}
+
+.steps-multi-button {
+    margin-top: 0vmin;
+    width: 40vmin;
+}
+
+.steps-solo-button {
+    margin-top: 0vmin;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vmin;
+}

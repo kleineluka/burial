@@ -1,0 +1,49 @@
+/* Overwrite the Sidebar */
+.main-content {
+    margin-left: 0 !important;
+}
+
+/* Text Styles */
+.header {
+    font-size: 5vmin;
+    font-weight: bold;
+    margin-bottom: 2vmin;
+}
+
+.details {
+    font-size: 3.5vmin;
+    margin-bottom: 2vmin;
+    padding-right: 20vmin;
+    padding-left: 20vmin;
+}
+
+/* Confetti! */
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: red;
+    opacity: 0.7;
+    border-radius: 2px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0);
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}

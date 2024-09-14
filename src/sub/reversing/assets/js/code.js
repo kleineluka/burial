@@ -73,8 +73,8 @@ document.getElementById('extract-code').addEventListener('click', function () {
 
 // switch between horizontal navbars
 document.addEventListener('DOMContentLoaded', () => {
-    const navOptions = document.querySelectorAll('.horizontal-nav-option');
-    const subContainers = document.querySelectorAll('.sub-container');
+    const navOptions = document.querySelectorAll('.page-navbar-option');
+    const subContainers = document.querySelectorAll('.page-container');
     navOptions.forEach(option => {
         option.addEventListener('click', (event) => {
             event.preventDefault();

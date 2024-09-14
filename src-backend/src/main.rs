@@ -8,6 +8,7 @@ mod utils;
 mod config;
 mod resources;
 mod reversing;
+mod tutorial;
 
 // imports
 use utils::files;
@@ -20,8 +21,11 @@ use resources::save;
 use resources::sift;
 use reversing::backups;
 use reversing::sdk;
+use reversing::injection;
 use reversing::info;
 use reversing::code;
+use tutorial::setup;
+use tutorial::finished;
 
 // main
 fn main() {
@@ -35,6 +39,9 @@ fn main() {
             commands::folder_dialog,
             commands::file_dialog,
             commands::open_browser,
+            setup::setup_game,
+            setup::setup_settings,
+            finished::setup_finish,
             decryption::decrypt,
             encryption::encrypt,
             templates::make_sprite,
@@ -55,6 +62,7 @@ fn main() {
             backups::restore_backup,
             backups::open_backups,
             sdk::install_sdk,
+            injection::backup_file,
             info::edit_package,
             code::extract_code])
         .run(tauri::generate_context!())

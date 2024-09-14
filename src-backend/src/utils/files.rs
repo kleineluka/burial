@@ -129,6 +129,18 @@ pub fn backup_file(file_path: &str) {
     copy_file(file_path, &backup_path);
 }
 
+// backup file (keep going until a unique name is found)
+pub fn backup_file_multiple(file_path: &str) {
+    let mut backup_path = format!("{}.bak", file_path);
+    // if its taken, add a number to the end
+    let mut i = 1;
+    while PathBuf::from(&backup_path).exists() {
+        backup_path = format!("{}.bak{}", file_path, i);
+        i += 1;
+    }
+    copy_file(file_path, &backup_path);
+}
+
 // restore a backup (take a file, remove it, and rename the .bak file to the original name)
 pub fn restore_backup(file_path: &str) {
     let backup_path = format!("{}.bak", file_path);

@@ -1,0 +1,124 @@
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.full-width {
+    margin-left: 0;
+}
+
+/* Container */
+.container {
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 25%;
+    background-color: #F1E2C5;
+    color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar-items {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    font-family: 'Noto Sans';
+    font-size: 2vw;
+    color: #000;
+}
+
+.sidebar-items a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sidebar-current {
+    background-color: #F595B2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-hide-link {
+    text-decoration: none;
+}
+
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: auto;
+    padding: 10px;
+}
+
+.sidebar-github {
+    width: 30px;
+}
+
+.sidebar-version {
+    font-size: 1.15em;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #000;
+}
+
+.sidebar-top-menu {
+    /* horizontal row in the top left of screen */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1001;
+}
+
+#sidebarHome {
+    color: #000;
+    font-size: 1.5vw;
+    border: none;
+    border-radius: 5%;
+    background-color: #F595B2;
+    padding: 10px 15px;
+    margin-left: 0.5vmax;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#sidebarHome.toggled {
+    background-color: #F1E2C5;
+}
+
+#toggleSidebar {
+    color: #000;
+    font-size: 1.5vw;
+    border: none;
+    border-radius: 10%;
+    background-color: #F595B2;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1001;
+}
+
+#toggleSidebar.toggled {
+  background-color: #F1E2C5; 
+}

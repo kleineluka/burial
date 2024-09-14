@@ -42,13 +42,28 @@
         <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
-            <div class="file-path-container dropdown-container">
-                <label for="dropdown-menu-file" class=>Inject To File:</label>
-                <select id="dropdown-menu-file" class="dropdown-menu"></select>
+            <!-- Horizontal Navbar -->
+            <div class="page-navbar">
+                <p class="top-information">Your code will be read as a text file regardless of the extension. For example, put your
+                Javascript in a .txt file and point to that.</p>
             </div>
-            <div class="file-path-container dropdown-container">
-                <label for="dropdown-menu-location" class=>Inject In File:</label>
-                <select id="dropdown-menu-location" class="dropdown-menu"></select>
+            <div class="page-container">
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-file" class=>Inject to File:</label>
+                    <select id="dropdown-menu-file" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-location" class=>Point in File:</label>
+                    <select id="dropdown-menu-location" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container">
+                    <input id="output-path" type="text" class="file-path-input" placeholder="Your file of code to insert.." value="">
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                </div>
+                <div class="buttons-section">
+                    <button id="backup-button" class="button-action hvr-shrink">Backup File ♻️</button>
+                    <button id="inject-button" class="button-action hvr-shrink">Inject My Code! 💉</button>
+                </div>
             </div>
         </div>
     </div>

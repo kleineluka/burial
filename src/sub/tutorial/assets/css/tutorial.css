@@ -1,0 +1,24 @@
+/* Steps */
+.steps-header {
+    font-size: 3vmin;
+    font-weight: bold;
+}
+
+.steps-content {
+    font-size: 2.5vmin;
+}
+
+.steps-multi-button {
+    margin-top: 0.5vmin;
+    width: 20vmin;
+}
+
+.step {
+    padding-right: 1vmin;
+    padding-left: 1vmin;
+    margin-right: 3vmin;
+}
+
+.step.hidden {
+    display: none;
+}

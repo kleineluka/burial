@@ -14,11 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             // update the 'Inject In File' dropdown when a file is selected
             dropdownFile.addEventListener('change', () => {
-                dropdownLocation.innerHTML = ''; // Clear previous options
-
+                dropdownLocation.innerHTML = '';
                 const selectedFile = dropdownFile.value;
                 const locations = data[selectedFile];
-
                 for (const location in locations) {
                     const option = document.createElement('option');
                     option.value = location;
