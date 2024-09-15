@@ -45,11 +45,13 @@ Development Progress: **Resources** (100%), **Reversing** (40%), **Mod Tools** (
 # Install ☕
 **Executables will not be provided until a stable version is completed.**
 1. **Download** the latest release from the [Releases](https://github.com/kleineluka/burial/releases).
-2. **Run** the installer, silly! Questions you may have:
+2. **Run** the installer, silly!
     <br>
-    2.1. [Why is it flagged as unknown/malicious?]()
+    Question 1. [Why is it flagged as unknown/malicious?]()
     <br>
-    2.2. [Why can't the program be portable?]()
+    Question 2. [Why can't the program be portable?]()
+    <br>
+    Question 3. [How do I run unsigned programs on MacOS?]()
 3. **Open** the program and **enjoy**! If you have any issues, please refer to the [Documentation](#documentation-).
 
 <!-- Documentation -->

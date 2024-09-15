@@ -62,7 +62,11 @@ fn main() {
             backups::restore_backup,
             backups::open_backups,
             sdk::install_sdk,
-            injection::backup_file,
+            injection::injection_backup,
+            injection::injection_open_file,
+            injection::injection_open_folder,
+            injection::injection_preview,
+            injection::injection_save,
             info::edit_package,
             code::extract_code])
         .run(tauri::generate_context!())

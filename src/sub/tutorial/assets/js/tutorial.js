@@ -14,19 +14,19 @@ setTimeout(function () {
 
 function twoAnnotation() {
     const selected_element = document.getElementById('mod-manager');
-    annotation_two = RoughNotation.annotate(selected_element, { type: 'circle', color: '#F595B2', padding: [-1, -1], strokeWidth: 3 });
+    annotation_two = RoughNotation.annotate(selected_element, { type: 'circle', color: '#F595B2', padding: [-1, -10], strokeWidth: 3, animationDuration: 2000 });
     annotation_two.show();
 }
 
 function threeAnnotation() {
     const selected_element = document.getElementById('resources');
-    annotation_three = RoughNotation.annotate(selected_element, { type: 'circle', color: '#F595B2', padding: [-1, -1], strokeWidth: 3 });
+    annotation_three = RoughNotation.annotate(selected_element, { type: 'circle', color: '#F595B2', padding: [-1, -10], strokeWidth: 3, animationDuration: 2000 });
     annotation_three.show();
 }
 
 function fourAnnotation() {
     const selected_element = document.getElementById('settings');
-    annotation_four = RoughNotation.annotate(selected_element, { type: 'circle', color: '#F595B2', padding: [-1, -1], strokeWidth: 3 });
+    annotation_four = RoughNotation.annotate(selected_element, { type: 'circle', color: '#F595B2', padding: [-1, -10], strokeWidth: 3, animationDuration: 2000 });
     annotation_four.show();
 }
 

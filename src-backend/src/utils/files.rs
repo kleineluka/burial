@@ -84,6 +84,11 @@ pub fn rename_file(from: &str, to: &str) {
     fs::rename(from, to).unwrap();
 }
 
+// true/false if file exists
+pub fn file_exists(file_path: &str) -> bool {
+    PathBuf::from(file_path).exists()
+}
+
 // open os file explorer at a given path
 pub fn open_folder(path: &str) -> std::io::Result<()> {
     let path = Path::new(path);

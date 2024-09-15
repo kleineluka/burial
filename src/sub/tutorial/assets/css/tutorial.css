@@ -13,10 +13,10 @@
     width: 20vmin;
 }
 
-.step {
-    padding-right: 1vmin;
-    padding-left: 1vmin;
-    margin-right: 3vmin;
+.step p {
+    max-width: 90vmin;
+    margin: 0 auto;
+    line-height: 2;
 }
 
 .step.hidden {

@@ -1,35 +1,42 @@
 {
   "Index.html": {
     "Head - Before": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "index_head_before.json",
+      "kind": "HTML"
     },
     "Head - After": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "value",
+      "kind": "HTML"
     },
     "Body - Before": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "value",
+      "kind": "HTML"
     },
     "Body - Before RPG Maker": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "value",
+      "kind": "HTML"
     },
     "Body - Before Plugins": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "value",
+      "kind": "HTML"
     },
     "Body - Before Main": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "value",
+      "kind": "HTML"
     },
     "Body - After": {
-      "Location": "value",
-      "Kind": "HTML"
+      "file": "www\\index.html",
+      "location": "value",
+      "kind": "HTML"
     }
   },
   "Main.js": {
-    "Location": "value"
+    "location": "value"
   }
 }

@@ -1,3 +1,19 @@
+/* Sub Menu Manager */
+.sub-menu.hidden {
+    display: none;
+}
+
+/* Preview */
+.editable-textarea {
+    width: 90%;
+    height: 50vmin;
+    padding: 10px;
+    font-size: 2.5vmin;
+    background-color: #F1E2C5;
+    border: 0;
+    resize: none;
+}
+
 /* Text Information (At Top) */
 .top-information {
     font-size: 2.5vmin;
@@ -9,4 +25,9 @@
 /* Bottom Buttons */
 .buttons-section {
     margin-top: -1vmin;
+    margin-bottom: 1vmin;
+}
+
+.button-action {
+    margin-bottom: 0vmin;
 }
