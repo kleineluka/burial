@@ -41,11 +41,11 @@
     <div class="container">
       <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
       <div class="file-path-container">
-        <input id="input-path-tcoaal" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
+        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
         <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
       </div>
       <div class="file-path-container">
-        <input id="input-path-output" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
+        <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
         <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
       </div>
       <div>
@@ -57,8 +57,8 @@
       <div>
         <!-- language option will go here -->
       </div>
-      <button id="save-button" class="decrypt-button button-action hvr-shrink">Save 🖍️</button>
-      <button id="reset-button" class="decrypt-button button-action hvr-shrink">Reset 🧼</button>
+      <button id="save-button" class="decrypt-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
+      <button id="reset-button" class="decrypt-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
       <button id="tutorial-button" class="decrypt-button navigate-button button-action hvr-shrink" data-page="first.html">Open Tutorial 🧸</button>
     </div>
     <!-- footer -->
@@ -70,6 +70,7 @@
   </div>
 </body>
 <!-- javascript -->
+<script src="assets/ext/store.min.js"></script>
 <script src="assets/ext/wow.min.js"></script>
 <script src="assets/ext/sweetalert2.min.js"></script>
 <script src="assets/js/shared.js"></script>

@@ -1,0 +1,5 @@
+{
+    "before": "window.onload = function() {",
+    "after": "SceneManager.run(Scene_Boot);",
+    "indentation": "    "
+}

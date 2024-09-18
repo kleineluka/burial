@@ -1,7 +1,7 @@
 // populate and update dropdown menus via local json
 let siftData = {};
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data/sifting_list/list.json')
+    fetch('/data/supported/sifting.json')
         .then(response => response.json())
         .then(listData => {
             siftData = listData;
@@ -49,15 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // send selected sift data to rust
 document.getElementById('sift-button').addEventListener('click', () => {
-    // get the in and out paths (input is input-path-tcoaal and output is output-path)
-    const inPath = document.getElementById('input-path-tcoaal').value;
+    // get the in and out paths (input is tcoaal-path and output is output-path)
+    const inPath = document.getElementById('tcoaal-path').value;
     const outPath = document.getElementById('output-path').value
     // get selected caategory
     const type = document.getElementById('dropdown-menu-type').value;
     const category = document.getElementById('dropdown-menu-category').value;
     const result = siftData.categories[type][category].path;  
     // fetch data at that path
-    fetch('/data/sifting_rules/' + result) 
+    fetch('/data/rules/sifting/' + result) 
         .then(response => response.json())
         .then(ruleData => {
             const rulePaths = ruleData.paths;
@@ -77,7 +77,7 @@ document.getElementById('browse-button-in').addEventListener('click', (event) =>
 
 document.addEventListener('DOMContentLoaded', () => {
     listen('selected-input-folder', (event) => {
-        document.getElementById('input-path-tcoaal').value = event.payload;
+        document.getElementById('tcoaal-path').value = event.payload;
     });
 });
 

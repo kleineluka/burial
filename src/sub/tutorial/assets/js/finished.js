@@ -24,6 +24,9 @@ function finishTutorial() {
 
 listen('setup-status', (event) => {
     if (event.payload === 'finished') {
+        const store = new Store('data.json');
+        store.set('first_run', false);
+        store.save();
         invoke('navigate', { page: "../../index.html" });
     }
 });

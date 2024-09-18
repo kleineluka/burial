@@ -62,6 +62,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// on load, see if any settings need fetched and if so pass it
+// make sure to reference this before: src="assets/ext/store.min.js" (but the path is relative of course..)
+window.onload = async () => {
+    const setting_tcoaal = document.getElementById('tcoaal-path');
+    const setting_output = document.getElementById('output-path');
+    const require_settings = setting_tcoaal || setting_output;
+    if (require_settings) {
+        try {
+            const store = new Store('data.json');
+            if (setting_tcoaal) {
+                const tcoaal = await store.get('tcoaal');
+                setting_tcoaal.value = tcoaal;
+            }
+            if (setting_output) {
+                const output = await store.get('output');
+                setting_output.value = output;
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Development Error: You forgot to include the store.min.js file!",
+                text: "Burial will continue to work, but local storage will not be functional on this page.",
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: true,
+                confirmButtonText: "You should report or fix this..",
+                timer: 10000,
+            });
+            return;
+        }
+    }
+};
+
 // listeners for various updates and conditions
 listen('status', (event) => {
     const logElement = document.getElementById('status');

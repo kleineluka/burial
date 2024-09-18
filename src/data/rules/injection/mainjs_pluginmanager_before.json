@@ -1,0 +1,5 @@
+{
+    "before": "const GAME_VERSION = \"2.0.14\";",
+    "after": "PluginManager.setup($plugins);",
+    "indentation": ""
+}

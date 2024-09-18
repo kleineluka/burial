@@ -1,0 +1,5 @@
+{
+    "before": "PluginManager.setup($plugins);",
+    "after": "window.onload = function() {",
+    "indentation": ""
+}

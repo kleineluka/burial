@@ -1,0 +1,5 @@
+{
+    "before": "<script type=\"text/javascript\" src=\"js/libs/iphone-inline-video.browser.js\"></script>",
+    "after": "<script type=\"text/javascript\" src=\"js/rpg_core.js\"></script>",
+    "indentation": "        "
+}

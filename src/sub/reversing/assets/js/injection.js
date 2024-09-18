@@ -1,7 +1,7 @@
 // populate + update dropdowns
 let injectionData = {};
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data/injection_list/list.json')
+    fetch('/data/supported/injection.json')
         .then(response => response.json())
         .then(data => {
             injectionData = data;
@@ -48,6 +48,15 @@ function backupButton() {
 function openFileButton() {
     // get the game path
     const gamePath = document.getElementById('tcoaal-path').value;
+    // if empty, return error
+    if (gamePath === '') {
+        Swal.fire({
+            icon: "error",
+            title: "Set your game path to open the file!",
+            showConfirmButton: true
+        });
+        return;
+    }
     // get selected file + where it's at locally
     const selectedFile = document.getElementById('dropdown-menu-file').value;
     const selectedLocation = document.getElementById('dropdown-menu-location').value;
@@ -60,6 +69,15 @@ function openFileButton() {
 function openFolderButton() {
     // get the game path
     const gamePath = document.getElementById('tcoaal-path').value;
+    // if empty, return error
+    if (gamePath === '') {
+        Swal.fire({
+            icon: "error",
+            title: "Set your game path to open the folder!",
+            showConfirmButton: true
+        });
+        return;
+    }
     // get selected file + where it's at locally
     const selectedFile = document.getElementById('dropdown-menu-file').value;
     const selectedLocation = document.getElementById('dropdown-menu-location').value;
@@ -78,7 +96,7 @@ function injectButton() {
     const selectedLocation = document.getElementById('dropdown-menu-location').value;
     const locationData = injectionData[selectedFile][selectedLocation];
     // get the .location property and then fetch the json at injection_rules/.location.json
-    fetch(`/data/injection_rules/${locationData.location}`)
+    fetch(`/data/rules/injection/${locationData.location}`)
         .then(response => response.json())
         .then(data => {
             // send data to backend

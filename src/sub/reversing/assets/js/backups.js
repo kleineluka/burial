@@ -24,9 +24,12 @@ function updateBackupsList(csv) {
     const container = document.querySelector(".backups-list-container");
     container.innerHTML = '';
     if (csv === "null") {
+        const backupEntry = document.createElement("div");
+        backupEntry.className = "backup-entry";
         const noBackupsMessage = document.createElement("div");
         noBackupsMessage.textContent = "No backups available.";
-        container.appendChild(noBackupsMessage);
+        backupEntry.appendChild(noBackupsMessage);
+        container.appendChild(backupEntry);
         return;
     }
     // split csv and go through

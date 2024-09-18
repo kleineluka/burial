@@ -65,3 +65,10 @@ pub fn delete_settings() {
     fs::remove_file(file_path)
         .expect("Failed to delete file");
 }
+
+pub fn first_run() -> bool {
+    // cache_dir + setup.lock
+    let cache_dir = cache::cache_folder();
+    let file_path = cache_dir.join("setup.lock");
+    !file_path.exists()
+}

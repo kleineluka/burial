@@ -15,8 +15,11 @@ setTimeout(function() {
 
 /* Check Game Path */
 document.getElementById('steps-one-button').addEventListener('click', function () {
-    // send the path to backend
+    // send the path to backend + local storage
     const inPath = document.getElementById('tcoaal-path').value;
+    const store = new Store('data.json');
+    store.set('tcoaal', inPath);
+    store.save();
     invoke('setup_game', { inPath });
 });
 
@@ -59,7 +62,7 @@ listen('game-status', (event) => {
             break;
         case 'saved':
             // move to next step
-            invoke('navigate', { page: 'tutorialoption.html' });
+            invoke('navigate', { page: 'skip.html' });
             break;
     }
 });

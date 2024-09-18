@@ -1,0 +1,5 @@
+{
+    "before": "SceneManager.run(Scene_Boot);",
+    "after": "};",
+    "indentation": "    "
+}

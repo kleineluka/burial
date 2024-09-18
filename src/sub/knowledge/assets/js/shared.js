@@ -10,3 +10,8 @@ document.getElementById('toggleSidebar').addEventListener('click', function () {
     toggleSidebar.classList.toggle('toggled');
     homeButton.classList.toggle('toggled');
 });
+
+// open the wiki
+function openWiki() {
+    invoke('open_browser', { url: 'https://coffin-wiki.basil.cafe/' });
+}

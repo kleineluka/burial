@@ -14,7 +14,7 @@ fn verify_file(window: &Window, file_path: &str) -> bool {
 }
 
 // read a file, use the before/after positions, and insert code (with indentation)
-fn inject(game_path: String, in_path: String, before: String, after: String, code_path: String, indentation: i32, use_placeholder: bool) -> Result<String, String> {
+fn inject(game_path: String, in_path: String, before: String, after: String, code_path: String, indentation: String, use_placeholder: bool) -> Result<String, String> {
     // read files
     let combined_path = format!("{}/{}", game_path, in_path);
     let base_code = files::read_file(&combined_path);
@@ -22,17 +22,11 @@ fn inject(game_path: String, in_path: String, before: String, after: String, cod
         true => Vec::from("/* Your Code Here! */"),
         false => files::read_file(&code_path),
     };
-    // convert to strings
+    // convert to strings + add indentation
     let mut base_code = String::from_utf8(base_code).expect("Failed to convert base code to UTF-8");
     let mut injected_code = String::from_utf8(injected_code).expect("Failed to convert injected code to UTF-8");
-    // add indentation
-    let indent_spaces = "   ".repeat(indentation as usize);
-    injected_code = injected_code
-        .lines()
-        .map(|line| format!("{}{}", indent_spaces, line)) 
-        .collect::<Vec<_>>()
-        .join("\n");
-     // Find the positions where the injection should happen
+    injected_code = injected_code.lines().map(|line| format!("{}{}", indentation, line)).collect::<Vec<String>>().join("\n");
+     // find the positions where the injection should happen
     if let Some(before_pos) = base_code.find(&before) {
         if let Some(after_pos) = base_code[before_pos..].find(&after) {
             let insertion_point = before_pos + after_pos + after.len();
@@ -77,7 +71,7 @@ pub fn injection_open_folder(window: Window, game_path: String, in_path: String)
 
 // preview the injection
 #[command]
-pub fn injection_preview(window: Window, game_path: String, in_path: String, before: String, after: String, code_path: String, indentation: i32) {
+pub fn injection_preview(window: Window, game_path: String, in_path: String, before: String, after: String, code_path: String, indentation: String) {
     // read the file to inject + verify
     window.emit("status", "Generating preview of the injection..").unwrap();
     let combined_path = format!("{}/{}", game_path, in_path);
@@ -100,7 +94,7 @@ pub fn injection_preview(window: Window, game_path: String, in_path: String, bef
 
 // inject the code and save to file
 #[command]
-pub fn injection_save(window: Window, game_path: String, in_path: String, before: String, after: String, code_path: String, indentation: i32) {
+pub fn injection_save(window: Window, game_path: String, in_path: String, before: String, after: String, code_path: String, indentation: String) {
     // read the file to inject + verify
     window.emit("status", "Generating preview of the injection..").unwrap();
     let combined_path = format!("{}/{}", game_path, in_path);

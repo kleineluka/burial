@@ -1,0 +1,5 @@
+{
+    "before": "<body style=\"background-color: black\">",
+    "after": "<script type=\"text/javascript\" src=\"js/libs/pixi.js\"></script>",
+    "indentation": "        "
+}

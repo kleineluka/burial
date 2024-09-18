@@ -1,5 +1,5 @@
 {
     "before": "<head>",
     "after": "<meta charset=\"UTF-8\">",
-    "indentation": 2
+    "indentation": "        "
 }

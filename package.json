@@ -8,11 +8,5 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1"
-  },
-  "dependencies": {
-    "animate.css": "^4.1.1",
-    "hover.css": "^2.3.2",
-    "sweetalert2": "^11.12.1",
-    "wow.js": "^1.2.2"
   }
 }

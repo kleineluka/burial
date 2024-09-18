@@ -1,3 +1,12 @@
+// see if it is the first run
+window.onload = async () => {
+    const store = new Store('data.json');
+    const start_tutorial = await store.get('first_run');
+    if (start_tutorial) {
+        invoke('navigate', { page: 'first.html' });
+    }
+};
+
 // move the leyley icon around randomly, like the walking animation
 const centerImage = document.querySelector('.center-image');
 

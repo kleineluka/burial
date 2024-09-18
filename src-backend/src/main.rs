@@ -29,8 +29,20 @@ use tutorial::finished;
 
 // main
 fn main() {
+    // build tauri app
     tauri::Builder::default()
+        .plugin(tauri_plugin_store::Builder::default().build())
+        .setup(|app| {
+            // set the baseline persistent storage
+            let user_settings = config::settings::read_settings();
+            config::storage::clear_store(&app.handle()).unwrap();
+            config::storage::insert_into_store(&app.handle(), "first_run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "output", serde_json::Value::String(user_settings.output)).unwrap();
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
+            // register all commands (a bit tedious)
             settings::load_settings,
             settings::save_settings,
             settings::reset_settings,
@@ -67,7 +79,7 @@ fn main() {
             injection::injection_open_folder,
             injection::injection_preview,
             injection::injection_save,
-            info::edit_package,
+            info::game_version,
             code::extract_code])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");

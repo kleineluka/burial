@@ -16,27 +16,32 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         document.getElementById('footer').innerHTML = template.replace(/%x%/g, '.config');
     }
-    // load the settings
-    invoke ('load_settings', {} );
-});
-
-// listen for settings update
-listen('settings-loaded', function(event) {
-    // get json + parse values
-    var settings = JSON.parse(event.payload);
-    var tcoaal = settings.tcoaal;
-    console.log(settings);
-    var output = settings.output;
-    // set values
-    if (tcoaal) document.getElementById('input-path-tcoaal').value = tcoaal;
-    if (output) document.getElementById('input-path-output').value = output;
 });
 
 // write new settings
-document.getElementById('save-button').addEventListener('click', (event) => {
+function saveSettings() {
     // get values
-    var tcoaal = document.getElementById('input-path-tcoaal').value;
-    var output = document.getElementById('input-path-output').value;
+    var tcoaal = document.getElementById('tcoaal-path').value;
+    var output = document.getElementById('output-path').value;
+    // update settings in local storage
+    const store = new Store('data.json');
+    store.set('tcoaal', tcoaal);
+    store.set('output', output);
+    store.save();
     // set values
     invoke('save_settings', { tcoaal, output });
-});
+}
+
+// reset button
+function resetSettings() {
+    // reset settings in local storage
+    const store = new Store('data.json');
+    store.set('tcoaal', '');
+    store.set('output', '');
+    store.save();
+    // set the values to empty
+    document.getElementById('tcoaal-path').value = '';
+    document.getElementById('output-path').value = '';
+    // set values
+    invoke('reset_settings', {});
+}

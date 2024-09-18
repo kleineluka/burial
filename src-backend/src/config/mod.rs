@@ -5,3 +5,4 @@ pub mod backups;
 pub mod appdata;
 pub mod version;
 pub mod settings;
+pub mod storage;

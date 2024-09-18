@@ -1,0 +1,5 @@
+{
+    "before": "<script type=\"text/javascript\" src=\"js/rpg_windows.js\"></script>",
+    "after": "<script type=\"text/javascript\" src=\"js/plugins.js\"></script>",
+    "indentation": "        "
+}

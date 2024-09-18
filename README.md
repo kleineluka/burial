@@ -62,6 +62,7 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 # Roadmap 🚧
 - [ ] Language Support
 - [ ] Steam Deck Compatibility
+- [ ] Development Build Scripts
 
 <!-- Contribute -->
 # Contribute 🩷

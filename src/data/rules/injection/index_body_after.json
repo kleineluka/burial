@@ -1,0 +1,5 @@
+{
+    "before": "<script type=\"text/javascript\" src=\"js/main.js\"></script>",
+    "after": "</body>",
+    "indentation": "        "
+}

@@ -1,7 +1,7 @@
 // populate + update dropdowns
 let methodsData = {};
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data/extraction_list/list.json')
+    fetch('/data/supported/extraction.json')
         .then(response => response.json())
         .then(data => {
             // clear + populate
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // do extraction
 document.getElementById('extract-code').addEventListener('click', function () {
     // make sure that out path is set
-    const outPath = document.getElementById('out-path-extract').value;
+    const outPath = document.getElementById('output-path').value;
     if (outPath === '') {
         Swal.fire({
             icon: "error",
@@ -54,7 +54,7 @@ document.getElementById('extract-code').addEventListener('click', function () {
                     .then(replacePathData => {
                         // get the tcoaal path and output path
                         const tcoaalPath = document.getElementById('tcoaal-path').value;
-                        let outPath = document.getElementById('out-path-extract').value;
+                        let outPath = document.getElementById('output-path').value;
                         // sanitize outPath + in replacePathData, replace %path% with outPath
                         outPath = outPath.replaceAll('\\', '\\\\');
                         replacePathData = replacePathData.replace(/%path%/g, outPath);

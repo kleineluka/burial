@@ -1,6 +1,6 @@
 // automagically populate dropdown menus + watch for changes
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data/sprite_list/supported.json')
+    fetch('/data/supported/sprite.json')
         .then(response => response.json())
         .then(data => {
             // get the dropdown elements
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // do the painting
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('paint-button').addEventListener('click', () => {
-        fetch('/data/sprite_list/supported.json')
+        fetch('/data/supported/sprite.json')
             .then(response => response.json())
             .then(data => {
                 // get values from dopdown menus
@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selectedData = characterData ? characterData.find(item => item.sprite_name === template) : null;
                 // gather all data to send
                 const bytePath = selectedData.sprite_bytes;
-                // read from /data/sprite_byte/bytePath (its just raw data)
-                fetch(`/data/sprite_byte/${bytePath}`)
+                // read raw data
+                fetch(`/data/rules/sprite/${bytePath}`)
                     .then(response => response.text())
                     .then(byteList => {
                         const gamePath = document.getElementById('tcoaal-path').value;
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         // load the preview image
-        fetch('/data/sprite_list/supported.json')
+        fetch('/data/supported/sprite.json')
             .then(response => response.json())
             .then(data => {
                 // get values from dopdown menus
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selectedData = characterData ? characterData.find(item => item.sprite_name === template) : null;
                 // gather all data to send
                 const bytePath = selectedData.sprite_bytes;
-                fetch(`/data/sprite_byte/${bytePath}`)
+                fetch(`/data/rules/sprite/${bytePath}`)
                     .then(response => response.text())
                     .then(byteList => {
                         const gamePath = document.getElementById('tcoaal-path').value;
