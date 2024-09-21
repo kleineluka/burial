@@ -9,6 +9,7 @@ mod config;
 mod resources;
 mod reversing;
 mod tutorial;
+mod modmanager;
 
 // imports
 use utils::files;
@@ -26,6 +27,7 @@ use reversing::info;
 use reversing::code;
 use tutorial::setup;
 use tutorial::finished;
+use modmanager::modloader;
 
 // main
 fn main() {
@@ -80,7 +82,10 @@ fn main() {
             injection::injection_preview,
             injection::injection_save,
             info::game_version,
-            code::extract_code])
+            code::extract_code,
+            modloader::install_modloader,
+            modloader::modloader_version,
+            modloader::modloader_versions])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }

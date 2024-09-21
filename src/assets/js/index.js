@@ -1,4 +1,4 @@
-// see if it is the first run
+// see if it is the first run, overrides store (but fine for index)
 window.onload = async () => {
     const store = new Store('data.json');
     const start_tutorial = await store.get('first_run');

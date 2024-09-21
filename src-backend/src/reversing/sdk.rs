@@ -31,8 +31,9 @@ pub async fn install_sdk(window: Window, in_url: String, in_path: String) {
     let downloads_dir = downloads::downloads_folder().to_string_lossy().to_string();
     downloads::verify_downloads().unwrap();
     // download the sdk
-        if let Err(e) = connection::download_file(&in_url, &downloads_dir).await {
+    if let Err(e) = connection::download_file(&in_url, &downloads_dir).await {
         window.emit("error", Some(format!("Download failed: {}", e))).unwrap();
+        return;
     }
     // extract the sdk
     window.emit("status", Some("Download complete, extracting.. (this may take some time)".to_string())).unwrap();

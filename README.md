@@ -31,15 +31,15 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 
 <!-- Features -->
 # Features 🐰
-- **Resources** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, generate templates of assets to make your own, and decrypt/modify/manage save files.
+- **Resources** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, generate templates of assets to make your own, parse dialogue in different languages to a more readable format, and decrypt/modify/manage save files.
 - **Reversing** 🧬: Inject code into the game, export and deobfuscate the game's run-time code, manage NW.js SDK's, enable developer tools, view/edit game information, and create/manage backups of your game files.
 - **Mod Tools** 🖍️: WIP.
-- **Mod Manager** 🍱: WIP.
+- **Mod Manager** 🍱: Install pre-made modpacks, add/update/remove Tomb modloader, browse and download mods, view/toggle/update installed mods, and create/manage multiple instances of the game.
 - **Knowledge** 📔: WIP.
 - **Quality of Life** 🌸: Pretty GUI (based on Ashley's colours!), persistant settings, built-in tutorials, update checking, lots of emojis..
 - **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial. Burial will **never** implement any anti-DRM tools. 
 
-Development Progress: **Resources** (100%), **Reversing** (40%), **Mod Tools** (0%), **Mod Manager** (20%), **Knowledge** (20%), **Settings** (80%), **Misc** (30%). Binaries will be provided when all features are complete.
+Development Progress: **Resources** (100%), **Reversing** (80%), **Mod Tools** (0%), **Mod Manager** (30%), **Knowledge** (20%), **Settings** (100%), **Misc** (30%). Binaries will be provided when all features are complete.
 
 <!-- Install -->
 # Install ☕
@@ -62,7 +62,9 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 # Roadmap 🚧
 - [ ] Language Support
 - [ ] Steam Deck Compatibility
+- [ ] General Linux Improvements
 - [ ] Development Build Scripts
+- [ ] Proper Status Bar
 
 <!-- Contribute -->
 # Contribute 🩷
@@ -78,4 +80,5 @@ Please refer to the [Contributing Wiki Page](https://github.com/kleineluka/buria
 -  **[Tauri](https://github.com/tauri-apps/tauri)**, the Rust-based front-end framework, is licensed under MIT/Apache.
 - **Rust Crates** can be seen in the [Cargo.toml](https://github.com/kleineluka/burial/blob/main/src-backend/Cargo.toml) file.
 - **JavaScript Libraries** can be seen in both [package.json](https://github.com/kleineluka/burial/blob/main/package.json) and [src/assets/ext](https://github.com/kleineluka/burial/tree/main/src/assets/ext).
--  **NotoSans** is under the [Open Font License](https://fonts.google.com/noto/specimen/Noto+Sans/about).
+-  **NotoSans** and **Nunito** are under the [Open Font License](https://openfontlicense.org/).
+- Burial implements many **third-party** resources to assist in mod loading. [Tomb](https://codeberg.org/basil/tomb) by Basil can be installed as the mod loader and mods are pulled from the [Llamaware Page](https://github.com/Llamaware/Llamaware.github.io/tree/main/src).

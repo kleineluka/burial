@@ -12,3 +12,4 @@ pub mod process;
 pub mod needle;
 pub mod obfuscation;
 pub mod rpgsave;
+pub mod codeberg;

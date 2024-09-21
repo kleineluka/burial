@@ -146,6 +146,36 @@ pub fn backup_file_multiple(file_path: &str) {
     copy_file(file_path, &backup_path);
 }
 
+// find the latest backup if multiple were made
+pub fn find_newest_backup(file_path: &str) -> Option<String> {
+    // get the parent directory and file stem from the file path
+    let original_path = Path::new(file_path);
+    let parent_dir = original_path.parent()?;
+    let file_stem = original_path.file_name()?.to_string_lossy();
+    // track highest number
+    let mut highest_number = None;
+    let mut newest_backup = None;
+    // iterate through the files in the parent directory
+    for entry in fs::read_dir(parent_dir).ok()? {
+        let path = entry.ok()?.path();
+        let file_name = path.file_name()?.to_string_lossy();
+        // match filenames like "file.bak", "file.bak1", "file.bak2", etc.
+        if file_name == format!("{}.bak", file_stem) {
+            highest_number = Some(0);
+            newest_backup = Some(path);
+        } else if let Some(suffix) = file_name.strip_prefix(&format!("{}.bak", file_stem)) {
+            if let Ok(number) = suffix.parse::<u32>() {
+                if highest_number.map_or(true, |n| number > n) {
+                    highest_number = Some(number);
+                    newest_backup = Some(path);
+                }
+            }
+        }
+    }
+    // convert the newest backup path to a string if found
+    newest_backup.map(|p| p.to_string_lossy().into_owned())
+}
+
 // restore a backup (take a file, remove it, and rename the .bak file to the original name)
 pub fn restore_backup(file_path: &str) {
     let backup_path = format!("{}.bak", file_path);

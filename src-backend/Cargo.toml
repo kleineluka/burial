@@ -25,13 +25,14 @@ zip = "2.2.0"
 chrono = "0.4.38"
 walkdir = "2.5.0"
 tokio = "1.40.0"
-reqwest = "0.12.7"
+reqwest = { version = "0.12.7", features = ["json"] }
 lz-str = "0.2.1"
 jsonxf = "1.1.1"
 base64 = "0.22.1"
 serde_json = "1.0.128"
 webbrowser = "1.0.1"
 open = "5.3.0"
+regex = "1.10.6"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

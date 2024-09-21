@@ -102,3 +102,12 @@ function fourBack() {
     // Annotate step three
     threeAnnotation();
 }
+
+// Silly, silly!
+document.getElementById('sidebarHome').addEventListener('click', function() {
+    Swal.fire({
+        title: 'Hey you!',
+        text: 'Why don\'t you finish the tutorial first? Please...',
+        confirmButtonText: 'Fiiiiine..'
+    });
+});

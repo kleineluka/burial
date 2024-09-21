@@ -38,16 +38,20 @@
     justify-content: flex-start;
     margin-top: auto;
     padding: 10px;
+    gap: 5px;
 }
 
 .sidebar-github {
     width: 30px;
 }
 
+.sidebar-discord {
+    width: 30px;
+}
+
 .sidebar-version {
     font-size: 1.15em;
-    margin-left: 10px;
-    margin-top: 10px;
+    padding-top: 10px;
 }
 
 /* Footer */
