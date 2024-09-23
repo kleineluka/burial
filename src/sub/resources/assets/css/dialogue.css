@@ -1,0 +1,16 @@
+/* Hidden */
+.hidden {
+    display: none;
+}
+
+/* Preview Image */
+.preview-image {
+    height: 60vmin;
+    width: auto;
+    /* center */
+    margin-left: auto;
+    margin-right: auto;
+    /* border */
+    border: 4px solid #000;
+    border-radius: 10px;
+}

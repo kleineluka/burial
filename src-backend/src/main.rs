@@ -20,6 +20,7 @@ use resources::encryption;
 use resources::templates;
 use resources::save;
 use resources::sift;
+use resources::dialogue;
 use reversing::backups;
 use reversing::sdk;
 use reversing::injection;
@@ -85,7 +86,8 @@ fn main() {
             code::extract_code,
             modloader::install_modloader,
             modloader::modloader_version,
-            modloader::modloader_versions])
+            modloader::modloader_versions,
+            dialogue::export_dialogue])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }

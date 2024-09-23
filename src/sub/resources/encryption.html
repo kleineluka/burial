@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- head -->
 <head>
   <meta charset="UTF-8">
@@ -43,26 +42,30 @@
         🍅</button>
     </div>
     <div class="container">
-      <div class="button-options-container">
-        <button id="select-folder" class="button-option selected">Folder</button>
-        <button id="select-file" class="button-option">Single File</button>
+      <!-- Horizontal Navbar -->
+      <div class="page-navbar">
+        <a href="#" id="select-folder" class="page-navbar-option selected">Folder</a>
+        <a href="#" id="select-file"" class=" page-navbar-option">File</a>
       </div>
-      <div class="file-path-container">
-        <input id="input-path" type="text" class="file-path-input" placeholder="Enter your folder or file.." value="">
-        <button id="browse-button-in" class="browse-button hvr-shrink">Browse</button>
-      </div>
-      <div class="file-path-container">
-        <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save?" value="">
-        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-      </div>
-      <button id="encrypt-button" class="encrypt-button button-action hvr-pulse-grow">Encrypt 🩹</button>
-      <!-- Advanced Settings -->
-      <div class="advanced-settings-container">
-        <button id="advanced-settings-toggle" class="button-option">Advanced Settings ▼</button>
-        <div id="advanced-contents" class="advanced-settings-contents">
-          <div class="advanced-settings-button-options-container">
-            <button id="select-byte-whole" class="button-option selected">Encrypt Whole File</button>
-            <button id="select-byte-original" class="button-option">Mimic Original Positions</button>
+      <!-- Sub Container -->
+      <div id="sub-export" class="page-container">
+        <div class="file-path-container">
+          <input id="input-path" type="text" class="file-path-input" placeholder="Enter your folder or file.." value="">
+          <button id="browse-button-in" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <div class="file-path-container">
+          <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save?" value="">
+          <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <button id="encrypt-button" class="encrypt-button button-action hvr-pulse-grow">Encrypt 🩹</button>
+        <!-- Advanced Settings -->
+        <div class="advanced-settings-container">
+          <button id="advanced-settings-toggle" class="button-option">Advanced Settings ▼</button>
+          <div id="advanced-contents" class="advanced-settings-contents">
+            <div class="advanced-settings-button-options-container">
+              <button id="select-byte-whole" class="button-option selected">Encrypt Whole File</button>
+              <button id="select-byte-original" class="button-option">Mimic Original Positions</button>
+            </div>
           </div>
         </div>
       </div>
@@ -80,5 +83,4 @@
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/encryption.js"></script>
-
 </html>
