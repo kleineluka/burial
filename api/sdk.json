@@ -1,14 +1,20 @@
 {
   "2.0.14 Developer": {
-    "Version": "0.29.0",
-    "Windows": "nwjs-sdk-v0.29.0-win-ia32.zip",
-    "MacOS": "nwjs-sdk-v0.29.0-osx-x64.zip",
-    "Linux": "nwjs-sdk-v0.29.0-linux-ia32.tar.gz"
+    "Game": "0.29.0",
+    "branches": {
+      "Default": "nwjs-sdk-v0.29.0-win-ia32.zip",
+      "Windows": "nwjs-sdk-v0.29.0-win-ia32.zip",
+      "MacOS": "nwjs-sdk-v0.29.0-osx-x64.zip",
+      "Linux": "nwjs-sdk-v0.29.0-linux-ia32.tar.gz"
+    }
   },
   "2.0.14 Player": {
-    "Version": "0.29.0",
-    "Windows": "nwjs-v0.29.0-win-ia32.zip",
-    "MacOS": "nwjs-v0.29.0-osx-x64.zip",
-    "Linux": "nwjs-v0.29.0-linux-ia32.tar.gz"
+    "Game": "0.29.0",
+    "branches": {
+      "Default": "nwjs-v0.29.0-win-ia32.zip",
+      "Windows": "nwjs-v0.29.0-win-ia32.zip",
+      "MacOS": "nwjs-v0.29.0-osx-x64.zip",
+      "Linux": "nwjs-v0.29.0-linux-ia32.tar.gz"
+    }
   }
 }
