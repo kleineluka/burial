@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch('https://raw.githubusercontent.com/kleineluka/burial/main/api/version.txt')
                 .then(response => response.text())
                 .then(data => {
-                    console.log(data);
                     latestVersion = data;
                     if (latestVersion !== 'nan') {
                         // compare version and latest (format x.x.x)
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         for (let i = 0; i < currentVersionArray.length; i++) {
                             if (parseInt(currentVersionArray[i]) < parseInt(latestVersionArray[i])) {
                                 updateAvailable = true;
-                                console.log('update available');
                                 break;
                             }
                         }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- head -->
 <head>
   <meta charset="UTF-8">
@@ -43,54 +42,61 @@
         🍅</button>
     </div>
     <div class="container">
-      <!-- Main Sub Menu -->
-      <div id="sub-main" class="sub-container">
-        <div class="button-options-container">
-          <button id="open-button" class="button-option hvr-shrink">Open Saves 📂</button>
-          <button id="navigate-backup-button" class="button-option hvr-shrink">Backups ♻️</button>
+      <!-- Horizontal Navbar -->
+      <div id="navbar-main" class="page-navbar">
+        <a href="#" id="edit" class="page-navbar-option selected">Edit</a>
+        <a href="#" id="backup"" class=" page-navbar-option">Backup</a>
+      </div>
+      <div id="navbar-edit" class="page-navbar hidden">
+          <div class="file-path-container dropdown-container">
+            <button class="button-action button-navbar hvr-shrink" onclick="exitEditor()">Go Back 🔙</button>
+          </div>
+      </div>
+      <!-- Edit Save Menu -->
+      <div id="sub-edit" class="page-container">
+        <!-- Edit Main Menu -->
+        <div id="edit-sub-main" class="sub-container">
+          <div class="file-path-container dropdown-container">
+            <label for="dropdown-menu-save-main" class=>Choose Save File:</label>
+            <select id="dropdown-menu-save-main" class="dropdown-menu">
+              <option value="0">Loading Saves..</option>
+            </select>
+            <button id="open-button" class="button-option button-option-inline hvr-shrink">📂</button>
+          </div>
+          <div class="button-options-container">
+            <button id="navigate-edit-button" class="button-option hvr-shrink">Edit ✏️</button>
+            <button id="copy-button" class="button-option hvr-shrink">Clone 🐑</button>
+          </div>
+          <br>
+          <div class="button-options-container">
+            <button id="delete-all-button" class="button-option hvr-shrink">Delete All 🧼</button>
+            <button id="delete-auto-button" class="button-option hvr-shrink">Delete Auto 🧽</button>
+          </div>
         </div>
-        <div class="file-path-container dropdown-container">
-          <label for="dropdown-menu-save-main" class=>Choose Save File:</label>
-          <select id="dropdown-menu-save-main" class="dropdown-menu">
-            <option value="0">Loading Saves..</option>
-          </select>
-        </div>
-        <div class="button-options-container">
-          <button id="navigate-edit-button" class="button-option hvr-shrink">Edit ✏️</button>
-          <button id="copy-button" class="button-option hvr-shrink">Clone 🐑</button>
-        </div>
-        <br>
-        <div class="button-options-container">
-          <button id="delete-all-button" class="button-option hvr-shrink">Delete All 🧼</button>
-          <button id="delete-auto-button" class="button-option hvr-shrink">Delete Auto 🧽</button>
+        <!-- Edit (Actual Edit) Menu -->
+        <div id="edit-sub-edit" class="sub-container hidden">
+          <textarea id="textarea-save" class="editable-textarea" placeholder="Loading your save.."></textarea>
+          <br>
+          <button id="edit-copy-button" class="button-action hvr-shrink">Copy ⬆️</button>
+          <button id="edit-paste-button" class="button-action hvr-shrink">Paste ⬇️</button>
+          <button id="edit-revert-button" class="button-action hvr-shrink" onclick="revertSave()">Revert ✨</button>
+          <button id="edit-save-button" class="button-action hvr-shrink">Save 💾</button>
         </div>
       </div>
       <!-- Backup Sub Menu -->
-      <div id="sub-backup" class="sub-container hidden">
-        <button class="button-action back-button hvr-shrink">Back To Options 🔙</button>
+      <div id="sub-backup" class="page-container hidden">
         <div class="file-path-container">
-          <input id="input-backup-out" type="text" class="file-path-input" placeholder="Where do you want to back up to?" value="">
+          <input id="input-backup-out" type="text" class="file-path-input" placeholder="Where do you want to back up to?"
+            value="">
           <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
         </div>
-        <button id="backup-button" class="button-action hvr-shrink">Backup ♻️</button>
-      </div>
-      <!-- Edit Sub Menu -->
-      <div id="sub-edit" class="sub-container hidden">
-        <button class="button-action back-button hvr-shrink">Back To Options 🔙</button>
-        <br>
-        <textarea id="textarea-save" class="editable-textarea" placeholder="Loading your save.."></textarea>
-        <br>
-        <button id="edit-copy-button" class="button-action hvr-shrink">Copy ⬆️</button>
-        <button id="edit-paste-button" class="button-action hvr-shrink">Paste ⬇️</button>
-        <button id="edit-revert-button" class="button-action hvr-shrink">Revert ✨</button>
-        <button id="edit-save-button" class="button-action hvr-shrink">Save 💾</button>
+        <button id="backup-button" class="button-action hvr-shrink">Create Backups ♻️</button>
       </div>
     </div>
-  </div>
-  <!-- Progress -->
-  <div class="progress-container">
-    <a id="status" class="progress-text"></a>
-  </div>
+    <!-- Progress -->
+    <div class="progress-container">
+      <a id="status" class="progress-text"></a>
+    </div>
 </body>
 <!-- javascript -->
 <script src="../../assets/ext/wow.min.js"></script>
@@ -98,5 +104,4 @@
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/save.js"></script>
-
 </html>

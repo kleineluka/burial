@@ -5,14 +5,6 @@
   filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.5));
 }
 
-/* Start Text */
-@font-face {
-    font-family: 'Nunito';
-    src: url('../Fonts/Nunito.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .center-text {
   font-size: 6vmin;
   margin-bottom: 20px;

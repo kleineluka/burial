@@ -3,14 +3,20 @@
     display: none;
 }
 
-/* Preview Image */
-.preview-image {
-    height: 60vmin;
-    width: auto;
-    /* center */
-    margin-left: auto;
-    margin-right: auto;
-    /* border */
-    border: 4px solid #000;
-    border-radius: 10px;
+/* Editable Text Area */
+.editable-textarea {
+    width: 80%;
+    height: 40vmin;
+    padding: 10px;
+    font-size: 2.5vmin;
+    background-color: #F1E2C5;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/* Override Default Styles to Fit Into Horiz Navbar */
+.button-navbar {
+    background-color: #F595B2 !important;
+    color: #000 !important;
 }

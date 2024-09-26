@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- head -->
 <head>
     <meta charset="UTF-8">
@@ -20,7 +19,7 @@
         <div class="sidebar-items">
             <a class="navigate-button hvr-grow" data-page="index.html">Mod Manager 📦</a>
             <a class="navigate-button hvr-grow" data-page="modpacks.html">Mod Packs 🍱</a>
-            <a class="navigate-button hvr-grow" data-page="modloader.html">Mod Loader🪦</a>
+            <a class="navigate-button hvr-grow" data-page="loader.html">Mod Loader🪦</a>
             <a class="navigate-button sidebar-current" data-page="browser.html">Mod Browser ⬇️</a>
             <a class="navigate-button hvr-grow" data-page="installed.html">Installed Mods ✅</a>
             <a class="navigate-button hvr-grow" data-page="installed.html">Game Instances 🎮</a>
@@ -37,19 +36,56 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class="hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="toggleSidebar" class="hvr-shrink">☰</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home
+                🍅</button>
         </div>
         <div class="container">
-            <img src="assets/img/resources.png" alt="" class="header-image hvr-shrink">
-            <div class="small-title">
-                <p><b>Mod Manager</b> helps set up and manage modded TCOAAL.</p>
+            <div class="page-navbar">
+                <!-- Sorting and Filtering Row -->
+                <div class="sort-filter-row">
+                    <div class="sort-by">
+                        <label for="sortDropdown">Sort By:</label>
+                        <select id="sortDropdown" class="sort-circular-dropdown">
+                            <option value="name">Name</option>
+                            <option value="date">Date</option>
+                            <option value="author">Author</option>
+                        </select>
+                    </div>
+                    <div class="filter-by">
+                        <label for="filterDropdown">Filter By:</label>
+                        <select id="filterDropdown" class="sort-circular-dropdown">
+                            <option value="all">All</option>
+                            <option value="client">Client</option>
+                            <option value="localization">Localization</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="items-list">
-                <p>⬇️ <b>Mod Browser:</b> Download and install mods from LLamawa.re.</p>
-                <p>✅ <b>Installed Mods:</b> View and manage installed mods.</p>
-                <p>❎ <b>Disabled Mods:</b> View and manage disabled mods.</p>
-                <p>⚙️ <b>Mod Settings:</b> Configure mod settings.</p>
+            <div class="page-container">
+                <!-- Example Entry -->
+                <div class="mod-entry" data-id="12345">
+                    <div class="mod-row">
+                        <div class="mod-icon">
+                            <img src="assets/img/sidedishes.png" alt="Mod Icon" class="mod-provided-icon">
+                        </div>
+                        <div class="mod-details">
+                            <h3 class="mod-name">Side Dishes <span class="mod-author">(by Canopy) [v1.0]</span><span class="mod-open-link-symbol hvr-grow">🔗</span></h3>
+                            <p class="mod-description">This TCoAaL mod adds about an hour of content to episode 1.</p>
+                        </div>
+                        <div class="mod-actions">
+                            <img src="assets/img/download.png" alt="Download Button" class="mod-download-icon hvr-shrink">
+                        </div>
+                    </div>
+                    <div class="mod-row">
+                        <div class="mod-tags">
+                            <span class="mod-tag">Content</span>
+                            <span class="mod-tag">Dialogue</span>
+                            <span class="mod-tag">New Art</span>
+                            <span class="mod-tag">Generative AI</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

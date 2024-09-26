@@ -1,4 +1,4 @@
-/* Font */
+/* Font(s) */
 @font-face {
     font-family: 'Noto Sans';
     src: url('../Fonts/NotoSans.ttf') format('truetype');
@@ -11,6 +11,13 @@
     src: url('../Fonts/NotoSans-Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('../Fonts/Nunito.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* General layout */
@@ -218,4 +225,55 @@ body {
 
 .page-container.hidden {
     display: none;
+}
+
+/* Advanced Settings Dropdown */
+.advanced-settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.advanced-settings-contents {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.advanced-settings-contents.expanded {
+    max-height: 400px;
+    margin-top: 2%;
+    padding: 10px;
+    background-color: #000000;
+    border-radius: 10px;
+    border: 2px solid #000;
+    width: 80%;
+}
+
+.advanced-settings-button-options-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vmin;
+}
+
+.advanced-settings-button-options-container button {
+    margin-right: 0.5vmin;
+    margin-left: 0.5vmin;
+    background-color: #000;
+    color: #F595B2;
+    font-size: 2.5vmin;
+    padding: 2vmin;
+}
+
+.advanced-settings-button-options-container button.selected {
+    background-color: #F595B2;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+#advanced-settings-toggle {
+    cursor: pointer;
 }

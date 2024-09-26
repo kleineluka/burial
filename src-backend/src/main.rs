@@ -87,7 +87,8 @@ fn main() {
             modloader::install_modloader,
             modloader::modloader_version,
             modloader::modloader_versions,
-            dialogue::export_dialogue])
+            dialogue::export_dialogue,
+            dialogue::preview_dialogue])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }

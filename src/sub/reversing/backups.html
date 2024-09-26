@@ -38,42 +38,49 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class=" hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="toggleSidebar" class=" hvr-shrink">☰</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
-            <!-- Backups List -->
-            <button id="backup-open" class="button-action hvr-shrink">Open Backups Folder</button>
-            <div class="backups-list-container">
-                <div id="advanced-contents" class="backups-list-contents">
-                    <div class="backups-list-container">
+            <!-- Horizontal Navbar -->
+            <div class="page-navbar">
+                <button class="button-action button-navbar hvr-shrink" onclick="openBackups()">Open Backups Folder 📂</button>
+            </div>
+            <!-- Sub Container -->
+            <div id="sub-extract" class="page-container">
+                <!-- Backups List -->
+                <div class="backups-list-container">
+                    <div class="backups-list-contents">
                         <!--<div class="backup-entry">
-                            <span class="backup-path">01-09-2024-39383.zip</span>
-                            <div class="backup-buttons">
-                                <button class="backup-button restore">Restore</button>
-                                <button class="backup-button delete">Delete</button>
-                            </div>-->
-                            <div>Loading backups..</div>
+                        <span class="backup-path">01-09-2024-39383.zip</span>
+                        <div class="backup-buttons">
+                            <button class="backup-button restore">Restore</button>
+                            <button class="backup-button delete">Delete</button>
+                        </div>-->
+                        <div>Loading backups..</div>
+                    </div>
+                </div>
+                <div class="file-path-container">
+                    <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Folder" value="">
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                </div>
+                <!-- Make / Delete -->
+                <div class="button-options-container">
+                    <button id="backup-make" class="button-option hvr-shrink">Create Backup 📦</button>
+                    <button id="backup-clean" class="button-option hvr-shrink">Delete Backups 🧼</button>
+                </div>
+                <!-- Optional Settings -->
+                <div class="advanced-settings-container">
+                    <button id="advanced-settings-toggle" class="button-option" onclick="advancedSettings()">Advanced Settings
+                        ⚙️</button>
+                    <div id="advanced-contents" class="advanced-settings-contents">
+                        <div id="optional-contents" class="file-path-container">
+                            <input id="backup-name" type="text" class="file-path-input advanced-border"
+                                placeholder="Optionally, use a custom backup name.." value="">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="file-path-container">
-                <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Folder" value="">
-                <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-            </div>
-            <!-- Optional Settings -->
-            <div class="optional-settings-container">
-                <button id="optional-settings-toggle" class="button-action hvr-grow">Optional Settings ▼</button>
-                <div id="optional-contents" class="optional-settings-contents file-path-container">
-                    <input id="backup-name" type="text" class="file-path-input" placeholder="Optionally, use a custom backup name.." value="">
-                </div>
-            </div>
-            <!-- Make / Delete -->
-             <div class="button-options-container">
-                <button id="backup-make" class="button-option hvr-shrink">Make New Backup</button>
-                <button id="backup-clean" class="button-option hvr-shrink">Delete Backups</button>
-             </div>
         </div>
     </div>
     <!-- Progress -->

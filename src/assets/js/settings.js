@@ -45,3 +45,27 @@ function resetSettings() {
     // set values
     invoke('reset_settings', {});
 }
+
+// listen for when the settings are saved
+listen('settings-saved', (event) => {
+    Swal.fire({
+        title: "Settings saved!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: true,
+        confirmButtonText: "Yay!",
+        timer: 2000,
+    });
+});
+
+// listen for when the settings are reset
+listen('settings-reset', (event) => {
+    Swal.fire({
+        title: "Your settings have been reset!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: true,
+        confirmButtonText: "Yay!",
+        timer: 2000,
+    });
+});

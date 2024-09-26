@@ -1,9 +1,3 @@
-// show optional settings
-document.getElementById('optional-settings-toggle').addEventListener('click', function () {
-    var advancedContents = document.getElementsByClassName('optional-settings-contents')[0];
-    advancedContents.classList.toggle('expanded');
-});
-
 // create a backup
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('backup-make').addEventListener('click', () => {
@@ -21,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // get list of backups
 function updateBackupsList(csv) {
     // clear container and see if empty
-    const container = document.querySelector(".backups-list-container");
+    const container = document.querySelector(".backups-list-contents");
     container.innerHTML = '';
     if (csv === "null") {
         const backupEntry = document.createElement("div");
@@ -81,7 +75,7 @@ function updateBackupsList(csv) {
 }
 
 listen('reload-backups', (event) => {
-    const container = document.querySelector(".backups-list-container");
+    const container = document.querySelector(".backups-list-contents");
     container.innerHTML = '';
     const loading = document.createElement("div");
     loading.innerHTML = "Loading backups..";
@@ -111,8 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // open backups folder
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('backup-open').addEventListener('click', () => {
-        invoke('open_backups', {});
-    });
-});
+function openBackups() {
+    invoke('open_backups', {});
+}
+
+// show advanced settings
+function advancedSettings() {
+    var advancedContents = document.getElementsByClassName('advanced-settings-contents')[0];
+    advancedContents.classList.toggle('expanded');
+}

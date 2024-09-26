@@ -14,3 +14,28 @@
     border: 4px solid #000;
     border-radius: 10px;
 }
+
+/* Override Default Styles to Fit Into Horiz Navbar */
+.page-navbar {
+    flex-direction: column !important;
+}
+
+.dropdown-container {
+    color: #F595B2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.dropdown-menu {
+    color: #000 !important;
+    background-color: #F595B2;
+}
+
+.page-navbar {
+    gap: 2vmin !important;
+}
+
+.button-navbar {
+    background-color: #F595B2 !important;
+    color: #000 !important;
+}

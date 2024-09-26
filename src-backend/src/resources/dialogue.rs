@@ -144,20 +144,20 @@ fn format_csv_values(s: &str) -> String {
     s
 }
 
-// export dialogue
-#[command]
-pub fn export_dialogue(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+// generate a dialogue, reused between the export and preview function
+fn generate_dialogue(window: &Window, in_path: &String, out_path: &String, language_details: &LanguageDetails, 
+    content_details: &ContentDetails, format_details: &FormatDetails) -> String {
     // ensure that the path is a game folder
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
         window.emit("error", "Your folder is not a valid TCOAAL folder!").unwrap();
-        return;
+        return "Error".to_string();
     }
     // ensure that the file can be found at in_path + language_details.path
     let file_path = format!("{}\\{}", in_path, language_details.path);
     if !Path::new(&file_path).exists() {
         window.emit("error", "The file could not be found!").unwrap();
-        return;
+        return "Error".to_string();
     }
     // read the language file + remove the loc_header
     window.emit("status", "Reading language file..").unwrap();
@@ -190,11 +190,35 @@ pub fn export_dialogue(window: Window, in_path: String, out_path: String, langua
         "csv_keys" => output = format_csv_keys(&language_selection_json),
         _ => println!("Format '{}' for output not found.", format_details.format_type),
     }
+    // return the output
+    output
+}
+
+// export dialogue
+#[command]
+pub fn export_dialogue(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+    // generate the dialogue
+    let output = generate_dialogue(&window, &in_path, &out_path, &language_details, &content_details, &format_details);
+    if output == "Error" {
+        return;
+    }
     // write the output to the out_path + language_details.shortcode + "_output_timestamp" + format_details.extension
     let now = chrono::Local::now().format("%d-%m-%Y-%H-%M-%S").to_string();
     let output_path = format!("{}\\{}_{}_output_{}.{}", out_path, language_details.shortcode, content_details.content, now, format_details.extension);
-    println!("{}", output_path);
     window.emit("status", "Writing output file..").unwrap();
     std::fs::write(&output_path, output).unwrap();
-    window.emit("status", "Output created!").unwrap();
+    window.emit("status", "Exported the dialogue!").unwrap();
+}
+
+// preview dialogue
+#[command]
+pub fn preview_dialogue(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+    // generate the dialogue
+    let output = generate_dialogue(&window, &in_path, &out_path, &language_details, &content_details, &format_details);
+    if output == "Error" {
+        return;
+    }
+    // emit the output
+    window.emit("status", "Preview generated!").unwrap();
+    window.emit("load-preview", output).unwrap();
 }

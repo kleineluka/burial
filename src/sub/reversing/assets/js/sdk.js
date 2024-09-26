@@ -5,13 +5,30 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             sdkData = data;
-            const dropdownMenu = document.getElementById('dropdown-menu-type');
+            const versionDropdown = document.getElementById('dropdown-menu-version');
+            const branchesDropdown = document.getElementById('dropdown-menu-branch');
+            // populate version drop down
             Object.keys(sdkData).forEach(key => {
                 const option = document.createElement('option');
                 option.value = key;
                 option.text = key;
-                dropdownMenu.appendChild(option);
+                versionDropdown.appendChild(option);
             });
+            // function (to easily on load and on change) to set branches based on selected version
+            const setBranches = () => {
+                const selectedVersion = versionDropdown.value;
+                const branches = sdkData[selectedVersion]?.branches || {};
+                branchesDropdown.innerHTML = '';
+                Object.keys(branches).forEach(key => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.text = key;
+                    branchesDropdown.appendChild(option);
+                });
+            };
+            // set branches on initial load and then on changes
+            setBranches();
+            versionDropdown.addEventListener('change', setBranches);
         })
         .catch(error => console.error('Error fetching SDK JSON:', error));
 });
@@ -33,7 +50,7 @@ function getOS() {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sdk-install').addEventListener('click', () => {
         // get selected sdk
-        const sdkType = document.getElementById('dropdown-menu-type').value;
+        const sdkType = document.getElementById('dropdown-menu-version').value;
         // get current version
         const version = sdkData[sdkType].Version;
         const user_os = getOS();

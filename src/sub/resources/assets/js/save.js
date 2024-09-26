@@ -1,3 +1,24 @@
+// switch between horizontal navbars
+document.addEventListener('DOMContentLoaded', () => {
+    const navOptions = document.querySelectorAll('.page-navbar-option');
+    const subContainers = document.querySelectorAll('.page-container');
+    navOptions.forEach(option => {
+        option.addEventListener('click', (event) => {
+            event.preventDefault();
+            // clear current selection
+            navOptions.forEach(nav => nav.classList.remove('selected'));
+            subContainers.forEach(container => container.classList.add('hidden'));
+            // show what was selected
+            option.classList.add('selected');
+            const id = option.id;
+            const subContainer = document.getElementById(`sub-${id}`);
+            if (subContainer) {
+                subContainer.classList.remove('hidden');
+            }
+        });
+    });
+});
+
 // get save files on load
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
@@ -65,15 +86,6 @@ document.getElementById('delete-auto-button').addEventListener('click', (event) 
     });
 });
 
-// backup menu change
-document.getElementById('navigate-backup-button').addEventListener('click', (event) => {
-    // hide other sub menus
-    document.getElementById('sub-main').classList.add('hidden');
-    document.getElementById('sub-edit').classList.add('hidden');
-    // show backup menu
-    document.getElementById('sub-backup').classList.remove('hidden');
-});
-
 // do backup on all
 document.getElementById('backup-button').addEventListener('click', (event) => {
     let backupPath = document.getElementById('input-backup-out').value;
@@ -91,11 +103,11 @@ document.getElementById('backup-button').addEventListener('click', (event) => {
 document.getElementById('navigate-edit-button').addEventListener('click', (event) => {
     // get selected save file name
     let saveName = document.getElementById('dropdown-menu-save-main').value;
-    // hide other sub menus
-    document.getElementById('sub-main').classList.add('hidden');
-    document.getElementById('sub-backup').classList.add('hidden');
-    // show edit menu
-    document.getElementById('sub-edit').classList.remove('hidden');
+    // show / hide
+    document.getElementById('edit-sub-main').classList.add('hidden');
+    document.getElementById('edit-sub-edit').classList.remove('hidden');
+    document.getElementById('navbar-main').classList.add('hidden');
+    document.getElementById('navbar-edit').classList.remove('hidden');
     // call rust to get save file
     invoke('read_save', { saveName });
 });
@@ -122,17 +134,6 @@ document.getElementById('edit-paste-button').addEventListener('click', (event) =
     });
 });
 
-// add to all "back-button" classes
-document.querySelectorAll('.back-button').forEach((element) => {
-    element.addEventListener('click', (event) => {
-        // hide sub menus
-        document.getElementById('sub-backup').classList.add('hidden');
-        document.getElementById('sub-edit').classList.add('hidden');
-        // show main menu
-        document.getElementById('sub-main').classList.remove('hidden');
-    });
-});
-
 // listen to put the selected data back in the backup path
 document.getElementById('browse-button-out').addEventListener('click', (event) => {
     var emitEvent = 'selected-output-folder';
@@ -144,3 +145,30 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('input-backup-out').value = event.payload;
     });
 });
+
+// revert edited save in editor
+function revertSave() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Reverting the save will discard all changes. Are you sure you want to continue?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Revert Save",
+        closeOnConfirm: true,
+        reverseButtons: true,
+        confirmButtonColor: "#F595B2",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('textarea-save').value = saveContent;
+            set_status('Reverted save!');
+        }
+    });
+}
+
+// exit editor
+function exitEditor() {
+    document.getElementById('edit-sub-main').classList.remove('hidden');
+    document.getElementById('navbar-main').classList.remove('hidden');
+    document.getElementById('edit-sub-edit').classList.add('hidden');
+    document.getElementById('navbar-edit').classList.add('hidden');
+}

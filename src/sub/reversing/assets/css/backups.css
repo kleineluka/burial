@@ -11,7 +11,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     padding: 10px;
-    background-color: #F1E2C5;
+    background-color: #000;
     border-radius: 5px;
     border: 2px solid #000;
     min-width: 80%;
@@ -28,7 +28,7 @@
     align-items: center;
     background-color: #EDEDED;
     border-radius: 5px;
-    border: 1px solid #CCC;
+    border: 3px solid #F595B2;
     padding: 10px;
 }
 
@@ -48,7 +48,7 @@
 .backup-button {
     font-size: 2vmin;
     padding: 5px 10px;
-    background-color: #FFF;
+    background-color: #F595B2;
     border: 1px solid #333;
     border-radius: 3px;
     cursor: pointer;
@@ -60,31 +60,16 @@
     transform: scale(1.05);
 }
 
-/* Optional Settings */
-.optional-settings-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-} 
-
-.optional-settings-contents {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+/* Override Default Styles */
+.button-navbar {
+    background-color: #F595B2 !important;
+    color: #000 !important;
 }
 
-.optional-settings-contents.expanded {
-    max-height: 400px;
-    margin-top: 2%;
-    padding: 10px;
-    background-color: #F1E2C5;
-    border-radius: 5px;
-    border: 2px solid #000;
-    width: 80%;
+.advanced-settings-container {
+    margin-bottom: 1vmin !important;
 }
 
-#optional-settings-toggle {
-    cursor: pointer;
+.advanced-border {
+    border: 2px solid #F595B2 !important;
 }
-

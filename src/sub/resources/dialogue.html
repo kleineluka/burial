@@ -43,33 +43,44 @@
         </div>
         <div class="container">
             <!-- Horizontal Navbar -->
-            <div class="page-navbar">
+            <div id="navbar-main" class="page-navbar">
                 <a href="#" id="export" class="page-navbar-option selected">Export Dialogue</a>
                 <a href="#" id="import" class="page-navbar-option">Import Dialogue</a>
             </div>
+            <div id="navbar-preview" class="page-navbar hidden">
+                <div class="file-path-container dropdown-container">
+                    <button class="button-action button-navbar hvr-shrink" onclick="exitPreview()">Go Back 🔙</button>
+                </div>
+            </div>
             <!-- Sub Container -->
             <div id="sub-export" class="page-container">
-                <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-language" class=>Dialogue Language:</label>
-                    <select id="dropdown-menu-language" class="dropdown-menu"></select>
+                <div id="export-main">
+                    <div class="file-path-container dropdown-container">
+                        <label for="dropdown-menu-language" class=>Dialogue Language:</label>
+                        <select id="dropdown-menu-language" class="dropdown-menu"></select>
+                    </div>
+                    <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-contents" class=>Dialogue Contents:</label>
+                    <select id="dropdown-menu-contents" class="dropdown-menu"></select>
+                    </div>
+                    <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-format" class=>Dialogue Format:</label>
+                    <select id="dropdown-menu-format" class="dropdown-menu"></select>
+                    </div>
+                    <div class="file-path-container">
+                        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL folder.." value="">
+                        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                    </div>
+                    <div class="file-path-container">
+                        <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save it?" value="">
+                        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                    </div>
+                    <button id="extract-code" class="button-action hvr-shrink" onclick="previewDialogue()">Preview 🍀</button>
+                    <button id="extract-code" class="button-action hvr-shrink" onclick="exportDialogue()">Export! 🦜</button>
                 </div>
-                <div class="file-path-container dropdown-container">
-                  <label for="dropdown-menu-contents" class=>Dialogue Contents:</label>
-                  <select id="dropdown-menu-contents" class="dropdown-menu"></select>
+                <div id="export-preview" class="hidden">
+                    <textarea readonly id="textarea-dialogue" class="editable-textarea" placeholder="Loading your dialogue.."></textarea>
                 </div>
-                <div class="file-path-container dropdown-container">
-                  <label for="dropdown-menu-format" class=>Dialogue Format:</label>
-                  <select id="dropdown-menu-format" class="dropdown-menu"></select>
-                </div>
-                <div class="file-path-container">
-                    <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL folder.." value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <div class="file-path-container">
-                    <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save it?" value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <button id="extract-code" class="button-action hvr-shrink" onclick="exportDialogue()">Export! 🦜</button>
             </div>
             <div id="sub-import" class="page-container hidden">
                 <div class="file-path-container">

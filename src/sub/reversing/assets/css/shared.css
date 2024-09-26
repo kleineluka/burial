@@ -41,8 +41,9 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    font-family: 'Noto Sans';
-    font-size: 2vw;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 3vmin;
     color: #000;
 }
 

@@ -1,14 +1,133 @@
-/* Header Image */
-.header-image {
-    width: 60%;
+/* Text Information (At Top) */
+.top-information {
+    font-size: 2.5vmin;
+    padding-right: 5vmin;
+    padding-left: 5vmin;
+    color: #F595B2;
+}
+
+/* Sorting Row */
+.sort-filter-row {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center; 
+    font-size: 3vmin;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    color: #F595B2;
+    gap: 20px;
+}
+
+.sort-circular-dropdown {
+    border-radius: 10px; 
+    padding: 2px 15px; 
+    font-size: 3vmin; 
+    font-family: 'Nunito', sans-serif;
+    background-color: #F595B2; 
+    appearance: none; 
+    cursor: pointer; 
+    transition: border-color 0.3s;
+}
+
+.sort-circular-dropdown:hover {
+    border-color: #F595B2; 
+}
+
+/* Mod Entries */
+.mod-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 10px;
+    background-color: #f7c8d5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.mod-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mod-icon {
+    flex: 0 0 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mod-provided-icon {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #000;
+    border-radius: 10%;
+}
+
+.mod-details {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.mod-name {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+}
+
+.mod-author {
+    font-weight: normal;
+    color: #666;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.mod-description {
+    margin: 5px 0 0;
+    font-size: 0.95em;
+    color: #444;
+    text-align: left;
+}
+
+.mod-actions {
+    flex: 0 0 auto;
+}
+
+.mod-download-icon {
+    width: 60px;
     height: auto;
+    cursor: pointer;
+    border-radius: 10%;
+    border: 2px solid #000;
+    transition: transform 0.3s, opacity 0.3s;
 }
 
-/* Fonts */
-.small-title {
-    font-size: 2vw;
+.mod-download-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
-.items-list {
-    font-size: 1.75vw;
+.mod-tags {
+    margin-top: 10px; 
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.mod-tag {
+    background-color: #F595B2; 
+    color: #333; 
+    border-radius: 12px; 
+    padding: 5px 10px; 
+    margin: 5px; 
+    font-size: 0.85em; 
+    text-align: center;
+    white-space: nowrap; 
+}
+
+.mod-open-link-symbol {
+    cursor: pointer;
 }

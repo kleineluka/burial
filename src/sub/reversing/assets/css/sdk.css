@@ -1,15 +1,7 @@
-/* Information */
-.info-section {
-    font-size: 3vmin;
-    margin-bottom: 3vmin;
-}
-
-.info-section div {
+/* Text Information (At Top) */
+.top-information {
     font-size: 2.5vmin;
-}
-
-/* Footer */
-.footer-container {
-    font-size: 2vmin;
-    margin-top: 2vmin;
+    padding-right: 5vmin;
+    padding-left: 5vmin;
+    color: #F595B2;
 }

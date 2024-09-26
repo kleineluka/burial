@@ -65,6 +65,7 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 - [ ] General Linux Improvements
 - [ ] Development Build Scripts
 - [ ] Proper Status Bar
+- [ ] Inceased settings
 
 <!-- Contribute -->
 # Contribute 🩷

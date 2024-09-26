@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const mainMenu = document.getElementById('sub-main');
     const previewMenu = document.getElementById('sub-preview');
+    const mainNavbar = document.getElementById('navbar-main');
+    const previewNavbar = document.getElementById('navbar-preview');
     document.getElementById('preview-button').addEventListener('click', () => {
         const gamePath = document.getElementById('tcoaal-path');
         if (!gamePath.value) {
@@ -153,13 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         const spriteName = selectedData.sprite_name;
                         invoke('make_preview', { gamePath, spritePath, spriteName, byteList });
                         mainMenu.classList.add('hidden');
+                        mainNavbar.classList.add('hidden');
                         previewMenu.classList.remove('hidden');
+                        previewNavbar.classList.remove('hidden');
                     })
             })
     });
     document.getElementById('back-button').addEventListener('click', () => {
         mainMenu.classList.remove('hidden');
+        mainNavbar.classList.remove('hidden');
         previewMenu.classList.add('hidden');
+        previewNavbar.classList.add('hidden');
     });
 });
 

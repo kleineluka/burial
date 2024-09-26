@@ -80,3 +80,59 @@ function exportDialogue() {
     // call back end
     invoke ("export_dialogue", { inPath, outPath, languageDetails, contentDetails, formatDetails });
 }
+
+// show a preview of the exported dialogue
+function previewDialogue() {
+    // control which elements are visible
+    const exportMain = document.getElementById('export-main');
+    const navbarMain = document.getElementById('navbar-main');
+    const previewMain = document.getElementById('export-preview');
+    const navbarPreview = document.getElementById('navbar-preview');
+    // hide the main, show the preview
+    exportMain.classList.add('hidden');
+    navbarMain.classList.add('hidden');
+    previewMain.classList.remove('hidden');
+    navbarPreview.classList.remove('hidden');
+    // get selected language, contents, and format
+    const language = document.getElementById('dropdown-menu-language').value;
+    const contents = document.getElementById('dropdown-menu-contents').value;
+    const format = document.getElementById('dropdown-menu-format').value;
+    // get from json
+    if (!supportedDialogues) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'The JSON data could not be loaded.',
+        });
+        return;
+    }
+    const languageDetails = supportedDialogues.languages[language];
+    const contentDetails = supportedDialogues.contents[contents];
+    const formatDetails = supportedDialogues.formats[format];
+    // get path
+    const inPath = document.getElementById('tcoaal-path').value;
+    const outPath = document.getElementById('output-path').value;
+    // call back end
+    invoke("preview_dialogue", { inPath, outPath, languageDetails, contentDetails, formatDetails });
+}
+
+// listen for loading the preview dialogue
+let dialogueContent = '';
+listen('load-preview', (event) => {
+    dialogueContent = event.payload;
+    document.getElementById('textarea-dialogue').value = dialogueContent;
+});
+
+// exit the preview
+function exitPreview() {
+    // control which elements are visible
+    const exportMain = document.getElementById('export-main');
+    const navbarMain = document.getElementById('navbar-main');
+    const previewMain = document.getElementById('export-preview');
+    const navbarPreview = document.getElementById('navbar-preview');
+    // hide the preview, show the main
+    exportMain.classList.remove('hidden');
+    navbarMain.classList.remove('hidden');
+    previewMain.classList.add('hidden');
+    navbarPreview.classList.add('hidden');
+}

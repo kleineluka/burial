@@ -25,7 +25,7 @@ pub fn save_settings(window: Window, tcoaal: String, output: String) {
     settings.output = output;
     // write the updated settings
     settings::write_settings(settings);
-    window.emit("settings-saved", {}).unwrap();
+    window.emit("settings-saved", {}).unwrap(); 
 }
 
 // reset settings
