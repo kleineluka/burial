@@ -7,11 +7,11 @@
 A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding!
 <br>
 **Please** leave a ⭐ Star ⭐ on Github to support!
+<br>
+**Current Status:** 🚧 In Development! 70% Complete! 🚧 
 
 
 [Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
-
-**Current Status:** 🚧 In Development! 🚧 
 
 </div>
 
@@ -33,13 +33,11 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 # Features 🐰
 - **Resources** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, generate templates of assets to make your own, parse dialogue in different languages to a more readable format, and decrypt/modify/manage save files.
 - **Reversing** 🧬: Inject code into the game, export and deobfuscate the game's run-time code, manage NW.js SDK's, enable developer tools, view/edit game information, and create/manage backups of your game files.
-- **Mod Tools** 🖍️: WIP.
+- **Mod Tools** 🖍️:  Create/edit mod json files, create/edit repo json files, generate differences between two mod packages, package your mod, and upload your mod.
 - **Mod Manager** 🍱: Install pre-made modpacks, add/update/remove Tomb modloader, browse and download mods, view/toggle/update installed mods, and create/manage multiple instances of the game.
-- **Knowledge** 📔: WIP.
+- **Knowledge** 📔: View what obfuscated functions do and easily access modding resources.
 - **Quality of Life** 🌸: Pretty GUI (based on Ashley's colours!), persistant settings, built-in tutorials, update checking, lots of emojis..
 - **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial. Burial will **never** implement any anti-DRM tools. 
-
-Development Progress: **Resources** (100%), **Reversing** (80%), **Mod Tools** (0%), **Mod Manager** (30%), **Knowledge** (20%), **Settings** (100%), **Misc** (30%). Binaries will be provided when all features are complete.
 
 <!-- Install -->
 # Install ☕
@@ -50,8 +48,6 @@ Development Progress: **Resources** (100%), **Reversing** (80%), **Mod Tools** (
     Question 1. [Why is it flagged as unknown/malicious?]()
     <br>
     Question 2. [Why can't the program be portable?]()
-    <br>
-    Question 3. [How do I run unsigned programs on MacOS?]()
 3. **Open** the program and **enjoy**! If you have any issues, please refer to the [Documentation](#documentation-).
 
 <!-- Documentation -->
@@ -60,7 +56,9 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 
 <!-- Roadmap -->
 # Roadmap 🚧
+(In no particular order..)
 - [ ] Language Support
+- [ ] Proper Rust Re-Implementation of Deobfuscation
 - [ ] Steam Deck Compatibility
 - [ ] General Linux Improvements
 - [ ] Development Build Scripts
