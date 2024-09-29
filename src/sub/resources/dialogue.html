@@ -47,25 +47,26 @@
                 <a href="#" id="export" class="page-navbar-option selected">Export Dialogue</a>
                 <a href="#" id="import" class="page-navbar-option">Import Dialogue</a>
             </div>
-            <div id="navbar-preview" class="page-navbar hidden">
+            <div id="navbar-preview" class="page-navbar hidden-container">
                 <div class="file-path-container dropdown-container">
                     <button class="button-action button-navbar hvr-shrink" onclick="exitPreview()">Go Back 🔙</button>
                 </div>
             </div>
             <!-- Sub Container -->
             <div id="sub-export" class="page-container">
+                <!-- Export Menu -->
                 <div id="export-main">
                     <div class="file-path-container dropdown-container">
-                        <label for="dropdown-menu-language" class=>Dialogue Language:</label>
-                        <select id="dropdown-menu-language" class="dropdown-menu"></select>
+                        <label for="dropdown-menu-export-language" class=>Dialogue Language:</label>
+                        <select id="dropdown-menu-export-language" class="dropdown-menu"></select>
                     </div>
                     <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-contents" class=>Dialogue Contents:</label>
-                    <select id="dropdown-menu-contents" class="dropdown-menu"></select>
+                        <label for="dropdown-menu-export-contents" class=>Dialogue Contents:</label>
+                        <select id="dropdown-menu-export-contents" class="dropdown-menu"></select>
                     </div>
                     <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-format" class=>Dialogue Format:</label>
-                    <select id="dropdown-menu-format" class="dropdown-menu"></select>
+                        <label for="dropdown-menu-export-format" class=>Dialogue Format:</label>
+                        <select id="dropdown-menu-export-format" class="dropdown-menu"></select>
                     </div>
                     <div class="file-path-container">
                         <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL folder.." value="">
@@ -75,18 +76,37 @@
                         <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save it?" value="">
                         <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
                     </div>
-                    <button id="extract-code" class="button-action hvr-shrink" onclick="previewDialogue()">Preview 🍀</button>
-                    <button id="extract-code" class="button-action hvr-shrink" onclick="exportDialogue()">Export! 🦜</button>
+                    <button class="button-action hvr-shrink" onclick="previewExport()">Preview 🍀</button>
+                    <button class="button-action hvr-shrink" onclick="exportDialogue()">Export 🧵</button>
                 </div>
-                <div id="export-preview" class="hidden">
+                <div id="export-preview" class="hidden-container">
                     <textarea readonly id="textarea-dialogue" class="editable-textarea" placeholder="Loading your dialogue.."></textarea>
                 </div>
             </div>
-            <div id="sub-import" class="page-container hidden">
+            <!-- Import Menu -->
+            <div id="sub-import" class="page-container hidden-container">
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-import-language" class=>Dialogue Language:</label>
+                    <select id="dropdown-menu-import-language" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-import-contents" class=>Input Contents:</label>
+                    <select id="dropdown-menu-import-contents" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-import-format" class=>Input Format:</label>
+                    <select id="dropdown-menu-import-format" class="dropdown-menu"></select>
+                </div>
                 <div class="file-path-container">
-                    <input id="code-path" type="text" class="file-path-input" placeholder="Extracted game code.." value="">
+                    <input id="dialogue-path-import" type="text" class="file-path-input" placeholder="Your dialogue file path" value="">
                     <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
                 </div>
+                <div class="file-path-container">
+                    <input id="tcoaal-path-import" type="text" class="file-path-input tcoaal-path" placeholder="Your TCOAAL folder.." value="">
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                </div>
+                <button class="button-action hvr-shrink" onclick="previewImport()">Preview 🍀</button>
+                <button class="button-action hvr-shrink" onclick="importDialogue()">Import 🪡 </button>
             </div>
         </div>
     </div>

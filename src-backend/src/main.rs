@@ -10,6 +10,7 @@ mod resources;
 mod reversing;
 mod tutorial;
 mod modmanager;
+mod modtools;
 
 // imports
 use utils::files;
@@ -29,6 +30,7 @@ use reversing::code;
 use tutorial::setup;
 use tutorial::finished;
 use modmanager::modloader;
+use modtools::differences;
 
 // main
 fn main() {
@@ -88,7 +90,8 @@ fn main() {
             modloader::modloader_version,
             modloader::modloader_versions,
             dialogue::export_dialogue,
-            dialogue::preview_dialogue])
+            dialogue::preview_export,
+            differences::find_differences])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }

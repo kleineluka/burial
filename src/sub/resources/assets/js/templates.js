@@ -154,18 +154,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         const spritePath = selectedData.sprite_location;
                         const spriteName = selectedData.sprite_name;
                         invoke('make_preview', { gamePath, spritePath, spriteName, byteList });
-                        mainMenu.classList.add('hidden');
-                        mainNavbar.classList.add('hidden');
-                        previewMenu.classList.remove('hidden');
-                        previewNavbar.classList.remove('hidden');
+                        mainMenu.classList.add('hidden-container');
+                        mainNavbar.classList.add('hidden-container');
+                        previewMenu.classList.remove('hidden-container');
+                        previewNavbar.classList.remove('hidden-container');
                     })
             })
     });
     document.getElementById('back-button').addEventListener('click', () => {
-        mainMenu.classList.remove('hidden');
-        mainNavbar.classList.remove('hidden');
-        previewMenu.classList.add('hidden');
-        previewNavbar.classList.add('hidden');
+        mainMenu.classList.remove('hidden-container');
+        mainNavbar.classList.remove('hidden-container');
+        previewMenu.classList.add('hidden-container');
+        previewNavbar.classList.add('hidden-container');
     });
 });
 

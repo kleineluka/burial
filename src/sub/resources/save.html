@@ -47,7 +47,7 @@
         <a href="#" id="edit" class="page-navbar-option selected">Edit</a>
         <a href="#" id="backup"" class=" page-navbar-option">Backup</a>
       </div>
-      <div id="navbar-edit" class="page-navbar hidden">
+      <div id="navbar-edit" class="page-navbar hidden-container">
           <div class="file-path-container dropdown-container">
             <button class="button-action button-navbar hvr-shrink" onclick="exitEditor()">Go Back 🔙</button>
           </div>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <!-- Edit (Actual Edit) Menu -->
-        <div id="edit-sub-edit" class="sub-container hidden">
+        <div id="edit-sub-edit" class="sub-container hidden-container">
           <textarea id="textarea-save" class="editable-textarea" placeholder="Loading your save.."></textarea>
           <br>
           <button id="edit-copy-button" class="button-action hvr-shrink">Copy ⬆️</button>
@@ -84,7 +84,7 @@
         </div>
       </div>
       <!-- Backup Sub Menu -->
-      <div id="sub-backup" class="page-container hidden">
+      <div id="sub-backup" class="page-container hidden-container">
         <div class="file-path-container">
           <input id="input-backup-out" type="text" class="file-path-input" placeholder="Where do you want to back up to?"
             value="">
@@ -93,10 +93,11 @@
         <button id="backup-button" class="button-action hvr-shrink">Create Backups ♻️</button>
       </div>
     </div>
-    <!-- Progress -->
-    <div class="progress-container">
-      <a id="status" class="progress-text"></a>
-    </div>
+  </div>
+  <!-- Progress -->
+  <div class="progress-container">
+    <a id="status" class="progress-text"></a>
+  </div>
 </body>
 <!-- javascript -->
 <script src="../../assets/ext/wow.min.js"></script>

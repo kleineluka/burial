@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             // clear current selection
             navOptions.forEach(nav => nav.classList.remove('selected'));
-            subContainers.forEach(container => container.classList.add('hidden'));
+            subContainers.forEach(container => container.classList.add('hidden-container'));
             // show what was selected
             option.classList.add('selected');
             const id = option.id;
             const subContainer = document.getElementById(`sub-${id}`);
             if (subContainer) {
-                subContainer.classList.remove('hidden');
+                subContainer.classList.remove('hidden-container');
             }
         });
     });
@@ -104,10 +104,10 @@ document.getElementById('navigate-edit-button').addEventListener('click', (event
     // get selected save file name
     let saveName = document.getElementById('dropdown-menu-save-main').value;
     // show / hide
-    document.getElementById('edit-sub-main').classList.add('hidden');
-    document.getElementById('edit-sub-edit').classList.remove('hidden');
-    document.getElementById('navbar-main').classList.add('hidden');
-    document.getElementById('navbar-edit').classList.remove('hidden');
+    document.getElementById('edit-sub-main').classList.add('hidden-container');
+    document.getElementById('edit-sub-edit').classList.remove('hidden-container');
+    document.getElementById('navbar-main').classList.add('hidden-container');
+    document.getElementById('navbar-edit').classList.remove('hidden-container');
     // call rust to get save file
     invoke('read_save', { saveName });
 });
@@ -167,8 +167,8 @@ function revertSave() {
 
 // exit editor
 function exitEditor() {
-    document.getElementById('edit-sub-main').classList.remove('hidden');
-    document.getElementById('navbar-main').classList.remove('hidden');
-    document.getElementById('edit-sub-edit').classList.add('hidden');
-    document.getElementById('navbar-edit').classList.add('hidden');
+    document.getElementById('edit-sub-main').classList.remove('hidden-container');
+    document.getElementById('navbar-main').classList.remove('hidden-container');
+    document.getElementById('edit-sub-edit').classList.add('hidden-container');
+    document.getElementById('navbar-edit').classList.add('hidden-container');
 }

@@ -55,6 +55,7 @@ pub fn get_backups(window: Window) {
     backups::verify_backups().unwrap();
     let folder_path = backups::backup_folder();
     let mut backups = Vec::new();
+    let mut disk_space = Vec::new();
     // read the directory entries
     let entries = match fs::read_dir(folder_path) {
         Ok(entries) => entries,
@@ -79,6 +80,11 @@ pub fn get_backups(window: Window) {
             if let Some(extension) = path.extension() {
                 if extension == "zip" {
                     if let Some(filename) = path.file_name() {
+                        // get the disk space of the file
+                        let metadata = fs::metadata(&path).unwrap();
+                        let size = metadata.len();
+                        disk_space.push(size);
+                        // make the file name ready for display ! 
                         let filename = filename.to_string_lossy().to_string();
                         let filename = filename.replace(".zip", "");
                         backups.push(filename);
@@ -89,11 +95,13 @@ pub fn get_backups(window: Window) {
     }
     // sanitize it as a CSV string 
     let sanitized_backups: String = backups.into_iter().collect::<HashSet<String>>().into_iter().collect::<Vec<String>>().join(",");
+    let sanitized_disk_space: String = disk_space.into_iter().map(|x| x.to_string()).collect::<Vec<String>>().join(",");
+    let sanitized_data = sanitized_backups.clone() + "|" + &sanitized_disk_space;
     // send back "null" if no backups found
     if sanitized_backups.is_empty() {
         window.emit("backups", "null").unwrap();
     } else {
-        window.emit("backups", sanitized_backups).unwrap();
+        window.emit("backups", sanitized_data).unwrap();
     }
 }
 

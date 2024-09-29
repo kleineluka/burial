@@ -19,3 +19,24 @@ pub fn cache_folder() -> PathBuf {
     burial_dir.push("burial");
     burial_dir
 }
+
+// create a temporary folder in the cache
+pub fn create_temp() -> PathBuf {
+    let mut burial_dir: PathBuf = cache_folder();
+    burial_dir.push("temp");
+    files::verify_folder(&burial_dir).unwrap();
+    burial_dir
+}
+
+// just get the temporary folder
+pub fn temp_folder() -> PathBuf {
+    let mut burial_dir: PathBuf = cache_folder();
+    burial_dir.push("temp");
+    burial_dir
+}
+
+// delete the temporary folder
+pub fn clear_temp() {
+    let burial_dir: PathBuf = create_temp();
+    files::delete_folder(&burial_dir.to_str().unwrap());
+}

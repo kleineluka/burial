@@ -1,6 +1,6 @@
 // see if it is the first run, overrides store (but fine for index)
 window.onload = async () => {
-    const store = new Store('data.json');
+    const store = new Store('.cache.json');
     const start_tutorial = await store.get('first_run');
     if (start_tutorial) {
         invoke('navigate', { page: 'first.html' });

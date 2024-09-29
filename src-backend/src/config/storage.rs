@@ -6,7 +6,7 @@ use tauri_plugin_store::StoreCollection;
 use tauri_plugin_store::with_store;
 use serde_json::Value;
 
-const STORE_PATH: &str = "data.json";
+const STORE_PATH: &str = ".cache.json";
 
 // insert a value into the persistent storage
 pub fn insert_into_store(app: &AppHandle, key: &str, value: serde_json::Value) -> Result<(), String> {

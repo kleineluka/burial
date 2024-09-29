@@ -1,3 +1,8 @@
+// convert bytes to mb
+function bytesToMB(bytes) {
+    return (bytes / 1024 / 1024).toFixed(2);
+}
+
 // create a backup
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('backup-make').addEventListener('click', () => {
@@ -27,14 +32,18 @@ function updateBackupsList(csv) {
         return;
     }
     // split csv and go through
-    const backups = csv.split(',');
+    const backups_names = csv.split('|')[0];
+    const backups_disk_space = csv.split('|')[1];
+    const backups = backups_names.split(',');
+    const disk_space = backups_disk_space.split(',');
     backups.forEach(backup => {
         // build all the components
         const backupEntry = document.createElement("div");
         backupEntry.className = "backup-entry";
         const backupPath = document.createElement("span");
         backupPath.className = "backup-path";
-        backupPath.textContent = backup;
+        const disk_space_mb = bytesToMB(disk_space[backups.indexOf(backup)]);
+        backupPath.textContent = `${backup} (${disk_space_mb} MB)`;
         const backupButtons = document.createElement("div");
         backupButtons.className = "backup-buttons";
         const restoreButton = document.createElement("button");

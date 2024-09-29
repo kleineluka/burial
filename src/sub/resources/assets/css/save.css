@@ -3,11 +3,11 @@
     /* nothing as of now */
 }
 
-.sub-container.hidden {
+.sub-container.hidden-container {
     display: none;
 }
 
-.hidden {
+.hidden-container {
     display: none;
 }
 

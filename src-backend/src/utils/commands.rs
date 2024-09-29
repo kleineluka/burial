@@ -26,15 +26,8 @@ pub async fn folder_dialog(window: Window, emit_event: String) {
             // let user pick a directory
             .pick_folder(move |folder_path| {
                 if let Some(path) = folder_path {
-                    println!("Selected folder: {}", path.display().to_string());
-                    // send back to front-end
-                    if let Err(e) = window.emit(&emit_event, Some(path.display().to_string())) {
-                        println!("Error emitting event: {:?}", e);
-                    } else {
-                        println!("Event emitted successfully");
-                    }
+                    window.emit(&emit_event, Some(path.display().to_string())).unwrap();
                 } else {
-                    println!("No folder selected");
                     window.emit("error", Some("No folder selected!".to_string())).unwrap();
                 }
             });

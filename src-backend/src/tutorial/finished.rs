@@ -9,7 +9,7 @@ use crate::config::cache;
 #[command]
 pub fn setup_finish(window: Window) {
     let cache_dir = cache::cache_folder();
-    let file_path = cache_dir.join("setup.lock");
+    let file_path = cache_dir.join(".setup.lock");
     let mut file = fs::File::create(file_path)
         .expect("Failed to create file");
     file.write_all("done".as_bytes())

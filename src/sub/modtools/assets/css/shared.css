@@ -1,7 +1,7 @@
 /* Main Content */
 .main-content {
     flex: 1;
-    margin-left: 250px;
+    margin-left: 25%;
     transition: margin-left 0.3s ease;
 }
 
@@ -70,18 +70,17 @@
 }
 
 .sidebar-github {
-    width: 30px;
+    width: 5vmin;
 }
 
 .sidebar-version {
-    font-size: 1.15em;
+    font-size: 3vmin;
     margin-left: 10px;
     margin-top: 10px;
     color: #000;
 }
 
 .sidebar-top-menu {
-    /* horizontal row in the top left of screen */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -121,5 +120,22 @@
 }
 
 #toggleSidebar.toggled {
-  background-color: #F1E2C5; 
+    background-color: #F1E2C5;
+}
+
+/* Progress */
+.progress-container {
+    flex: 1;
+    margin-left: 25%;
+    transition: margin-left 0.3s ease;
+    position: absolute;
+    bottom: 3%;
+}
+
+.progress-container.toggled {
+    margin-left: 0;
+}
+
+.progress-text {
+    font-size: 2.5vmin;
 }

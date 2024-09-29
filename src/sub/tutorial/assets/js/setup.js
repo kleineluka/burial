@@ -17,7 +17,7 @@ setTimeout(function() {
 document.getElementById('steps-one-button').addEventListener('click', function () {
     // send the path to backend + local storage
     const inPath = document.getElementById('tcoaal-path').value;
-    const store = new Store('data.json');
+    const store = new Store('.cache.json');
     store.set('tcoaal', inPath);
     store.save();
     invoke('setup_game', { inPath });

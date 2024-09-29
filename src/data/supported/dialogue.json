@@ -1,75 +1,96 @@
 {
-    "languages": {
-        "English": {
-            "shortcode": "en",
-            "path": "www\\languages\\english\\dialogue.loc"
+    "export": {
+        "languages": {
+            "English": {
+                "shortcode": "en",
+                "path": "www\\languages\\english\\dialogue.loc"
+            }
+        },
+        "contents": {
+            "All": {
+                "content": "all"
+            },
+            "Language Name": {
+                "content": "langName"
+            },
+            "Language Info": {
+                "content": "langInfo"
+            },
+            "Font Face": {
+                "content": "fontFace"
+            },
+            "Font Size": {
+                "content": "fontSize"
+            },
+            "System Labels": {
+                "content": "sysLabel"
+            },
+            "System Menus": {
+                "content": "sysMenus"
+            },
+            "Items & Interactions": {
+                "content": "labelLUT"
+            },
+            "Dialogue": {
+                "content": "linesLUT"
+            }
+        },
+        "formats": {
+            "Pretty JSON": {
+                "type": "pretty_json",
+                "extension": "json"
+            },
+            "Minified JSON": {
+                "type": "minified_json",
+                "extension": "json"
+            },
+            "LOC": {
+                "type": "loc",
+                "extension": "loc"
+            },
+            "Text": {
+                "type": "text",
+                "extension": "txt"
+            },
+            "Text (Values)": {
+                "type": "text_values",
+                "extension": "txt"
+            },
+            "Text (Keys)": {
+                "type": "text_keys",
+                "extension": "txt"
+            },
+            "CSV": {
+                "type": "csv",
+                "extension": "csv"
+            },
+            "CSV (Values)": {
+                "type": "csv_values",
+                "extension": "csv"
+            },
+            "CSV (Keys)": {
+                "type": "csv_keys",
+                "extension": "csv"
+            }
         }
     },
-    "contents": {
-        "All": {
-            "content": "all"
+    "import": {
+        "languages": {
+            "English": {
+                "shortcode": "en",
+                "path": "www\\languages\\english\\dialogue.loc"
+            }
         },
-        "Language Name": {
-            "content": "langName"
+        "contents": {
+            "All": {
+                "content": "all"
+            }
         },
-        "Language Info": {
-            "content": "langInfo"
-        },
-        "Font Face": {
-            "content": "fontFace"
-        },
-        "Font Size": {
-            "content": "fontSize"
-        },
-        "System Labels": {
-            "content": "sysLabel"
-        },
-        "System Menus": {
-            "content": "sysMenus"
-        },
-        "Items & Interactions": {
-            "content": "labelLUT"
-        },
-        "Dialogue": {
-            "content": "linesLUT"
-        }
-    },
-    "formats": {
-        "Pretty JSON": {
-            "type": "pretty_json",
-            "extension": "json"
-        },
-        "Minified JSON": {
-            "type": "minified_json",
-            "extension": "json"
-        },
-        "LOC": {
-            "type": "loc",
-            "extension": "loc"
-        },
-        "Text": {
-            "type": "text",
-            "extension": "txt"
-        },
-        "Text (Values)": {
-            "type": "text_values",
-            "extension": "txt"
-        },
-        "Text (Keys)": {
-            "type": "text_keys",
-            "extension": "txt"
-        },
-        "CSV": {
-            "type": "csv",
-            "extension": "csv"
-        },
-        "CSV (Values)": {
-            "type": "csv_values",
-            "extension": "csv"
-        },
-        "CSV (Keys)": {
-            "type": "csv_keys",
-            "extension": "csv"
+        "formats": {
+            "JSON": {
+                "type": "json",
+                "extension": "json"
+            }
         }
     }
 }

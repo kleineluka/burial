@@ -24,7 +24,7 @@ function saveSettings() {
     var tcoaal = document.getElementById('tcoaal-path').value;
     var output = document.getElementById('output-path').value;
     // update settings in local storage
-    const store = new Store('data.json');
+    const store = new Store('.cache.json');
     store.set('tcoaal', tcoaal);
     store.set('output', output);
     store.save();
@@ -35,7 +35,7 @@ function saveSettings() {
 // reset button
 function resetSettings() {
     // reset settings in local storage
-    const store = new Store('data.json');
+    const store = new Store('.cache.json');
     store.set('tcoaal', '');
     store.set('output', '');
     store.save();

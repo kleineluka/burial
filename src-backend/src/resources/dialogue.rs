@@ -144,6 +144,12 @@ fn format_csv_values(s: &str) -> String {
     s
 }
 
+// minimize from a json (pretty or minimized) to a loc (= minimize json, then add header)
+fn minimize_json_to_loc(s: &str) -> String {
+    let s = format_minified_json(s);
+    add_loc_header(&s)
+}
+
 // generate a dialogue, reused between the export and preview function
 fn generate_dialogue(window: &Window, in_path: &String, out_path: &String, language_details: &LanguageDetails, 
     content_details: &ContentDetails, format_details: &FormatDetails) -> String {
@@ -210,9 +216,9 @@ pub fn export_dialogue(window: Window, in_path: String, out_path: String, langua
     window.emit("status", "Exported the dialogue!").unwrap();
 }
 
-// preview dialogue
+// preview dialogue export
 #[command]
-pub fn preview_dialogue(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+pub fn preview_export(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
     // generate the dialogue
     let output = generate_dialogue(&window, &in_path, &out_path, &language_details, &content_details, &format_details);
     if output == "Error" {

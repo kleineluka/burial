@@ -65,10 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onload = async () => {
     const setting_tcoaal = document.getElementById('tcoaal-path');
     const setting_output = document.getElementById('output-path');
-    const require_settings = setting_tcoaal || setting_output;
+    const setting_tcoaal_classes = document.getElementsByClassName('tcoaal-path');
+    const require_settings = setting_tcoaal || setting_output || setting_tcoaal_classes.length > 0;
     if (require_settings) {
         try {
-            const store = new Store('data.json');
+            const store = new Store('.cache.json');
             if (setting_tcoaal) {
                 const tcoaal = await store.get('tcoaal');
                 setting_tcoaal.value = tcoaal;
@@ -76,6 +77,12 @@ window.onload = async () => {
             if (setting_output) {
                 const output = await store.get('output');
                 setting_output.value = output;
+            }
+            if (setting_tcoaal_classes.length > 0) {
+                const tcoaal = await store.get('tcoaal');
+                for (let i = 0; i < setting_tcoaal_classes.length; i++) {
+                    setting_tcoaal_classes[i].value = tcoaal;
+                }
             }
         } catch (error) {
             Swal.fire({

@@ -20,15 +20,16 @@
 
 .backups-list-container div {
     font-size: 2.5vmin;
+    color: #F595B2;
 }
 
 .backup-entry {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #EDEDED;
+    background-color: #F595B2;
     border-radius: 5px;
-    border: 3px solid #F595B2;
+    border: 3px solid #fa83a7;
     padding: 10px;
 }
 
@@ -47,8 +48,9 @@
 
 .backup-button {
     font-size: 2vmin;
+    color: #fff;
     padding: 5px 10px;
-    background-color: #F595B2;
+    background-color: #333;
     border: 1px solid #333;
     border-radius: 3px;
     cursor: pointer;
@@ -57,6 +59,7 @@
 
 .backup-button:hover {
     background-color: #F1E2C5;
+    color: #000;
     transform: scale(1.05);
 }
 

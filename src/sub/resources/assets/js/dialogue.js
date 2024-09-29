@@ -7,48 +7,71 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             // clear current selection
             navOptions.forEach(nav => nav.classList.remove('selected'));
-            subContainers.forEach(container => container.classList.add('hidden'));
+            subContainers.forEach(container => container.classList.add('hidden-container'));
             // show what was selected
             option.classList.add('selected');
             const id = option.id;
             const subContainer = document.getElementById(`sub-${id}`);
             if (subContainer) {
-                subContainer.classList.remove('hidden');
+                subContainer.classList.remove('hidden-container');
             }
         });
     });
 });
 
 // automagically populate dropdown menu for supported dialogues
-let supportedDialogues = [];
+let supportedExports = [];
+let supportedImports = [];
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/data/supported/dialogue.json')
         .then(response => response.json())
         .then(data => {
-            supportedDialogues = data;
-            // set the language dropdown
-            const language_dropdown = document.getElementById('dropdown-menu-language');
-            Object.keys(supportedDialogues.languages).forEach(language => {
+            supportedExports = data.export;
+            supportedImports = data.import;
+            // first, handle exports
+            const language_export_dropdown = document.getElementById('dropdown-menu-export-language');
+            Object.keys(supportedExports.languages).forEach(language => {
                 const option = document.createElement('option');
                 option.value = language; 
                 option.innerText = language; 
-                language_dropdown.appendChild(option);
+                language_export_dropdown.appendChild(option);
             });
-            // set the contents dropdown
-            const contents_dropdown = document.getElementById('dropdown-menu-contents');
-            Object.keys(supportedDialogues.contents).forEach(language => {
+            const contents_export_dropdown = document.getElementById('dropdown-menu-export-contents');
+            Object.keys(supportedExports.contents).forEach(contents => {
                 const option = document.createElement('option');
-                option.value = language; 
-                option.innerText = language; 
-                contents_dropdown.appendChild(option);
+                option.value = contents; 
+                option.innerText = contents; 
+                contents_export_dropdown.appendChild(option);
             });
-            // set the formats dropdown
-            const formats_dropdown = document.getElementById('dropdown-menu-format');
-            Object.keys(supportedDialogues.formats).forEach(language => {
+            const formats_export_dropdown = document.getElementById('dropdown-menu-export-format');
+            Object.keys(supportedExports.formats).forEach(formats => {
+                const option = document.createElement('option');
+                option.value = formats; 
+                option.innerText = formats; 
+                formats_export_dropdown.appendChild(option);
+            });
+            // then imports
+            const language_import_dropdown = document.getElementById('dropdown-menu-import-language');
+            Object.keys(supportedImports.languages).forEach(language => {
+                console.log(language);
                 const option = document.createElement('option');
                 option.value = language; 
                 option.innerText = language; 
-                formats_dropdown.appendChild(option);
+                language_import_dropdown.appendChild(option);
+            });
+            const formats_import_dropdown = document.getElementById('dropdown-menu-import-format');
+            Object.keys(supportedImports.formats).forEach(contents => {
+                const option = document.createElement('option');
+                option.value = contents; 
+                option.innerText = contents; 
+                formats_import_dropdown.appendChild(option);
+            });
+            const contents_import_dropdown = document.getElementById('dropdown-menu-import-contents');
+            Object.keys(supportedImports.contents).forEach(formats => {
+                const option = document.createElement('option');
+                option.value = formats; 
+                option.innerText = formats; 
+                contents_import_dropdown.appendChild(option);
             });
         })
         .catch(error => {
@@ -59,11 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // export dialogue
 function exportDialogue() {
     // get selected language, contents, and format
-    const language = document.getElementById('dropdown-menu-language').value;
-    const contents = document.getElementById('dropdown-menu-contents').value;
-    const format = document.getElementById('dropdown-menu-format').value;
+    const language = document.getElementById('dropdown-menu-export-language').value;
+    const contents = document.getElementById('dropdown-menu-export-contents').value;
+    const format = document.getElementById('dropdown-menu-export-format').value;
     // get from json
-    if (!supportedDialogues) {
+    if (!supportedExports) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -71,9 +94,9 @@ function exportDialogue() {
         });
         return;
     }
-    const languageDetails = supportedDialogues.languages[language];
-    const contentDetails = supportedDialogues.contents[contents];
-    const formatDetails = supportedDialogues.formats[format];
+    const languageDetails = supportedExports.languages[language];
+    const contentDetails = supportedExports.contents[contents];
+    const formatDetails = supportedExports.formats[format];
     // get path
     const inPath = document.getElementById('tcoaal-path').value;
     const outPath = document.getElementById('output-path').value;
@@ -82,23 +105,23 @@ function exportDialogue() {
 }
 
 // show a preview of the exported dialogue
-function previewDialogue() {
+function previewExport() {
     // control which elements are visible
     const exportMain = document.getElementById('export-main');
     const navbarMain = document.getElementById('navbar-main');
     const previewMain = document.getElementById('export-preview');
     const navbarPreview = document.getElementById('navbar-preview');
     // hide the main, show the preview
-    exportMain.classList.add('hidden');
-    navbarMain.classList.add('hidden');
-    previewMain.classList.remove('hidden');
-    navbarPreview.classList.remove('hidden');
+    exportMain.classList.add('hidden-container');
+    navbarMain.classList.add('hidden-container');
+    previewMain.classList.remove('hidden-container');
+    navbarPreview.classList.remove('hidden-container');
     // get selected language, contents, and format
-    const language = document.getElementById('dropdown-menu-language').value;
-    const contents = document.getElementById('dropdown-menu-contents').value;
-    const format = document.getElementById('dropdown-menu-format').value;
+    const language = document.getElementById('dropdown-menu-export-language').value;
+    const contents = document.getElementById('dropdown-menu-export-contents').value;
+    const format = document.getElementById('dropdown-menu-export-format').value;
     // get from json
-    if (!supportedDialogues) {
+    if (!supportedExports) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -106,14 +129,14 @@ function previewDialogue() {
         });
         return;
     }
-    const languageDetails = supportedDialogues.languages[language];
-    const contentDetails = supportedDialogues.contents[contents];
-    const formatDetails = supportedDialogues.formats[format];
+    const languageDetails = supportedExports.languages[language];
+    const contentDetails = supportedExports.contents[contents];
+    const formatDetails = supportedExports.formats[format];
     // get path
     const inPath = document.getElementById('tcoaal-path').value;
     const outPath = document.getElementById('output-path').value;
     // call back end
-    invoke("preview_dialogue", { inPath, outPath, languageDetails, contentDetails, formatDetails });
+    invoke("preview_export", { inPath, outPath, languageDetails, contentDetails, formatDetails });
 }
 
 // listen for loading the preview dialogue
@@ -131,8 +154,8 @@ function exitPreview() {
     const previewMain = document.getElementById('export-preview');
     const navbarPreview = document.getElementById('navbar-preview');
     // hide the preview, show the main
-    exportMain.classList.remove('hidden');
-    navbarMain.classList.remove('hidden');
-    previewMain.classList.add('hidden');
-    navbarPreview.classList.add('hidden');
+    exportMain.classList.remove('hidden-container');
+    navbarMain.classList.remove('hidden-container');
+    previewMain.classList.add('hidden-container');
+    navbarPreview.classList.add('hidden-container');
 }

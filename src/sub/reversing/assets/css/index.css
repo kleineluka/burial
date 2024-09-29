@@ -1,15 +1,21 @@
 /* Header Image */
 .header-image {
-    width: 60vmin;
+    width: 70vmin;
     height: auto;
-    margin-bottom: 2vmin;
 }
 
 /* Fonts */
 .small-title {
-    font-size: 2.8vmin;
+    font-family: Nunito, sans-serif !important;
+    font-size: 3.2vmin;
 }
 
 .items-list {
-    font-size: 2.3vmin;
+    font-family: Nunito, sans-serif !important;
+    font-size: 2.6vmin;
+}
+
+.items-list a {
+    text-decoration: none;
+    color: #000;
 }
