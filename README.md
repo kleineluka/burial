@@ -61,9 +61,9 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 - [ ] Proper Rust Re-Implementation of Deobfuscation
 - [ ] Steam Deck Compatibility
 - [ ] General Linux Improvements
-- [ ] Development Build Scripts
 - [ ] Proper Status Bar
 - [ ] More User Settings
+- [x] Development Build Scripts
 
 <!-- Contribute -->
 # Contribute 🩷
