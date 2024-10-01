@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burial</title>
+  <link rel="stylesheet" href="assets/ext/animate.min.css">
+  <link rel="stylesheet" href="assets/ext/hover.min.css">
+  <link rel="stylesheet" href="assets/ext/sweetalert2.min.css">
+  <link rel="stylesheet" href="assets/css/shared.css">
+  <link rel="stylesheet" href="assets/css/launcher.css">
+  <link rel="stylesheet" href="assets/css/settings.css">
+</head>
+<!-- body -->
+<body>
+  <!-- sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-items">
+      <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
+      <a class="navigate-button hvr-grow" data-page="index.html">Home 🍅</a>
+      <a class="navigate-button hvr-grow" data-page="sub/resources/index.html">Resources ✂️</a>
+      <a class="navigate-button hvr-grow" data-page="sub/reversing/index.html">Reversing 🧬</a>
+      <a class="navigate-button hvr-grow" data-page="sub/modtools/index.html">Mod Tools 🖍️</a>
+      <a class="navigate-button hvr-grow" data-page="sub/modmanager/index.html">Mod Manager 📦</a>
+      <a class="navigate-button hvr-grow" data-page="sub/knowledge/index.html">Knowledge 📔</a>
+      <a class="navigate-button sidebar-current" data-page="settings.html">Settings 🍪</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
+        <img src="assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
+      </a>
+      <div id="version" class="sidebar-version hvr-shrink">
+        0.0.0
+      </div>
+    </div>
+  </div>
+  <!-- main content -->
+  <div class="main-content">
+    <div class="container">
+      <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
+      <div class="file-path-container">
+        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
+        <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
+      </div>
+      <div class="file-path-container">
+        <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
+        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+      </div>
+      <div>
+        <!-- target game version -->
+      </div>
+      <div>
+        <!-- ui theme option will go here -->
+      </div>
+      <div>
+        <!-- language option will go here -->
+      </div>
+      <button id="save-button" class="decrypt-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
+      <button id="reset-button" class="decrypt-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
+      <button id="tutorial-button" class="decrypt-button navigate-button button-action hvr-shrink" data-page="sub/tutorial/index.html">Open Tutorial 🧸</button>
+    </div>
+    <!-- footer -->
+    <div id="footer" class="footer-container">
+      <div class="footer-text">
+        The settings file is stored at %x%/burial/settings.json.
+      </div>
+    </div>
+  </div>
+</body>
+<!-- javascript -->
+<script src="assets/ext/store.min.js"></script>
+<script src="assets/ext/wow.min.js"></script>
+<script src="assets/ext/sweetalert2.min.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/settings.js"></script>
+</html>

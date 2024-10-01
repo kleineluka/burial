@@ -15,7 +15,7 @@ mod modtools;
 // imports
 use utils::files;
 use utils::commands;
-use config::version;
+use config::metadata;
 use resources::decryption;
 use resources::encryption;
 use resources::templates;
@@ -34,16 +34,24 @@ use modtools::differences;
 
 // main
 fn main() {
+    // load the metadata with blocking before starting (version, discord, github, website)
+    let rt = tokio::runtime::Runtime::new().unwrap();
+    let metadata = rt.block_on(metadata::get_metadata()).unwrap();
     // build tauri app
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::default().build())
         .setup(|app| {
-            // set the baseline persistent storage
+            // set the baseline persistent storage (first run check + user settings)
             let user_settings = config::settings::read_settings();
             config::storage::clear_store(&app.handle()).unwrap();
-            config::storage::insert_into_store(&app.handle(), "first_run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
-            config::storage::insert_into_store(&app.handle(), "tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
-            config::storage::insert_into_store(&app.handle(), "output", serde_json::Value::String(user_settings.output)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "first-run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
+            // set the metadata
+            config::storage::insert_into_store(&app.handle(), "metadata-version", serde_json::Value::String(metadata.version)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-discord", serde_json::Value::String(metadata.discord)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-github", serde_json::Value::String(metadata.github)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-website", serde_json::Value::String(metadata.website)).unwrap();
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
@@ -51,7 +59,7 @@ fn main() {
             settings::load_settings,
             settings::save_settings,
             settings::reset_settings,
-            version::get_version,
+            metadata::get_local_version,
             commands::navigate,
             commands::folder_dialog,
             commands::file_dialog,

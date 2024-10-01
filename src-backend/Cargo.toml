@@ -24,7 +24,7 @@ dirs = "5.0.1"
 zip = "2.2.0"
 chrono = "0.4.38"
 walkdir = "2.5.0"
-tokio = "1.40.0"
+tokio = { version = "1.40.0", features = ["full"] }
 reqwest = { version = "0.12.7", features = ["json"] }
 lz-str = "0.2.1"
 jsonxf = "1.1.1"

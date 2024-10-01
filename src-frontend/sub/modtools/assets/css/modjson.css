@@ -1,0 +1,219 @@
+/* Scrolling Container */
+.scrollable-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 1vmin;
+    max-height: 50vh;
+}
+
+/* Text Box Styles */
+.text-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1vmin;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+}
+
+.text-container p {
+    font-size: 3vmin;
+    margin: 0; 
+    width: 20vmin;
+    text-align: right;
+    padding-right: 1vmin;
+}
+
+.text-container input {
+    width: 50vmin;
+    height: 3vmin;
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 2.5vmin;
+}
+
+/* Text Container, but More */
+.multi-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    gap: 1vmin;
+}
+
+.multi-container .first-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi-container .first-row p {
+    font-size: 3vmin;
+    margin: 0;
+    width: 20vmin;
+    text-align: right;
+    padding-right: 1vmin;
+}
+
+.multi-container .first-row input {
+    width: 40vmin;
+    height: 3vmin;
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 2.5vmin;
+}
+
+.multi-container .first-row button {
+    width: 8vmin;
+    padding: 0.75vmin;
+}
+
+.multi-container .second-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi-container .second-row p {
+    font-size: 3vmin;
+    margin: 0;
+    width: 20vmin;
+    text-align: right;
+    padding-right: 1vmin;
+}
+
+.multi-container .second-row input {
+    width: 40vmin;
+    height: 3vmin;
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 2.5vmin;
+}
+
+.multi-container .second-row button {
+    width: 8vmin;
+    padding: 0.75vmin;
+}
+
+/* Text Container, But More, and With Dropdowns! */
+.multi-container .selection-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi-container .selection-row p {
+    font-size: 3vmin;
+    margin: 0;
+    width: 20vmin;
+    text-align: right;
+    padding-right: 1vmin;
+}
+
+.multi-container .selection-row .dropdown-container {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.multi-container .selection-row .file-path-container {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.multi-container .selection-row .dropdown-container .dropdown-menu {
+    width: 42.5vmin !important;
+}
+
+.multi-container .selection-row button {
+    width: 8vmin;
+    padding: 0.75vmin;
+}
+
+/* Text Container, But TWO inputs! */
+.multi-container .double-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+.multi-container .double-row p {
+    font-size: 3vmin;
+    width: 20vmin;
+    margin: 0;
+    text-align: right;
+    padding-right: 1vmin;
+}
+
+.multi-container .double-row input {
+    width: 19vmin;
+    height: 3vmin;
+    padding: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 2.5vmin;
+}
+
+.multi-container .double-row input:first-child {
+    margin-left: 20vmin;
+}
+
+.multi-container .double-row button {
+    width: 8vmin;
+    padding: 0.75vmin;
+}
+
+.multi-container .double-row .file-path-input {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+/* Override Default Styles to Fit Into Horiz Navbar */
+.page-navbar {
+    flex-direction: column !important;
+}
+
+.page-navbar {
+    gap: 2vmin !important;
+}
+
+.page-navbar .file-path-container .file-path-input {
+    color: #000 !important;
+    background-color: #F595B2 !important;
+}
+
+::placeholder {
+    color: #000 !important;
+}
+
+.browse-button {
+    background-color: #F595B2 !important;
+    color: #000 !important;
+}
+
+/* Button Row in Horizontal Navbar */
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 1vmin;
+    margin-top: -2vmin;
+    margin-bottom: 1vmin;
+}

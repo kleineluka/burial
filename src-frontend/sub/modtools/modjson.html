@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burial</title>
+    <link rel="stylesheet" href="../../assets/ext/animate.min.css">
+    <link rel="stylesheet" href="../../assets/ext/hover.min.css">
+    <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/modjson.css">
+</head>
+<!-- body -->
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-items">
+            <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
+            <a class="navigate-button sidebar-current" data-page="modjson.html">Mod JSON 🍱</a>
+            <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
+            <a class="navigate-button hvr-grow" data-page="differences.html">Differences ♊</a>
+            <a class="navigate-button hvr-grow" data-page="packager.html">Packager 🎁</a>
+            <a class="navigate-button hvr-grow" data-page="uploader.html">Uploader 🌈</a>
+        </div>
+        <div class="sidebar-footer">
+            <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
+                <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
+            </a>
+            <div id="version" class="sidebar-version hvr-shrink">
+                0.0.0
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="sidebar-top-menu">
+        <button id="toggleSidebar" class="hvr-shrink">☰</button>
+        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+        </div>
+        <div class="container">
+            <!-- Horizontal Navbar -->
+            <div class="page-navbar">
+                <div class="file-path-container">
+                    <input id="output-path" type="text" class="file-path-input" placeholder="Path to either load or save.." value="">
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                </div>
+                <div class="button-row">
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Load</button>
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Save</button>
+                </div>
+            </div>
+            <!-- Sub Container -->
+            <div class="page-container">
+                <div class="scrollable-area">
+                    <!-- Mod ID -->
+                    <div class="text-container">
+                        <p>Mod ID:</p>
+                        <input id="input-id" type="text" class="file-path-input" value="">
+                    </div>
+                    <!-- Mod Name -->
+                    <div class="text-container">
+                        <p>Mod Name:</p>
+                        <input id="input-name" type="text" class="file-path-input" value="">
+                    </div>
+                    <!-- Authors -->
+                    <div class="multi-container">
+                        <div class="first-row">
+                            <p>Authors:</p>
+                            <input type="text" class="file-path-input input-author" value="">
+                            <button class="browse-button hvr-shrink">+</button>
+                        </div>
+                        <!--<div class="second-row">
+                            <p>Empty</p>
+                            <input type="text" class="file-path-input input-author" value="">
+                            <button class="browse-button hvr-shrink">-</button>
+                        </div>-->
+                    </div>
+                    <!-- Description -->
+                    <div class="text-container">
+                        <p>Description:</p>
+                        <input id="input-description" type="text" class="file-path-input" value="">
+                    </div>
+                    <!-- Version -->
+                    <div class="text-container">
+                        <p>Version:</p>
+                        <input id="input-version" oninput="inputVersion(this)" class="file-path-input" value="">
+                    </div>
+                    <!-- Spec -->
+                    <div class="text-container">
+                        <p>Spec:</p>
+                        <input id="input-spec" oninput="inputVersion(this)" class="file-path-input" placeholder="Optional value.." value="">
+                    </div>
+                    <!-- Dependency: Game -->
+                    <div class="text-container">
+                        <p>Game Dep:</p>
+                        <input id="input-dep-game" class="file-path-input" value="">
+                    </div>
+                    <!-- Dependency: Spec -->
+                    <div class="text-container">
+                        <p>Spec Dep:</p>
+                        <input id="input-dep-spec" class="file-path-input" value="">
+                    </div>
+                    <!-- Dependency: Mods -->
+                    <div id="mod-dep-container" class="multi-container">
+                        <div class="double-row">
+                            <p>Mod Dep:</p>
+                            <input class="file-path-input input-mod-id" placeholder="ID (Optional)" value="">
+                            <input class="file-path-input input-mod-version" placeholder="Ver. (Optional)" value="">
+                            <button id="add-mod-dep" class="browse-button hvr-shrink">+</button>
+                        </div>
+                        <!--<div class="double-row">
+                            <p></p>
+                            <input class="file-path-input input-mod-id" placeholder="Mod ID" value="">
+                            <input class="file-path-input input-mod-version" placeholder="Mod Version" value="">
+                            <button class="browse-button hvr-shrink remove-mod-dep">-</button>
+                        </div>-->
+                    </div>
+                    <!-- Files -->
+                    <div id="files-container" class="multi-container">
+                        <div class="selection-row">
+                            <p>Files:</p>
+                            <div class="file-path-container dropdown-container">
+                                <select id="dropdown-menu-file" class="dropdown-menu">
+                                    <option value="assets">Assets</option>
+                                    <option value="imageDeltas">Image Deltas</option>
+                                    <option value="dataDeltas">Data Deltas</option>
+                                    <option value="plugins">Plugins</option>
+                                    <option value="languages">Languages</option>
+                                    <option value="inject">Inject</option>
+                                </select>
+                            </div>
+                            <button id="add-file" class="browse-button hvr-shrink">+</button>
+                        </div>
+                    <!--
+                    Example Insertations for Files
+                        Example: Assets
+                        <div class="second-row">
+                            <p>Asset:</p>
+                            <input class="file-path-input input-files-assets" value="">
+                            <button class="browse-button hvr-shrink">-</button>
+                        </div>
+                        Example: Image Deltas
+                        <div class="second-row">
+                            <p>Image Delta:</p>
+                            <input class="file-path-input input-files-imagedeltas" value="">
+                            <button class="browse-button hvr-shrink">-</button>
+                        </div>
+                        Example: Data Deltas
+                        <div class="second-row">
+                            <p>Plugin:</p>
+                            <input class="file-path-input input-files-plugins" value="">
+                            <button class="browse-button hvr-shrink">-</button>
+                        </div>
+                        Example: Plugins
+                        <div class="second-row">
+                            <p>Language:</p>
+                            <input class="file-path-input input-files-languages" value="">
+                            <button class="browse-button hvr-shrink">-</button>
+                        </div>
+                        Example: Languages
+                        <div class="double-row">
+                            <p>Inject:</p>
+                            <input class="file-path-input input-files-inject-file" placeholder="File to Inject" value="">
+                            <input class="file-path-input input-files-inject-at" placeholder="Inject At" value="">
+                            <button class="browse-button hvr-shrink">-</button>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Progress -->
+    <div class="progress-container">
+        <a id="status" class="progress-text"></a>
+    </div>
+</body>
+<!-- javascript -->
+<script src="../../assets/ext/store.min.js"></script>
+<script src="../../assets/ext/wow.min.js"></script>
+<script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/js/shared.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/modjson.js"></script>
+</html>

@@ -3,6 +3,6 @@ pub mod cache;
 pub mod downloads;
 pub mod backups;
 pub mod appdata;
-pub mod version;
+pub mod metadata;
 pub mod settings;
 pub mod storage;

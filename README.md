@@ -11,7 +11,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 **Current Status:** 🚧 In Development! 70% Complete! 🚧 
 
 
-[Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [Discord 🥰](https://discord.gg/D4YfrdvxJM) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
+[Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [Discord 🥰](https://www.discord.gg/WWxAjJMspk) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
 
 </div>
 

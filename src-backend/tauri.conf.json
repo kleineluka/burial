@@ -1,7 +1,7 @@
 {
   "build": {
-    "devPath": "../src",
-    "distDir": "../src",
+    "devPath": "../src-frontend",
+    "distDir": "../src-frontend",
     "withGlobalTauri": true
   },
   "package": {
