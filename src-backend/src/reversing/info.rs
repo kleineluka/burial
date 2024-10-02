@@ -49,6 +49,7 @@ pub fn game_version(window: Window, in_path: String) {
     window.emit("status", Some("Game Version Not Found...".to_string())).unwrap();
 }
 
+#[allow(dead_code)]
 #[tauri::command]
 pub fn parse_plugins(in_path: String) -> Result<String, Error> {
     // Define the path to the plugins.js file

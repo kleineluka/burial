@@ -63,7 +63,7 @@ fn encrypt_folder_output(window: &Window, in_path: String, out_path: String, adv
                 process_directory(window, &path, &new_out_dir, desired_folders, processed_files, file_count, advanced_positions);
             } else {
                 // decrypt files in the folder
-                if let Some(ext) = path.extension() {
+                if let Some(_ext) = path.extension() {
                     *processed_files += 1;
                     let file_name = files::file_name(&path.to_string_lossy());
                     let file_extension = files::file_extension(&path.to_string_lossy());

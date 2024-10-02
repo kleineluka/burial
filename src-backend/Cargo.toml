@@ -5,8 +5,6 @@ description = "Tools for TCOAAL"
 authors = ["kleineluka"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [build-dependencies]
 tauri-build = { version = "1", features = [ ] }
 

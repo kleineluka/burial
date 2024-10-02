@@ -134,9 +134,8 @@ function previewExport() {
     const formatDetails = supportedExports.formats[format];
     // get path
     const inPath = document.getElementById('tcoaal-path').value;
-    const outPath = document.getElementById('output-path').value;
     // call back end
-    invoke("preview_export", { inPath, outPath, languageDetails, contentDetails, formatDetails });
+    invoke("preview_export", { inPath, languageDetails, contentDetails, formatDetails });
 }
 
 // listen for loading the preview dialogue

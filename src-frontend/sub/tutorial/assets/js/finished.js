@@ -25,7 +25,7 @@ function finishTutorial() {
 listen('setup-status', (event) => {
     if (event.payload === 'finished') {
         const store = new Store('.cache.json');
-        store.set('first-run', false);
+        store.set('state-first-run', false);
         store.save();
         invoke('navigate', { page: "../../index.html" });
     }

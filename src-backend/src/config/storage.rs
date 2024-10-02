@@ -20,10 +20,10 @@ pub fn insert_into_store(app: &AppHandle, key: &str, value: serde_json::Value) -
 }
 
 // read a value from the persistent storage
+#[allow(dead_code)]
 pub fn read_from_store(app: &AppHandle, key: &str) -> Result<Value, String> {
     let stores = app.state::<StoreCollection<Wry>>();
     let path = PathBuf::from(STORE_PATH);
-
     with_store(app.clone(), stores, path, |store| {
         let value = store.get(key).ok_or("Key not found").unwrap();
         Ok(value.clone())
@@ -34,7 +34,6 @@ pub fn read_from_store(app: &AppHandle, key: &str) -> Result<Value, String> {
 pub fn clear_store(app: &AppHandle) -> Result<(), String> {
     let stores = app.state::<StoreCollection<Wry>>();
     let path = PathBuf::from(STORE_PATH);
-
     with_store(app.clone(), stores, path, |store| {
         store.clear()?;
         store.save()?;

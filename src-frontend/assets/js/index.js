@@ -1,7 +1,7 @@
 // see if it is the first run, overrides store (but fine for index)
 document.addEventListener('DOMContentLoaded', async () => {
     const store = new Store('.cache.json');
-    const start_tutorial = await store.get('first-run');
+    const start_tutorial = await store.get('state-first-run');
     if (start_tutorial) {
         invoke('navigate', { page: 'sub/tutorial/index.html' });
     }

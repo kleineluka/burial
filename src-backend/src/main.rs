@@ -12,9 +12,13 @@ mod tutorial;
 mod modmanager;
 mod modtools;
 
-// imports
+// (other) imports
+use tauri::Manager;
+
+// (local) imports
 use utils::files;
 use utils::commands;
+use config::app;
 use config::metadata;
 use resources::decryption;
 use resources::encryption;
@@ -34,25 +38,37 @@ use modtools::differences;
 
 // main
 fn main() {
-    // load the metadata with blocking before starting (version, discord, github, website)
+    // load the config for the app + fetch metadata (w/ blocking..) + user settings
+    let app_config = app::load_config();
     let rt = tokio::runtime::Runtime::new().unwrap();
-    let metadata = rt.block_on(metadata::get_metadata()).unwrap();
+    let metadata = rt.block_on(metadata::get_metadata(&app_config)).unwrap();
+    let user_settings = config::settings::read_settings();
     // build tauri app
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::default().build())
-        .setup(|app| {
-            // set the baseline persistent storage (first run check + user settings)
-            let user_settings = config::settings::read_settings();
+        .setup(move |app| {
+            // set the baseline persistent storage 
             config::storage::clear_store(&app.handle()).unwrap();
-            config::storage::insert_into_store(&app.handle(), "first-run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-first-run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-local-version", serde_json::Value::String(metadata::get_local_version())).unwrap();
+            // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
+            // set the config settings
+            config::storage::insert_into_store(&app.handle(), "config-metadata-server", serde_json::Value::String(app_config.metadata_server)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
+            config::storage::insert_into_store(&app.handle(), "config-mods-repository", serde_json::Value::String(app_config.mods_repository)).unwrap();
             // set the metadata
             config::storage::insert_into_store(&app.handle(), "metadata-version", serde_json::Value::String(metadata.version)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-discord", serde_json::Value::String(metadata.discord)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-github", serde_json::Value::String(metadata.github)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-website", serde_json::Value::String(metadata.website)).unwrap();
             Ok(())
+        }).on_window_event(|event| {
+            if let tauri::WindowEvent::CloseRequested { .. } = event.event() {
+                // clear the store to prevent outdated information from being saved in case of an error
+                config::storage::clear_store(&event.window().app_handle()).unwrap();
+            }
         })
         .invoke_handler(tauri::generate_handler![
             // register all commands (a bit tedious)

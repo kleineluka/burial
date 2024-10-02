@@ -8,6 +8,7 @@ use serde::Deserialize;
 use crate::utils::game;
 
 // structure from the game's language files
+#[allow(non_snake_case)] // can also handle converting camel, but might need to do LUT specifically since its all caps
 #[derive(Serialize, Deserialize, Debug)]
 struct Loc {
     langName: String,
@@ -145,13 +146,14 @@ fn format_csv_values(s: &str) -> String {
 }
 
 // minimize from a json (pretty or minimized) to a loc (= minimize json, then add header)
+#[allow(dead_code)]
 fn minimize_json_to_loc(s: &str) -> String {
     let s = format_minified_json(s);
     add_loc_header(&s)
 }
 
 // generate a dialogue, reused between the export and preview function
-fn generate_dialogue(window: &Window, in_path: &String, out_path: &String, language_details: &LanguageDetails, 
+fn generate_dialogue(window: &Window, in_path: &String, language_details: &LanguageDetails, 
     content_details: &ContentDetails, format_details: &FormatDetails) -> String {
     // ensure that the path is a game folder
     let is_game = game::verify_game(&in_path).unwrap();
@@ -204,7 +206,7 @@ fn generate_dialogue(window: &Window, in_path: &String, out_path: &String, langu
 #[command]
 pub fn export_dialogue(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
     // generate the dialogue
-    let output = generate_dialogue(&window, &in_path, &out_path, &language_details, &content_details, &format_details);
+    let output = generate_dialogue(&window, &in_path, &language_details, &content_details, &format_details);
     if output == "Error" {
         return;
     }
@@ -218,9 +220,9 @@ pub fn export_dialogue(window: Window, in_path: String, out_path: String, langua
 
 // preview dialogue export
 #[command]
-pub fn preview_export(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+pub fn preview_export(window: Window, in_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
     // generate the dialogue
-    let output = generate_dialogue(&window, &in_path, &out_path, &language_details, &content_details, &format_details);
+    let output = generate_dialogue(&window, &in_path, &language_details, &content_details, &format_details);
     if output == "Error" {
         return;
     }

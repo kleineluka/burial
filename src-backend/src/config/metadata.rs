@@ -1,13 +1,9 @@
 // imports
-use tauri::Window;
 use tauri::command;
 use serde::{Deserialize, Serialize};
 use tokio::time::{self, Duration};
 use reqwest::Error;
-
-// metadata url + (json) structure
-const METADATA_URL: &str = "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/metadata.json";
-const TIMEOUT_DURATION: u64 = 10;
+use crate::config::app;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Metadata {
@@ -30,10 +26,10 @@ impl Default for Metadata {
 }
 
 // load the metadata from the url
-pub async fn get_metadata() -> Result<Metadata, Error> {
+pub async fn get_metadata(app_config: &app::Config) -> Result<Metadata, Error> {
     // since we are going to be blocking, it's a safe bet to set a timeout
-    let timeout_duration = Duration::from_secs(TIMEOUT_DURATION);
-    match time::timeout(timeout_duration, reqwest::get(METADATA_URL)).await {
+    let timeout_duration = Duration::from_secs(app_config.metadata_timeout);
+    match time::timeout(timeout_duration, reqwest::get(&app_config.metadata_server)).await {
         // no timeout, try to parse the response
         Ok(Ok(response)) => {
             match response.json::<Metadata>().await {

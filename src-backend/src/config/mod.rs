@@ -6,3 +6,4 @@ pub mod appdata;
 pub mod metadata;
 pub mod settings;
 pub mod storage;
+pub mod app;

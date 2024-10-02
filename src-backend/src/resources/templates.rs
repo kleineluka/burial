@@ -41,6 +41,7 @@ pub fn make_sprite(window: Window, game_path: String, sprite_path: String, out_p
 pub fn make_preview(window: Window, game_path: String, sprite_path: String, byte_list: String) {
     // verify the path is the game path
     if !game::verify_game(&game_path).unwrap() {
+        window.emit("cancel-preview", None::<()>).unwrap();
         window.emit("error", Some("Invalid game path!".to_string())).unwrap();
         return;
     }

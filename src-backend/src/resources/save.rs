@@ -91,7 +91,7 @@ pub fn backup_saves(window: Window, backup_path: String) {
 
 // open saves folder
 #[command]
-pub fn open_saves(window: Window) {
+pub fn open_saves(_window: Window) {
     let save_folder = appdata::save_folder();
     files::open_folder(&save_folder.to_string_lossy()).unwrap();
 }

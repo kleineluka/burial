@@ -4,7 +4,7 @@
 <img src="https://github.com/kleineluka/burial/blob/main/preview/leyley.png" width="100" height="100">
 
 # Burial
-A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding!
+A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding! 
 <br>
 **Please** leave a ⭐ Star ⭐ on Github to support!
 <br>
@@ -31,7 +31,9 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 
 <!-- Features -->
 # Features 🐰
-- **Resources** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, generate templates of assets to make your own, parse dialogue in different languages to a more readable format, and decrypt/modify/manage save files.
+Burial is a program for **mod players**, **mod creators**, and **data miners**! Burial has something for everyone~ 🍅
+
+- **Resources** ✂️: Decrypt/encrypt files from/to .k9a, sift through and export categories of resources, generate templates of assets to make your own, parse/import dialogue, and decrypt/modify/manage save files.
 - **Reversing** 🧬: Inject code into the game, export and deobfuscate the game's run-time code, manage NW.js SDK's, enable developer tools, view/edit game information, and create/manage backups of your game files.
 - **Mod Tools** 🖍️:  Create/edit mod json files, create/edit repo json files, generate differences between two mod packages, package your mod, and upload your mod.
 - **Mod Manager** 🍱: Install pre-made modpacks, add/update/remove Tomb modloader, browse and download mods, view/toggle/update installed mods, and create/manage multiple instances of the game.

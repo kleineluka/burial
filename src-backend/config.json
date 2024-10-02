@@ -1,0 +1,5 @@
+{
+    "metadata_server": "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/metadata.json",
+    "metadata_timeout": 10,
+    "mods_repository": "test"
+}

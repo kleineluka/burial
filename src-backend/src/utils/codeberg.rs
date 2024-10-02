@@ -55,7 +55,7 @@ pub async fn download_latest_release(url: &str, file_name: &str, download_dest: 
     let download_url = get_latest_release(&codeberg_api, file_name).await.unwrap();
     // download the release
     if let Some(download_url) = download_url {
-        if let Err(e) = connection::download_file(&download_url, &download_dest).await {
+        if let Err(_e) = connection::download_file(&download_url, &download_dest).await {
             return false;
         }
     }

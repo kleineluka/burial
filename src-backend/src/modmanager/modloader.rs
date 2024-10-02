@@ -40,7 +40,7 @@ pub async fn install_modloader(window: Window, in_path: String) {
     downloads::verify_downloads().unwrap();
     // download the latest release of tomb
     let download_result = codeberg::download_latest_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir).await;
-    if (!download_result) {
+    if !download_result {
         window.emit("error", "Failed to download the mod loader!").unwrap();
         return;
     }
@@ -70,6 +70,7 @@ pub async fn install_modloader(window: Window, in_path: String) {
 }
 
 // uninstall the modloader
+#[allow(dead_code)]
 #[command]
 pub fn uninstall_modloader(window: Window, in_path: String) {
     // make sure that the provided path is a valid game folder
@@ -88,7 +89,7 @@ pub fn uninstall_modloader(window: Window, in_path: String) {
     let tomb_dir = format!("{}\\www\\tomb", in_path);
     files::delete_folder(&tomb_dir);
     // restore index.html in game\\www
-    let game_index_html = format!("{}\\www\\index.html", in_path);
+    let _game_index_html = format!("{}\\www\\index.html", in_path);
     //files::restore_file_multiple(&game_index_html);
     // done + reload installed modloader version
     window.emit("status", "Mod loader uninstalled!").unwrap();

@@ -56,7 +56,7 @@ fn added_files(mod1: &HashMap<PathBuf, u32>, mod2: &HashMap<PathBuf, u32>) -> Ve
     for (path, hash) in mod2.iter() {
         if !mod1.contains_key(path) {
             let mut found = false;
-            for (old_path, old_hash) in mod1.iter() {
+            for (_old_path, old_hash) in mod1.iter() {
                 if hash == old_hash {
                     added.push(path.clone());
                     found = true;
@@ -77,7 +77,7 @@ fn removed_files(mod1: &HashMap<PathBuf, u32>, mod2: &HashMap<PathBuf, u32>) -> 
     for (path, hash) in mod1.iter() {
         if !mod2.contains_key(path) {
             let mut found = false;
-            for (new_path, new_hash) in mod2.iter() {
+            for (_new_path, new_hash) in mod2.iter() {
                 if hash == new_hash {
                     removed.push(path.clone());
                     found = true;

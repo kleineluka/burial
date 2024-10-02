@@ -174,3 +174,16 @@ listen('load-preview', (event) => {
     const previewImage = document.getElementById('preview-image');
     previewImage.src = `data:image/png;base64,${event.payload}`;
 });
+
+// cancel the preview
+listen('cancel-preview', () => {
+    // act as if the back button was clicked
+    const mainMenu = document.getElementById('sub-main');
+    const previewMenu = document.getElementById('sub-preview');
+    const mainNavbar = document.getElementById('navbar-main');
+    const previewNavbar = document.getElementById('navbar-preview');
+    mainMenu.classList.remove('hidden-container');
+    mainNavbar.classList.remove('hidden-container');
+    previewMenu.classList.add('hidden-container');
+    previewNavbar.classList.add('hidden-container');
+});

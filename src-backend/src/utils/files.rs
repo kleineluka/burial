@@ -28,7 +28,10 @@ pub fn file_extension(file_path: &str) -> String {
 
 // delete a file from a given path
 pub fn delete_file(file_path: &str) {
-    fs::remove_file(file_path).unwrap();
+    match fs::remove_file(file_path) {
+        Ok(_) => println!("File deleted successfully."),
+        Err(e) => println!("Failed to delete file: {:?}", e),
+    }
 }
 
 // read a file from a given path
@@ -147,6 +150,7 @@ pub fn backup_file_multiple(file_path: &str) {
 }
 
 // find the latest backup if multiple were made
+#[allow(dead_code)]
 pub fn find_newest_backup(file_path: &str) -> Option<String> {
     // get the parent directory and file stem from the file path
     let original_path = Path::new(file_path);
