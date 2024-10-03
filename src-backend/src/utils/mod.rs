@@ -11,6 +11,7 @@ pub mod needle;
 pub mod obfuscation;
 pub mod rpgsave;
 pub mod codeberg;
+pub mod environment;
 
 // unused for now:
 // pub mod popup;

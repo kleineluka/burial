@@ -1,3 +1,25 @@
+/* Navbar Override */
+.page-navbar {
+    flex-direction: column !important;
+    gap: 2vmin !important;
+}
+
+.dropdown-container {
+    color: #F595B2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.dropdown-menu {
+    color: #000 !important;
+    background-color: #F595B2;
+}
+
+.button-navbar {
+    background-color: #F595B2 !important;
+    color: #000 !important;
+}
+
 /* Sub Menu Manager */
 .sub-menu.hidden {
     display: none;
@@ -12,14 +34,6 @@
     background-color: #F1E2C5;
     border: 0;
     resize: none;
-}
-
-/* Text Information (At Top) */
-.top-information {
-    font-size: 2.5vmin;
-    padding-right: 5vmin;
-    padding-left: 5vmin;
-    color: #F595B2;
 }
 
 /* Bottom Buttons */

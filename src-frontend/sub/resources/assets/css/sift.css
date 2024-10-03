@@ -1,6 +1,7 @@
 /* Override Default Styles to Fit Into Horiz Navbar */
 .page-navbar {
     flex-direction: column !important;
+    gap: 2vmin !important;
 }
 
 .dropdown-container {
@@ -14,6 +15,3 @@
     background-color: #F595B2;
 }
 
-.page-navbar {
-    gap: 2vmin !important;
-}

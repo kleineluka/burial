@@ -26,14 +26,14 @@
             <a class="navigate-button hvr-grow" data-page="info.html">Game Info 🌮</a>
             <a class="navigate-button hvr-grow" data-page="backups.html">Backups 🧺</a>
         </div>
-        <div class="sidebar-footer">
-            <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
-                <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
-            </a>
-            <div id="version" class="sidebar-version hvr-shrink">
-                0.0.0
-            </div>
-        </div>
+    <div class="sidebar-footer">
+      <a id="github-link" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/github-pink.png" alt="GitHub" class="sidebar-icon hvr-grow">
+      </a>
+      <a id="discord-link" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/discord-pink.png" alt="Discord" class="sidebar-icon hvr-grow">
+      </a>
+    </div>
     </div>
     <!-- Main Content -->
     <div class="main-content">
@@ -44,10 +44,6 @@
         <div class="container">
             <div id="sub-main" class="sub-menu">
                 <div class="page-navbar">
-                    <p class="top-information">Your code will be read as a text file regardless of the extension. For example, put your
-                    Javascript in a .txt file and point to that.</p>
-                </div>
-                <div class="page-container">
                     <div class="file-path-container dropdown-container">
                         <label for="dropdown-menu-file" class=>Inject to File:</label>
                         <select id="dropdown-menu-file" class="dropdown-menu"></select>
@@ -56,6 +52,8 @@
                         <label for="dropdown-menu-location" class=>Point in File:</label>
                         <select id="dropdown-menu-location" class="dropdown-menu"></select>
                     </div>
+                </div>
+                <div class="page-container">
                     <div class="file-path-container">
                         <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Path.." value="">
                         <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>

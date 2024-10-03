@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         // now, we can redirect based on the button clicked (from the data-page)
-        navigate_page(buttonPage);
+        navigatePage(buttonPage);
     }
 
     // Add event listeners to all buttons with the class 'conditional-button'

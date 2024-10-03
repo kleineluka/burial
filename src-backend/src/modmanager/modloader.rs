@@ -16,7 +16,7 @@ const MODLOADER_REPO: &str = "https://codeberg.org/basil/tomb";
 const MODLOADER_FILE : &str = "tomb.zip";
 
 // check if a modloader is present
-fn modloader_prescence(in_path: String) -> bool {
+pub fn modloader_prescence(in_path: String) -> bool {
     // there should be a "mods" and "tomb" folder in the game directory
     let mods_dir = format!("{}\\www\\mods", in_path);
     let tomb_dir = format!("{}\\www\\tomb", in_path);

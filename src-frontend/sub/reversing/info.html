@@ -26,23 +26,52 @@
             <a class="navigate-button sidebar-current" data-page="info.html">Game Info 🌮</a>
             <a class="navigate-button hvr-grow" data-page="backups.html">Backups 🧺</a>
         </div>
-        <div class="sidebar-footer">
-            <a href="https://github.com/kleineluka/burial" class="sidebar-hide-link" target="_blank">
-                <img src="../../assets/img/github.png" alt="GitHub" class="sidebar-github hvr-grow">
-            </a>
-            <div id="version" class="sidebar-version hvr-shrink">
-                0.0.0
-            </div>
-        </div>
+    <div class="sidebar-footer">
+      <a id="github-link" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/github-pink.png" alt="GitHub" class="sidebar-icon hvr-grow">
+      </a>
+      <a id="discord-link" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/discord-pink.png" alt="Discord" class="sidebar-icon hvr-grow">
+      </a>
+    </div>
     </div>
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class="hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="toggleSidebar" class="hvr-shrink">☰</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
-            <button id="edit-package" class="button-action hvr-shrink">Test Popup</button>
+            <!-- Horizontal Navbar -->
+            <div class="page-navbar">
+                <a href="#" id="general" class="page-navbar-option selected">General</a>
+                <a href="#" id="mods" class="page-navbar-option">Mods</a>
+                <a href="#" id="plugins" class="page-navbar-option">Plugins</a>
+            </div>
+            <!-- Sub Container -->
+            <div id="sub-general" class="page-container">
+                <div class="file-path-container">
+                    <input id="tcoaal-path" type="text" class="file-path-input file-path-input-shrink" placeholder="Your TCOAAL folder.." value="">
+                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                    <button id="refresh-button" class="button-option button-option-inline hvr-shrink">♻️</button>
+                </div>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-game-version" class=>Game Version:</label>
+                    <select id="dropdown-menu-game-version" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-mod-loader" class=>Mod Loader:</label>
+                    <select id="dropdown-menu-mod-loader" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-sdk" class=>SDK Branch:</label>
+                    <select id="dropdown-menu-sdk" class="dropdown-menu"></select>
+                </div>
+            </div>
+            <div id="sub-mods" class="page-container hidden">
+            </div>
+            <div id="sub-plugins" class="page-container hidden">
+            </div>
         </div>
     </div>
     <!-- Progress -->

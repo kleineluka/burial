@@ -8,6 +8,27 @@ use crate::utils::game;
 use crate::utils::connection;
 use crate::utils::compression;
 
+// detect if the developer or player sdk is installed
+pub fn sdk_prescence(in_path: String) -> String {
+    // folder "pnad" and file "payload.exe" only exist in the developer sdk
+    let is_dev_sdk = Path::new(&in_path).join("pnad").exists() && Path::new(&in_path).join("payload.exe").exists();
+    if is_dev_sdk {
+        return "SDK".to_string();
+    }
+    return "Player".to_string();
+}
+
+// wrapper for the sdk page to call the above, but let it be used by other back-end functions
+#[command]
+pub fn sdk_presence_wrapper(window: Window, in_path: String) {
+    if game::verify_game(&in_path).unwrap() {
+        let sdk = sdk_prescence(in_path);
+        window.emit("sdk-presence", Some(sdk)).unwrap();
+        return;
+    }
+    window.emit("status", Some("Invalid TCOAAL folder!".to_string())).unwrap();
+}
+
 // install an sdk from a given url and into a file path
 #[command]
 pub async fn install_sdk(window: Window, in_url: String, in_path: String) {
@@ -58,6 +79,8 @@ pub async fn install_sdk(window: Window, in_url: String, in_path: String) {
     files::delete_file(&sdk_zip.to_string_lossy());
     window.emit("status", Some("Deleting extracted files..".to_string())).unwrap();
     files::delete_folder(&sdk_extracted.to_string_lossy());
-    // done
+    // done + reload the installed sdk
+    let sdk_status = sdk_prescence(in_path.to_string_lossy().to_string());
+    window.emit("sdk-presence", Some(sdk_status)).unwrap();
     window.emit("status", Some("SDK installation complete!".to_string())).unwrap();
 }

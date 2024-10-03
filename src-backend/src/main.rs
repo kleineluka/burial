@@ -51,6 +51,8 @@ fn main() {
             config::storage::clear_store(&app.handle()).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-first-run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-local-version", serde_json::Value::String(metadata::get_local_version())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-operating-system", serde_json::Value::String(utils::environment::get_os().to_owned())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-game-instance", serde_json::Value::String("default".to_string())).unwrap();
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
@@ -103,19 +105,20 @@ fn main() {
             backups::restore_backup,
             backups::open_backups,
             sdk::install_sdk,
+            sdk::sdk_presence_wrapper,
             injection::injection_backup,
             injection::injection_open_file,
             injection::injection_open_folder,
             injection::injection_preview,
             injection::injection_save,
-            info::game_version,
             code::extract_code,
             modloader::install_modloader,
             modloader::modloader_version,
             modloader::modloader_versions,
             dialogue::export_dialogue,
             dialogue::preview_export,
-            differences::find_differences])
+            differences::find_differences,
+            info::general_info])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }

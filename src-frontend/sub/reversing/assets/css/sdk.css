@@ -1,7 +1,16 @@
-/* Text Information (At Top) */
-.top-information {
-    font-size: 2.5vmin;
-    padding-right: 5vmin;
-    padding-left: 5vmin;
-    color: #F595B2;
+/* Navbar Dropdown */
+.page-navbar {
+    flex-direction: column !important;
+    gap: 2vmin !important;
+}
+
+.navbar-dropdown-container {
+    color: #F595B2 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.navbar-dropdown-menu {
+    color: #000 !important;
+    background-color: #F595B2;
 }

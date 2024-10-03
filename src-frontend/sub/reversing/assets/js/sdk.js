@@ -33,6 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error fetching SDK JSON:', error));
 });
 
+// get the currently installed sdk on load
+document.addEventListener('DOMContentLoaded', async () => {
+    const store = loadStorage();
+    let inPath = await store.get('settings-tcoaal');
+    invoke("sdk_presence_wrapper", { inPath })
+});
+
+listen('sdk-presence', (event) => {
+    const sdkDropdown = document.getElementById('dropdown-menu-installed-sdk');
+    const sdkOption = document.createElement('option');
+    sdkOption.value = event.payload;
+    sdkOption.text = event.payload;
+    sdkDropdown.appendChild(sdkOption);
+});
+
 // get os
 function getOS() {
     var os = 'Windows';
