@@ -3,14 +3,17 @@ document.addEventListener('DOMContentLoaded', async function() {
     // load the storage
     const storage = loadStorage();
     if (!storage) return;
+    // set footer based on operating system
     let os = await storage.get('state-operating-system');
-    // set footer inner html based on that
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
     if (os === 'windows') {
         document.getElementById('footer').innerHTML = template.replace(/%x%/g, '%appdata%');
     } else {
         document.getElementById('footer').innerHTML = template.replace(/%x%/g, '.config');
     }
+    // set footer based on version
+    let version = await storage.get('state-local-version');
+    document.getElementById('version').innerText = version;
 });
 
 // write new settings

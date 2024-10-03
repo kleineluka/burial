@@ -70,8 +70,8 @@
     gap: 5px;
 }
 
-.sidebar-github {
-    width: 30px;
+.sidebar-icon {
+    width: 6vmin;
 }
 
 .sidebar-version {

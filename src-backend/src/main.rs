@@ -35,6 +35,7 @@ use tutorial::setup;
 use tutorial::finished;
 use modmanager::modloader;
 use modtools::differences;
+use modtools::modjson;
 
 // main
 fn main() {
@@ -118,6 +119,8 @@ fn main() {
             dialogue::export_dialogue,
             dialogue::preview_export,
             differences::find_differences,
+            modjson::load_modjson,
+            modjson::save_modjson,
             info::general_info])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");

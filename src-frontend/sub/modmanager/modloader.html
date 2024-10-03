@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burial</title>
+    <link rel="stylesheet" href="../../assets/ext/animate.min.css">
+    <link rel="stylesheet" href="../../assets/ext/hover.min.css">
+    <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/modloader.css">
+</head>
+<!-- body -->
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-items">
+            <a class="navigate-button hvr-grow" data-page="index.html">Mod Manager 📦</a>
+            <a class="navigate-button hvr-grow" data-page="modpacks.html">Mod Packs 🍱</a>
+            <a class="navigate-button sidebar-current" data-page="modloader.html">Mod Loader🪦</a>
+            <a class="navigate-button hvr-grow" data-page="browser.html">Mod Browser ⬇️</a>
+            <a class="navigate-button hvr-grow" data-page="installed.html">Installed Mods ✅</a>
+            <a class="navigate-button hvr-grow" data-page="instances.html">Game Instances 🎮</a>
+        </div>
+    <div class="sidebar-footer">
+      <a id="github-link" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/github-pink.png" alt="GitHub" class="sidebar-icon hvr-grow">
+      </a>
+      <a id="discord-link" class="sidebar-hide-link" target="_blank">
+        <img src="../../assets/img/discord-pink.png" alt="Discord" class="sidebar-icon hvr-grow">
+      </a>
+    </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="sidebar-top-menu">
+        <button id="toggleSidebar" class="hvr-shrink">☰</button>
+        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+        </div>
+        <div class="container">
+            <div id="sub-preview" class="sub-menu">
+                <div class="page-navbar">
+                    <p class="top-information" id="preview-information"><b>Tomb</b> is a mod loader for The Coffin of Andy and Leyley. It's a separate project from Burial maintained by Basil. You can install and manage it here as it's <b>required</b> to play mods.</p>
+                </div>
+                <div class="page-container">
+                    <div class="file-path-container dropdown-container">
+                        <label for="dropdown-menu-current">Current Version:</label>
+                        <select id="dropdown-menu-current" class="dropdown-menu">
+                            <option value="loading">Loading...</option>
+                        </select>
+                        <button id="backup-button" class="button-refresh hvr-shrink" onclick="refreshLocal()">♻️</button>
+                    </div>
+                    <div class="file-path-container dropdown-container">
+                        <label for="dropdown-menu-install">Available Versions:</label>
+                        <select id="dropdown-menu-install" class="dropdown-menu">
+                            <option value="loading">Loading...</option>
+                        </select>
+                        <button id="backup-button" class="button-refresh hvr-shrink" onclick="refreshRemote()">♻️</button>
+                    </div>
+                    <div class="file-path-container">
+                        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Path.." value="">
+                        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                    </div>
+                    <div class="buttons-section">
+                        <button id="preview-button" class="button-action hvr-shrink" onclick="installSelected()">Install Selected ⬇️</button>
+                        <button id="open-file-button" class="button-action hvr-shrink" onclick="openFileButton()">Remove Current ✖️</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Progress -->
+    <div class="progress-container">
+        <a id="status" class="progress-text"></a>
+    </div>
+</body>
+<!-- javascript -->
+<script src="../../assets/ext/store.min.js"></script>
+<script src="../../assets/ext/wow.min.js"></script>
+<script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/js/shared.js"></script>
+<script src="assets/js/shared.js"></script>
+<script src="assets/js/modloader.js"></script>
+</html>

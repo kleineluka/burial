@@ -37,19 +37,23 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class="hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="toggleSidebar" class="hvr-shrink">☰</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
             <!-- Horizontal Navbar -->
             <div class="page-navbar">
                 <div class="file-path-container">
-                    <input id="output-path" type="text" class="file-path-input" placeholder="Path to either load or save.." value="">
+                    <input id="input-modjson" type="text" class="file-path-input" placeholder="Path to either load or save.." value="">
                     <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
                 </div>
                 <div class="button-row">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Load</button>
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Save</button>
+                    <button id="load-modjson" class="browse-button navbar-browse-button hvr-shrink">Load JSON ⬆️</button>
+                    <button id="save-modjson" class="browse-button navbar-browse-button hvr-shrink">Save JSON ⬇️</button>
+                </div>
+                <div class="button-row">
+                    <button id="clear-modjson" class="browse-button navbar-browse-button hvr-shrink">Clear Fields ♻️</button>
+                    <button id="example-modjson" class="browse-button navbar-browse-button hvr-shrink">Load Example 🍹</button>
                 </div>
             </div>
             <!-- Sub Container -->
@@ -66,17 +70,12 @@
                         <input id="input-name" type="text" class="file-path-input" value="">
                     </div>
                     <!-- Authors -->
-                    <div class="multi-container">
+                    <div id="authors-container" class="multi-container">
                         <div class="first-row">
                             <p>Authors:</p>
-                            <input type="text" class="file-path-input input-author" value="">
-                            <button class="browse-button hvr-shrink">+</button>
+                            <input id="input-author" type="text" class="file-path-input input-author" value="">
+                            <button id="add-author" class="browse-button hvr-shrink">+</button>
                         </div>
-                        <!--<div class="second-row">
-                            <p>Empty</p>
-                            <input type="text" class="file-path-input input-author" value="">
-                            <button class="browse-button hvr-shrink">-</button>
-                        </div>-->
                     </div>
                     <!-- Description -->
                     <div class="text-container">
@@ -107,16 +106,10 @@
                     <div id="mod-dep-container" class="multi-container">
                         <div class="double-row">
                             <p>Mod Dep:</p>
-                            <input class="file-path-input input-mod-id" placeholder="ID (Optional)" value="">
-                            <input class="file-path-input input-mod-version" placeholder="Ver. (Optional)" value="">
+                            <input id="input-mod-id" class="file-path-input input-mod-id" placeholder="ID (Optional)" value="">
+                            <input id="input-mod-version" class="file-path-input input-mod-version" placeholder="Ver. (Optional)" value="">
                             <button id="add-mod-dep" class="browse-button hvr-shrink">+</button>
                         </div>
-                        <!--<div class="double-row">
-                            <p></p>
-                            <input class="file-path-input input-mod-id" placeholder="Mod ID" value="">
-                            <input class="file-path-input input-mod-version" placeholder="Mod Version" value="">
-                            <button class="browse-button hvr-shrink remove-mod-dep">-</button>
-                        </div>-->
                     </div>
                     <!-- Files -->
                     <div id="files-container" class="multi-container">
@@ -134,39 +127,6 @@
                             </div>
                             <button id="add-file" class="browse-button hvr-shrink">+</button>
                         </div>
-                    <!--
-                    Example Insertations for Files
-                        Example: Assets
-                        <div class="second-row">
-                            <p>Asset:</p>
-                            <input class="file-path-input input-files-assets" value="">
-                            <button class="browse-button hvr-shrink">-</button>
-                        </div>
-                        Example: Image Deltas
-                        <div class="second-row">
-                            <p>Image Delta:</p>
-                            <input class="file-path-input input-files-imagedeltas" value="">
-                            <button class="browse-button hvr-shrink">-</button>
-                        </div>
-                        Example: Data Deltas
-                        <div class="second-row">
-                            <p>Plugin:</p>
-                            <input class="file-path-input input-files-plugins" value="">
-                            <button class="browse-button hvr-shrink">-</button>
-                        </div>
-                        Example: Plugins
-                        <div class="second-row">
-                            <p>Language:</p>
-                            <input class="file-path-input input-files-languages" value="">
-                            <button class="browse-button hvr-shrink">-</button>
-                        </div>
-                        Example: Languages
-                        <div class="double-row">
-                            <p>Inject:</p>
-                            <input class="file-path-input input-files-inject-file" placeholder="File to Inject" value="">
-                            <input class="file-path-input input-files-inject-at" placeholder="Inject At" value="">
-                            <button class="browse-button hvr-shrink">-</button>
-                        </div>-->
                     </div>
                 </div>
             </div>

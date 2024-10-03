@@ -65,6 +65,8 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 - [ ] General Linux Improvements
 - [ ] Proper Status Bar
 - [ ] More User Settings
+- [ ] More Tooltips + Custom Design
+- [ ] Universal and Friendlier™ Path Input Solution
 - [x] Development Build Scripts
 
 <!-- Contribute -->

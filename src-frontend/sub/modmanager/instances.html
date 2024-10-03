@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/loader.css">
+    <link rel="stylesheet" href="assets/css/instances.css">
 </head>
 <!-- body -->
 <body>
@@ -20,10 +20,10 @@
         <div class="sidebar-items">
             <a class="navigate-button hvr-grow" data-page="index.html">Mod Manager 📦</a>
             <a class="navigate-button hvr-grow" data-page="modpacks.html">Mod Packs 🍱</a>
-            <a class="navigate-button sidebar-current" data-page="loader.html">Mod Loader🪦</a>
+            <a class="navigate-button hvr-grow" data-page="modloader.html">Mod Loader🪦</a>
             <a class="navigate-button hvr-grow" data-page="browser.html">Mod Browser ⬇️</a>
             <a class="navigate-button hvr-grow" data-page="installed.html">Installed Mods ✅</a>
-            <a class="navigate-button hvr-grow" data-page="installed.html">Game Instances 🎮</a>
+            <a class="navigate-button sidebar-current" data-page="instances.html">Game Instances 🎮</a>
         </div>
     <div class="sidebar-footer">
       <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -43,30 +43,36 @@
         <div class="container">
             <div id="sub-preview" class="sub-menu">
                 <div class="page-navbar">
-                    <p class="top-information" id="preview-information"><b>Tomb</b> is a mod loader for The Coffin of Andy and Leyley. It's a separate project from Burial maintained by Basil. You can install and manage it here as it's <b>required</b> to play mods.</p>
+                    <div class="file-path-container dropdown-container">
+                        <label for="dropdown-menu-current-instance" class=>Current Instance:</label>
+                        <select id="dropdown-menu-current-instance" class="dropdown-menu"></select>
+                    </div>
                 </div>
                 <div class="page-container">
-                    <div class="file-path-container dropdown-container">
-                        <label for="dropdown-menu-current">Current Version:</label>
-                        <select id="dropdown-menu-current" class="dropdown-menu">
-                            <option value="loading">Loading...</option>
-                        </select>
-                        <button id="backup-button" class="button-refresh hvr-shrink" onclick="refreshLocal()">♻️</button>
-                    </div>
-                    <div class="file-path-container dropdown-container">
-                        <label for="dropdown-menu-install">Available Versions:</label>
-                        <select id="dropdown-menu-install" class="dropdown-menu">
-                            <option value="loading">Loading...</option>
-                        </select>
-                        <button id="backup-button" class="button-refresh hvr-shrink" onclick="refreshRemote()">♻️</button>
-                    </div>
+                    <!-- Stickied to Top -->
                     <div class="file-path-container">
-                        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Path.." value="">
-                        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                        <input id="new-instance-name" type="text" class="file-path-input" placeholder="Name of new instance.." value="">
+                        <button id="make-new-instance" class="browse-button hvr-shrink">Create Instance 🍨</button>
                     </div>
-                    <div class="buttons-section">
-                        <button id="preview-button" class="button-action hvr-shrink" onclick="installSelected()">Install Selected ⬇️</button>
-                        <button id="open-file-button" class="button-action hvr-shrink" onclick="openFileButton()">Remove Current ✖️</button>
+                    <!-- Instance List -->
+                    <div class="instance">
+                        <div class="instance-header">
+                            <div class="instance-name-section">
+                                <p class="instance-name">Example Instance</p>
+                                <p class="instance-date">(Made on 3/10/2024)</p>
+                            </div>
+                            <div class="instance-buttons">
+                                <button class="instance-btn hvr-grow delete-btn" title="Rename this instance!">✏️</button>
+                                <button class="instance-btn hvr-grow info-btn" title="Duplicate this instance!">♻️</button>
+                                <button class="instance-btn hvr-grow info-btn" title="Delete this instance!">🗑️</button>
+                            </div>
+                        </div>
+                        <div class="instance-stats">
+                            <p>Modded: Yes</p>
+                            <p>Mods: 10</p>
+                            <p>SDK: Player</p>
+                            <p>Game Version: 1.0.2</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,5 +89,5 @@
 <script src="../../assets/ext/sweetalert2.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/loader.js"></script>
+<script src="assets/js/instances.js"></script>
 </html>

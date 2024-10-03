@@ -1,0 +1,33 @@
+{
+	"id": "epic-ashley_mod1",
+	"name": "The Ashley Graves Mod!",
+	"authors": ["Zoey aka Kleineluka", "Ashley Graves", "Basil"],
+	"description": "I found some tomatoes!",
+	"version": "0.0.1",
+	"spec": "0.1.0",
+	"dependencies": {
+		"game": ">=2.0.10",
+		"spec": "0.1.0",
+		"mods": {
+			"real-mod": ">=2.0.1",
+			"fake-mod": ">=0.3.0",
+			"modlib": "2.0.7"
+		}
+	},
+	"files": {
+		"assets": ["audio/bgm/twisted_clowns.ogg"],
+		"imageDeltas": ["img/titles1/Book.png.olid"],
+		"dataDeltas": ["data/Map001.jsond"],
+		"plugins": [
+			"noMusic.js",
+			"plugins/devtools.js"
+		],
+		"languages": ["languages/english.json"],
+		"inject": [
+			{
+				"file": "inject/wellWrittenCode.js",
+				"at": "tombPostModParse"
+			}
+		]
+	}
+}

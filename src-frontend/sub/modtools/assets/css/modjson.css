@@ -8,7 +8,7 @@
     margin-right: auto;
     box-sizing: border-box;
     padding: 1vmin;
-    max-height: 50vh;
+    max-height: 40vh;
 }
 
 /* Text Box Styles */
@@ -209,6 +209,11 @@
     color: #000 !important;
 }
 
+.navbar-browse-button {
+    width: auto !important;
+    max-width: 40vmin !important;
+}
+
 /* Button Row in Horizontal Navbar */
 .button-row {
     display: flex;
@@ -216,4 +221,9 @@
     gap: 1vmin;
     margin-top: -2vmin;
     margin-bottom: 1vmin;
+}
+
+/* Override Container To Accommodate Horiz Navbar */
+.page-container {
+    max-height: 40vmin !important;
 }
