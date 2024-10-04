@@ -139,6 +139,7 @@ document.getElementById("example-modjson").addEventListener("click", function ()
     fetch('/data/rules/modjson/example.json')
         .then(response => response.json())
         .then(data => {
+            clearModjson();
             loadModjson(data);
         });
 });

@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // then imports
             const language_import_dropdown = document.getElementById('dropdown-menu-import-language');
             Object.keys(supportedImports.languages).forEach(language => {
-                console.log(language);
                 const option = document.createElement('option');
                 option.value = language; 
                 option.innerText = language; 
@@ -110,7 +109,7 @@ function previewExport() {
     const exportMain = document.getElementById('export-main');
     const navbarMain = document.getElementById('navbar-main');
     const previewMain = document.getElementById('export-preview');
-    const navbarPreview = document.getElementById('navbar-preview');
+    const navbarPreview = document.getElementById('navbar-export-preview');
     // hide the main, show the preview
     exportMain.classList.add('hidden-container');
     navbarMain.classList.add('hidden-container');
@@ -140,20 +139,100 @@ function previewExport() {
 
 // listen for loading the preview dialogue
 let dialogueContent = '';
-listen('load-preview', (event) => {
+listen('load-export-preview', (event) => {
     dialogueContent = event.payload;
     document.getElementById('textarea-dialogue').value = dialogueContent;
 });
 
-// exit the preview
-function exitPreview() {
+// exit the export preview
+function exitExportPreview() {
     // control which elements are visible
     const exportMain = document.getElementById('export-main');
     const navbarMain = document.getElementById('navbar-main');
     const previewMain = document.getElementById('export-preview');
-    const navbarPreview = document.getElementById('navbar-preview');
+    const navbarPreview = document.getElementById('navbar-export-preview');
     // hide the preview, show the main
     exportMain.classList.remove('hidden-container');
+    navbarMain.classList.remove('hidden-container');
+    previewMain.classList.add('hidden-container');
+    navbarPreview.classList.add('hidden-container');
+}
+
+// import a modified dialogue file
+function importDialogue() {
+    // get selected language, contents, and format
+    const language = document.getElementById('dropdown-menu-import-language').value;
+    const contents = document.getElementById('dropdown-menu-import-contents').value;
+    const format = document.getElementById('dropdown-menu-import-format').value;
+    // get from json
+    if (!supportedImports) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'The JSON data could not be loaded.',
+        });
+        return;
+    }
+    const languageDetails = supportedImports.languages[language];
+    const contentDetails = supportedImports.contents[contents];
+    const formatDetails = supportedImports.formats[format];
+    // get path
+    const inPath = document.getElementById('dialogue-path-import').value;
+    const outPath = document.getElementById('tcoaal-path-import').value;
+    // call back end
+    invoke("import_dialogue", { inPath, outPath, languageDetails, contentDetails, formatDetails });    
+}
+
+// show a preview of the imported dialogue
+function previewImport() {
+    // control which elements are visible
+    const importMain = document.getElementById('import-main');
+    const navbarMain = document.getElementById('navbar-main');
+    const previewMain = document.getElementById('import-preview');
+    const navbarPreview = document.getElementById('navbar-import-preview');
+    // hide the main, show the preview
+    importMain.classList.add('hidden-container');
+    navbarMain.classList.add('hidden-container');
+    previewMain.classList.remove('hidden-container');
+    navbarPreview.classList.remove('hidden-container');
+    // get selected language, contents, and format
+    const language = document.getElementById('dropdown-menu-import-language').value;
+    const contents = document.getElementById('dropdown-menu-import-contents').value;
+    const format = document.getElementById('dropdown-menu-import-format').value;
+    // get from json
+    if (!supportedImports) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'The JSON data could not be loaded.',
+        });
+        return;
+    }
+    const languageDetails = supportedImports.languages[language];
+    const contentDetails = supportedImports.contents[contents];
+    const formatDetails = supportedImports.formats[format];
+    // get path
+    const inPath = document.getElementById('dialogue-path-import').value;
+    // call back end
+    invoke  ("preview_import", { inPath, languageDetails, contentDetails, formatDetails });
+}
+
+// listen for loading the preview dialogue
+let locContent = '';
+listen('load-import-preview', (event) => {
+    locContent = event.payload;
+    document.getElementById('textarea-loc').value = locContent;
+});
+
+// exit the import preview
+function exitImportPreview() {
+    // control which elements are visible
+    const importMain = document.getElementById('import-main');
+    const navbarMain = document.getElementById('navbar-main');
+    const previewMain = document.getElementById('import-preview');
+    const navbarPreview = document.getElementById('navbar-import-preview');
+    // hide the preview, show the main
+    importMain.classList.remove('hidden-container');
     navbarMain.classList.remove('hidden-container');
     previewMain.classList.add('hidden-container');
     navbarPreview.classList.add('hidden-container');

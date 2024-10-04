@@ -6,6 +6,7 @@ use std::path::Path;
 use serde::Serialize;
 use serde::Deserialize;
 use crate::utils::game;
+use crate::utils::files;
 
 // structure from the game's language files
 #[allow(non_snake_case)] // can also handle converting camel, but might need to do LUT specifically since its all caps
@@ -145,13 +146,6 @@ fn format_csv_values(s: &str) -> String {
     s
 }
 
-// minimize from a json (pretty or minimized) to a loc (= minimize json, then add header)
-#[allow(dead_code)]
-fn minimize_json_to_loc(s: &str) -> String {
-    let s = format_minified_json(s);
-    add_loc_header(&s)
-}
-
 // generate a dialogue, reused between the export and preview function
 fn generate_dialogue(window: &Window, in_path: &String, language_details: &LanguageDetails, 
     content_details: &ContentDetails, format_details: &FormatDetails) -> String {
@@ -176,7 +170,7 @@ fn generate_dialogue(window: &Window, in_path: &String, language_details: &Langu
     let language_json: serde_json::Value = serde_json::from_str(&language_content).unwrap();
     let mut language_selection = &language_json;
     // dynamically(?) match the selection
-    if content_details.content != "all" {
+    if content_details.content.to_lowercase() != "all" {
         match language_json.get(&content_details.content) {
             Some(value) => language_selection = value,
             None => println!("Field '{}' not found in the language JSON.", content_details.content),
@@ -196,7 +190,43 @@ fn generate_dialogue(window: &Window, in_path: &String, language_details: &Langu
         "csv" => output = format_csv(&language_selection_json),
         "csv_values" => output = format_csv_values(&language_selection_json),
         "csv_keys" => output = format_csv_keys(&language_selection_json),
-        _ => println!("Format '{}' for output not found.", format_details.format_type),
+        _ => window.emit("error", "Format not supported for exporting dialogue..").unwrap(),
+    }
+    // return the output
+    output
+}
+
+// minimize from a json (pretty or minimized) to a loc (= minimize json, then add header)
+#[allow(dead_code)]
+fn minimize_json_to_loc(s: &str) -> String {
+    let s = format_minified_json(s);
+    add_loc_header(&s)
+}
+
+// generate a loc
+#[command]
+fn generate_loc(window: &Window, in_path: &String, language_details: &LanguageDetails, 
+    content_details: &ContentDetails, format_details: &FormatDetails) -> String {
+    // make sure in_path is a file
+    let is_file = Path::new(&in_path).is_file();
+    if !is_file {
+        window.emit("error", "The given dialogue file does not seem to exist..").unwrap();
+        return "Error".to_string();
+    }
+    // read the dialogue file
+    window.emit("status", "Reading dialogue file..").unwrap();
+    let dialogue_content = std::fs::read_to_string(&in_path).unwrap();
+    // as of now, only all content details are supported
+    if content_details.content.to_lowercase() != "all" {
+        window.emit("error", "Only 'all' content details are supported for importing dialogue files..").unwrap();
+        return "Error".to_string();
+    }
+    // depending on the format, parse the dialogue file
+    window.emit("status", "Parsing dialogue file..").unwrap();
+    let mut output = String::new();
+    match format_details.format_type.as_str() {
+        "json" => output = minimize_json_to_loc(&dialogue_content),
+        _ => window.emit("error", "Format not supported for importing dialogue files..").unwrap(),
     }
     // return the output
     output
@@ -227,6 +257,51 @@ pub fn preview_export(window: Window, in_path: String, language_details: Languag
         return;
     }
     // emit the output
-    window.emit("status", "Preview generated!").unwrap();
-    window.emit("load-preview", output).unwrap();
+    window.emit("status", "Export preview generated!").unwrap();
+    window.emit("load-export-preview", output).unwrap();
+}
+
+// import dialogue
+#[command]
+pub fn import_dialogue(window: Window, in_path: String, out_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+    // verify that the in_path is a file
+    let is_file = Path::new(&in_path).is_file();
+    if !is_file {
+        window.emit("error", "The given dialogue file does not seem to exist..").unwrap();
+        return;
+    }
+    // verify that the out_path is a game folder
+    let is_game = game::verify_game(&out_path).unwrap();
+    if !is_game {
+        window.emit("error", "Your folder is not a valid TCOAAL folder!").unwrap();
+        return;
+    }
+    // if a file already exists at out_path + language_details.path, back it up incrementally
+    let file_path = format!("{}\\{}", out_path, language_details.path);
+    if (Path::new(&file_path).exists()) {
+        window.emit("status", "Backing up the existing language file..").unwrap();
+        let _ = files::backup_file_multiple(&file_path);
+    }
+    // generate the loc
+    let output = generate_loc(&window, &in_path, &language_details, &content_details, &format_details);
+    if output == "Error" {
+        return;
+    }
+    // write the output to the out_path + language_details.path
+    window.emit("status", "Writing output file..").unwrap();
+    std::fs::write(&file_path, output).unwrap();
+    window.emit("status", "Imported the dialogue!").unwrap();
+}
+
+// preview dialogue import
+#[command]
+pub fn preview_import(window: Window, in_path: String, language_details: LanguageDetails, content_details: ContentDetails, format_details: FormatDetails) {
+    // generate the loc
+    let output = generate_loc(&window, &in_path, &language_details, &content_details, &format_details);
+    if output == "Error" {
+        return;
+    }
+    // emit the output
+    window.emit("status", "Import preview generated!").unwrap();
+    window.emit("load-import-preview", output).unwrap();
 }
