@@ -8,7 +8,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 <br>
 **Please** leave a ⭐ Star ⭐ on Github to support!
 <br>
-**Current Status:** 🚧 In Development! 70% Complete! 🚧 
+**Current Status:** 🚧 In Development! 75% Complete! 🚧 
 
 
 [Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [Discord 🥰](https://www.discord.gg/WWxAjJMspk) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
@@ -39,7 +39,7 @@ Burial is a program for **mod players**, **mod creators**, and **data miners**! 
 - **Mod Manager** 🍱: Install pre-made modpacks, add/update/remove Tomb modloader, browse and download mods, view/toggle/update installed mods, and create/manage multiple instances of the game.
 - **Knowledge** 📔: View what obfuscated functions do and easily access modding resources.
 - **Quality of Life** 🌸: Pretty GUI (based on Ashley's colours!), persistant settings, built-in tutorials, update checking, lots of emojis..
-- **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial. Burial will **never** implement any anti-DRM tools. 
+- **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial! Burial will **never** implement any anti-DRM or piracy tools. 
 
 <!-- Install -->
 # Install ☕
@@ -60,7 +60,7 @@ Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want t
 # Roadmap 🚧
 (In no particular order..)
 - [ ] Language Support
-- [ ] Proper Rust Re-Implementation of Deobfuscation
+- [ ] Proper Rust Re-Implementation of Deobfuscation (aka avoid Deno)
 - [ ] Steam Deck Compatibility
 - [ ] General Linux Improvements
 - [ ] Proper Status Bar
@@ -76,12 +76,12 @@ Please refer to the [Contributing Wiki Page](https://github.com/kleineluka/buria
 <!-- Credits & Licenses -->
 # Credits, Licenses, & Acknowledgements 🎉
 - **[The Coffin of Andy and Leyley](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/)** is developed and published by Kit9 Studios. Please support the developers by purchasing the game on Steam. Kit9 Studios has no affiliation with Burial.
-- **Burial** is provided under the [MIT](https://github.com/kleineluka/burial/blob/main/LICENSE) license.
-- **[Basil's Wiki](https://coffin-wiki.basil.cafe/)** has been a great resource for getting started with modifying the game. Furthermore, Burial's [obfuscation.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/obfuscation.rs) is partially a reimplementation of Basil's [Grimoire](https://codeberg.org/basil/grimoire/) in Rust.
-- **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([GLWTPL](https://github.com/me-shaon/GLWTPL)) was referenced for portions of Burial's original [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-tauri/src/utils/cipher.rs) implementation.
-- **[RPG Save Converter](https://github.com/13xforever/rpgsave-converter)** (MIT) was referenced for the save file format.
--  **[Tauri](https://github.com/tauri-apps/tauri)**, the Rust-based front-end framework, is licensed under MIT/Apache.
-- **Rust Crates** can be seen in the [Cargo.toml](https://github.com/kleineluka/burial/blob/main/src-backend/Cargo.toml) file.
-- **JavaScript Libraries** can be seen in both [package.json](https://github.com/kleineluka/burial/blob/main/package.json) and [src/assets/ext](https://github.com/kleineluka/burial/tree/main/src/assets/ext).
--  **NotoSans** and **Nunito** are under the [Open Font License](https://openfontlicense.org/).
-- Burial implements many **third-party** resources to assist in mod loading. [Tomb](https://codeberg.org/basil/tomb) by Basil can be installed as the mod loader and mods are pulled from the [Llamaware Page](https://github.com/Llamaware/Llamaware.github.io/tree/main/src).
+- **Burial's code** is provided under the [**MIT**](https://github.com/kleineluka/burial/blob/main/LICENSE) license.
+- **[Basil's Wiki](https://coffin-wiki.basil.cafe/)** has been a great resource for getting started with modifying the game. Furthermore, [**Basil's Grimoire**](https://codeberg.org/basil/grimoire) is implemented for code deobfuscation by running [**Deno**](https://github.com/denoland/deno/) like a sidecar ([**with some slight modifications**](https://codeberg.org/kleineluka/hausmaerchen)).
+- **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([**GLWTPL**](https://github.com/me-shaon/GLWTPL)) was referenced for portions of Burial's original [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-backend/src/utils/cipher.rs) implementation.
+- [**RPG Save Converter**](https://github.com/13xforever/rpgsave-converter) (MIT) was a great read for understanding the save format.
+- [**Tauri**](https://github.com/tauri-apps/tauri), the Rust-based front-end framework, is licensed under MIT/Apache.
+- **Rust Crates** can be seen in the [**Cargo.toml**](https://github.com/kleineluka/burial/blob/main/src-backend/Cargo.toml) file.
+- **JavaScript Libraries** can be seen in both [**package.json**](https://github.com/kleineluka/burial/blob/main/package.json) and [**src/assets/ext**](https://github.com/kleineluka/burial/tree/main/src-frontend/assets/ext).
+-  **NotoSans** and **Nunito** are under the [**Open Font License**](https://openfontlicense.org/).
+- Burial can install **third-party** resources to assist in mod loading. [**Tomb**](https://codeberg.org/basil/tomb) by Basil can be installed as the mod loader and mods are pulled from the [**Llamaware Page**](https://github.com/Llamaware/Llamaware.github.io/tree/main/src). Naturally, any mods installed through Burial are the **property of their creator**.
