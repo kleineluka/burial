@@ -1,7 +1,8 @@
 // imports
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::io;
 
+// make sure that a game directory is actually a tcoaal game directory
 pub fn verify_game(dir_path: &str) -> io::Result<bool> {
     // sanity check
     let path = Path::new(dir_path);
@@ -29,4 +30,9 @@ pub fn verify_game(dir_path: &str) -> io::Result<bool> {
     Ok(true)
 }
 
-
+// get the main.js of the game
+pub fn get_mainjs(dir_path: &str) -> PathBuf {
+    let path = Path::new(dir_path);
+    let mainjs_path: PathBuf = path.join("www").join("js").join("main.js");
+    mainjs_path
+}

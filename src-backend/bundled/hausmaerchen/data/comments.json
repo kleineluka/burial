@@ -1,0 +1,1898 @@
+[
+    {
+        "pattern": "J3VzZSBzdHJpY3QnOw==",
+        "comment": "This generated code is not to be distributed. It may not be fully representative of the original source code. It is for learning purposes only.",
+        "multiline": true,
+        "wordsPerLine": 10
+    },
+    {
+        "pattern": "Y29uc3QgRFNIX1NURVBfU0laRSA9IDE7",
+        "comment": "Default player settings"
+    },
+    {
+        "pattern": "dmFyIF9TTV9SID0gU2NlbmVNYW5hZ2VyLnJ1bjs=",
+        "comment": "DRM Protection"
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gZ2xvYmFsVGFnKA==",
+        "comment": "Check if a given string is present as a global tag"
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gZ2xvYmFsVGFnQWRk",
+        "comment": "Add a tag to the global tag list"
+    },
+    {
+        "pattern": "dmFyIF8weDQ2NDU3NyA9IERhdGFNYW5hZ2VyLmxvYWRHbG9iYWxJbmZvKCk7",
+        "comment": "Load global info and make sure it exists",
+        "padBefore": true
+    },
+    {
+        "pattern": "aWYgKCFfMHg0NjQ1NzdbMF0udGFncykgew==",
+        "comment": "Make sure that the tags array exists"
+    },
+    {
+        "pattern": "aWYgKCFfMHg0NjQ1NzdbMF0udGFncy5pbmNsdWRlcyhfMHg0OWQ3NDEpKSB7",
+        "comment": "Check if the tag is already in the list. If not, add and save."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gZ2xvYmFsVGFnRGVsKF8weDhlMThhMikgew==",
+        "comment": "Remove a tag from the global tag list"
+    },
+    {
+        "pattern": "dmFyIF8weDUxZTUzOCA9IERhdGFNYW5hZ2VyLmxvYWRHbG9iYWxJbmZvKCk7",
+        "comment": "Return if the global info or tags do not exist",
+        "padBefore": true
+    },
+    {
+        "pattern": "aWYgKF8weDhlMThhMiA9PT0gIioiKSB7",
+        "comment": "Remove all tags"
+    },
+    {
+        "pattern": "dmFyIF8weDEzODk2MyA9IF8weDUxZTUzOFswXS50YWdzLmluZGV4T2YoXzB4OGUxOGEyKTs=",
+        "comment": "Remove specific tag if it exists"
+    },
+    {
+        "pattern": "dmFyIF9HSV9QQyA9IEdhbWVfSW50ZXJwcmV0ZXIucHJvdG90eXBlLnBsdWdpbkNvbW1hbmQ7",
+        "comment": "Save the original plugin commands and override it"
+    },
+    {
+        "pattern": "X0dJX1BDLmNhbGwodGhpcywgXzB4MWYwMThiLCBfMHg0NDNiOTkpOw==",
+        "comment": "Make sure that commands are case insensitive"
+    },
+    {
+        "pattern": "aWYgKF8weDFmMDE4Yi5zdWJzdHJpbmcoMCwgNCkgPT09ICJpbnZfIikgew==",
+        "comment": "Handle inventory commands"
+    },
+    {
+        "pattern": "aWYgKF8weDFmMDE4YiA9PT0gImFjaHYiKSB7",
+        "comment": "Handle achievement commands"
+    },
+    {
+        "pattern": "aWYgKF8weDFmMDE4YiA9PT0gImdsb2JhbCIpIHs=",
+        "comment": "Handle tag-related commands"
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gUGVyZigpIHt9",
+        "comment": "Time related functions"
+    },
+    {
+        "pattern": "UGVyZi50aW1lID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Get the currnet high-resolution time"
+    },
+    {
+        "pattern": "UGVyZi5tcyA9IGZ1bmN0aW9uIChfMHgzNjU2MGEpIHs=",
+        "comment": "Get how many milliseconds have passed since the given time"
+    },
+    {
+        "pattern": "UGVyZi5mcmFtZXMgPSBmdW5jdGlvbiAoXzB4MzBlYzc2KSB7",
+        "comment": "Return the time difference in frames based on SceneManager._deltaTime"
+    },
+    {
+        "pattern": "TnVtYmVyLnByb3RvdHlwZS53cmFwID0gZnVuY3Rpb24gKF8weDI4YzM1ZiwgXzB4NGQyMjk3LCBfMHg0ZmNkNDcpIHs=",
+        "comment": "Extend number types to wrap around a given range"
+    },
+    {
+        "pattern": "TnVtYmVyLnByb3RvdHlwZS5ib3VuZGFyeVdyYXAgPSBmdW5jdGlvbiAoXzB4NTdkYTNjLCBfMHg0YjU1NGEsIF8weDU5YjQzMSkgew==",
+        "comment": "This does the exact same thing as the above wrap function, but slightly differently. Why?"
+    },
+    {
+        "pattern": "VXRpbHMuZXh0ID0gZnVuY3Rpb24gKF8weGJmNjRlOCkgew==",
+        "comment": "Get the extension of a file path"
+    },
+    {
+        "pattern": "VXRpbHMuam9pbiA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Join two paths together, just a .join wrapper"
+    },
+    {
+        "pattern": "VXRpbHMuZGlybmFtZSA9IGZ1bmN0aW9uIChfMHgzYmRhZGMpIHs=",
+        "comment": "Get the directory name of a file path"
+    },
+    {
+        "pattern": "VXRpbHMuYmFzZW5hbWUgPSBmdW5jdGlvbiAoXzB4MjZlZjdlKSB7",
+        "comment": "Get the file name of a file path"
+    },
+    {
+        "pattern": "VXRpbHMucmVsYXRpdmUgPSBmdW5jdGlvbiAoXzB4MzA1M2JkLCBfMHgzYzA5ZjMpIHs=",
+        "comment": "Get the relative path between two paths"
+    },
+    {
+        "pattern": "VXRpbHMuZmlsZW5hbWUgPSBmdW5jdGlvbiAoXzB4MTlkODQyKSB7",
+        "comment": "Get the file name without the extension"
+    },
+    {
+        "pattern": "VXRpbHMuZXhpc3RzID0gZnVuY3Rpb24gKF8weDQ0ODAzZCkgew==",
+        "comment": "Check if a file exists"
+    },
+    {
+        "pattern": "VXRpbHMuZGVsZXRlID0gZnVuY3Rpb24gKF8weDViNjAzZSkgew==",
+        "comment": "Delete a file"
+    },
+    {
+        "pattern": "VXRpbHMuZmlsZXMgPSBmdW5jdGlvbiAoXzB4NzRkY2ZjKSB7",
+        "comment": "Get all files in a directory"
+    },
+    {
+        "pattern": "VXRpbHMuZm9sZGVycyA9IGZ1bmN0aW9uIChfMHgxMTdmZTkpIHs=",
+        "comment": "Get all folders in a directory"
+    },
+    {
+        "pattern": "VXRpbHMubWtkaXIgPSBmdW5jdGlvbiAoXzB4MTI4NzJjKSB7",
+        "comment": "Create a directory"
+    },
+    {
+        "pattern": "VXRpbHMuX2Rpckl0ZW1zID0gZnVuY3Rpb24gKF8weDU2Y2Y2YSwgXzB4NDA2MTE4ID0gdHJ1ZSkgew==",
+        "comment": "Get all items in a directory"
+    },
+    {
+        "pattern": "VXRpbHMuY2FuQWNjZXNzID0gZnVuY3Rpb24gKF8weDNkNWJmOSkgew==",
+        "comment": "Check if a file can be accessed"
+    },
+    {
+        "pattern": "VXRpbHMucmVhZEZpbGUgPSBmdW5jdGlvbiAoXzB4MzQ4YjY0LCBfMHg1Mjk2MjIgPSAidXRmOCIpIHs=",
+        "comment": "Read a file"
+    },
+    {
+        "pattern": "VXRpbHMud3JpdGVGaWxlID0gZnVuY3Rpb24gKF8weDIxMDkxMCwgXzB4NGUwMzIxKSB7",
+        "comment": "Write a file"
+    },
+    {
+        "pattern": "VXRpbHMuY29weUZpbGUgPSBmdW5jdGlvbiAoXzB4YmQ0YmEyLCBfMHgzMWUyYWEpIHs=",
+        "comment": "Copy a file"
+    },
+    {
+        "pattern": "VXRpbHMuZmluZEZpbGVzID0gZnVuY3Rpb24gKF8weDJkY2EyYSwgXzB4ZWYwOGQwID0gW10pIHs=",
+        "comment": "Find files in a directory"
+    },
+    {
+        "pattern": "Y29uc3QgTUFYX0xPR1MgPSAxMDA7",
+        "comment": "Maximum amount of logs and where the files are saved"
+    },
+    {
+        "pattern": "QXBwLnNlc3Npb24gPSAiIjs=",
+        "comment": "Set up session and log path/file"
+    },
+    {
+        "pattern": "QXBwLmdldFNlc3Npb24gPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Returns the current session data. If not already set, compresses the user data into a Uint8Array format.",
+        "padBefore": true
+    },
+    {
+        "pattern": "QXBwLmNsb3NlID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Close the game window"
+    },
+    {
+        "pattern": "QXBwLnBhdXNlZCA9IGZhbHNlOw==",
+        "comment": "Pause the game"
+    },
+    {
+        "pattern": "QXBwLnVucGF1c2UgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Unpause the game"
+    },
+    {
+        "pattern": "QXBwLnVzZXIgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Set up a ton of (invasive) user data into an object"
+    },
+    {
+        "pattern": "bGV0IF8weDE1YTg3ZSA9IF8weDQ5ZWEzNi5uZXR3b3JrSW50ZXJmYWNlcygpOw==",
+        "comment": "Iterate through network interfaces to find the IPv4 and MAC (why?)"
+    },
+    {
+        "pattern": "ZXBvY2g6IERhdGUubm93KCks",
+        "comment": "The current epoch time",
+        "appendInline": true
+    },
+    {
+        "pattern": "c3RlYW06IFN0ZWFtLnVzZXJzKCks",
+        "comment": "Steam user data",
+        "appendInline": true
+    },
+    {
+        "pattern": "aG5hbWU6IF8weDQ5ZWEzNi5ob3N0bmFtZSgpLA==",
+        "comment": "The user's hostname",
+        "appendInline": true
+    },
+    {
+        "pattern": "dW5hbWU6IF8weDQ5ZWEzNi51c2VySW5mbygpLnVzZXJuYW1lLA==",
+        "comment": "The user's username",
+        "appendInline": true
+    },
+    {
+        "pattern": "bmV0c3Q6IF8weDE2OWEwZg==",
+        "comment": "The user's IPv4 and MAC",
+        "appendInline": true
+    },
+    {
+        "pattern": "QXBwLmhhc0FyZyA9IGZ1bmN0aW9uIChfMHg0OTJkMGMpIHs=",
+        "comment": "Check if a specific argument is included in the application's command line arguments"
+    },
+    {
+        "pattern": "QXBwLmlzRGV2TW9kZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Determine if the application is running in development mode"
+    },
+    {
+        "pattern": "QXBwLnJvb3RQYXRoID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Get the root directory path of the application"
+    },
+    {
+        "pattern": "QXBwLmdhbWVQYXRoID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Get the directory path of the game's executable"
+    },
+    {
+        "pattern": "QXBwLmRhdGFQYXRoID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Get the path to the application's data directory, creating it if it doesn't exist"
+    },
+    {
+        "pattern": "QXBwLmZhaWwgPSBmdW5jdGlvbiAoXzB4MzRjY2E5LCBfMHhjNjczNTcgPSBudWxsKSB7",
+        "comment": "Log an error message and report it, with optional additional error information"
+    },
+    {
+        "pattern": "QXBwLndhcm4gPSBmdW5jdGlvbiAoXzB4MThlZjE4KSB7",
+        "comment": "Log a warning message and report it"
+    },
+    {
+        "pattern": "QXBwLmluZm8gPSBmdW5jdGlvbiAoXzB4NDhhOTIxKSB7",
+        "comment": "Log an info/debug message and report it"
+    },
+    {
+        "pattern": "QXBwLmNyYXNoID0gZnVuY3Rpb24gKF8weDYwZTRhZCkgew==",
+        "comment": "Handle a critical error by logging it, reporting it, alerting the user, and closing the app if not in test mode"
+    },
+    {
+        "pattern": "QXBwLnJlcG9ydCA9IGZ1bmN0aW9uIChfMHgxNmQ1ZSkgew==",
+        "comment": "Log a message to a file, creating the log file and managing existing logs"
+    },
+    {
+        "pattern": "QXBwLm5vdGlmeSA9IGZ1bmN0aW9uIChfMHg0MmNlYWYpIHs=",
+        "comment": "Display a notification message on the screen in developer mode. The function manages the appearance and fading of the notification."
+    },
+    {
+        "pattern": "dmFyIF8weDIwZmE3YyA9IG5ldyBCaXRtYXAoMSwgMSk7",
+        "comment": "Create a new bitmap to hold the notification graphics."
+    },
+    {
+        "pattern": "dmFyIF8weDVjZjA2NiA9IG5ldyBTcHJpdGUoXzB4MjBmYTdjKTs=",
+        "comment": "Create a sprite using the bitmap, setting its position and initial opacity."
+    },
+    {
+        "pattern": "XzB4NWNmMDY2LnVwZGF0ZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Define the update behavior for the notification sprite to manage its opacity over time for a fade-in and fade-out effect."
+    },
+    {
+        "pattern": "U2NlbmVfTWFwLnByb3RvdHlwZS5pc0RlYnVnQ2FsbGVkID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Check if the debug key is triggered and if the app is in developer mode."
+    },
+    {
+        "pattern": "U2NlbmVNYW5hZ2VyLm9uS2V5RG93biA9IGZ1bmN0aW9uIChfMHgyNjFiODApIHs=",
+        "comment": "Handle keydown events. Allows certain actions when in developer mode and not using control or alt keys."
+    },
+    {
+        "pattern": "Y2FzZSA0Njo=",
+        "comment": "Clear all achievements on Steam if the vendor is K9V_STEAM when the delete key (keyCode 46) is pressed."
+    },
+    {
+        "pattern": "Y2FzZSAxMTY6",
+        "comment": "Reload the current page when F5 (keyCode 116) is pressed."
+    },
+    {
+        "pattern": "Y2FzZSAxMTk6",
+        "comment": "Open the developer tools when F8 (keyCode 119) is pressed."
+    },
+    {
+        "pattern": "R3JhcGhpY3MucmVuZGVyID0gZnVuY3Rpb24gKF8weDU3YzEyMCkgew==",
+        "comment": "Override the render function to manage the skip count."
+    },
+    {
+        "pattern": "d2luZG93LmFkZEV2ZW50TGlzdGVuZXIoImRyYWdvdmVyIiwgZnVuY3Rpb24gKF8weDQ4ZGJkZCkgew==",
+        "comment": "Prevent default dragover behavior to enable file drop functionality."
+    },
+    {
+        "pattern": "d2luZG93LmFkZEV2ZW50TGlzdGVuZXIoImRyb3AiLCBmdW5jdGlvbiAoXzB4MzQyM2Q4KSB7",
+        "comment": "Prevent default drop behavior to manage dropped files without interference."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubWF4U2F2ZWZpbGVzID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Set the maximum number of save files to 30."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuc29ydERlc2MgPSBmdW5jdGlvbiAoXzB4MjVhOGJjKSB7",
+        "comment": "Sort an array of user save file names in descending order based on the numeric value in their filenames."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuaGFzVXNlckRhdGEgPSBmdW5jdGlvbiAoXzB4MTMzMjIzKSB7",
+        "comment": "Check if the user data file exists at the specified path."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuc2F2ZVVzZXJEYXRhID0gZnVuY3Rpb24gKF8weDRlOTEwMiwgXzB4NGI3NDA4KSB7",
+        "comment": "Save user data to a file by compressing it and writing it to the specified path."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubG9hZFVzZXJEYXRhID0gZnVuY3Rpb24gKF8weDFlMzY5MiwgXzB4MTQ5MzczID0ge30pIHs=",
+        "comment": "Load user data from a file, decompressing it, and validating the data type against a default value."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIucGF0aCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Return the default path for the global user save file."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuc2F2ZUdsb2JhbEluZm8gPSBmdW5jdGlvbiAoXzB4MTg5ZjU0ID0gdGhpcy5fZ2RhdCkgew==",
+        "comment": "Save the global information for the game. Defaults to the current global data if no argument is provided."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubG9hZEdsb2JhbEluZm8gPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Load the global information from user data. Initializes global data if it doesn't exist."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuZ2xvYmFsU2V0ID0gZnVuY3Rpb24gKF8weDNjYjBhMywgXzB4MTI3ODU3KSB7",
+        "comment": "Set a global variable in the global data. Saves the global information after updating."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuZ2xvYmFsR2V0ID0gZnVuY3Rpb24gKF8weDQ0N2IwZSwgXzB4M2YzMmQ2ID0gbnVsbCkgew==",
+        "comment": "Retrieve a global variable from global data. Returns a default value if the variable is not found."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuZ2xvYmFsRGVsID0gZnVuY3Rpb24gKF8weDFiMjM2Mykgew==",
+        "comment": "Delete a global variable from global data if it exists. Saves the global information after deletion."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIucmVjb3ZlcnlNZXRhID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Return metadata for a recovered game, including global ID, title, characters, faces, playtime, and timestamp."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuaW5pdCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Initialize the DataManager by setting up the data directory and loading global information, handling auto-saves, and validating save files."
+    },
+    {
+        "pattern": "bGV0IF8weDJmNGFjMiA9IEFwcC5kYXRhUGF0aCgpOw==",
+        "comment": "Get the path to the application's data directory."
+    },
+    {
+        "pattern": "aWYgKCFVdGlscy5leGlzdHMoXzB4MmY0YWMyKSkgew==",
+        "comment": "Check if the data directory exists; if not, create it."
+    },
+    {
+        "pattern": "bGV0IF8weGUwZmIzMSA9IHRoaXMubG9hZEdsb2JhbEluZm8oKTs=",
+        "comment": "Load global game information, initializing auto-saves if they don't already exist."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4MjliOWIzID0gMTsgXzB4MjliOWIzIDw9IHRoaXMubWF4U2F2ZWZpbGVzKCk7IF8weDI5YjliMysrKSB7",
+        "comment": "Iterate through save files to check if they exist; if not, set them to null."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4YmU3MDE3IG9mIFV0aWxzLmZpbGVzKF8weDJmNGFjMikpIHs=",
+        "comment": "Iterate through existing files in the data directory to recover saved game metadata."
+    },
+    {
+        "pattern": "d2hpbGUgKF8weDNkZWQ4Ny5sZW5ndGggPiB0aGlzLmF1dG9TYXZlTWF4KCkpIHs=",
+        "comment": "Trim auto-save files to ensure the number of saves does not exceed the maximum allowed."
+    },
+    {
+        "pattern": "dGhpcy5zYXZlR2xvYmFsSW5mbyhfMHhlMGZiMzEpOw==",
+        "comment": "Save the updated global game information, including auto-save data."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubG9hZEFsbFNhdmVmaWxlSW1hZ2VzID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Load all images associated with save files, including both regular and auto-saves."
+    },
+    {
+        "pattern": "aWYgKCF0aGlzLl9nZGF0KSB7",
+        "comment": "Check if global data is available; if not, exit the function."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4MzAzNDEyID0gMTsgXzB4MzAzNDEyIDwgdGhpcy5fZ2RhdC5sZW5ndGg7IF8weDMwMzQxMisrKSB7",
+        "comment": "Iterate through the global data array starting from index 1 to load images for each available save file."
+    },
+    {
+        "pattern": "bGV0IF8weDMzNjU4OCA9IHRoaXMuZ2xvYmFsR2V0KCJhdXRvU2F2ZXMiLCB7fSk7",
+        "comment": "Retrieve the auto-saves from global data; default to an empty object if none exist."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4NWVhMjlkIGluIF8weDMzNjU4OCkgew==",
+        "comment": "Iterate through the auto-saves and load images for each one that exists."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuaXNUaGlzR2FtZUZpbGUgPSBmdW5jdGlvbiAoXzB4NTAwOWNiKSB7",
+        "comment": "Check if a given save file index corresponds to a valid game file."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuZ2V0U2F2ZUluZm8gPSBmdW5jdGlvbiAoXzB4MWI5Zjc5KSB7",
+        "comment": "Retrieve information about a save file based on its index."
+    },
+    {
+        "pattern": "aWYgKF8weDFiOWY3OSA+PSB0aGlzLl9nZGF0Lmxlbmd0aCkgew==",
+        "comment": "Validate that the provided index is within bounds for existing save data."
+    },
+    {
+        "pattern": "bGV0IF8weDVjODc1YiA9IERhdGFNYW5hZ2VyLmdsb2JhbEdldCgiYXV0b1NhdmVzIiwge30pOw==",
+        "comment": "Retrieve auto-save information; return an empty object if none exists."
+    },
+    {
+        "pattern": "U2NlbmVNYW5hZ2VyLnJlZnJlc2ggPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Refresh the current scene, particularly updating the load window if the scene is a load screen."
+    },
+    {
+        "pattern": "aWYgKCF0aGlzLl9zY2VuZSBpbnN0YW5jZW9mIFNjZW5lX0xvYWQpIHs=",
+        "comment": "Check if the current scene is not a loading scene; if so, exit the function."
+    },
+    {
+        "pattern": "bGV0IF8weDM2Y2NkYyA9IHRoaXMuX3NjZW5lLl9saXN0V2luZG93Ow==",
+        "comment": "Access the list window in the current scene for refreshing."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubG9hZEdhbWUgPSBmdW5jdGlvbiAoXzB4NGFhNjYxKSB7",
+        "comment": "Load a saved game from the specified save ID. It checks for file existence, reads and parses the save file, and extracts game data."
+    },
+    {
+        "pattern": "bGV0IF8weDVjNmMyZSA9IHRoaXMuZ2V0U2F2ZUluZm8oXzB4NGFhNjYxKTs=",
+        "comment": "Retrieve metadata related to the save file using the provided save ID."
+    },
+    {
+        "pattern": "aWYgKCFVdGlscy5leGlzdHMoXzB4MjlhNTc1KSkgew==",
+        "comment": "Check if the save file exists. If not, throw an error if metadata is available."
+    },
+    {
+        "pattern": "bGV0IF8weDI3NGQzNSA9IFV0aWxzLnJlYWRGaWxlKF8weDI5YTU3NSk7",
+        "comment": "Read the contents of the save file into a variable. If reading fails, throw a read error."
+    },
+    {
+        "pattern": "XzB4Mzk4YzhhID0gSnNvbkV4LnBhcnNlKExaU3RyaW5nLmRlY29tcHJlc3NGcm9tQmFzZTY0KF8weDI3NGQzNSkpOw==",
+        "comment": "Decompress and parse the save file data from JSON format. If parsing fails, throw an error for invalid data."
+    },
+    {
+        "pattern": "dGhpcy5jcmVhdGVHYW1lT2JqZWN0cygpOw==",
+        "comment": "Initialize game objects that are needed to restore the game state."
+    },
+    {
+        "pattern": "T2JqZWN0LmFzc2lnbihfMHg1YzZjMmUsIHRoaXMubWFrZVNhdmVmaWxlSW5mbygpKTs=",
+        "comment": "Update the save metadata with current information about the game session."
+    },
+    {
+        "pattern": "QXBwLmZhaWwoIklEICgiICsgXzB4NGFhNjYxICsgIikgTG9hZCBmYWlsZWQ6ICIgKyBfMHgyOWE1NzUsIF8weDRiZDc0OSk7",
+        "comment": "Handle errors that occur during loading by logging the failure and providing feedback to the user."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuaXNBbnlTYXZlZmlsZUV4aXN0cyA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Check if any save file exists for the current game, including auto-saves."
+    },
+    {
+        "pattern": "Zm9yICh2YXIgXzB4MWQ5OWNhID0gMTsgXzB4MWQ5OWNhIDwgdGhpcy5fZ2RhdC5sZW5ndGg7IF8weDFkOTljYSsrKSB7",
+        "comment": "Iterate through the global data array to check for valid game save files."
+    },
+    {
+        "pattern": "bGV0IF8weDIxODUwMiA9IHRoaXMuZ2xvYmFsR2V0KCJhdXRvU2F2ZXMiLCB7fSk7",
+        "comment": "Retrieve auto-saved files; if any exist, return true."
+    },
+    {
+        "pattern": "Q29uZmlnTWFuYWdlci5wYXRoID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Return the path for the configuration settings file."
+    },
+    {
+        "pattern": "Q29uZmlnTWFuYWdlci5zYXZlID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Save the user configuration data to the specified path."
+    },
+    {
+        "pattern": "Q29uZmlnTWFuYWdlci5sb2FkID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Load configuration settings from user data or default values. Apply loaded settings to the ConfigManager."
+    },
+    {
+        "pattern": "aWYgKERhdGFNYW5hZ2VyLmhhc1VzZXJEYXRhKHRoaXMucGF0aCgpKSkgew==",
+        "comment": "Check if user data exists at the specified path; if it does, load it into the configuration."
+    },
+    {
+        "pattern": "Zm9yICh2YXIgXzB4ZTgyZTllIGluIERFRkFVTFRTKSB7",
+        "comment": "Iterate through default configuration settings; set any missing user settings to their default values."
+    },
+    {
+        "pattern": "dGhpcy5hcHBseURhdGEoXzB4Y2FkM2Y1KTs=",
+        "comment": "Apply the loaded or default configuration data to the ConfigManager."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuZnVsbHNjcmVlbikgew==",
+        "comment": "Check if the fullscreen option is enabled; if so, enter fullscreen mode and hide the cursor."
+    },
+    {
+        "pattern": "Q29uZmlnTWFuYWdlci5tYWtlRGF0YSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Create an object containing the current configuration settings for saving."
+    },
+    {
+        "pattern": "dmFyIF8weDM2NDlmMCA9IHs=",
+        "comment": "Initialize an object with the current configuration settings to be saved."
+    },
+    {
+        "pattern": "cmV0dXJuIF8weDM2NDlmMDs=",
+        "comment": "Return the configuration object containing all settings."
+    },
+    {
+        "pattern": "U3RvcmFnZU1hbmFnZXIubG9jYWxGaWxlRGlyZWN0b3J5UGF0aCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Return the path to the local file directory for saving data."
+    },
+    {
+        "pattern": "U3RvcmFnZU1hbmFnZXIubG9jYWxGaWxlUGF0aCA9IGZ1bmN0aW9uIChfMHgxZWUyM2EpIHs=",
+        "comment": "Generate the full path for a specific save file based on the provided ID. If no valid ID is given, it attempts to retrieve an auto-save file."
+    },
+    {
+        "pattern": "aWYgKF8weDFlZTIzYSA+IDApIHs=",
+        "comment": "Check if a valid save file ID is provided; if so, format the file name for a regular save."
+    },
+    {
+        "pattern": "bGV0IF8weDMzYTc0NiA9IERhdGFNYW5hZ2VyLmdsb2JhbEdldCgiYXV0b1NhdmVzIiwge30pOw==",
+        "comment": "Retrieve the list of auto-saved files if no valid ID is given. This allows for dynamic access to saved data."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuYXV0b1NhdmVNYXggPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Return the maximum number of auto-saves allowed, which is set to 5."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuYXV0b1NhdmVDb3VudCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Calculate the number of auto-saves currently stored, limited by user-configured settings."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuYXV0b1NhdmVTa2lwID0gZnVuY3Rpb24gKF8weGYzYjJjYiA9IDEpIHs=",
+        "comment": "Increment the number of skips for auto-save operations, allowing control over the auto-save frequency."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuYXV0b1NhdmUgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Perform the auto-save operation. If skips are remaining, it skips the save process; otherwise, it attempts to save the current game state."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuX2F1dG9TYXZlID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Automatically saves the current game state to a timestamped file if auto-saving is enabled in the configuration."
+    },
+    {
+        "pattern": "bGV0IF8weDNiMDdiYyA9IENvbmZpZ01hbmFnZXIuYXV0b1NhdmVzIHx8IDA7",
+        "comment": "Retrieve the auto-save setting from the configuration; if auto-saves are disabled (0), exit the function."
+    },
+    {
+        "pattern": "JGdhbWVTeXN0ZW0ub25CZWZvcmVTYXZlKCk7",
+        "comment": "Call pre-save hooks, preparing the game system for saving."
+    },
+    {
+        "pattern": "bGV0IF8weDU4ZDg5YiA9IEFwcC5kYXRhUGF0aCgpOw==",
+        "comment": "Get the path to the game's data directory where the auto-save will be stored."
+    },
+    {
+        "pattern": "bGV0IF8weDI4YjJmNSA9IEpzb25FeC5zdHJpbmdpZnkodGhpcy5tYWtlU2F2ZUNvbnRlbnRzKCkpOw==",
+        "comment": "Serialize the current game state into JSON format for saving."
+    },
+    {
+        "pattern": "bGV0IF8weDQyZDI0YyA9IExaU3RyaW5nLmNvbXByZXNzVG9CYXNlNjQoXzB4MjhiMmY1KTs=",
+        "comment": "Compress the JSON data into a Base64 string to reduce file size."
+    },
+    {
+        "pattern": "aWYgKCFVdGlscy53cml0ZUZpbGUoXzB4MTQzOGEyLCBfMHg0MmQyNGMpKSB7",
+        "comment": "Write the compressed save data to a file in the data directory. If writing fails, exit the function."
+    },
+    {
+        "pattern": "dGhpcy5zb3J0RGVzYyhfMHg0OWNlNGEpOw==",
+        "comment": "Sort the list of existing auto-save files in descending order by date, ensuring the most recent auto-saves are processed first."
+    },
+    {
+        "pattern": "d2hpbGUgKF8weDQ5Y2U0YS5sZW5ndGggPiB0aGlzLmF1dG9TYXZlTWF4KCkpIHs=",
+        "comment": "Remove old auto-saves if the number of files exceeds the configured auto-save limit."
+    },
+    {
+        "pattern": "dGhpcy5nbG9iYWxTZXQoImF1dG9TYXZlcyIsIF8weDJhMzZhNCk7",
+        "comment": "Update the global save information with the current auto-save metadata, ensuring that the auto-saves are tracked."
+    },
+    {
+        "pattern": "R2FtZV9QbGF5ZXIucHJvdG90eXBlLnBlcmZvcm1UcmFuc2ZlciA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Handle player transfers (e.g., between maps), updating position and triggering an auto-save after transfer is complete."
+    },
+    {
+        "pattern": "U2NlbmVfU2F2ZS5wcm90b3R5cGUub25TYXZlZmlsZU9rID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Triggered when a save file is selected from the save menu. Validates the selection and performs the save operation."
+    },
+    {
+        "pattern": "U2NlbmVfU2F2ZS5wcm90b3R5cGUuZmlyc3RTYXZlZmlsZUluZGV4ID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Determines the first save file index to display, accounting for auto-saves."
+    },
+    {
+        "pattern": "U2NlbmVfTG9hZC5wcm90b3R5cGUuZmlyc3RTYXZlZmlsZUluZGV4ID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Determines the first save file index to display in the load menu, also taking auto-saves into account."
+    },
+    {
+        "pattern": "U2NlbmVfRmlsZS5wcm90b3R5cGUuc2F2ZWZpbGVJZCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Return the correct savefile ID, accounting for auto-saves and regular saves. If the selected file index exceeds the auto-save count, it returns the ID for the regular save; otherwise, it returns a negative ID."
+    },
+    {
+        "pattern": "bGV0IF8weDM5YmVlOCA9IHRoaXMuX2xpc3RXaW5kb3cuaW5kZXgoKSArIDE7",
+        "comment": "Get the currently selected file index from the save file list window."
+    },
+    {
+        "pattern": "aWYgKF8weDM5YmVlOCA+IF8weDFjZjdiMikgew==",
+        "comment": "If the selected index is greater than the auto-save count, calculate the ID for a regular save file."
+    },
+    {
+        "pattern": "cmV0dXJuIC1fMHgzOWJlZTggKyAxOw==",
+        "comment": "For auto-save files, return a negative savefile ID."
+    },
+    {
+        "pattern": "U2NlbmVfRmlsZS5wcm90b3R5cGUuY3JlYXRlTGlzdFdpbmRvdyA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Create the save file list window, setting its size, position, and handlers for selecting or canceling a save file. It also selects the first file by default."
+    },
+    {
+        "pattern": "dGhpcy5fbGlzdFdpbmRvdy5zZXRIYW5kbGVyKCJvayIsIHRoaXMub25TYXZlZmlsZU9rLmJpbmQodGhpcykpOw==",
+        "comment": "Set the handler for confirming a savefile selection."
+    },
+    {
+        "pattern": "dGhpcy5fbGlzdFdpbmRvdy5zZXRIYW5kbGVyKCJjYW5jZWwiLCB0aGlzLnBvcFNjZW5lLmJpbmQodGhpcykpOw==",
+        "comment": "Set the handler for canceling the file selection and returning to the previous scene."
+    },
+    {
+        "pattern": "dGhpcy5fbGlzdFdpbmRvdy5zZWxlY3QoXzB4MTI5M2VmKTs=",
+        "comment": "Select the first save file by default when the window is opened."
+    },
+    {
+        "pattern": "V2luZG93X1NhdmVmaWxlTGlzdC5wcm90b3R5cGUubWF4SXRlbXMgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Return the maximum number of save files, including both regular saves and auto-saves."
+    },
+    {
+        "pattern": "V2luZG93X1NhdmVmaWxlTGlzdC5wcm90b3R5cGUuZHJhd0l0ZW0gPSBmdW5jdGlvbiAoXzB4MjA4MjFkKSB7",
+        "comment": "Draw the individual save file entry in the save file list, handling both normal and auto-save slots."
+    },
+    {
+        "pattern": "bGV0IF8weDMxMDIxNyA9IHRoaXMuaXRlbVJlY3RGb3JUZXh0KF8weDIwODIxZCk7",
+        "comment": "Get the rectangle area for drawing the text related to the save file at index '_0x20821d'."
+    },
+    {
+        "pattern": "bGV0IF8weDJlY2NhZiA9IF8weDIwODIxZCArIDE7",
+        "comment": "Adjust the index to match the save slot, accounting for auto-saves."
+    },
+    {
+        "pattern": "bGV0IF8weDM2MTQxYSA9IERhdGFNYW5hZ2VyLmdldFNhdmVJbmZvKF8weDJlY2NhZik7",
+        "comment": "Fetch the metadata for the save file at index '_0x2eccaf'."
+    },
+    {
+        "pattern": "aWYgKF8weDJlY2NhZiA+IDApIHs=",
+        "comment": "If the index is positive, it refers to a normal save slot; display 'File' followed by the slot number."
+    },
+    {
+        "pattern": "dGhpcy5jb250ZW50cy5maWxsUmVjdChfMHgzMTAyMTcueCAtIF8weDQ3ZWRlYiwgXzB4MzEwMjE3LnksIF8weDMxMDIxNy53aWR0aCArIF8weDQ3ZWRlYiAqIDIsIF8weDMxMDIxNy5oZWlnaHQsIF8weGM2NjJiKTs=",
+        "comment": "Fill the background for the auto-save entry with a specific color and transparency."
+    },
+    {
+        "pattern": "dGhpcy5kcmF3VGV4dChfMHg1NzE2NDksIF8weDMxMDIxNy54LCBfMHgzMTAyMTcueSwgMTgwKTs=",
+        "comment": "Draw the auto-save label ('Auto' followed by the save number) in the appropriate location."
+    },
+    {
+        "pattern": "aWYgKF8weDM2MTQxYSkgew==",
+        "comment": "If there is metadata for the save file, proceed to draw its contents (e.g., save time, playtime, etc.)."
+    },
+    {
+        "pattern": "dGhpcy5kcmF3Q29udGVudHMoXzB4MzYxNDFhLCBfMHgzMTAyMTcsIHRydWUpOw==",
+        "comment": "Render the details of the save file, such as metadata and additional information."
+    },
+    {
+        "pattern": "Y29uc3QgU1RFQU1fSU5JVElBTElaSU5HID0gMDs=",
+        "comment": "Store various Steam status codes"
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gU3RlYW0oKSB7fQ==",
+        "comment": "The Steam object manages Steam API interactions, including initialization and user data handling.",
+        "padBefore": true
+    },
+    {
+        "pattern": "U3RlYW0uYXBwSUQgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Return the Steam App ID for the game. This is a hardcoded value.",
+        "padBefore": true
+    },
+    {
+        "pattern": "U3RlYW0udXNlcnMgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Load and return Steam user data from the global game information. If no data exists, return an empty object."
+    },
+    {
+        "pattern": "U3RlYW0uaXNJbml0aWFsaXplZCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Check if the Steam API has been initialized, either through regular means or via the app text method."
+    },
+    {
+        "pattern": "U3RlYW0ucmV0cnlJbml0ID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Retry the initialization of the Steam API by calling the init method with a retry flag."
+    },
+    {
+        "pattern": "U3RlYW0uaW5pdCA9IGZ1bmN0aW9uIChfMHg0N2NmNGQgPSBmYWxzZSkgew==",
+        "comment": "Initialize the Steam API, manage errors during initialization, and award pending achievements if necessary."
+    },
+    {
+        "pattern": "aWYgKFV0aWxzLmlzT3B0aW9uVmFsaWQoInRlc3QiKSkgew==",
+        "comment": "If the game is running in test mode",
+        "padBefore": true
+    },
+    {
+        "pattern": "aWYgKCFVdGlscy5pc053anMoKSkgew==",
+        "comment": "Ensure the game is running with NWJS before attempting Steam initialization; crash if not."
+    },
+    {
+        "pattern": "dGhpcy5BUEkgPSByZXF1aXJlKCIuL2dyZWVud29ya3MvZ3JlZW53b3JrcyIpOw==",
+        "comment": "Load the Greenworks module to interface with the Steam API."
+    },
+    {
+        "pattern": "Y2F0Y2ggKF8weDUzZjA3OSkgew==",
+        "comment": "Catch and handle errors related to the Steam module failing to load."
+    },
+    {
+        "pattern": "dmFyIF8weDUxYjI5NCA9IFV0aWxzLmpvaW4oQXBwLmdhbWVQYXRoKCksICJzdGVhbV9hcHBpZC50eHQiKTs=",
+        "comment": "Set the path to the 'steam_appid.txt' file, which is required for Steam initialization."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuQVBJLmlzU3RlYW1SdW5uaW5nKCkpIHs=",
+        "comment": "Check if Steam is running; if not, attempt to restart the game through Steam."
+    },
+    {
+        "pattern": "dGhpcy5zdGF0ZSA9IFNURUFNX0lOSVRfUkVHVUxBUjs=",
+        "comment": "If the Steam API initializes successfully, set the state to indicate successful initialization."
+    },
+    {
+        "pattern": "Y2F0Y2ggKF8weDRhNjZhMikgew==",
+        "comment": "Catch and log any internal failures during Steam initialization."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuc3RhdGUgPT09IFNURUFNX0VSUk9SX05PSU5JVCkgew==",
+        "comment": "If Steam failed to initialize, attempt to initialize using the 'steam_appid.txt' file."
+    },
+    {
+        "pattern": "dmFyIF8weDM4MGM0NyA9IERhdGFNYW5hZ2VyLmxvYWRHbG9iYWxJbmZvKCk7",
+        "comment": "Load global game information, including Steam users and achievements."
+    },
+    {
+        "pattern": "aWYgKF8weDM4MGM0N1swXS5zdGVhbUFjaHZzLmxlbmd0aCA+IDApIHs=",
+        "comment": "If there are unawarded achievements due to Steam not initializing, inform the user."
+    },
+    {
+        "pattern": "bGV0IF8weDZkOGRkMyA9IHRoaXMuQVBJLmdldFN0ZWFtSWQoKTs=",
+        "comment": "Retrieve the player's Steam ID and update the Steam users' list."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4NWM4NTc4IG9mIF8weDkyNDcxNykgew==",
+        "comment": "Award any pending Steam achievements that were stored locally."
+    },
+    {
+        "pattern": "U3RlYW0uYXdhcmRBY2hpZXZlbWVudCA9IGZ1bmN0aW9uIChfMHg2ZjFjNDUpIHs=",
+        "comment": "Award a Steam achievement by activating the achievement through the Steam API or store it locally if initialization fails."
+    },
+    {
+        "pattern": "aWYgKFV0aWxzLmlzT3B0aW9uVmFsaWQoJ3Rlc3QnKSkgew==",
+        "comment": "If the game is running in test mode, skip Steam interaction and notify the player about the achievement."
+    },
+    {
+        "pattern": "aWYgKCF0aGlzLmlzSW5pdGlhbGl6ZWQoKSAmJiAhdGhpcy5yZXRyeUluaXQoKSkgew==",
+        "comment": "If Steam is not initialized and cannot be initialized after retrying"
+    },
+    {
+        "pattern": "aWYgKF8weDM5NDk3NFswXS5zdGVhbUFjaHZzLmluY2x1ZGVzKF8weDZmMWM0NSkpIHs=",
+        "comment": "Check if the achievement has already been stored locally to prevent duplicate entries."
+    },
+    {
+        "pattern": "dGhpcy5BUEkuYWN0aXZhdGVBY2hpZXZlbWVudChfMHg2ZjFjNDUsIHRoaXMuX3N1Y2Nlc3MoXzB4MjM4ZTZjKSwgdGhpcy5fZmFpbHVyZShfMHgyMzhlNmMpKTs=",
+        "comment": "Activate the achievement using the Steam API. If successful, log success; otherwise, log failure."
+    },
+    {
+        "pattern": "U3RlYW0uY2xlYXJBbGxBY2hpZXZlbWVudHMgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Clear all Steam achievements for the current user."
+    },
+    {
+        "pattern": "dGVhbS5jdXJyZW50TGFuZ3VhZ2UgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Retrieve the current language setting for the game, with handling for test mode and Steam initialization failure."
+    },
+    {
+        "pattern": "cmV0dXJuIHRoaXMuQVBJLmdldEN1cnJlbnRHYW1lTGFuZ3VhZ2UoKTs=",
+        "comment": "Return the current game language using Steam's API if everything is initialized properly."
+    },
+    {
+        "pattern": "Y29uc3QgU0lHTkFUVVJFID0gTFpTdHJpbmcuZGVjb21wcmVzc0Zyb21CYXNlNjQ=",
+        "comment": "Decompress a signature used for DRM validation, likely to ensure file integrity."
+    },
+    {
+        "pattern": "Y29uc3QgWE9SVEFSR0VUID0g",
+        "comment": "Base64 encoded target string used in an XOR operation to hide the file path or data used for DRM checks."
+    },
+    {
+        "pattern": "Q3J5cHRvLmhhc2hNYXRjaERSTSA9IGZ1bmN0aW9uIChfMHg1MzlkZDYpIHs=",
+        "comment": "Verify if the file's hash matches the expected DRM hash to prevent game tampering. If the hash doesn't match, trigger a failure and crash."
+    },
+    {
+        "pattern": "dmFyIF8weDQ1MzQ5YSA9IGF0b2IoWE9SVEFSR0VUKS5zcGxpdA==",
+        "comment": "Decode and decrypt the XOR'd file path using a XOR cipher with a fixed key (42)."
+    },
+    {
+        "pattern": "XzB4MzVhNGQwID0gdGhpcy5kamIyKG5ldyBVaW50OEFycmF5",
+        "comment": "Compute the hash of the file's content using the djb2 algorithm, ensuring the file hasn't been modified."
+    },
+    {
+        "pattern": "QXBwLmZhaWwoIkludmFsaWQgaGFzaDogIiArIF8weDM1YTRkMCk7",
+        "comment": "If the computed hash doesn't match the expected hash, trigger a failure and crash the game."
+    },
+    {
+        "pattern": "Q3J5cHRvLmRqYjIgPSBmdW5jdGlvbiAoXzB4NDNjNTM1KSB7",
+        "comment": "Implements the djb2 hashing algorithm, used to calculate a hash for the file's content."
+    },
+    {
+        "pattern": "XzB4MTBiYjcwID0gNTM4MTs=",
+        "comment": "Initialize the hash value (5381) for the djb2 algorithm."
+    },
+    {
+        "pattern": "Q3J5cHRvLmd1YXJkID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Generate and return a random guard value used for validation purposes."
+    },
+    {
+        "pattern": "Q3J5cHRvLm1hc2sgPSBmdW5jdGlvbiAoXzB4MTFmMmUwKSB7",
+        "comment": "Generate a numeric mask based on the filename of a given URL. The mask is created by iterating through the characters of the uppercase filename and applying bitwise shifts and XOR operations."
+    },
+    {
+        "pattern": "Q3J5cHRvLl9wYXRoTWFwID0ge307",
+        "comment": "A cache that stores resolved paths to prevent redundant file lookups."
+    },
+    {
+        "pattern": "Q3J5cHRvLnJlc29sdmVVUkwgPSBmdW5jdGlvbiAoXzB4MThlYzcyKSB7",
+        "comment": "Resolve the file URL by checking its existence in the file system. If the file doesn't exist, modify its extension to '.k9a' and return the modified path."
+    },
+    {
+        "pattern": "Q3J5cHRvLnJlc29sdmVQYXRoID0gZnVuY3Rpb24gKF8weDUyNDk5Yikgew==",
+        "comment": "Resolve the file path similarly to resolveURL, caching the result and replacing the file extension with '.k9a' if the original file doesn't exist."
+    },
+    {
+        "pattern": "Q3J5cHRvLmRla2l0ID0gZnVuY3Rpb24gKF8weDQ1Yzk1MywgXzB4NTBjYmY1LCBfMHgxYjQ4NDggPSAtMSkgew==",
+        "comment": "Decrypt or transform a file's binary content if certain conditions are met. This involves validating the guard value, checking the file extension, and performing bitwise transformations on the file content using a mask based on the filename."
+    },
+    {
+        "pattern": "bGV0IF8weDU1YjkxYiA9IG5ldyBVaW50OEFycmF5KF8weDQ1Yzk1Myk7",
+        "comment": "Convert the encrypted data into a Uint8Array, which allows for byte-level manipulation of the file content."
+    },
+    {
+        "pattern": "bGV0IF8weDI2ZTdlNSA9IENyeXB0by5tYXNrKF8weDUwY2JmNSk7",
+        "comment": "Generate a mask based on the file path, which will be used to decrypt the content."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4MzYyODVmID0gMDsgXzB4MzYyODVmIDwgXzB4ZmUyMTY0OyBfMHgzNjI4NWYrKykgew==",
+        "comment": "Iterate through each byte of the encrypted content, applying a bitwise XOR with the generated mask to decrypt it."
+    },
+    {
+        "pattern": "XzB4NDBiYzY2W18weDM2Mjg1Zl0gPSAoXzB4MzQ0MWExIF4gXzB4MjZlN2U1KSAlIDI1Njs=",
+        "comment": "Decrypt the current byte by applying the mask, using bitwise XOR and ensuring the result is within valid byte range (0-255)."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubG9hZERhdGFGaWxlID0gZnVuY3Rpb24gKF8weDUwOThmYywgXzB4NGNhMjJlKSB7",
+        "comment": "Load a data file from the 'data/' directory, decrypt it using Crypto, and store the result in the global window object."
+    },
+    {
+        "pattern": "dmFyIF8weGM4Nzc5MSA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOw==",
+        "comment": "Create an XMLHttpRequest to fetch the data file."
+    },
+    {
+        "pattern": "XzB4Yzg3NzkxLm9ubG9hZCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Once the request is successfully loaded, decrypt and parse the file content into JSON, then store it in the global window."
+    },
+    {
+        "pattern": "XzB4MjVmOTZhID0gQ3J5cHRvLmRla2l0KF8weDI1Zjk2YSwgXzB4MjU3YjI5LCBDcnlwdG8uZ3VhcmQoKSk7",
+        "comment": "Decrypt the data using Crypto.dekit, providing the response, URL, and security guard."
+    },
+    {
+        "pattern": "XzB4Yzg3NzkxLm9uZXJyb3IgPSB0aGlzLl9tYXBMb2FkZXIgfHwgZnVuY3Rpb24gKCkgew==",
+        "comment": "Handle errors during data loading by storing the URL where the error occurred."
+    },
+    {
+        "pattern": "R3JhcGhpY3Muc2V0TG9hZGluZ0ltYWdlID0gZnVuY3Rpb24gKF8weDI4MGE3Nykgew==",
+        "comment": "Set a custom loading image during game loading screens by loading it using ImageManager."
+    },
+    {
+        "pattern": "bGV0IF8weDE2NjZmOSA9IEltYWdlTWFuYWdlci5sb2FkTm9ybWFsQml0bWFwKF8weDI4MGE3Nyk7",
+        "comment": "Load the specified image file as a bitmap using ImageManager."
+    },
+    {
+        "pattern": "XzB4MTY2NmY5LmFkZExvYWRMaXN0ZW5lcihmdW5jdGlvbiAoKSB7",
+        "comment": "Once the image is fully loaded, set it as the loading screen image."
+    },
+    {
+        "pattern": "Qml0bWFwLnByb3RvdHlwZS5fcmVxdWVzdEltYWdlID0gZnVuY3Rpb24gKF8weDNjZmYxZCkgew==",
+        "comment": "Request an image resource, handling decryption and loading state management."
+    },
+    {
+        "pattern": "XzB4M2NmZjFkID0gQ3J5cHRvLnJlc29sdmVVUkwoZGVjb2RlVVJJQ29tcG9uZW50KF8weDNjZmYxZCkpOw==",
+        "comment": "Decode the provided URL and resolve it using Crypto methods for security."
+    },
+    {
+        "pattern": "aWYgKEJpdG1hcC5fcmV1c2VJbWFnZXMubGVuZ3RoICE9PSAwKSB7",
+        "comment": "Check for reusable images to optimize memory usage; if none are available, create a new image object."
+    },
+    {
+        "pattern": "dGhpcy5fbG9hZGluZ1N0YXRlID0gJ2RlY3J5cHRpbmcnOw==",
+        "comment": "Set the loading state to 'decrypting' to indicate that the image is currently being processed."
+    },
+    {
+        "pattern": "bGV0IF8weDJiN2M1ZiA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOw==",
+        "comment": "Create an XMLHttpRequest to fetch the image data from the resolved URL."
+    },
+    {
+        "pattern": "XzB4MmI3YzVmLm9ubG9hZCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Define the onload behavior to handle successful image retrieval and decryption."
+    },
+    {
+        "pattern": "XzB4MmI3YzVmLm9uZXJyb3IgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Define the onerror behavior to handle any issues during the image loading process."
+    },
+    {
+        "pattern": "Y29uc3QgREVGQVVMVF9JTlYgPSAiYXNobGV5Ijs=",
+        "comment": "Set the default inventory name to 'ashley'."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gSW52ZW50b3J5KCkge30=",
+        "comment": "Define the Inventory constructor function."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LnN0b3JhZ2UgPSB7fTs=",
+        "comment": "Initialize a storage object to keep track of items in different inventories."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LmN1cnJlbnQgPSBERUZBVUxUX0lOVjs=",
+        "comment": "Set the current inventory to the default inventory."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LnN3YXAgPSBmdW5jdGlvbiAoXzB4MzRiYmRiKSB7",
+        "comment": "Swap the current inventory with the specified inventory, transferring items accordingly."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuY3VycmVudCA9PSBfMHgzNGJiZGIpIHs=",
+        "comment": "Check if the specified inventory is the same as the current one; if so, do nothing."
+    },
+    {
+        "pattern": "dmFyIF8weDFhNzNiZiA9IHt9Ow==",
+        "comment": "Create an object to store items being removed from the current inventory."
+    },
+    {
+        "pattern": "dGhpcy5zdG9yYWdlW18weGNlZjUwMF0gPSBfMHgxYTczYmY7",
+        "comment": "Store the current inventory items in the storage before switching."
+    },
+    {
+        "pattern": "Zm9yICh2YXIgXzB4M2MyNjU4IGluIF8weDJiOTk0MCkgew==",
+        "comment": "Iterate through items in the new current inventory and add them to the game party."
+    },
+    {
+        "pattern": "JGdhbWVQYXJ0eS5nYWluSXRlbSgkZGF0YUl0ZW1zW18weDNjMjY1OF0sIF8weDJiOTk0MFtfMHgzYzI2NThdLCBmYWxzZSk7",
+        "comment": "Gain items from the new inventory for the game party, updating their quantities."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIubWFrZVNhdmVDb250ZW50cyA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Override the default save contents method to include the game's inventory in the save data."
+    },
+    {
+        "pattern": "dmFyIF8weDE2ZTI4YyA9IHt9Ow==",
+        "comment": "Initialize an object to hold the current inventory item counts."
+    },
+    {
+        "pattern": "JGdhbWVQYXJ0eS5hbGxJdGVtcygpLmZvckVhY2goZnVuY3Rpb24gKF8weDNiYjlhYikgew==",
+        "comment": "Loop through all items in the party and record the quantity of each item."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LnN0b3JhZ2VbSW52ZW50b3J5LmN1cnJlbnRdID0gXzB4MTZlMjhjOw==",
+        "comment": "Store the current inventory item counts in the Inventory storage."
+    },
+    {
+        "pattern": "XzB4MWM3ZjIwLmZvcm1hdCA9IEZPUk1BVDs=",
+        "comment": "Add the format version to the save data."
+    },
+    {
+        "pattern": "cmV0dXJuIF8weDFjN2YyMDs=",
+        "comment": "Return the modified save data, now including inventory information."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuZXh0cmFjdFNhdmVDb250ZW50cyA9IGZ1bmN0aW9uIChfMHgyZDY5ZjEpIHs=",
+        "comment": "Override the default extract method to load inventory data from saved contents."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LmN1cnJlbnQgPSAiIjs=",
+        "comment": "Reset the current inventory context before loading new data."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LnN0b3JhZ2UgPSBfMHgyZDY5ZjEuaW52U3RvcmFnZSB8fCB7fTs=",
+        "comment": "Load the inventory storage from the saved contents, defaulting to an empty object if not present."
+    },
+    {
+        "pattern": "SW52ZW50b3J5LnN3YXAoXzB4MmQ2OWYxLmludkN1cnJlbnQgfHwgIiIpOw==",
+        "comment": "Swap to the inventory context specified in the saved data."
+    },
+    {
+        "pattern": "Y29uc3QgTUVOVV9JQ09OX01BUkdJTiA9IDQwOw==",
+        "comment": "Set the margin for menu icons."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gTWVudU9wdGlvbnMoKSB7fQ==",
+        "comment": "Constructor for the MenuOptions class, which manages menu options and their icons."
+    },
+    {
+        "pattern": "TWVudU9wdGlvbnMuaWNvbkltYWdlcyA9IHt9Ow==",
+        "comment": "Initialize an object to store loaded icon images for the menu options."
+    },
+    {
+        "pattern": "TWVudU9wdGlvbnMub3JkZXJBbmRJY29ucyA9IHs=",
+        "comment": "Define the order and corresponding icon filenames for the menu options."
+    },
+    {
+        "pattern": "TWVudU9wdGlvbnMubGFiZWxzID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Return an array of menu option labels by extracting keys from orderAndIcons."
+    },
+    {
+        "pattern": "TWVudU9wdGlvbnMuaW5pdCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Load icon images for each menu option based on the defined order and icons."
+    },
+    {
+        "pattern": "dGhpcy5sYWJlbHMoKS5mb3JFYWNoKF8weDQwOWE4NSA9PiB7",
+        "comment": "Iterate over the menu option labels to load their respective icon images."
+    },
+    {
+        "pattern": "V2luZG93X1RpdGxlQ29tbWFuZC5wcm90b3R5cGUubWFrZUNvbW1hbmRMaXN0ID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Override the default command list to add custom commands like 'Language' and 'Vision Room' based on specific conditions."
+    },
+    {
+        "pattern": "aWYgKExhbmcuY291bnQoKSA+IDEpIHs=",
+        "comment": "Check if there are multiple languages available; if so, add the 'Language' command to the list."
+    },
+    {
+        "pattern": "aWYgKGdsb2JhbFRhZygndmlzaW9uX3Jvb20nKSkgew==",
+        "comment": "Check for a global tag 'vision_room'; if present, add the 'Vision Room' command to the list."
+    },
+    {
+        "pattern": "Zm9yICh2YXIgXzB4NWYzYTM1IG9mIE1lbnVPcHRpb25zLmxhYmVscygpKSB7",
+        "comment": "Iterate through menu options to filter and keep only those commands that are enabled in the title command list."
+    },
+    {
+        "pattern": "U2NlbmVfVGl0bGUucHJvdG90eXBlLmNyZWF0ZUNvbW1hbmRXaW5kb3cgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Override the command window creation to set handlers for the newly added commands."
+    },
+    {
+        "pattern": "U2NlbmVfVGl0bGUucHJvdG90eXBlLmNvbW1hbmRMYW5ndWFnZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Define the action taken when the 'Language' command is selected, transitioning to the language selection scene."
+    },
+    {
+        "pattern": "U2NlbmVfVGl0bGUucHJvdG90eXBlLmNvbW1hbmRWaXNpb25Sb29tID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Define the action taken when the 'Vision Room' command is selected, setting up the game and transferring the player to a specific location."
+    },
+    {
+        "pattern": "V2luZG93X1RpdGxlQ29tbWFuZC5wcm90b3R5cGUuZHJhd0l0ZW0gPSBmdW5jdGlvbiAoXzB4MTFjMWJkKSB7",
+        "comment": "Override the drawing of items in the command window to include icons for each command, if available."
+    },
+    {
+        "pattern": "dGhpcy5jb250ZW50cy5ibHQoXzB4NWE1YTRmLCAwLCAwLCBfMHg1YTVhNGYud2lkdGgsIF8weDVhNWE0Zi5oZWlnaHQsIF8weDIwM2MwOSwgXzB4YTZkZWE0KTs=",
+        "comment": "Draw the icon for the command if it exists, positioning it appropriately within the command window."
+    },
+    {
+        "pattern": "dmFyIF9zY2VuZU1lbnUgPSBTY2VuZV9OQ01lbnUgfHwgU2NlbmVfTWVudTs=",
+        "comment": "Define the current scene for the menu, allowing for custom scene or fallback to default Scene_Menu."
+    },
+    {
+        "pattern": "Y29uc3QgX1dNX01DTCA9IF93aW5kb3dNZW51LnByb3RvdHlwZS5tYWtlQ29tbWFuZExpc3Q7",
+        "comment": "Store the original makeCommandList function for the menu command window."
+    },
+    {
+        "pattern": "X3dpbmRvd01lbnUucHJvdG90eXBlLm1ha2VDb21tYW5kTGlzdCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Override the makeCommandList method to customize the command list by adding language and controls options."
+    },
+    {
+        "pattern": "aWYgKExhbmcuY291bnQoKSA+IDEpIHs=",
+        "comment": "Check if more than one language is available before adding the Language option to the menu."
+    },
+    {
+        "pattern": "X3dpbmRvd01lbnUucHJvdG90eXBlLmRyYXdJdGVtID0gZnVuY3Rpb24gKF8weDUxYjZjMSkgew==",
+        "comment": "Override the drawItem method to customize how each menu item is displayed, including translation of command names."
+    },
+    {
+        "pattern": "X3NjZW5lTWVudS5wcm90b3R5cGUuY3JlYXRlQ29tbWFuZFdpbmRvdyA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Override the createCommandWindow method to set custom handlers for the new language and controls commands."
+    },
+    {
+        "pattern": "dGhpcy5fY29tbWFuZFdpbmRvdy5zZXRIYW5kbGVyKCJsYW5ndWFnZSIsIHRoaXMuY29tbWFuZExhbmd1YWdlLmJpbmQodGhpcykpOw==",
+        "comment": "Bind the language command handler to the commandLanguage function."
+    },
+    {
+        "pattern": "dGhpcy5fY29tbWFuZFdpbmRvdy5zZXRIYW5kbGVyKCJjb250cm9scyIsIHRoaXMuY29tbWFuZENvbnRyb2xzLmJpbmQodGhpcykpOw==",
+        "comment": "Bind the controls command handler to the commandControls function."
+    },
+    {
+        "pattern": "X3NjZW5lTWVudS5wcm90b3R5cGUuY29tbWFuZExhbmd1YWdlID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Define the commandLanguage function that transitions to the Scene_Language when the language command is selected."
+    },
+    {
+        "pattern": "X3NjZW5lTWVudS5wcm90b3R5cGUuY29tbWFuZENvbnRyb2xzID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Define the commandControls function that transitions to the Scene_Controls when the controls command is selected."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gV2luZG93X0xhbmd1YWdlKCkgew==",
+        "comment": "Constructor for the Window_Language class, initializing the window with given arguments."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZSA9IE9iamVjdC5jcmVhdGUoV2luZG93X0NvbW1hbmQucHJvdG90eXBlKTs=",
+        "comment": "Inherit from the Window_Command class to utilize command window functionalities."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5pbml0aWFsaXplID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Initialize the window's position and set the current language from the configuration."
+    },
+    {
+        "pattern": "dGhpcy54ID0gKEdyYXBoaWNzLmJveFdpZHRoIC0gdGhpcy53aWR0aCkgLyAyOw==",
+        "comment": "Center the window horizontally on the screen."
+    },
+    {
+        "pattern": "dGhpcy5jdXJyZW50TGFuZ3VhZ2UgPSBDb25maWdNYW5hZ2VyLmxhbmd1YWdlOw==",
+        "comment": "Store the current language setting from the configuration manager."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5tYWtlQ29tbWFuZExpc3QgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Create the command list for the language selection window."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS53aW5kb3dXaWR0aCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Return the width of the language window, set to 400 pixels."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5udW1WaXNpYmxlUm93cyA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Return the number of visible rows in the command window, set to 5."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5kcmF3SXRlbSA9IGZ1bmN0aW9uIChfMHg0NWVmZjYpIHs=",
+        "comment": "Refresh the display of the command item (not fully implemented in this snippet)."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5yZWZyZXNoID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Refresh the language selection window. This function updates the display based on the selected language, including drawing text and handling visual elements."
+    },
+    {
+        "pattern": "dGhpcy5jb250ZW50cy5jbGVhcigpOw==",
+        "comment": "Clear the current contents of the window to prepare for redrawing."
+    },
+    {
+        "pattern": "dGhpcy5kcmF3VGV4dChMYW5nLnRyYW5zbGF0ZSh0aGlzLmNvbW1hbmROYW1lKDApKSwgXzB4YTUxM2ViLnggKyBfMHgxOTcyYTMgKyBfMHg0ZjE2MzYsIF8weGE1MTNlYi55LCBfMHhhNTEzZWIud2lkdGggLSA4IC0gXzB4MTk3MmEzIC0gXzB4NGYxNjM2LCAnbGVmdCcpOw==",
+        "comment": "Draw the name of the language command at the specified position after translating it."
+    },
+    {
+        "pattern": "aWYgKExhbmcuaXNPZmZpY2lhbChfMHgxNGViY2MpKSB7",
+        "comment": "Check if the selected language is an official language. If so, draw the credits section."
+    },
+    {
+        "pattern": "dGhpcy5jb250ZW50cy5maWxsUmVjdChfMHhhNTEzZWIueCwgXzB4YTUxM2ViLnkgKyBfMHg0YzFkZTcsIF8weGE1MTNlYi53aWR0aCwgXzB4NGMxZGU3LCBCS0dfQ09MT1IpOw==",
+        "comment": "Fill the background of the credits section with the defined background color."
+    },
+    {
+        "pattern": "dGhpcy5jaGFuZ2VUZXh0Q29sb3IoTkZPX0NPTE9SKTs=",
+        "comment": "Change the text color for the information section to the defined information color."
+    },
+    {
+        "pattern": "Zm9yICh2YXIgXzB4MTU2NDg1ID0gMDsgXzB4MTU2NDg1IDwgTWF0aC5taW4oXzB4NDUxNjdjLmxlbmd0aCwgMyk7IF8weDE1NjQ4NSsrKSB7",
+        "comment": "Iterate through the language information array and display the first three pieces of information."
+    },
+    {
+        "pattern": "dGhpcy5yZXNldEZvbnRTZXR0aW5ncygpOw==",
+        "comment": "Reset font settings to default after drawing all necessary texts."
+    },
+    {
+        "pattern": "Y29uc3QgQktHX0NPTE9SID0gIiMxODIyMzIiOw==",
+        "comment": "Set up various colours for use"
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5zd2FwRm9udCA9IGZ1bmN0aW9uIChfMHgyMWU5OGUpIHs=",
+        "comment": "Swap the font face and size for the language window based on the selected language properties."
+    },
+    {
+        "pattern": "dmFyIF8weDRmYWU4ZCA9IEZvbnQucmVzb2x2ZShMYW5nLnByb3BlcnR5KF8weDIxZTk4ZSwgImZvbnRGYWNlIikpOw==",
+        "comment": "Resolve the font face based on the current language properties."
+    },
+    {
+        "pattern": "dGhpcy5jb250ZW50cy5mb250RmFjZSA9IF8weDRmYWU4ZDs=",
+        "comment": "Set the contents' font face to the resolved font if valid; otherwise, reset to the standard font."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5wcm9jZXNzT2sgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Process the OK input for confirming language selection."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5jdXJzb3JSaWdodCA9IGZ1bmN0aW9uIChfMHgzNTZjMWIpIHs=",
+        "comment": "Handle the cursor right input for navigating through languages."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5jdXJzb3JMZWZ0ID0gZnVuY3Rpb24gKF8weGJlZDg0Zikgew==",
+        "comment": "Handle the cursor left input for navigating through languages."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5faW5wdXQgPSBmdW5jdGlvbiAoXzB4NTNmNGIwKSB7",
+        "comment": "Input handler that changes the current language based on the direction of navigation."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS5jaGFuZ2VWYWx1ZSA9IGZ1bmN0aW9uIChfMHgxYjc1MjUsIF8weDNlN2I2ZSkgew==",
+        "comment": "Change the selected language value and play the save sound."
+    },
+    {
+        "pattern": "V2luZG93X0xhbmd1YWdlLnByb3RvdHlwZS51cGRhdGUgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Update the language window; handle cancel input and save the current language if changed."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gU2NlbmVfTGFuZ3VhZ2UoKSB7",
+        "comment": "Constructor function for the language scene."
+    },
+    {
+        "pattern": "U2NlbmVfTGFuZ3VhZ2UucHJvdG90eXBlLmNyZWF0ZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Create the language selection scene. Set background opacity and initialize the language selection window."
+    },
+    {
+        "pattern": "dGhpcy5zZXRCYWNrZ3JvdW5kT3BhY2l0eSgxMjgpOw==",
+        "comment": "Set the background opacity to 128 for a semi-transparent effect."
+    },
+    {
+        "pattern": "dGhpcy5fbGFuZ3VhZ2VXaW5kb3cgPSBuZXcgV2luZG93X0xhbmd1YWdlKCk7",
+        "comment": "Initialize the language selection window to allow the user to choose a language."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLmFkZEdlbmVyYWxPcHRpb25zID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Add general options to the options menu for UI customization and gameplay settings."
+    },
+    {
+        "pattern": "dGhpcy5hZGRDb21tYW5kKCJWb2x1bWUgQkdNIiwgImJnbVZvbHVtZSIpOw==",
+        "comment": "Add a command for adjusting background music volume."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLnN0YXR1c1RleHQgPSBmdW5jdGlvbiAoXzB4NGZiNzBkKSB7",
+        "comment": "Get the status text for a specific option, translating values for user-friendly display."
+    },
+    {
+        "pattern": "Y29uc3QgXzB4MTU2OTcwID0gTGFuZy50cmFuc2xhdGUoIk9uIik7",
+        "comment": "Translate the string 'On' for localization."
+    },
+    {
+        "pattern": "aWYgKF8weDQ4YTI5NCA9PT0gImRhc2hCb251cyIpIHs=",
+        "comment": "Check if the current option is for dash bonus and return its value as a percentage."
+    },
+    {
+        "pattern": "aWYgKF8weDQ4YTI5NCA9PT0gInRleHRTcGVlZCIpIHs=",
+        "comment": "Return the text speed as a translated value based on user selection."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLnByb2Nlc3NPayA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Process the OK input to navigate right in the options menu."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLmN1cnNvclJpZ2h0ID0gZnVuY3Rpb24gKF8weDIzNmNiZSkgew==",
+        "comment": "Move the cursor to the right in the options menu."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLmN1cnNvckxlZnQgPSBmdW5jdGlvbiAoXzB4MzkzY2IyKSB7",
+        "comment": "Move the cursor to the left in the options menu."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLl9pbnB1dCA9IGZ1bmN0aW9uIChfMHgxYzNiMGUsIF8weDNlMjBlMiA9IGZhbHNlKSB7",
+        "comment": "Handle input for changing option values. Adjusts settings based on the current option index."
+    },
+    {
+        "pattern": "aWYgKF8weDM3Zjk4ZSA9PT0gImlucHV0SGludCIgfHwgXzB4MzdmOThlID09PSAiZnVsbHNjcmVlbiIgfHwgXzB4MzdmOThlID09PSAiYWx3YXlzRGFzaCIpIHs=",
+        "comment": "Toggle boolean configuration values directly without range constraints."
+    },
+    {
+        "pattern": "aWYgKF8weDNlMjBlMikgew==",
+        "comment": "Determine whether to wrap around the option values or clamp them within defined limits."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLmNoYW5nZVZhbHVlID0gZnVuY3Rpb24gKF8weDFlODFhMywgXzB4MTU1MzE4KSB7",
+        "comment": "Change the value of the specified option and update the game's configuration."
+    },
+    {
+        "pattern": "aWYgKF8weDFlODFhMyA9PT0gImZ1bGxzY3JlZW4iKSB7",
+        "comment": "Handle toggling the fullscreen setting and adjust the game display accordingly."
+    },
+    {
+        "pattern": "U291bmRNYW5hZ2VyLnBsYXlFcXVpcCgpOw==",
+        "comment": "Play a sound effect to indicate a change has been made to the configuration."
+    },
+    {
+        "pattern": "V2luZG93X09wdGlvbnMucHJvdG90eXBlLmRyYXdJdGVtID0gZnVuY3Rpb24gKF8weDIyY2FmZCkgew==",
+        "comment": "Draw an individual item in the options menu, including its name and status."
+    },
+    {
+        "pattern": "bGV0IF8weDU4ZTQzNCA9IHRoaXMuaXRlbVJlY3RGb3JUZXh0KF8weDIyY2FmZCk7",
+        "comment": "Get the rectangle area for the text based on the item index."
+    },
+    {
+        "pattern": "dGhpcy5yZXNldFRleHRDb2xvcigpOw==",
+        "comment": "Reset the text color to the default before drawing."
+    },
+    {
+        "pattern": "dGhpcy5kcmF3VGV4dChfMHgxMzcxNmYsIF8weDU4ZTQzNC54LCBfMHg1OGU0MzQueSwgXzB4MzM0YzA3LCAibGVmdCIpOw==",
+        "comment": "Draw the command name on the left side of the options menu."
+    },
+    {
+        "pattern": "U2NlbmVfQ29udHJvbHMucHJvdG90eXBlLmNyZWF0ZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Create the controls scene and load the background image."
+    },
+    {
+        "pattern": "dGhpcy5fYmFja2dyb3VuZCA9IG5ldyBTcHJpdGUodGhpcy5faW1nKTs=",
+        "comment": "Create a new sprite for the background image of the controls scene."
+    },
+    {
+        "pattern": "U2NlbmVfQ29udHJvbHMucHJvdG90eXBlLnVwZGF0ZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Update the controls scene; close it if a button is pressed."
+    },
+    {
+        "pattern": "U2NlbmVfQ29udHJvbHMucHJvdG90eXBlLnRlcm1pbmF0ZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Terminate the controls scene, playing the cancel sound and removing the background."
+    },
+    {
+        "pattern": "R3JhcGhpY3MuX3N3aXRjaEZ1bGxTY3JlZW4gPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Override the fullscreen switch function to handle cursor visibility and update options in the options scene."
+    },
+    {
+        "pattern": "R2FtZV9DaGFyYWN0ZXJCYXNlLnByb3RvdHlwZS5yZWFsTW92ZVNwZWVkID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Calculate the real movement speed of the character, factoring in dash bonus if applicable."
+    },
+    {
+        "pattern": "V2luZG93X01lc3NhZ2UucHJvdG90eXBlLnVwZGF0ZVNob3dGYXN0ID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Override the updateShowFast method to handle fast text display based on the configured text speed."
+    },
+    {
+        "pattern": "dmFyIF8weDMwNzUzYSA9IE1hdGguYWJzKENvbmZpZ01hbmFnZXIudGV4dFNwZWVkIC0gMik7",
+        "comment": "Calculate the difference between the configured text speed and the normal speed (2) to determine fast show status."
+    },
+    {
+        "pattern": "aWYgKF8weDMwNzUzYSA9PT0gMCkgew==",
+        "comment": "If the text speed is normal, set _showFast to true; otherwise, call the original updateShowFast method."
+    },
+    {
+        "pattern": "V2luZG93X01lc3NhZ2UucHJvdG90eXBlLnVwZGF0ZU1lc3NhZ2UgPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Override the updateMessage method to adjust wait counts based on text speed during message updates."
+    },
+    {
+        "pattern": "aWYgKF8weDFhYmJjZiAhPT0gMCAmJiB0aGlzLl90ZXh0U3RhdGUgJiYgdGhpcy5fdGV4dFN0YXRlLnRleHRbdGhpcy5fdGV4dFN0YXRlLmluZGV4XQ==",
+        "comment": "Adjust the wait count based on the text speed if the current character isn't a control character."
+    },
+    {
+        "pattern": "SW5wdXQuX3VwZGF0ZUdhbWVwYWRTdGF0ZSA9IGZ1bmN0aW9uIChfMHgyMjg5ZWEpIHs=",
+        "comment": "Override the gamepad input state update to add fullscreen toggle functionality via a specific button."
+    },
+    {
+        "pattern": "aWYgKCFfMHhiNDIxY2YgJiYgXzB4MTE5ZTYwKSB7",
+        "comment": "If the button was previously not pressed and is now pressed, switch to fullscreen mode."
+    },
+    {
+        "pattern": "U3ByaXRlX0JhbGxvb24ucHJvdG90eXBlLnNldHVwID0gZnVuY3Rpb24gKF8weDI5MDIzOCkgew==",
+        "comment": "Set up the balloon sprite with the given balloon ID and calculate its duration based on speed and wait time."
+    },
+    {
+        "pattern": "U3ByaXRlX0JhbGxvb24ucHJvdG90eXBlLmZyYW1lSW5kZXggPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Calculate the current frame index based on the remaining duration and full duration of the balloon."
+    },
+    {
+        "pattern": "U3ByaXRlX0JhbGxvb24ucHJvdG90eXBlLnJlc2V0QW5pbWF0aW9uID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Reset the balloon's duration to its full duration, allowing it to restart the animation."
+    },
+    {
+        "pattern": "U3ByaXRlX0JhbGxvb24ucHJvdG90eXBlLnVwZGF0ZSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Override the update method to handle the balloon's animation based on its duration and loop status."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuX2R1cmF0aW9uID4gMCkgew==",
+        "comment": "If the balloon has a duration left, decrement it and update the frame; if looping, reset duration after reaching zero."
+    },
+    {
+        "pattern": "R2FtZV9FdmVudC5wcm90b3R5cGUuaXNFbmFibGVkID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Determine if the current event is enabled based on its conditions in the event's pages."
+    },
+    {
+        "pattern": "aWYgKF8weDE3Y2ZiMy5saXN0Lmxlbmd0aCA8IDEgfHwgXzB4MTdjZmIzLmxpc3QubGVuZ3RoID09PSAxICYmIF8weDE3Y2ZiMy5saXN0WzBdLmNvZGUgPT09IDApIHs=",
+        "comment": "Check if the event has no commands or only a 'Wait' command; if so, the event is not enabled."
+    },
+    {
+        "pattern": "dmFyIF8weDMyYzg1ZSA9IF8weDQxZmNkYS5tYXRjaCgvZW5hYmxlZDooXGQrKShbIT0+PF0rKShcdyt8aGFzKS8pOw==",
+        "comment": "Extract the condition parameters from the event's command to determine the enabling criteria."
+    },
+    {
+        "pattern": "aWYgKF8weDRmNGEwYSA9PT0gIm9uIiB8fCBfMHg0ZjRhMGEgPT09ICJvZmYiKSB7",
+        "comment": "Check if the condition is based on a switch ('on' or 'off'). Evaluate the switch value against the defined condition."
+    },
+    {
+        "pattern": "ZWxzZSBpZiAoXzB4NGY0YTBhID09PSAiaGFzIikgew==",
+        "comment": "Check if the condition is based on item possession. Determine if the party has the specified item."
+    },
+    {
+        "pattern": "c3dpdGNoIChfMHg1NjZjMDYpIHs=",
+        "comment": "Evaluate the variable value against the specified condition using various comparison operators (==, !=, >, <, etc.)."
+    },
+    {
+        "pattern": "QXBwLmZhaWwoIkludmFsaWQgY29tcGFyaXNvbiBvcGVyYXRvciBmb3IgZW5hYmxlIC8gZGlzYWJsZSBjb21tZW50IGhpbnQ6ICIgKyBfMHgyYWE1OGQucGFyYW1ldGVyc1swXSk7",
+        "comment": "Log an error if an invalid comparison operator is found, ensuring valid event conditions."
+    },
+    {
+        "pattern": "cmV0dXJuIHRydWU7",
+        "comment": "If no conditions are met that disable the event, return true to indicate that the event is enabled."
+    },
+    {
+        "pattern": "Y29uc3QgSElOVF9ZX09GUyA9IDc4Ow==",
+        "comment": "Y offset for the hint display relative to the player's position.",
+        "appendInline": true
+    },
+    {
+        "pattern": "Y29uc3QgQkFMTE9PTl9JRCA9IDE1Ow==",
+        "comment": "ID of the balloon graphic to use for the hint.",
+        "appendInline": true
+    },
+    {
+        "pattern": "Y29uc3QgSElOVF9SQU5HRSA9IDAuNzU7",
+        "comment": "Range within which hints will activate based on player position.",
+        "appendInline": true
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gZXZlbnRIaW50RW5hYmxlKF8weDUwMDRlMykge30=",
+        "comment": "Function to enable hints for a specific event (currently empty, can be extended)."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gZXZlbnRIaW50RGlzYWJsZShfMHg1ZDJiZDYpIHt9",
+        "comment": "Function to disable hints for a specific event (currently empty, can be extended)."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gSGludCgpIHt9",
+        "comment": "Constructor for the Hint class, initializes hint properties."
+    },
+    {
+        "pattern": "SGludC5kZWx0YSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Calculate the delta time for hint animation based on change duration."
+    },
+    {
+        "pattern": "SGludC5iYWxsb29uID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Initialize or retrieve the hint balloon sprite."
+    },
+    {
+        "pattern": "SGludC5vcGVuID0gZnVuY3Rpb24gKF8weDUwNDc5ZiA9IDApIHs=",
+        "comment": "Activate the hint balloon, setting its opacity based on the provided duration."
+    },
+    {
+        "pattern": "SGludC5jbG9zZSA9IGZ1bmN0aW9uIChfMHhiOWU0ODQgPSAwKSB7",
+        "comment": "Deactivate the hint balloon, adjusting its opacity based on the provided duration."
+    },
+    {
+        "pattern": "SGludC5wcm9jZXNzID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Main process for updating the hint display based on the player's interactions with events."
+    },
+    {
+        "pattern": "aWYgKCFDb25maWdNYW5hZ2VyLmlucHV0SGludCkgew==",
+        "comment": "Check if hint display is enabled in the configuration; if not, close the hint."
+    },
+    {
+        "pattern": "JGdhbWVNYXAuZXZlbnRzWHkoXzB4NDk5OGVmLCBfMHgxMDI5NzQpLmZvckVhY2goZnVuY3Rpb24gKF8weDE2YzBhMCkgew==",
+        "comment": "Check for events at the player's current position and determine if a hint should be activated."
+    },
+    {
+        "pattern": "JGdhbWVNYXAuZXZlbnRzWHkoXzB4NGI5NmYxLCBfMHg1Y2FmZDIpLmZvckVhY2goZnVuY3Rpb24gKF8weDI5YWI0Nikgew==",
+        "comment": "Check for nearby events based on the player's direction for hint activation."
+    },
+    {
+        "pattern": "aWYgKE1hdGgubWluKF8weDEzODBlZSwgXzB4M2Q5OTk1KSA+IEhJTlRfUkFOR0UpIHs=",
+        "comment": "Determine if the player is within range of an event to trigger the hint display."
+    },
+    {
+        "pattern": "ZWxzZSBpZiAoXzB4MTE4YTc1ICE9IHRoaXMubGFzdEV2ZW50KSB7",
+        "comment": "Close the hint if the last interacted event is no longer the same."
+    },
+    {
+        "pattern": "U2NlbmVfTWFwLnByb3RvdHlwZS5zdGFydCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Override the start method of Scene_Map to add a hint balloon when the map scene starts."
+    },
+    {
+        "pattern": "aWYgKCRnYW1lU3lzdGVtICYmIE51bWJlci5pc0Zpbml0ZSgkZ2FtZVN5c3RlbS5fc2Vjb25kc1BsYXllZCkpIHs=",
+        "comment": "Update the playtime by adding the elapsed time since the last frame to the seconds played."
+    },
+    {
+        "pattern": "SGludC5wcm9jZXNzKCk7",
+        "comment": "Process hints if the current scene is a map scene and it has started."
+    },
+    {
+        "pattern": "R2FtZV9TeXN0ZW0ucHJvdG90eXBlLnBsYXl0aW1lID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Return the total playtime in seconds."
+    },
+    {
+        "pattern": "R2FtZV9TeXN0ZW0ucHJvdG90eXBlLnBsYXl0aW1lVGV4dCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Format the playtime in HH:MM:SS format for display."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIuc2V0dXBOZXdHYW1lID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Override the setupNewGame method to initialize secondsPlayed to zero for a new game."
+    },
+    {
+        "pattern": "Y29uc3QgRk9OVF9UWVBFUyA9IFs=",
+        "comment": "Define an array of supported font file types."
+    },
+    {
+        "pattern": "ZnVuY3Rpb24gRm9udCgpIHt9",
+        "comment": "Constructor for the Font class; it initializes the font object."
+    },
+    {
+        "pattern": "Rm9udC5kYXRhID0ge307",
+        "comment": "Storage for registered font data, mapping font names to their respective file paths."
+    },
+    {
+        "pattern": "Rm9udC5jaGFuZ2UgPSBmdW5jdGlvbiAoXzB4MTYyN2E0LCBfMHgxN2ZhODggPSAyOCkgew==",
+        "comment": "Change the current font face and size. It resolves the font name to ensure it is available."
+    },
+    {
+        "pattern": "dmFyIF8weDEzNjk0OSA9IHRoaXMucmVzb2x2ZShfMHgxNjI3YTQpOw==",
+        "comment": "Attempt to resolve the provided font name to a valid font. If successful, update the font face and size."
+    },
+    {
+        "pattern": "Rm9udC5rZXkgPSBmdW5jdGlvbiAoXzB4NWVjOTRmKSB7",
+        "comment": "Retrieve the actual font key based on the provided name, using regex to find matches in registered fonts."
+    },
+    {
+        "pattern": "Rm9udC5yZXNvbHZlID0gZnVuY3Rpb24gKF8weDUwNmQ0Nikgew==",
+        "comment": "Resolve a font name to a valid font face. It checks if the font exists and attempts to load it if not."
+    },
+    {
+        "pattern": "dmFyIF8weDQ2MGY4YiA9IG5ldyBGb250RmFjZShfMHg0MTQzYWIsICd1cmwoJyArIF8weDJlZDA2MSArICcpJyk7",
+        "comment": "Create a new FontFace object for dynamic font loading from a specified URL."
+    },
+    {
+        "pattern": "ZG9jdW1lbnQuZm9udHMuYWRkKF8weDU0NGI5NCk7",
+        "comment": "Add the loaded font to the document's font set and refresh any UI components that use the font."
+    },
+    {
+        "pattern": "QXBwLmZhaWwoJ0ZvbnQgZmFpbGVkIHRvIGxvYWQ6ICcgKyBfMHg1MDZkNDYsIF8weDRhZmFmZik7",
+        "comment": "Handle the error if the font fails to load, reporting the issue through the App's error handling system."
+    },
+    {
+        "pattern": "V2luZG93X0Jhc2UucHJvdG90eXBlLnJlc2V0Rm9udFNldHRpbmdzID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Override the default font settings for windows. If a custom font is set and the window is not the credits window, apply the specified font face and size."
+    },
+    {
+        "pattern": "Y29uc3QgTEFOR19ESVIgPSAibGFuZ3VhZ2VzLyI7",
+        "comment": "Define the directory where language files are stored."
+    },
+    {
+        "pattern": "TGFuZy5jb3VudCA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Return the total number of languages available in the language list."
+    },
+    {
+        "pattern": "TGFuZy5pbmRleCA9IGZ1bmN0aW9uIChfMHgyY2ZmNmMpIHs=",
+        "comment": "Get the index of a specific language in the list by its key."
+    },
+    {
+        "pattern": "TGFuZy5pc09mZmljaWFsID0gZnVuY3Rpb24gKF8weDdlOTNhZikgew==",
+        "comment": "Check if a given language is marked as official."
+    },
+    {
+        "pattern": "TGFuZy5jdXJyZW50ID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Get the current language based on the configuration. If not found, log a warning and return 'n/a'."
+    },
+    {
+        "pattern": "TGFuZy5rZXkgPSBmdW5jdGlvbiAoXzB4MzU2NTFkKSB7",
+        "comment": "Retrieve the key for a language based on its index, ensuring it is within valid bounds."
+    },
+    {
+        "pattern": "TGFuZy5wcm9wZXJ0eSA9IGZ1bmN0aW9uIChfMHhlYTdhZDYsIF8weDQ4ZmU3OCwgXzB4MzBlZGZjID0gbnVsbCkgew==",
+        "comment": "Access a specific property within the language data. If the property doesn't exist, log an error and return a default value."
+    },
+    {
+        "pattern": "TGFuZy50cmFuc2xhdGUgPSBmdW5jdGlvbiAoXzB4NTk0NmMzKSB7",
+        "comment": "Translate a given key based on the current language, checking both system menus and labels."
+    },
+    {
+        "pattern": "TGFuZy5sYWJlbCA9IGZ1bmN0aW9uIChfMHgxZmU0ZmUsIF8weDRhYzQwYyA9IGZhbHNlKSB7",
+        "comment": "Process and replace label placeholders in a string with corresponding translations, optionally formatting them."
+    },
+    {
+        "pattern": "Y29uc3QgRkFMTEJBQ0tfSEFTSEVTID0gew==",
+        "comment": "Define a set of fallback hashes for language line retrieval when the main lookup table does not contain a key."
+    },
+    {
+        "pattern": "TGFuZy5saW5lcyA9IGZ1bmN0aW9uIChfMHgyMmQyMjgpIHs=",
+        "comment": "Retrieve language lines based on the input string, replacing keys with their corresponding values from the language lookup table or fallback hashes."
+    },
+    {
+        "pattern": "dmFyIF8weGFjNmE5OCA9IHRoaXMucHJvcGVydHkoQ29uZmlnTWFuYWdlci5sYW5ndWFnZSwgImxpbmVzTFVUIik7",
+        "comment": "Get the lines lookup table for the current language configuration."
+    },
+    {
+        "pattern": "XzB4ZDQyMGEwLnRleHQgPSBfMHhkNDIwYTAudGV4dC5yZXBsYWNlKC9cKGxpbmVzXClcWyhbXlxdXSspXF0vZywgZnVuY3Rpb24gKF8weDRjNmRlYywgXzB4MmU3NDY4KSB7",
+        "comment": "Replace all occurrences of the pattern (lines)[key] in the text with corresponding values from the lines lookup table or fallback hashes."
+    },
+    {
+        "pattern": "cmV0dXJuIF8weGQ0MjBhMDs=",
+        "comment": "Return the modified text object containing the original text and replaced lines."
+    },
+    {
+        "pattern": "TGFuZy5zZWFyY2ggPSBmdW5jdGlvbiAoKSB7",
+        "comment": "Search for available language files and fonts in the designated language directory, populating the language list and managing language accessibility."
+    },
+    {
+        "pattern": "bGV0IF8weDU1ZTFmMSA9IFV0aWxzLmpvaW4oQXBwLnJvb3RQYXRoKCksIExBTkdfRElSKTs=",
+        "comment": "Construct the path to the language directory by joining the application root path with the defined language directory."
+    },
+    {
+        "pattern": "aWYgKCFVdGlscy5leGlzdHMoXzB4NTVlMWYxKSkgew==",
+        "comment": "Check if the language directory exists; if not, log a warning."
+    },
+    {
+        "pattern": "bGV0IF8weDI5MTNlNyA9IFV0aWxzLmZvbGRlcnMoXzB4NTVlMWYxKTs=",
+        "comment": "Get all folders in the language directory, which represent different languages available."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4MTZmYTQ2ID0gMDsgXzB4MTZmYTQ2IDwgXzB4MjkxM2U3Lmxlbmd0aDsgXzB4MTZmYTQ2KyspIHs=",
+        "comment": "Iterate through each language folder to find and register language-specific files."
+    },
+    {
+        "pattern": "aWYgKCFWQUxJRF9FWFQuaW5jbHVkZXMoXzB4MTkzMmE5KSkgew==",
+        "comment": "Check if the file extension is valid; if not, skip processing the file."
+    },
+    {
+        "pattern": "dGhpcy5vZmZjLnB1c2goXzB4MzdmMjlhKTs=",
+        "comment": "If the file is a localization file (.loc), add it to the list of offline content."
+    },
+    {
+        "pattern": "dGhpcy5saXN0ID0gXzB4MjBkMzE2Ow==",
+        "comment": "Reassign the language list to a new ordered object that contains the processed language files."
+    },
+    {
+        "pattern": "TGFuZy5zZWxlY3QgPSBmdW5jdGlvbiAoXzB4NGE2Yjg3KSB7",
+        "comment": "Select and load the appropriate language data based on the provided language code. Handles errors if language data is missing."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuY291bnQoKSA8IDEpIHs=",
+        "comment": "Check if there are any available languages. If not, handle the error based on development mode."
+    },
+    {
+        "pattern": "bGV0IF8weDVkNDA0MCA9IFN0ZWFtLmN1cnJlbnRMYW5ndWFnZSgpOw==",
+        "comment": "If using Steam, retrieve the current language set in the Steam client."
+    },
+    {
+        "pattern": "Zm9yIChsZXQgXzB4NDY0NTBhIG9mIF8weDRhMjU3MSkgew==",
+        "comment": "Iterate through potential language files (user input, Steam language, and predefined paths)."
+    },
+    {
+        "pattern": "aWYgKCF0aGlzLmlzVmFsaWQoXzB4MWE5OGIyKSkgew==",
+        "comment": "Validate the loaded language data; if invalid, log an error."
+    },
+    {
+        "pattern": "ZG9jdW1lbnQudGl0bGUgPSBfMHg1OWRjNmQ7",
+        "comment": "Set the document's title to the game's name retrieved from the language data."
+    },
+    {
+        "pattern": "Q29uZmlnTWFuYWdlci5sYW5ndWFnZSA9ICcnOw==",
+        "comment": "If no valid language is found, reset the language configuration and log an error."
+    },
+    {
+        "pattern": "TGFuZy5pbWdGb2xkZXIgPSBmdW5jdGlvbiAoXzB4NGFjYmQ3LCBfMHg2MGEwMjQpIHs=",
+        "comment": "Return the folder path for images based on the provided language and the image lookup table."
+    },
+    {
+        "pattern": "TGFuZy5pbWdNYXBwaW5nID0gZnVuY3Rpb24gKF8weDE4MDU3Mikgew==",
+        "comment": "Map images to their respective translations and handle errors if translated images are not found."
+    },
+    {
+        "pattern": "Y29uc3QgX0lNX0xCID0gSW1hZ2VNYW5hZ2VyLmxvYWRCaXRtYXA7",
+        "comment": "Store the original ImageManager.loadBitmap function to call it later after customization."
+    },
+    {
+        "pattern": "SW1hZ2VNYW5hZ2VyLmxvYWRCaXRtYXAgPSBmdW5jdGlvbiAoXzB4NGNmMmNlLCBfMHhiYTM4NjQsIF8weDE1YmQwMiwgXzB4MmQ1MWQyKSB7",
+        "comment": "Override the ImageManager.loadBitmap function to customize image loading with language-specific folder paths."
+    },
+    {
+        "pattern": "XzB4NGNmMmNlID0gTGFuZy5pbWdGb2xkZXIoXzB4NGNmMmNlLCBfMHhiYTM4NjQpOw==",
+        "comment": "Update the image path to include the language folder using Lang.imgFolder method."
+    },
+    {
+        "pattern": "TGFuZy5uZXdEYXRhID0gZnVuY3Rpb24gKCkgew==",
+        "comment": "Create a new language data object template with default values."
+    },
+    {
+        "pattern": "TGFuZy5pc1ZhbGlkID0gZnVuY3Rpb24gKF8weDU1NDNmZSkgew==",
+        "comment": "Validate the provided language data against the expected structure and types."
+    },
+    {
+        "pattern": "QXBwLmZhaWwoIkxhbmd1YWdlIGRhdGEgbWlzc2luZy4iKTs=",
+        "comment": "Log an error if the language data is missing or empty."
+    },
+    {
+        "pattern": "TGFuZy5sb2FkTE9DID0gZnVuY3Rpb24gKF8weDEyZjVmMCkgew==",
+        "comment": "Load and parse a language localization file, returning the language data object."
+    },
+    {
+        "pattern": "dHJ5IHsgXzB4MjdmOTUgPSBKU09OLnBhcnNlKF8weDI3Zjk1LnRvU3RyaW5nKCJ1dGY4IikpOw==",
+        "comment": "Attempt to parse the read file content as JSON; log an error if parsing fails."
+    },
+    {
+        "pattern": "XzB4MjdmOTUuaW1hZ2VMVVQgPSB7fTs=",
+        "comment": "Initialize the image lookup table within the loaded language data."
+    },
+    {
+        "pattern": "TGFuZy5sb2FkVFhUID0gZnVuY3Rpb24gKF8weDQ1ZWJmMikgew==",
+        "comment": "Load language data from a specified text file. The function reads the file, processes the contents, and returns an object with structured language data."
+    },
+    {
+        "pattern": "dmFyIF8weDUwZmU3YiA9IFV0aWxzLnJlYWRGaWxlKF8weDQ1ZWJmMiwgInV0ZjgiKTs=",
+        "comment": "Read the contents of the specified text file in UTF-8 encoding. If an error occurs, log the error and return an empty object."
+    },
+    {
+        "pattern": "Zm9yICh2YXIgXzB4MWNhMmRmIG9mIF8weDUwZmU3Yi5zcGxpdCgiXG4iKSkgew==",
+        "comment": "Iterate through each line of the file. Lines are processed to identify and categorize language data based on prefixes like [CHOICES], [LABELS], etc."
+    },
+    {
+        "pattern": "aWYgKF8weDFjYTJkZi5zdGFydHNXaXRoKCJbIikpIHs=",
+        "comment": "Handle section headers that start with [ ] to categorize the following lines, setting up for language-specific information such as language name, font, credits, and more."
+    },
+    {
+        "pattern": "ZWxzZSBpZiAoXzB4MWNhMmRmLnN0YXJ0c1dpdGgoIiMiKSkgew==",
+        "comment": "Process comment lines (starting with #). Validate the line structure and log any discrepancies if expected parts are missing."
+    },
+    {
+        "pattern": "ZWxzZSBpZiAoXzB4MWNhMmRmLnN0YXJ0c1dpdGgoIjoiKSkgew==",
+        "comment": "Handle lines starting with ':' which are expected to contain text content. Collect these lines into the appropriate data structure based on context."
+    },
+    {
+        "pattern": "cmV0dXJuIF8weDQ1ZDUwYjs=",
+        "comment": "Return the structured language data object containing all parsed information from the file."
+    },
+    {
+        "pattern": "Y29uc3QgQ1NWX0JMT0NLUyA9IHs=",
+        "comment": "Defines the expected number of columns for different CSV block types."
+    },
+    {
+        "pattern": "TGFuZy5pc19oZWFkZXIgPSBmdW5jdGlvbiAoXzB4NWE1MzUwKSB7",
+        "comment": "Check if the provided array matches the expected section header format."
+    },
+    {
+        "pattern": "TGFuZy5uZXdfYmxvY2sgPSBmdW5jdGlvbiAoXzB4Mzg0OWNkLCBfMHg1ODI2MTMsIF8weDE1NjZlNykgew==",
+        "comment": "Validate the new block of data based on its type and the required number of columns."
+    },
+    {
+        "pattern": "TGFuZy5sb2FkQ1NWID0gZnVuY3Rpb24gKF8weDQ3NDk3NSkgew==",
+        "comment": "Load a CSV file and parse its content into a structured format."
+    },
+    {
+        "pattern": "bGV0IF8weDFjY2NlOSA9IFtdOw==",
+        "comment": "Parse each line of the CSV into an array, handling quoted fields correctly."
+    },
+    {
+        "pattern": "aWYgKHRoaXMubmV3X2Jsb2NrKF8weDEwMTRmYywgXzB4MzJhYmM2LCBfMHgxY2NjZTkpKSB7",
+        "comment": "Determine if the current line signifies the start of a new block."
+    },
+    {
+        "pattern": "XzB4NTg3MGZiLmxhbmdOYW1lID0gXzB4MWNjY2U5WzBdOw==",
+        "comment": "Extract the language name, font face, and font size from the 'LANGUAGE' block."
+    },
+    {
+        "pattern": "XzB4NTg3MGZiLnN5c0xhYmVsW18weDFjY2NlOVswXV0gPSBfMHgxY2NjZTlbMl0udHJpbSgpID8gXzB4MWNjY2U5WzJdIDogXzB4MWNjY2U5WzFdOw==",
+        "comment": "Store system labels from the 'LABELS' block, using a default if the primary value is empty."
+    },
+    {
+        "pattern": "XzB4NTg3MGZiLmxhYmVsTFVUW18weDJjNDAwMV0gPSBfMHg0NWFhMzg7",
+        "comment": "Map item data for 'ITEMS' and 'SPEAKERS', ensuring all required columns are present."
+    },
+    {
+        "pattern": "RGF0YU1hbmFnZXIub25Mb2FkID0gZnVuY3Rpb24gKF8weDE2YjdlNSkgew==",
+        "comment": "Override the default onLoad method to initialize language settings when the game system data is loaded."
+    },
+    {
+        "pattern": "TGFuZy5zZWFyY2goKTs=",
+        "comment": "Invoke the language search method to locate available languages when the system data is loaded."
+    },
+    {
+        "pattern": "R2FtZV9JbnRlcnByZXRlci5wcm90b3R5cGUuY29tbWFuZDEwMSA9IGZ1bmN0aW9uICgpIHs=",
+        "comment": "Override command 101 to handle message display, allowing for additional lines to be processed and displayed."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuZXh0cmFMaW5lcy5sZW5ndGggPiAwKSB7",
+        "comment": "Check if there are extra lines to display; if so, add them to the message and manage the index."
+    },
+    {
+        "pattern": "d2hpbGUgKHRoaXMubmV4dEV2ZW50Q29kZSgpID09PSA0MDEpIHs=",
+        "comment": "Loop through subsequent event codes (401) to gather and display all relevant message lines."
+    },
+    {
+        "pattern": "c3dpdGNoICh0aGlzLm5leHRFdmVudENvZGUoKSkgew==",
+        "comment": "Determine the next event code to execute based on the current state, handling choices, number inputs, or item choices."
+    },
+    {
+        "pattern": "R2FtZV9JbnRlcnByZXRlci5wcm90b3R5cGUuc2V0dXBDaG9pY2VzID0gZnVuY3Rpb24gKF8weDVhNzJhNikgew==",
+        "comment": "Set up the choices for the game message, including labels, default selection, background, and position type."
+    },
+    {
+        "pattern": "dmFyIF8weDQ3MzU2NSA9IF8weDVhNzJhNlswXS5jbG9uZSgpOw==",
+        "comment": "Clone the array of choice labels and translate them using the Lang.label function."
+    },
+    {
+        "pattern": "aWYgKF8weDQ3ZmU5NSA+PSBfMHg0NzM1NjUubGVuZ3RoKSB7",
+        "comment": "Ensure the default choice index is valid; if not, set it to -2 (no selection)."
+    },
+    {
+        "pattern": "JGdhbWVNZXNzYWdlLnNldENob2ljZXMoXzB4NDczNTY1LCBfMHgxNWU4ZjksIF8weDQ3ZmU5NSk7",
+        "comment": "Set the choices in the game message system with the processed labels, default selection, and other parameters."
+    },
+    {
+        "pattern": "V2luZG93X0Jhc2UucHJvdG90eXBlLmRyYXdJdGVtTmFtZSA9IGZ1bmN0aW9uIChfMHgzODQyZSwgXzB4MjgxNzNhLCBfMHgyNTgyYTUsIF8weDM2YzQzOCkgew==",
+        "comment": "Draw the item name and icon on the window."
+    },
+    {
+        "pattern": "aWYgKF8weDM4NDJlKSB7",
+        "comment": "Check if an item exists before attempting to draw its icon and name."
+    },
+    {
+        "pattern": "dGhpcy5kcmF3VGV4dChMYW5nLmxhYmVsKF8weDM4NDJlLm5hbWUpLCBfMHgyODE3M2EgKyBfMHg1YmVlYjIsIF8weDI1ODJhNSwgXzB4MzZjNDM4IC0gXzB4NWJlZWIyKTs=",
+        "comment": "Draw the translated item name next to its icon."
+    },
+    {
+        "pattern": "V2luZG93X0hlbHAucHJvdG90eXBlLnNldEl0ZW0gPSBmdW5jdGlvbiAoXzB4MzA3Mzg3KSB7",
+        "comment": "Set the help window's text based on the item passed to it."
+    },
+    {
+        "pattern": "aWYgKCFfMHgzMDczODcpIHs=",
+        "comment": "If no item is provided, clear the help text."
+    },
+    {
+        "pattern": "dGhpcy5zZXRUZXh0KF8weDEwYTQwZS5saW5lcy5qb2luKCcKJykpOw==",
+        "comment": "Set the help text to the item's description, formatted into lines if necessary."
+    },
+    {
+        "pattern": "QXVkaW9NYW5hZ2VyLmNyZWF0ZUJ1ZmZlciA9IGZ1bmN0aW9uIChfMHgzMDVhYTUsIF8weDRlYjUyOSkgew==",
+        "comment": "Create a buffer for audio files, constructing the correct file path."
+    },
+    {
+        "pattern": "dmFyIF8weDVmMjUwMyA9IHRoaXMuX3BhdGggKyBfMHgzMDVhYTUgKyAnLycgKyBlbmNvZGVVUklDb21wb25lbnQoXzB4NGViNTI5KSArIF8weDMzOGQ0NDs=",
+        "comment": "Construct the full path for the audio file using the base path, audio category, and filename."
+    },
+    {
+        "pattern": "V2ViQXVkaW8ucHJvdG90eXBlLl9sb2FkaW5nID0gYXN5bmMgZnVuY3Rpb24gKF8weDFhZDRhZSkgew==",
+        "comment": "Load audio data asynchronously from a stream."
+    },
+    {
+        "pattern": "d2hpbGUgKHRydWUpIHs=",
+        "comment": "Continuously read from the audio stream until it is done."
+    },
+    {
+        "pattern": "dGhpcy5fcmVhZExvb3BDb21tZW50cyhfMHhiNWUxMWIpOw==",
+        "comment": "Process comments or metadata from the audio stream."
+    },
+    {
+        "pattern": "Y2F0Y2ggKF8weDM2Y2Q1NSkgew==",
+        "comment": "Handle any errors that occur during audio streaming, reporting the error."
+    },
+    {
+        "pattern": "V2ViQXVkaW8ucHJvdG90eXBlLl9vblhockxvYWQgPSBmdW5jdGlvbiAoXzB4NTRhOTc0KSB7",
+        "comment": "Handle the loading of audio data via XMLHttpRequest. This function processes the response and decodes the audio data."
+    },
+    {
+        "pattern": "dmFyIF8weDI0YjZkZSA9IENyeXB0by5kZWtpdChfMHg1NGE5NzQucmVzcG9uc2UsIHRoaXMuX3VybCwgQ3J5cHRvLmd1YXJkKCkpOw==",
+        "comment": "Decrypt the received audio data using the Crypto utility before processing it."
+    },
+    {
+        "pattern": "V2ViQXVkaW8uX2NvbnRleHQuZGVjb2RlQXVkaW9EYXRhKF8weDI0YjZkZSwgZnVuY3Rpb24gKF8weDIzYmYyZSkgew==",
+        "comment": "Decode the audio data and store the resulting audio buffer. Set the total time and loop properties if applicable."
+    },
+    {
+        "pattern": "V2ViQXVkaW8ucHJvdG90eXBlLl9yZWFkTWV0YURhdGEgPSBmdW5jdGlvbiAoXzB4MWVhNGNiLCBfMHgxMTVmOWIsIF8weDQ4YTNlNykgew==",
+        "comment": "Read metadata from the audio data buffer to extract loop information, such as loop start and loop length."
+    },
+    {
+        "pattern": "aWYgKHRoaXMuX3JlYWRGb3VyQ2hhcmFjdGVycyhfMHgxZWE0Y2IsIF8weGM5MjY0YykgPT09ICJMT09QIikgew==",
+        "comment": "Check for the 'LOOP' marker in the audio data to identify the presence of loop metadata."
+    },
+    {
+        "pattern": "bGV0IF8weDRkMjZmMiA9IF8weGU1NWM5Lm1hdGNoKC9MT09QU1RBUlQ9KFswLTldKykvKTs=",
+        "comment": "Extract the loop start position from the metadata string if available."
+    },
+    {
+        "pattern": "aWYgKF8weGU1NWM5ID09ICJMT09QU1RBUlQiIHx8IF8weGU1NWM5ID09ICJMT09QTEVOR1RIIikgew==",
+        "comment": "Process loop start and length values if the respective markers are found."
+    },
+    {
+        "pattern": "UGVyZi5zZWNvbmRzID0gZnVuY3Rpb24gKF8weDVlYmYxMikgew==",
+        "comment": " Get how many seconds have passed since the given time"
+    }
+]

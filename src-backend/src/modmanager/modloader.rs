@@ -142,7 +142,7 @@ pub fn modloader_version(window: Window, in_path: String) {
     while let Some(line) = lines.next() {
         let line = line.unwrap();
         if initial_re.is_match(&line) {
-            // Fetch the next line after matching
+            // fetch the next line after matching
             if let Some(next_line) = lines.next() {
                 if let Ok(next_line) = next_line {
                     if let Some(captures) = version_re.captures(&next_line) {

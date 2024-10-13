@@ -15,7 +15,7 @@ impl Default for Config {
         Config {
             metadata_server: "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/metadata.json".to_string(),
             metadata_timeout: 10,
-            mods_repository: "test".to_string(),
+            mods_repository: "test".to_string()
         }
     }
 }

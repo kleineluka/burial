@@ -45,7 +45,7 @@ pub fn create_backup(window: Window, in_path: String, in_name: String) {
     // remove the backup folder
     window.emit("status", Some("Deleting the uncompressed backup..".to_string())).unwrap();
     files::delete_folder(&backup_path.to_string_lossy());
-    window.emit("status", Some("Backup complete! Saved as ".to_string() + &backup_name)).unwrap();
+    window.emit("status", Some("Backup complete! Saved as ".to_string() + &*backup_name)).unwrap();
     window.emit("reload-backups", {}).unwrap();
 }
 
@@ -96,7 +96,7 @@ pub fn get_backups(window: Window) {
     // sanitize it as a CSV string 
     let sanitized_backups: String = backups.into_iter().collect::<HashSet<String>>().into_iter().collect::<Vec<String>>().join(",");
     let sanitized_disk_space: String = disk_space.into_iter().map(|x| x.to_string()).collect::<Vec<String>>().join(",");
-    let sanitized_data = sanitized_backups.clone() + "|" + &sanitized_disk_space;
+    let sanitized_data = sanitized_backups.clone() + "|" + &*sanitized_disk_space;
     // send back "null" if no backups found
     if sanitized_backups.is_empty() {
         window.emit("backups", "null").unwrap();

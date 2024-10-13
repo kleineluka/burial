@@ -1,0 +1,7 @@
+{
+    "devtools": {
+        "code": "/data/rules/dev/devtools.js",
+        "target": "SceneManager.run(Scene_Boot);",
+        "indent": "    "
+    }
+}

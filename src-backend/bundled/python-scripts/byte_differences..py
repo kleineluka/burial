@@ -1,5 +1,7 @@
+# imports
 import sys
 
+# essentially our main
 def compare_and_generate_diff(old_file, new_file, diff_output):
     # open the files in binary mode
     with open(old_file, 'rb') as old_f, open(new_file, 'rb') as new_f:

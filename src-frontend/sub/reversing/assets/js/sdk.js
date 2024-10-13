@@ -48,29 +48,17 @@ listen('sdk-presence', (event) => {
     sdkDropdown.appendChild(sdkOption);
 });
 
-// get os
-function getOS() {
-    var os = 'Windows';
-    var platform = window.navigator.userAgent.toLowerCase();
-    // determine os
-    if (platform.indexOf('mac') > -1) {
-        os = 'MacOS';
-    } else if (platform.indexOf('linux') > -1 || platform.indexOf('x11') > -1) {
-        os = 'Linux';
-    }
-    return os;
-}
-
 // install current sdk on click
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sdk-install').addEventListener('click', () => {
         // get selected sdk
         const sdkType = document.getElementById('dropdown-menu-version').value;
         // get current version
-        const version = sdkData[sdkType].Version;
-        const user_os = getOS();
-        const os = sdkData[sdkType]?.[user_os];
+        const version = sdkData[sdkType].Game;
+        const sdkBranch = document.getElementById('dropdown-menu-branch').value;
+        let os = (sdkBranch === 'Default') ? sdkData[sdkType]?.branches.Windows : sdkData[sdkType]?.branches[sdkBranch];
         const inUrl = `https://dl.nwjs.io/v${version}/${os}`;
+        console.log(inUrl);
         // get game input
         const inPath = document.getElementById('tcoaal-path').value;
         // send to rust

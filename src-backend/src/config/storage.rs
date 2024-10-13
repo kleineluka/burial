@@ -20,7 +20,6 @@ pub fn insert_into_store(app: &AppHandle, key: &str, value: serde_json::Value) -
 }
 
 // read a value from the persistent storage
-#[allow(dead_code)]
 pub fn read_from_store(app: &AppHandle, key: &str) -> Result<Value, String> {
     let stores = app.state::<StoreCollection<Wry>>();
     let path = PathBuf::from(STORE_PATH);

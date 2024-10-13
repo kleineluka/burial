@@ -1,0 +1,11 @@
+{
+    "url": "https://github.com/denoland/deno",
+    "version": "1.46.3",
+    "distributions": {
+        "windows_x64": "deno-x86_64-pc-windows-msvc.zip",
+        "macos_x64": "deno-x86_64-apple-darwin.zip",
+        "macos_arm64": "deno-aarch64-apple-darwin.zip",
+        "linux_x64": "deno-x86_64-unknown-linux-gnu.zip",
+        "linux_arm64": "deno-aarch64-unknown-linux-gnu.zip"
+    }
+}

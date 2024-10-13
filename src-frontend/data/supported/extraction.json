@@ -1,9 +1,12 @@
 {
-    "Irina Main Method": {
+    "Irina + Hausmaerchan": {
         "path": "www/js/plugins/Irina_VisualNovelBusts.js",
         "find": "/data/rules/extraction/IrinaFind.txt",
         "replace": "/data/rules/extraction/IrinaReplace.txt",
         "version": "2.0.14",
-        "suggested": true
+        "suggested": true,
+        "extraction": "irina",
+        "deobfuscate": "hausmaerchen",
+        "deno": true
     }
 }

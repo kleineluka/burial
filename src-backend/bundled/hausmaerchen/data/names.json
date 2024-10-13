@@ -1,0 +1,1226 @@
+[
+    {
+        "old": "XzB4MWU5ZTc4",
+        "new": "tagName"
+    },
+    {
+        "old": "XzB4MTRiZGM0",
+        "new": "globalInfo"
+    },
+    {
+        "old": "XzB4NDlkNzQx",
+        "new": "tagName"
+    },
+    {
+        "old": "XzB4OGUxOGEy",
+        "new": "tagName"
+    },
+    {
+        "old": "XzB4MzY1NjBh",
+        "new": "givenTime"
+    },
+    {
+        "old": "XzB4MzBlYzc2",
+        "new": "givenTime"
+    },
+    {
+        "old": "XzB4MjhjMzVm",
+        "new": "numberToAdd"
+    },
+    {
+        "old": "XzB4NGQyMjk3",
+        "new": "lowerLimit"
+    },
+    {
+        "old": "XzB4NGZjZDQ3",
+        "new": "upperLimit"
+    },
+    {
+        "old": "XzB4NTdkYTNj",
+        "new": "numberToAdd"
+    },
+    {
+        "old": "XzB4NGI1NTRh",
+        "new": "lowerLimit"
+    },
+    {
+        "old": "XzB4NTliNDMx",
+        "new": "upperLimit"
+    },
+    {
+        "old": "XzB4YmY2NGU4",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4M2JkYWRj",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4MjZlZjdl",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4MzA1M2Jk",
+        "new": "pathOne"
+    },
+    {
+        "old": "XzB4M2MwOWYz",
+        "new": "pathTwo"
+    },
+    {
+        "old": "XzB4MTlkODQy",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NDQ4MDNk",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NWI2MDNl",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NzRkY2Zj",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4M2Q1YmY5",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MjEwOTEw",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NGUwMzIx",
+        "new": "data"
+    },
+    {
+        "old": "XzB4YmQ0YmEy",
+        "new": "sourcePath"
+    },
+    {
+        "old": "XzB4MzFlMmFh",
+        "new": "destinationPath"
+    },
+    {
+        "old": "XzB4MmRjYTJh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4ZWYwOGQw",
+        "new": "extensions"
+    },
+    {
+        "old": "XzB4NDkyZDBj",
+        "new": "argToCheck"
+    },
+    {
+        "old": "XzB4MzRjY2E5",
+        "new": "errorMessage"
+    },
+    {
+        "old": "XzB4YzY3MzU3",
+        "new": "errorDetails"
+    },
+    {
+        "old": "XzB4MThlZjE4",
+        "new": "warningMessage"
+    },
+    {
+        "old": "XzB4NDhhOTIx",
+        "new": "debugMessage"
+    },
+    {
+        "old": "XzB4NjBlNGFk",
+        "new": "criticalErrorMessage"
+    },
+    {
+        "old": "XzB4MTZkNWU=",
+        "new": "logMessage"
+    },
+    {
+        "old": "XzB4NDJjZWFm",
+        "new": "notificationMessage"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MjYxYjgw",
+        "new": "event"
+    },
+    {
+        "old": "XzB4NTdjMTIw",
+        "new": "frameCount"
+    },
+    {
+        "old": "XzB4NDhkYmRk",
+        "new": "dragEvent"
+    },
+    {
+        "old": "XzB4MzQyM2Q4",
+        "new": "dropEvent"
+    },
+    {
+        "old": "XzB4MjVhOGJj",
+        "new": "saveFiles"
+    },
+    {
+        "old": "XzB4NTM3MjM5",
+        "new": "fileA"
+    },
+    {
+        "old": "XzB4OTZmMmNj",
+        "new": "fileB"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MTMzMjIz",
+        "new": "userDataPath"
+    },
+    {
+        "old": "XzB4NGU5MTAy",
+        "new": "savePath"
+    },
+    {
+        "old": "XzB4NGI3NDA4",
+        "new": "userData"
+    },
+    {
+        "old": "XzB4MWUzNjky",
+        "new": "loadPath"
+    },
+    {
+        "old": "XzB4MTQ5Mzcz",
+        "new": "defaultData"
+    },
+    {
+        "old": "XzB4MTZlNzQx",
+        "new": "loadedData"
+    },
+    {
+        "old": "XzB4MTIxODc4",
+        "new": "loadedDataType"
+    },
+    {
+        "old": "XzB4Mjg2YzQz",
+        "new": "defaultDataType"
+    },
+    {
+        "old": "XzB4MjE5Mjcz",
+        "new": "fileName"
+    },
+    {
+        "old": "XzB4NTY2NmFl",
+        "new": "backupFileName"
+    },
+    {
+        "old": "XzB4MzI3YzY3",
+        "new": "backupFilePath"
+    },
+    {
+        "old": "XzB4NGVmYzk5",
+        "new": "error"
+    },
+    {
+        "old": "XzB4MTg5ZjU0",
+        "new": "globalData"
+    },
+    {
+        "old": "XzB4M2NiMGEz",
+        "new": "key"
+    },
+    {
+        "old": "XzB4MTI3ODU3",
+        "new": "value"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NDQ3YjBl",
+        "new": "globalVariable"
+    },
+    {
+        "old": "XzB4M2YzMmQ2",
+        "new": "defaultValue"
+    },
+    {
+        "old": "XzB4MWIyMzYz",
+        "new": "globalVariable"
+    },
+    {
+        "old": "XzB4MmY0YWMy",
+        "new": "dataDirectoryPath"
+    },
+    {
+        "old": "XzB4MzEyNGEy",
+        "new": "error"
+    },
+    {
+        "old": "XzB4ZTBmYjMx",
+        "new": "globalData"
+    },
+    {
+        "old": "XzB4MjliOWIz",
+        "new": "saveFileIndex"
+    },
+    {
+        "old": "XzB4NDc4OGRl",
+        "new": "autoSavesData"
+    },
+    {
+        "old": "XzB4NGM4MmQ4",
+        "new": "autoSaveKey"
+    },
+    {
+        "old": "XzB4YmU3MDE3",
+        "new": "fileName"
+    },
+    {
+        "old": "XzB4NWI1Zjdm",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NDkzYzg1",
+        "new": "saveFileMatch"
+    },
+    {
+        "old": "XzB4MmQ0YTM2",
+        "new": "autoSaveMatch"
+    },
+    {
+        "old": "XzB4MzA2OGUy",
+        "new": "saveFileIndex"
+    },
+    {
+        "old": "XzB4NTU3NWJl",
+        "new": "autoSaveTimestamp"
+    },
+    {
+        "old": "XzB4M2RlZDg3",
+        "new": "sortedAutoSaveKeys"
+    },
+    {
+        "old": "XzB4MTc2M2Nj",
+        "new": "autoSaveKey"
+    },
+    {
+        "old": "XzB4MzAzNDEy",
+        "new": "saveFileIndex"
+    },
+    {
+        "old": "XzB4MzM2NTg4",
+        "new": "autoSavesData"
+    },
+    {
+        "old": "XzB4NWVhMjlk",
+        "new": "autoSaveKey"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NTAwOWNi",
+        "new": "saveId"
+    },
+    {
+        "old": "XzB4MWI5Zjc5",
+        "new": "saveIndex"
+    },
+    {
+        "old": "XzB4NWM4NzVi",
+        "new": "autoSaves"
+    },
+    {
+        "old": "XzB4MmYzMDQ0",
+        "new": "saveKeys"
+    },
+    {
+        "old": "XzB4NWQzNGZi",
+        "new": "absSaveIndex"
+    },
+    {
+        "old": "XzB4MzZjY2Rj",
+        "new": "listWindow"
+    },
+    {
+        "old": "XzB4NGFhNjYx",
+        "new": "saveId"
+    },
+    {
+        "old": "XzB4NWM2YzJl",
+        "new": "saveMetadata"
+    },
+    {
+        "old": "XzB4MjlhNTc1",
+        "new": "saveFilePath"
+    },
+    {
+        "old": "XzB4Mzk4Yzhh",
+        "new": "saveData"
+    },
+    {
+        "old": "XzB4Mjc0ZDM1",
+        "new": "fileContents"
+    },
+    {
+        "old": "XzB4Mzk2NTZh",
+        "new": "parseError"
+    },
+    {
+        "old": "XzB4NGJkNzQ5",
+        "new": "loadError"
+    },
+    {
+        "old": "XzB4MWZhYzM0",
+        "new": "framesOnSave"
+    },
+    {
+        "old": "XzB4MjQ4YzNi",
+        "new": "fps"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MWVlMjNh",
+        "new": "saveFileID"
+    },
+    {
+        "old": "XzB4ZjNiMmNi",
+        "new": "skipAmount"
+    },
+    {
+        "old": "XzB4MjA4MjFk",
+        "new": "index"
+    },
+    {
+        "old": "XzB4NDdjZjRk",
+        "new": "isTestMode"
+    },
+    {
+        "old": "XzB4NTNmMDc5",
+        "new": "error"
+    },
+    {
+        "old": "XzB4MTBhYjQw",
+        "new": "appID"
+    },
+    {
+        "old": "XzB4NTFiMjk0",
+        "new": "steamAppIDPath"
+    },
+    {
+        "old": "XzB4NGE2NmEy",
+        "new": "initError"
+    },
+    {
+        "old": "XzB4NTFiMDc5",
+        "new": "txtInitError"
+    },
+    {
+        "old": "XzB4MzgwYzQ3",
+        "new": "globalInfo"
+    },
+    {
+        "old": "XzB4NmQ4ZGQz",
+        "new": "steamID"
+    },
+    {
+        "old": "XzB4MmRkNmM4",
+        "new": "steamIDError"
+    },
+    {
+        "old": "XzB4OTI0NzE3",
+        "new": "unawardedAchievements"
+    },
+    {
+        "old": "XzB4NWM4NTc4",
+        "new": "achievementID"
+    },
+    {
+        "old": "XzB4MjI3YTdh",
+        "new": "successAction"
+    },
+    {
+        "old": "XzB4NDBlNjJh",
+        "new": "failureAction"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NmYxYzQ1",
+        "new": "achievementID"
+    },
+    {
+        "old": "XzB4Mzk0OTc0",
+        "new": "globalInfo"
+    },
+    {
+        "old": "XzB4MjM4ZTZj",
+        "new": "logMessage"
+    },
+    {
+        "old": "XzB4NTM5ZGQ2",
+        "new": "expectedHash"
+    },
+    {
+        "old": "XzB4NDUzNDlh",
+        "new": "decryptedPath"
+    },
+    {
+        "old": "XzB4NGRjYjk5",
+        "new": "fileContent"
+    },
+    {
+        "old": "XzB4MzVhNGQw",
+        "new": "computedHash"
+    },
+    {
+        "old": "XzB4NTM4ODUx",
+        "new": "error"
+    },
+    {
+        "old": "XzB4NDNjNTM1",
+        "new": "fileData"
+    },
+    {
+        "old": "XzB4MTBiYjcw",
+        "new": "hashValue"
+    },
+    {
+        "old": "XzB4MjhlMTZm",
+        "new": "index"
+    },
+    {
+        "old": "XzB4MTFmMmUw",
+        "new": "url"
+    },
+    {
+        "old": "XzB4MWRjYTVl",
+        "new": "maskValue"
+    },
+    {
+        "old": "XzB4MzAwYzQy",
+        "new": "uppercaseFilename"
+    },
+    {
+        "old": "XzB4MTEwNDhm",
+        "new": "char"
+    },
+    {
+        "old": "XzB4MThlYzcy",
+        "new": "encodedURL"
+    },
+    {
+        "old": "XzB4Mjc2NGI1",
+        "new": "resolvedPath"
+    },
+    {
+        "old": "XzB4MjQ1ZWM1",
+        "new": "fullPath"
+    },
+    {
+        "old": "XzB4MzFjMDJi",
+        "new": "extension"
+    },
+    {
+        "old": "XzB4M2UyMzcz",
+        "new": "regexExtension"
+    },
+    {
+        "old": "XzB4NTI0OTli",
+        "new": "filePathToResolve"
+    },
+    {
+        "old": "XzB4NTAyZDAz",
+        "new": "resolvedFilePath"
+    },
+    {
+        "old": "XzB4MWQ5NWM3",
+        "new": "originalExtension"
+    },
+    {
+        "old": "XzB4MzJmYjBk",
+        "new": "extensionRegex"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NDVjOTUz",
+        "new": "encryptedData"
+    },
+    {
+        "old": "XzB4NTBjYmY1",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4MWI0ODQ4",
+        "new": "securityGuard"
+    },
+    {
+        "old": "XzB4NTA5OGZj",
+        "new": "globalVar"
+    },
+    {
+        "old": "XzB4NGNhMjJl",
+        "new": "fileName"
+    },
+    {
+        "old": "XzB4MjgwYTc3",
+        "new": "imagePath"
+    },
+    {
+        "old": "XzB4M2NmZjFk",
+        "new": "imageURL"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MzRiYmRi",
+        "new": "newInventory"
+    },
+    {
+        "old": "XzB4MmQ2OWYx",
+        "new": "savedData"
+    },
+    {
+        "old": "XzB4MTFjMWJk",
+        "new": "commandIndex"
+    },
+    {
+        "old": "XzB4NTFiNmMx",
+        "new": "itemIndex"
+    },
+    {
+        "old": "XzB4NDVlZmY2",
+        "new": "languageItem"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MjFlOThl",
+        "new": "languageObject"
+    },
+    {
+        "old": "XzB4MzU2YzFi",
+        "new": "inputDirectionRight"
+    },
+    {
+        "old": "XzB4YmVkODRm",
+        "new": "inputDirectionLeft"
+    },
+    {
+        "old": "XzB4NTNmNGIw",
+        "new": "inputDirection"
+    },
+    {
+        "old": "XzB4MWI3NTI1",
+        "new": "propertyKey"
+    },
+    {
+        "old": "XzB4M2U3YjZl",
+        "new": "languageValue"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NGZiNzBk",
+        "new": "commandSymbol"
+    },
+    {
+        "old": "XzB4MjM2Y2Jl",
+        "new": "inputRight"
+    },
+    {
+        "old": "XzB4MzkzY2Iy",
+        "new": "inputLeft"
+    },
+    {
+        "old": "XzB4MWMzYjBl",
+        "new": "changeAmount"
+    },
+    {
+        "old": "XzB4M2UyMGUy",
+        "new": "wrapAround"
+    },
+    {
+        "old": "XzB4MWU4MWEz",
+        "new": "optionKey"
+    },
+    {
+        "old": "XzB4MTU1MzE4",
+        "new": "newValue"
+    },
+    {
+        "old": "XzB4MjJjYWZk",
+        "new": "itemIndex"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MjI4OWVh",
+        "new": "gamepadState"
+    },
+    {
+        "old": "XzB4MjkwMjM4",
+        "new": "balloonId"
+    },
+    {
+        "old": "XzB4NTAwNGUz",
+        "new": "eventHint"
+    },
+    {
+        "old": "XzB4NWQyYmQ2",
+        "new": "eventHintDisable"
+    },
+    {
+        "old": "XzB4NTA0Nzlm",
+        "new": "duration"
+    },
+    {
+        "old": "XzB4YjllNDg0",
+        "new": "duration"
+    },
+    {
+        "old": "XzB4NTIzNTgx",
+        "new": "seconds"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MTYyN2E0",
+        "new": "fontName"
+    },
+    {
+        "old": "XzB4MTdmYTg4",
+        "new": "fontSize"
+    },
+    {
+        "old": "XzB4NWVjOTRm",
+        "new": "fontKey"
+    },
+    {
+        "old": "XzB4NTA2ZDQ2",
+        "new": "fontToResolve"
+    },
+    {
+        "old": "XzB4MmNmZjZj",
+        "new": "languageKey"
+    },
+    {
+        "old": "XzB4N2U5M2Fm",
+        "new": "languageCode"
+    },
+    {
+        "old": "XzB4MzU2NTFk",
+        "new": "languageIndex"
+    },
+    {
+        "old": "XzB4ZWE3YWQ2",
+        "new": "languageDataKey"
+    },
+    {
+        "old": "XzB4NDhmZTc4",
+        "new": "propertyKey"
+    },
+    {
+        "old": "XzB4MzBlZGZj",
+        "new": "defaultValue"
+    },
+    {
+        "old": "XzB4NTk0NmMz",
+        "new": "translateKey"
+    },
+    {
+        "old": "XzB4MWZlNGZl",
+        "new": "labelString"
+    },
+    {
+        "old": "XzB4NGFjNDBj",
+        "new": "formatLabels"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4MjJkMjI4",
+        "new": "text"
+    },
+    {
+        "old": "XzB4NGE2Yjg3",
+        "new": "languageCode"
+    },
+    {
+        "old": "XzB4NGFjYmQ3",
+        "new": "imagePath"
+    },
+    {
+        "old": "XzB4NjBhMDI0",
+        "new": "imageKey"
+    },
+    {
+        "old": "XzB4MTgwNTcy",
+        "new": "languageIdentifier"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NGNmMmNl",
+        "new": "imagePath"
+    },
+    {
+        "old": "XzB4YmEzODY0",
+        "new": "language"
+    },
+    {
+        "old": "XzB4MTViZDAy",
+        "new": "option1"
+    },
+    {
+        "old": "XzB4MmQ1MWQy",
+        "new": "option2"
+    },
+    {
+        "old": "XzB4NTU0M2Zl",
+        "new": "languageData"
+    },
+    {
+        "old": "XzB4MTJmNWYw",
+        "new": "localizationFilePath"
+    },
+    {
+        "old": "XzB4NDVlYmYy",
+        "new": "textFilePath"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NWE1MzUw",
+        "new": "headerArray"
+    },
+    {
+        "old": "XzB4Mzg0OWNk",
+        "new": "blockType"
+    },
+    {
+        "old": "XzB4NTgyNjEz",
+        "new": "csvBlock"
+    },
+    {
+        "old": "XzB4MTU2NmU3",
+        "new": "blockData"
+    },
+    {
+        "old": "XzB4NDc0OTc1",
+        "new": "csvFilePath"
+    },
+    {
+        "old": "XzB4NTg3MGZi",
+        "new": "parsedData"
+    },
+    {
+        "old": "XzB4ODM3NTc=",
+        "new": "fileContent"
+    },
+    {
+        "old": "XzB4MzJhYmM2",
+        "new": "currentBlock"
+    },
+    {
+        "old": "XzB4MTNhYjdh",
+        "new": "lastSection"
+    },
+    {
+        "old": "XzB4MzU3YWEy",
+        "new": "sectionLines"
+    },
+    {
+        "old": "XzB4YTYzZDcz",
+        "new": "isNewBlock"
+    },
+    {
+        "old": "XzB4MWQ3YTkw",
+        "new": "isDescription"
+    },
+    {
+        "old": "XzB4MTBmMzgz",
+        "new": "csvLine"
+    },
+    {
+        "old": "XzB4MWNjY2U5",
+        "new": "parsedLine"
+    },
+    {
+        "old": "XzB4MTc4Yzcx",
+        "new": "currentField"
+    },
+    {
+        "old": "XzB4MWIzNjQ0",
+        "new": "charIndex"
+    },
+    {
+        "old": "XzB4NjM3Y2Yw",
+        "new": "fieldIndex"
+    },
+    {
+        "old": "XzB4MTA2NzJi",
+        "new": "inQuotes"
+    },
+    {
+        "old": "XzB4ZTUxNTJm",
+        "new": "lineLength"
+    },
+    {
+        "old": "XzB4MjAyZDJi",
+        "new": "currentChar"
+    },
+    {
+        "old": "XzB4MjUzMDgy",
+        "new": "columnCount"
+    },
+    {
+        "old": "XzB4MTAxNGZj",
+        "new": "blockHeader"
+    },
+    {
+        "old": "XzB4MWNjY2U5",
+        "new": "csvColumns"
+    },
+    {
+        "old": "XzB4MzJhYmM2",
+        "new": "blockType"
+    },
+    {
+        "old": "XzB4MTAxNGZj",
+        "new": "sectionName"
+    },
+    {
+        "old": "XzB4MzJhYmM2",
+        "new": "currentBlockType"
+    },
+    {
+        "old": "XzB4MzJiMzE1",
+        "new": "columnLabel"
+    },
+    {
+        "old": "XzB4MmM0MDAx",
+        "new": "itemLabel"
+    },
+    {
+        "old": "XzB4NDVhYTM4",
+        "new": "translatedLabel"
+    },
+    {
+        "old": "XzB4MzgwODJi",
+        "new": "sectionKey"
+    },
+    {
+        "old": "XzB4NTQwMmQ4",
+        "new": "description"
+    },
+    {
+        "old": "XzB4NTAyMWQ5",
+        "new": "alternateLabel"
+    },
+    {
+        "old": "XzB4MTc5MGEw",
+        "new": "finalLabel"
+    },
+    {
+        "old": "XzB4MTZiN2U1",
+        "new": "dataFile"
+    },
+    {
+        "old": "XzB4NTZjZjZh",
+        "new": "directoryPath"
+    },
+    {
+        "old": "XzB4NDA2MTE4",
+        "new": "isFile"
+    },
+    {
+        "old": "XzB4MzQ4YjY0",
+        "new": "filePath"
+    },
+    {
+        "old": "XzB4NTI5NjIy",
+        "new": "encoding"
+    },
+    {
+        "old": "XzB4NWE3MmE2",
+        "new": "choiceParameters"
+    },
+    {
+        "old": "XzB4Mzg0MmU=",
+        "new": "item"
+    },
+    {
+        "old": "XzB4MjgxNzNh",
+        "new": "x"
+    },
+    {
+        "old": "XzB4MjU4MmE1",
+        "new": "y"
+    },
+    {
+        "old": "XzB4MzZjNDM4",
+        "new": "width"
+    },
+    {
+        "old": "XzB4MzA3Mzg3",
+        "new": "helpItem"
+    },
+    {
+        "old": "XzB4MzA1YWE1",
+        "new": "audioType"
+    },
+    {
+        "old": "XzB4NGViNTI5",
+        "new": "audioFile"
+    },
+    {
+        "old": "XzB4MWFkNGFl",
+        "new": "audioStream"
+    },
+    {
+        "old": "XzB4NTRhOTc0",
+        "new": "xhrResponse"
+    },
+    {
+        "old": "XzB4MWVhNGNi",
+        "new": "audioBuffer"
+    },
+    {
+        "old": "XzB4MTE1Zjli",
+        "new": "startIndex"
+    },
+    {
+        "old": "XzB4NDhhM2U3",
+        "new": "length"
+    }
+]

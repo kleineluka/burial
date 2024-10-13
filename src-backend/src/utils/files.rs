@@ -28,10 +28,7 @@ pub fn file_extension(file_path: &str) -> String {
 
 // delete a file from a given path
 pub fn delete_file(file_path: &str) {
-    match fs::remove_file(file_path) {
-        Ok(_) => println!("File deleted successfully."),
-        Err(e) => println!("Failed to delete file: {:?}", e),
-    }
+    let _ = fs::remove_file(file_path);
 }
 
 // read a file from a given path

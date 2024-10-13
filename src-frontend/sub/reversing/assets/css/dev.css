@@ -1,15 +1,26 @@
-/* Information */
-.info-section {
-    font-size: 3vmin;
-    margin-bottom: 3vmin;
+/* Bring Colour To The Navbar */
+.button-navbar {
+    background-color: #F595B2 !important;
+    color: #000 !important;
 }
 
-.info-section div {
-    font-size: 2.5vmin;
+.button-smol-navbar {
+    padding: 9px !important;
+    margin-left: 5px !important;
+    background-color: #F595B2 !important;
+    color: #000 !important;
 }
 
-/* Footer */
-.footer-container {
-    font-size: 2vmin;
-    margin-top: 2vmin;
+.file-path-navbar {
+    width: 45vmin !important;
+}
+
+/* Overrides for Inline Buttons */
+.dropdown-menu {
+    width: 40vmin !important;
+}
+
+.button-option-inline {
+    padding: 6px !important;
+    margin-left: 5px !important;
 }

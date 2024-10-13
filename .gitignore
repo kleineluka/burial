@@ -17,3 +17,8 @@ node_modules/
 # VSCode files
 .vscode/
 *.code-workspace
+
+# Individual files to ignore
+deno.lock
+src-backend/bundled/hausmaerchen/data/comments_original.json
+src-backend/bundled/hausmaerchen/data/names_original.json

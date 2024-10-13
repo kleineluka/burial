@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Error fetching SDK JSON:', error));
 });
 
+// check deno status on page load as well
+document.addEventListener('DOMContentLoaded', async () => {
+    // get store to load os
+    const store = loadStorage();
+    const operatingSystem = await store.get('state-operating-system');
+    invoke('check_deno', { operatingSystem });
+});
+
+// listen for deno status
+let deno_status = false;
+listen('deno_presence', (event) => {
+    if (event.payload) deno_status = true;
+});
+
 // do extraction
 document.getElementById('extract-code').addEventListener('click', function () {
     // make sure that out path is set
@@ -62,10 +76,50 @@ document.getElementById('extract-code').addEventListener('click', function () {
                         const autoValue = document.getElementById('dropdown-menu-auto').value === 'true';
                         const cleanupValue = document.getElementById('dropdown-menu-cleanup').value === 'true';
                         const deobfuscateValue = document.getElementById('dropdown-menu-deobfuscate').value === 'true';
-                        // send to rust
-                        invoke('extract_code', { inPath: tcoaalPath, 
-                            inFile: targetPath, oldText: findPathData, newText: replacePathData, 
-                            autoRun: autoValue, autoRestore: cleanupValue, autoDeobfuscate: deobfuscateValue })
+                        // get the extraction method and the deobfuscation method
+                        const extractionMethod = selectedMethod.extraction;
+                        const deobfuscationMethod = selectedMethod.deobfuscate;
+                        const requiresDeno = selectedMethod.deno;
+                        // check if the user needs to install deno firsst
+                        const deno_needed = document.getElementById('dropdown-menu-deobfuscate').value === 'true' && !deno_status && requiresDeno;
+                        if (deno_needed) {
+                            Swal.fire({
+                                title: "Deno is required for deobfuscation.",
+                                text: "Would you like to automatically install Deno now? It will take up around 100mb of space, but can be removed within Burial at any time. You can read more about why Deno is needed on the wiki!",
+                                showCancelButton: true,
+                                confirmButtonText: "Yes",
+                                cancelButtonText: "No",
+                                confirmButtonColor: '#F595B2'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // continue on, deno will auto install
+                                } else {
+                                    Swal.fire({
+                                        title: "That's okay.",
+                                        text: "You can try running the extraction without deobfuscation and using an online tool to deobfuscate the code instead. Trying to extract with auto-deobfuscation on will prompt this again if you change your mind!",
+                                        showConfirmButton: true,
+                                        confirmButtonColor: '#F595B2'
+                                    });
+                                    return;
+                                }
+                            });
+                        }
+                        // and now.. for some required deno data (yay, this is getting messy!)
+                        fetch('/data/supported/deno.json') 
+                            .then(response => response.json())
+                            .then(async deno_data => {
+                                // we also need the os
+                                const store = loadStorage();
+                                let operatingSystem = await store.get('state-operating-system');
+                                // send to rust
+                                invoke('extract_code', { inPath: tcoaalPath, 
+                                    inFile: targetPath, oldText: findPathData, newText: replacePathData, 
+                                    autoRun: autoValue, autoRestore: cleanupValue, autoDeobfuscate: deobfuscateValue,
+                                    extractionMethod: extractionMethod, deobfuscateMethod: deobfuscationMethod,
+                                    requiresDeno: deno_needed, operatingSystem: operatingSystem, denoInfo: deno_data,
+                                    outPath: outPath });
+                            })
+                            .catch(error => console.error('Error fetching SDK JSON:', error));
                     })
         })
     } 
@@ -91,3 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// test button lol
+function testme() {
+    let deno_data;
+    fetch('/data/supported/deno.json') 
+        .then(response => response.json())
+        .then(data => {
+            deno_data = data;
+            console.log(deno_data);
+            invoke('testme', { denoInfo: deno_data });
+        })
+        .catch(error => console.error('Error fetching SDK JSON:', error));
+}

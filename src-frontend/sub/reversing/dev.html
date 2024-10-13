@@ -42,7 +42,23 @@
         <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
-
+            <div class="page-navbar">
+              <div class="file-path-container">
+                <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder" value="">
+                <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
+                <button id="refresh-tcoaal-path" class="button-option button-smol-navbar hvr-shrink">♻️</button>
+              </div>
+            </div>
+            <div class="page-container">
+              <div class="file-path-container dropdown-container">
+                <label for="dropdown-menu-devtools" class=>Developer Tools:</label>
+                <select id="dropdown-menu-devtools" class="dropdown-menu">
+                  <option value="disabled">Disabled</option>
+                  <option value="enabled">Enabled</option>
+                </select>
+                <button id="save-devtools" class="button-option button-option-inline hvr-shrink">💾</button>
+              </div>
+            </div>
         </div>
     </div>
     <!-- Progress -->
