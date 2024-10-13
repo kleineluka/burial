@@ -46,12 +46,15 @@ pub fn hausmaerchen_setup(app: &tauri::AppHandle) {
     let haus_path = hausmaerchen_path();
     // next, get the resource path and join it with hausmaerchen
     let resource_path = storage::read_from_store(app, "state-bundled-resources").expect("Failed to read from store");
-    // print resource pat
-    println!("Resource path: {}", resource_path);
     let mut resource_haus_path = std::path::PathBuf::from(resource_path.as_str().unwrap());
     resource_haus_path.push("hausmaerchen");
     // copy the resource hausmaerchen to the cache hausmaerchen
     files::copy_directory(&resource_haus_path.to_string_lossy(), &haus_path.to_string_lossy()).unwrap();
+}
+
+pub fn remove_hausmaerchen() {
+    let haus_path = hausmaerchen_path();
+    std::fs::remove_dir_all(&haus_path).unwrap();
 }
 
 pub fn run_hausmaerchen(window: &tauri::Window, code_path: String, out_path: String, add_comments: bool, rename_variables: bool) -> String {
@@ -71,7 +74,8 @@ pub fn run_hausmaerchen(window: &tauri::Window, code_path: String, out_path: Str
         .arg(format!("--code-path={}", code_path))
         .arg(format!("--out-path={}", out_path))
         .arg(format!("--add-comments={}", add_comments))
-        .arg(format!("--rename-variables={}", rename_variables));
+        .arg(format!("--rename-variables={}", rename_variables))
+        .arg("--pretty-only=false");
     // run the command
     let output = command.output().expect("Failed to execute Deno command");
     // Check the command's output

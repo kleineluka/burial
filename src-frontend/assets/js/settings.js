@@ -16,6 +16,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('version').innerText = version;
 });
 
+// listen for click on advanced-button button
+document.getElementById('advanced-button').addEventListener('click', function() {
+    // toggle class hidden on main-settings and advanced-settings
+    document.getElementById('main-settings').classList.toggle('hidden');
+    document.getElementById('advanced-settings').classList.toggle('hidden');
+});
+
+// listen for click on main-button button
+document.getElementById('main-button').addEventListener('click', function () {
+    // toggle class hidden on main-settings and advanced-settings
+    document.getElementById('main-settings').classList.toggle('hidden');
+    document.getElementById('advanced-settings').classList.toggle('hidden');
+});
+
 // write new settings
 function saveSettings() {
     // get values
@@ -44,6 +58,21 @@ function resetSettings() {
     invoke('reset_settings', {});
 }
 
+// listen for click on remove-deno-button
+document.getElementById('remove-deno-button').addEventListener('click', function () {
+    invoke('remove_deno', {});
+});
+
+// listen for click on remove-hausmaerchen-button
+document.getElementById('remove-hausmaerchen-button').addEventListener('click', function () {
+    invoke('remove_hausmaerchen', {});
+});
+
+// listen for click on install-dev-tools-button
+document.getElementById('install-dev-tools-button').addEventListener('click', function () {
+    invoke('install_dev_tools', {});
+});
+
 // listen for when the settings are saved
 listen('settings-saved', (event) => {
     Swal.fire({
@@ -60,6 +89,42 @@ listen('settings-saved', (event) => {
 listen('settings-reset', (event) => {
     Swal.fire({
         title: "Your settings have been reset!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: true,
+        confirmButtonText: "Yay!",
+        timer: 2000,
+    });
+});
+
+// listen for when the deno is removed
+listen('deno-removed', (event) => {
+    Swal.fire({
+        title: "Deno has been removed!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: true,
+        confirmButtonText: "Yay!",
+        timer: 2000,
+    });
+});
+
+// listen for when the hausmaerchen is removed
+listen('hausmaerchen-removed', (event) => {
+    Swal.fire({
+        title: "Hausmärchen has been removed!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: true,
+        confirmButtonText: "Yay!",
+        timer: 2000,
+    });
+});
+
+// listen for when the dev tools are installed
+listen('dev-tools-installed', (event) => {
+    Swal.fire({
+        title: "Dev tools have been installed!",
         toast: true,
         position: "bottom-right",
         showConfirmButton: true,

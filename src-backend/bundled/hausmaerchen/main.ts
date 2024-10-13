@@ -10,6 +10,7 @@ import writeCode from './steps/writeCode.ts';
 // parse command line arguments, ensure needed are there, and set optional to default values
 const args = parseArgs(Deno.args);
 
+// main function that calls all the steps in order
 async function main() {
     // print help if needed
     console.log('Welcome to Hausmärchen! A tool to deobfuscate code using webcrack and make it a bit more readable.');
@@ -17,13 +18,21 @@ async function main() {
     if (!args['code-path']) throw new Error('arg missing: path-code');
     args['add-comments'] = args['add-comments'] ?? true;
     args['rename-scrambled'] = args['rename-scrambled'] ?? true;
+    args['pretty-only'] = args['pretty-only'] ?? false;
     // call steps, one by one 
     let code = readCode(args); // Step 1: read code from given in-path
+    if (!args['pretty-only']) {
+        code = prettyPrint(code); // only make the code prettier here! for the beautify tab
+        writeCode(code, args['out-path']); // write the code to the given out-path
+        return;
+    }
+    // if not pretty only, continue with the deobfuscation steps
     code = await deobfuscate(code); // Step 2: deobfuscate code using webcrack
     code = prettyPrint(code); // Step 3: make the code a bit nicer to read
     if (args['add-comments']) code = commentWriter(code); // Step 3.1 (optional): add comments to the code
     if (args['rename-scrambled']) code = renameScrambled(code); // Step 3.2 (optional): rename variables and functions
     writeCode(code, args['out-path']); // Step 4: write the code to the given out-path
+    console.log('success');
 }
 
 main().catch(console.error);

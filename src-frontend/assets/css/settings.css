@@ -16,11 +16,33 @@
     bottom: 20px !important
 }
 
-/* top right button for advanced settings */
+/* Advanced Settings */
 .advanced-settings {
     position: absolute;
-    top: 0;
-    right: 0;
-    margin-top: 10px;
-    margin-right: 10px;
+    top: 10px;
+    right: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.advanced-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 125%;
+    margin-left: -12.5%;
+}
+
+.advanced-button-container button {
+    padding: 10px 20px;
+    font-size: 3vmin;
+    color: #F595B2;
+    background-color: #030000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }

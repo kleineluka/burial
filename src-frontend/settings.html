@@ -40,26 +40,28 @@
   <div class="main-content">
     <div class="container">
       <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
-      <div class="file-path-container">
-        <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
-        <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
+      <div id="main-settings">
+        <button id="advanced-button" class="button-action advanced-settings hvr-shrink">Advanced Menu 🧪</button>
+        <div class="file-path-container">
+          <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
+          <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <div class="file-path-container">
+          <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
+          <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+        </div>
+        <button id="save-button" class="decrypt-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
+        <button id="reset-button" class="decrypt-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
+        <button id="tutorial-button" class="decrypt-button navigate-button button-action hvr-shrink" data-page="sub/tutorial/index.html">Open Tutorial 🧸</button>
       </div>
-      <div class="file-path-container">
-        <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
-        <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+      <div id="advanced-settings" class="hidden">
+        <button id="main-button" class="button-action advanced-settings hvr-shrink">Main Settings ⚙️</button>
+        <div class="advanced-button-container">
+          <button id="remove-deno-button" class="hvr-shrink">Remove Deno 🦕</button>
+          <button id="remove-hausmaerchen-button" class="hvr-shrink">Remove Hausmärchen 🍬</button>
+          <button id="install-dev-tools-button" class="hvr-shrink">Install Burial Dev Tools 🐍</button>
+        </div>
       </div>
-      <div>
-        <!-- target game version -->
-      </div>
-      <div>
-        <!-- ui theme option will go here -->
-      </div>
-      <div>
-        <!-- language option will go here -->
-      </div>
-      <button id="save-button" class="decrypt-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
-      <button id="reset-button" class="decrypt-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
-      <button id="tutorial-button" class="decrypt-button navigate-button button-action hvr-shrink" data-page="sub/tutorial/index.html">Open Tutorial 🧸</button>
     </div>
     <!-- footer -->
     <div id="footer" class="footer-container">

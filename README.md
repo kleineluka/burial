@@ -8,7 +8,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 <br>
 **Please** leave a ⭐ Star ⭐ on Github to support!
 <br>
-**Current Status:** 🚧 In Development! 75% Complete! 🚧 
+**Current Status:** 🚧 In Development! 🚧 75% Complete! 
 
 
 [Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [Discord 🥰](https://www.discord.gg/WWxAjJMspk) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
@@ -55,6 +55,8 @@ Burial is a program for **mod players**, **mod creators**, and **data miners**! 
 <!-- Documentation -->
 # Documentation 📻
 Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! If you want to skip right to help with installation, please head over to the [Installation and Help](https://github.com/kleineluka/burial/wiki/Installation-and-Help) page. If you are having trouble with the program beyond installation, check out the [Problems and Questions](https://github.com/kleineluka/burial/wiki/Problems-and-Questions) page. I hope these help! 😇
+
+The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end (vanilla), Python scripts to aid in development, TypeScript (Deno) for deobfuscation, and Javascript for game modification. Whew, that was a lot! 😅 
 
 <!-- Roadmap -->
 # Roadmap 🚧
