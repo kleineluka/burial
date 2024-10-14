@@ -1,5 +1,5 @@
 {
-    "Irina + Hausmaerchan": {
+    "Irina + Hausmärchan": {
         "path": "www/js/plugins/Irina_VisualNovelBusts.js",
         "find": "/data/rules/extraction/IrinaFind.txt",
         "replace": "/data/rules/extraction/IrinaReplace.txt",

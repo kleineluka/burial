@@ -1,11 +1,14 @@
 // populate + update dropdowns
 let methodsData = {};
+let obfuscationData = {};
+let beautifyData = {};
 document.addEventListener('DOMContentLoaded', () => {
+    // fetch the extraction data
     fetch('/data/supported/extraction.json')
         .then(response => response.json())
         .then(data => {
             // clear + populate
-            const dropdown = document.getElementById('dropdown-menu-method');
+            const dropdown = document.getElementById('dropdown-menu-method-extraction');
             dropdown.innerHTML = '';
             Object.keys(data).forEach(key => {
                 const option = document.createElement('option');
@@ -19,6 +22,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             // store data for later
             methodsData = data;
+        })
+        .catch(error => console.error('Error fetching SDK JSON:', error));
+    // fetch the obfuscation data
+    fetch('/data/supported/deobfuscation.json') 
+        .then(response => response.json())
+        .then(data => {
+            // clear + populate
+            const dropdown = document.getElementById('dropdown-menu-method-deobfuscation');
+            dropdown.innerHTML = '';
+            Object.keys(data).forEach(key => {
+                const option = document.createElement('option');
+                option.value = data[key].name;
+                option.text = key;
+                dropdown.appendChild(option);
+            });
+            // store data for later
+            obfuscationData = data;
+        })
+        .catch(error => console.error('Error fetching SDK JSON:', error));
+    // fetch the beautify data
+    fetch('/data/supported/beautify.json') 
+        .then(response => response.json())
+        .then(data => {
+            // clear + populate
+            const dropdown = document.getElementById('dropdown-menu-method-beautify');
+            dropdown.innerHTML = '';
+            Object.keys(data).forEach(key => {
+                const option = document.createElement('option');
+                option.value = data[key].name;
+                option.text = key;
+                dropdown.appendChild(option);
+            });
+            // store data for later
+            beautifyData = data;
         })
         .catch(error => console.error('Error fetching SDK JSON:', error));
 });
@@ -50,7 +87,7 @@ document.getElementById('extract-code').addEventListener('click', function () {
         return;
     }
     // get selected method + values
-    const dropdown = document.getElementById('dropdown-menu-method');
+    const dropdown = document.getElementById('dropdown-menu-method-extraction');
     const selectedPath = dropdown.value;
     const selectedMethod = Object.values(methodsData).find(method => method.path === selectedPath);
     if (selectedMethod) {
@@ -125,6 +162,44 @@ document.getElementById('extract-code').addEventListener('click', function () {
     } 
 });
 
+// do deobfuscation
+document.getElementById('deobfuscate-code').addEventListener('click', function () {
+    // make sure that code path is set
+    const codePath = document.getElementById('code-path-deobfuscate').value;
+    if (codePath === '') {
+        Swal.fire({
+            icon: "error",
+            title: "Please set the path to your extracted code!",
+            showConfirmButton: true
+        });
+        return;
+    }
+    // get selected method
+    const dropdown = document.getElementById('dropdown-menu-method-deobfuscation');
+    const selectedMethod = dropdown.value;
+    // send to backend
+    invoke("beautify_code", { inPath: codePath, deobfuscateMethod: selectedMethod });
+});
+
+// do beautify
+document.getElementById('beautify-code').addEventListener('click', function () {
+    // make sure that code path is set
+    const codePath = document.getElementById('code-path-beautify').value;
+    if (codePath === '') {
+        Swal.fire({
+            icon: "error",
+            title: "Please set the path to your deobfuscated code!",
+            showConfirmButton: true
+        });
+        return;
+    }
+    // get selected method
+    const dropdown = document.getElementById('dropdown-menu-method-beautify');
+    const selectedMethod = dropdown.value;
+    // send to backend
+    invoke("beautify_code", { inPath: codePath, beautifyMethod: selectedMethod });
+});
+
 // switch between horizontal navbars
 document.addEventListener('DOMContentLoaded', () => {
     const navOptions = document.querySelectorAll('.page-navbar-option');
@@ -145,16 +220,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// test button lol
-function testme() {
-    let deno_data;
-    fetch('/data/supported/deno.json') 
-        .then(response => response.json())
-        .then(data => {
-            deno_data = data;
-            console.log(deno_data);
-            invoke('testme', { denoInfo: deno_data });
-        })
-        .catch(error => console.error('Error fetching SDK JSON:', error));
-}

@@ -51,8 +51,8 @@
             <!-- Sub Container -->
             <div id="sub-extract" class="page-container">
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-method" class=>Extraction Method:</label>
-                    <select id="dropdown-menu-method" class="dropdown-menu"></select>
+                    <label for="dropdown-menu-method-extraction" class=>Extraction Method:</label>
+                    <select id="dropdown-menu-method-extraction" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container dropdown-container">
                     <label for="dropdown-menu-auto" class=>Auto Run and Kill:</label>
@@ -83,16 +83,29 @@
                     <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save it?" value="">
                     <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
                 </div>
-                <button id="extract-code" class="button-action hvr-shrink">Extract Game Code 🛸</button>
-                <button class="button-action hvr-shrink" onclick="testme()">Test Me 👑</button>
+                <button id="extract-code" class="button-action code-button hvr-shrink">Extract Game Code 🛸</button>
             </div>
             <div id="sub-deobfuscate" class="page-container hidden">
-                <div class="file-path-container">
-                    <input id="code-path" type="text" class="file-path-input" placeholder="Extracted game code.." value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-method-deobfuscation" class=>Deobfuscation Method:</label>
+                    <select id="dropdown-menu-method-deobfuscation" class="dropdown-menu"></select>
                 </div>
+                <div class="file-path-container">
+                    <input id="code-path-deobfuscate" type="text" class="file-path-input" placeholder="Extracted game code.." value="">
+                    <button id="browse-button-code-deobfuscate" class="browse-button hvr-shrink">Browse</button>
+                </div>
+                <button id="deobfuscate-code" class="button-action code-button hvr-shrink">Deobfuscate Code 🧩</button>
             </div>
             <div id="sub-beautify" class="page-container hidden">
+                <div class="file-path-container dropdown-container">
+                    <label for="dropdown-menu-method-beautify" class=>Beautify Method:</label>
+                    <select id="dropdown-menu-method-beautify" class="dropdown-menu"></select>
+                </div>
+                <div class="file-path-container">
+                    <input id="code-path-beautify" type="text" class="file-path-input" placeholder="Deobfuscated game code.." value="">
+                    <button id="browse-button-code-beautify" class="browse-button hvr-shrink">Browse</button>
+                </div>
+                <button id="beautify-code" class="button-action code-button hvr-shrink">Beautify Code 💄</button>
             </div>
         </div>
     </div>

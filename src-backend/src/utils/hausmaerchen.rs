@@ -74,8 +74,7 @@ pub fn run_hausmaerchen(window: &tauri::Window, code_path: String, out_path: Str
         .arg(format!("--code-path={}", code_path))
         .arg(format!("--out-path={}", out_path))
         .arg(format!("--add-comments={}", add_comments))
-        .arg(format!("--rename-variables={}", rename_variables))
-        .arg("--pretty-only=false");
+        .arg(format!("--rename-variables={}", rename_variables));
     // run the command
     let output = command.output().expect("Failed to execute Deno command");
     // Check the command's output

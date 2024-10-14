@@ -70,7 +70,6 @@ pub fn extract_code(window: Window, in_path: String, in_file: String,
                 window.emit("status", Some("Running hausmaerchen..".to_string())).unwrap();
                 let code_file = Path::new(&out_path).join("tcoaal_code.js");
                 let hausmaerchen_result = hausmaerchen::run_hausmaerchen(&window, code_file.to_string_lossy().to_string(), code_file.to_string_lossy().to_string(), true, true);
-                println!("{}", hausmaerchen_result);
             },
             _ => {
                 // run the deobfuscation method
@@ -83,11 +82,34 @@ pub fn extract_code(window: Window, in_path: String, in_file: String,
 }
 
 #[command]
-pub async fn testme(window: Window, deno_info: deno::DenoInfo) {
-    let os = "windows".to_string();
-    let in_path = r"C:\Users\zoeym\Personal\Projects\Burial\The Coffin of Andy and Leyley";
-    let out_path = r"C:\Users\zoeym\AppData\Roaming\burial\hausmaerchen\test.js";
-    let add_comments = true;
-    let rename_variables = true;
-    //let result = hausmaerchen::run_hausmaerchen(in_path.to_string(), out_path.to_string(), add_comments, rename_variables);
+pub fn deobfuscate_code(window: Window, in_path: String, deobfuscate_method: String) {
+    match deobfuscate_method.as_str() {
+        "hausmaerchen" => {
+            // run hausmaerchen on the file
+            window.emit("status", "Running hausmaerchen...").unwrap();
+            let _ = hausmaerchen::run_hausmaerchen(&window, in_path.clone(), in_path.clone(), true, true);
+            window.emit("status", "Deobfuscation complete!").unwrap();
+
+        },
+        _ => {
+            // run the deobfuscation method
+            window.emit("status", Some("Deobfuscation method not found, skipping..".to_string())).unwrap();
+        }
+    }
+}
+
+#[command]
+pub fn beautify_code(window: Window, in_path: String, beautify_method: String) {
+    match beautify_method.as_str() {
+        "hausmaerchen" => {
+            // run hausmaerchen on the file
+            window.emit("status", Some("Running hausmaerchen..".to_string())).unwrap();
+            let _ = hausmaerchen::run_hausmaerchen(&window, in_path.clone(), in_path.clone(), false, false);
+            window.emit("status", Some("Beautification complete!".to_string())).unwrap();
+        },
+        _ => {
+            // run the beautification method
+            window.emit("status", Some("Beautification method not found, skipping..".to_string())).unwrap();
+        }
+    }
 }
