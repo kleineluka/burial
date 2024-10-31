@@ -18,10 +18,12 @@
 /* Override the Text Input */
 .file-path-input {
     width: 40vmin !important;
+    margin-left: 2vmin;
 }
 
 .browse-button {
     width: 35vmin !important;
+    margin-right: 2vmin;
 }
 
 /* Scrollable Area */
@@ -59,6 +61,7 @@
 .instance-name {
     font-size: 3vmin;
     margin-right: 5px;
+    margin-left: 3vmin;
 }
 
 .instance-date {
@@ -71,10 +74,12 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    margin-right: 2vmin;
 }
 
 .instance-btn {
-    background: #f595b2;
+    /* background: #f595b2; */
+    background: #000;
     width: 6vmin;
     height: 6vmin;
     display: flex;
@@ -87,7 +92,10 @@
 }
 
 .instance-stats {
-    margin-top: 10px;
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+    margin-left: 2vmin;
+    margin-right: 2vmin;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -96,6 +104,6 @@
 
 .instance-stats p {
     margin: 0;
-    font-size: 14px;
+    font-size: 2.25vmin;
     color: #333;
 }

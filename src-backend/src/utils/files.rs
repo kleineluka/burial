@@ -5,6 +5,7 @@ use std::io::{Read, Write};
 use std::collections::HashSet;
 use std::path::{Path, PathBuf};
 use std::process::Command;
+use regex::Regex;
 
 // get the file name (without extension) from a file path
 pub fn file_name(file_path: &str) -> String {
@@ -147,34 +148,54 @@ pub fn backup_file_multiple(file_path: &str) {
 }
 
 // find the latest backup if multiple were made
-#[allow(dead_code)]
-pub fn find_newest_backup(file_path: &str) -> Option<String> {
-    // get the parent directory and file stem from the file path
-    let original_path = Path::new(file_path);
-    let parent_dir = original_path.parent()?;
-    let file_stem = original_path.file_name()?.to_string_lossy();
-    // track highest number
-    let mut highest_number = None;
-    let mut newest_backup = None;
-    // iterate through the files in the parent directory
-    for entry in fs::read_dir(parent_dir).ok()? {
-        let path = entry.ok()?.path();
-        let file_name = path.file_name()?.to_string_lossy();
-        // match filenames like "file.bak", "file.bak1", "file.bak2", etc.
-        if file_name == format!("{}.bak", file_stem) {
-            highest_number = Some(0);
-            newest_backup = Some(path);
-        } else if let Some(suffix) = file_name.strip_prefix(&format!("{}.bak", file_stem)) {
-            if let Ok(number) = suffix.parse::<u32>() {
-                if highest_number.map_or(true, |n| number > n) {
-                    highest_number = Some(number);
-                    newest_backup = Some(path);
+pub fn newest_backup(file_path: &str) -> Option<PathBuf> {
+    let file_parent = Path::new(file_path).parent().unwrap_or_else(|| Path::new("."));
+    println!("File parent: {:?}", file_parent);
+    // regex: capture .bak and .bak<number>
+    let backup_regex = Regex::new(r"(\.bak)(\d+)?").unwrap();
+    // Go through all files in directory
+    let mut newest_backup: Option<(PathBuf, u32)> = None;
+    for entry in fs::read_dir(file_parent).unwrap_or_else(|e| {
+        eprintln!("Failed to read directory '{}': {}", file_parent.display(), e);
+        return fs::read_dir(".").unwrap(); // fallback to current directory to prevent panic
+    }) {
+        // get entry
+        let entry = match entry {
+            Ok(e) => e,
+            Err(e) => {
+                eprintln!("Failed to read directory entry: {}", e);
+                continue;
+            }
+        };
+        // convert file name to string
+        let file_name = match entry.file_name().into_string() {
+            Ok(name) => name,
+            Err(_) => {
+                eprintln!("Failed to convert file name to string for entry: {:?}", entry.path());
+                continue;
+            }
+        };
+        // check if the file name matches the backup pattern
+        if let Some(captures) = backup_regex.captures(&file_name) {
+            let backup_number = captures.get(2).map_or(0, |m| m.as_str().parse().unwrap_or(0));
+            if let Some((_, number)) = newest_backup {
+                if backup_number > number {
+                    newest_backup = Some((entry.path(), backup_number));
                 }
+            } else {
+                newest_backup = Some((entry.path(), backup_number));
             }
         }
     }
-    // convert the newest backup path to a string if found
-    newest_backup.map(|p| p.to_string_lossy().into_owned())
+    newest_backup.map(|(path, _)| path)
+}
+
+// restore the newest backup to be the original (but, first, backup the original)
+pub fn restore_file_multiple(file_path: &str) {
+    println!("Restoring file: {}", file_path);
+    let newest_backup = newest_backup(file_path).unwrap();
+    backup_file(file_path);
+    rename_file(&newest_backup.to_string_lossy(), file_path);
 }
 
 // restore a backup (take a file, remove it, and rename the .bak file to the original name)

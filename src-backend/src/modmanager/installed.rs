@@ -29,8 +29,7 @@ pub struct ModJson {
 }     
 
 // get all of the installed mods
-#[command]
-pub fn get_installed_mods(window: Window, in_path: String) {
+pub fn get_installed_mods(in_path: String) -> Vec<ModFolder> {
     // mods will be present: in_path + www + mods and there each folder will be a mod, and inside that folder, a mod.json file
     let mods_path = format!("{}/www/mods", in_path);
     let mut mods: Vec<ModFolder> = Vec::new();
@@ -58,6 +57,5 @@ pub fn get_installed_mods(window: Window, in_path: String) {
             }
         }
     }
-    // print out the mods
-    println!("{:?}", mods);
+    mods
 }

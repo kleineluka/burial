@@ -6,6 +6,7 @@ pub mod cipher;
 pub mod connection;
 pub mod bytes;
 pub mod game;
+pub mod dates;
 pub mod process;
 pub mod needle;
 pub mod rpgsave;

@@ -35,6 +35,8 @@ use reversing::dev;
 use tutorial::setup;
 use tutorial::finished;
 use modmanager::modloader;
+use modmanager::installed;
+use modmanager::instances;
 use modtools::differences;
 use modtools::modjson;
 
@@ -57,6 +59,7 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "state-operating-system", serde_json::Value::String(utils::environment::get_os().to_owned())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-game-instance", serde_json::Value::String("default".to_string())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-bundled-resources", serde_json::Value::String(utils::environment::get_resources(app).to_string_lossy().to_string())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-starting-page", serde_json::Value::String("home".to_string())).unwrap();
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
@@ -125,6 +128,7 @@ fn main() {
             dev::dev_presences,
             dev::toggle_devtools,
             modloader::install_modloader,
+            modloader::uninstall_modloader,
             modloader::modloader_version,
             modloader::modloader_versions,
             dialogue::export_dialogue,

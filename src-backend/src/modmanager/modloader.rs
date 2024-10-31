@@ -70,7 +70,6 @@ pub async fn install_modloader(window: Window, in_path: String) {
 }
 
 // uninstall the modloader
-#[allow(dead_code)]
 #[command]
 pub fn uninstall_modloader(window: Window, in_path: String) {
     // make sure that the provided path is a valid game folder
@@ -89,8 +88,8 @@ pub fn uninstall_modloader(window: Window, in_path: String) {
     let tomb_dir = format!("{}\\www\\tomb", in_path);
     files::delete_folder(&tomb_dir);
     // restore index.html in game\\www
-    let _game_index_html = format!("{}\\www\\index.html", in_path);
-    //files::restore_file_multiple(&game_index_html);
+    let game_index_html = format!("{}\\www\\index.html", in_path);
+    files::restore_file_multiple(&game_index_html);
     // done + reload installed modloader version
     window.emit("status", "Mod loader uninstalled!").unwrap();
     modloader_version(window, in_path);

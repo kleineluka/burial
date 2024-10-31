@@ -18,32 +18,6 @@ struct Plugin {
     description: String,
 }
 
-// get the game version from the files
-fn game_version(in_path: String) -> String {
-    // navigate from in_path to www/js/main.js
-     let main_js_path = format!("{}/www/js/main.js", in_path);
-    // open main.js
-    let file = File::open(main_js_path).unwrap();
-    let reader = BufReader::new(file);
-    // find const GAME_VERSION = "ANYTHING GOES HERE";
-     for line in reader.lines() {
-        let line = line.unwrap();
-        // Look for the line that contains the GAME_VERSION constant
-        if line.contains("const GAME_VERSION") {
-            // Extract the value between quotes
-            if let Some(start) = line.find('"') {
-                if let Some(end) = line[start + 1..].find('"') {
-                    // Return the extracted version
-                    let game_version = &line[start + 1..start + 1 + end];
-                    return game_version.to_string();
-                }
-            }
-        }
-    }
-    // extract what is in the quotes
-    return "Unknown".to_string();
-}
-
 #[allow(dead_code)]
 #[tauri::command]
 pub fn parse_plugins(in_path: String) -> Result<String, Error> {
@@ -86,13 +60,13 @@ pub fn general_info(window: Window, in_path: String, silent: bool) {
         return;
     }
     // general contains three things: game version, mod loader presence, and sdk presence
-    let game_version = game_version(in_path.clone()); // String
+    let game= game::game_version(in_path.clone()); // String
     let modloader_presence = modloader::modloader_prescence(in_path.clone()); // either True or False
     let sdk_presence = sdk::sdk_prescence(in_path.clone()); // either Player or Developer
     // format it + pack it into a JSON object
     let modloader_formatted = if modloader_presence { "Installed" } else { "Not Installed" };
     let general_info = json!({
-        "game_version": game_version,
+        "game": game,
         "modloader_presence": modloader_formatted,
         "sdk_presence": sdk_presence
     });

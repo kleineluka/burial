@@ -37,7 +37,8 @@ Burial is a program for **mod players**, **mod creators**, and **data miners**! 
 - **Reversing** 🧬: Inject code into the game, export and deobfuscate the game's run-time code, manage NW.js SDK's, enable developer tools, view/edit game information, and create/manage backups of your game files.
 - **Mod Tools** 🖍️:  Create/edit mod json files, create/edit repo json files, generate differences between two mod packages, package your mod, and upload your mod.
 - **Mod Manager** 🍱: Install pre-made modpacks, add/update/remove Tomb modloader, browse and download mods, view/toggle/update installed mods, and create/manage multiple instances of the game.
-- **Knowledge** 📔: View what obfuscated functions do and easily access modding resources.
+- **Knowledge** 📔: View what obfuscated functions and variables do and easily access modding resources.
+- **Easy and Safe** 🍵: Burial is designed with guardrails in mind to help you from messing up your game! And, it's only a few easy clicks to get started~
 - **Quality of Life** 🌸: Pretty GUI (based on Ashley's colours!), persistant settings, built-in tutorials, update checking, lots of emojis..
 - **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial! Burial will **never** implement any anti-DRM or piracy tools. 
 
@@ -68,6 +69,8 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] More User Settings
 - [ ] More Tooltips + Custom Design
 - [ ] Universal and Friendlier™ Path Input Solution
+- [ ] Home Page Setting
+- [ ] Rebrand Mod Tools to Mod Making to avoid confusion
 - [x] Development Build Scripts
 
 <!-- Contribute -->

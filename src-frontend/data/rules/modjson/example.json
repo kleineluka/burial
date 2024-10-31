@@ -1,16 +1,16 @@
 {
 	"id": "epic-ashley_mod1",
 	"name": "The Ashley Graves Mod!",
-	"authors": ["Zoey aka Kleineluka", "Ashley Graves", "Basil"],
-	"description": "I found some tomatoes!",
+	"authors": ["Zoey aka Kleineluka", "Ashley Graves", "Basil", "OneHalf"],
+	"description": "We aren't like that, are we?",
 	"version": "0.0.1",
 	"spec": "0.1.0",
 	"dependencies": {
 		"game": ">=2.0.10",
 		"spec": "0.1.0",
 		"mods": {
-			"real-mod": ">=2.0.1",
-			"fake-mod": ">=0.3.0",
+			"mod-example-one": ">=2.0.1",
+			"oh-another-mod": ">=0.3.0",
 			"modlib": "2.0.7"
 		}
 	},

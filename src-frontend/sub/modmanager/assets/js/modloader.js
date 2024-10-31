@@ -39,6 +39,12 @@ function installSelected() {
     invoke("install_modloader", { inPath } );
 }
 
+// uninstall mod loader
+function uninstallModloader() {
+    const inPath = document.getElementById('tcoaal-path').value;
+    invoke("uninstall_modloader", { inPath } );
+}
+
 // refresh
 function refreshLocal() {
     const dropdown = document.getElementById('dropdown-menu-current');
