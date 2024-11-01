@@ -1,9 +1,37 @@
-/* Where Is The Game Installed? Wiki Page */
+// on load, fire a find game path event use dom to load
+document.addEventListener('DOMContentLoaded', function () {
+    // wait 2 seconds before firing the event to avoid store conflict..
+    setTimeout(function() {
+        invoke('auto_find_game', {}); 
+    }, 3000);
+});
+
+// and in return, listen for game-path
+listen('game-path', (event) => {
+    if (event.payload != 'empty') {
+        const gamePath = event.payload;
+        //gamePath = gamePath.replace(/\\\\/g, '\\');
+        document.getElementById('tcoaal-path').value = gamePath;
+        Swal.fire({
+            title: "TCOAAL Found!",
+            text: "We autofilled it for you! :)",
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: true,
+            confirmButtonText: "Yay!",
+            timer: 5000,
+        });
+    } else {
+        document.getElementById('tcoaal-path').placeholder = 'Your TCOAAL Folder';
+    }
+});
+
+// open wiki page for help locating the game installation
 function findInstall() {
     invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki/Installation-and-Help#how-can-i-find-my-tcoaal-installation-folder' });
 }
 
-/* Delayed Annotation (animate.css breaks it */
+// delayed annotation since animation.css breaks it
 function delayedAnnotation() {
     const title = document.getElementById('change-later');
     const annotation = RoughNotation.annotate(title, { type: 'highlight', color: '#F1E2C5', padding: 200, strokeWidth: 1, iterations: 3 });
@@ -13,7 +41,7 @@ setTimeout(function() {
     delayedAnnotation();
 }, 2500);
 
-/* Check Game Path */
+// validate game path
 document.getElementById('steps-one-button').addEventListener('click', function () {
     // send the path to backend + local storage
     const inPath = document.getElementById('tcoaal-path').value;
@@ -23,7 +51,7 @@ document.getElementById('steps-one-button').addEventListener('click', function (
     invoke('setup_game', { inPath });
 });
 
-/* Listen for Results of Game Path */
+// listen for game path results
 listen('game-status', (event) => {
     /* four options: empty, valid, invalid, saved */
     const inPath = document.getElementById('tcoaal-path').value;

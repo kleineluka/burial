@@ -33,6 +33,7 @@ open = "5.3.0"
 regex = "1.10.6"
 blake3 = "1.5.4"
 diff = "0.1.13"
+winreg = "0.52.0"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

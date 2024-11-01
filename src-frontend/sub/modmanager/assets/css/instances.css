@@ -39,7 +39,7 @@
     align-items: center;
     padding: 10px;
     margin: 10px 10px;
-    background-color: #f7c8d5;
+    background-color: #f595b2;
     border: 1px solid #ddd;
     border-radius: 10px;
 }
@@ -59,7 +59,7 @@
 }
 
 .instance-name {
-    font-size: 3vmin;
+    font-size: 3.2vmin;
     margin-right: 5px;
     margin-left: 3vmin;
 }
@@ -94,16 +94,20 @@
 .instance-stats {
     margin-top: 1vmin;
     margin-bottom: 1vmin;
-    margin-left: 2vmin;
-    margin-right: 2vmin;
+    margin-left: 1vmin;
+    margin-right: 1vmin;
     display: flex;
-    gap: 20px;
+    /* chhange vertical gap */
+    gap: 1vmin;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .instance-stats p {
     margin: 0;
-    font-size: 2.25vmin;
-    color: #333;
+    font-size: 2vmin;
+    color: #fff;
+    background: #000;
+    border-radius: 7.5px;
+    padding: 0.5vmin 1.5vmin;
 }

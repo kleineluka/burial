@@ -8,6 +8,7 @@ use crate::config::cache;
 pub struct Settings {
     pub tcoaal: String,
     pub output: String,
+    pub hotload: bool,
 }
 
 pub fn check_settings() {
@@ -19,6 +20,7 @@ pub fn check_settings() {
         let default_settings = Settings {
             tcoaal: "".to_string(),
             output: "".to_string(),
+            hotload: false,
         };
         // serialize the config to a JSON string
         let json_data = serde_json::to_string_pretty(&default_settings)
@@ -35,6 +37,10 @@ pub fn read_settings() -> Settings {
     // cache_dir + settings.json
     let cache_dir = cache::cache_folder();
     let file_path = cache_dir.join("settings.json");
+    // if it doesn't exist, make default settings first
+    if !file_path.exists() {
+        check_settings();
+    }
     // read the file
     let file = fs::File::open(file_path)
         .expect("Failed to open file");
