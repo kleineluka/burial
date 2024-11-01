@@ -8,20 +8,19 @@ use crate::config::settings;
 
 // try and automatically find the game path for the user, if it's empty
 #[command]
-pub fn auto_find_game(window: Window) {
+pub fn setup_auto_find(window: Window) {
     let current_game_path = storage::read_from_store(&window.app_handle(), "settings-tcoaal").unwrap_or_default();
     // if it's "", try and find the game
     if current_game_path == "" {
-        //pub fn find_installation() -> Result<Option<PathBuf>, Box<dyn Error>> { (if not found path -> errors or returns Ok(None))
+        // try and find the game path, emit response
         let game_path = game::find_installation().unwrap_or(None);
-        // if we found a game path, emit it
         if let Some(path) = game_path {
             window.emit("game-path", path.to_str().unwrap()).unwrap();
             return;
         }
     }
     // emit back an error
-    window.emit("game-status", "empty").unwrap();
+    window.emit("game-path", "empty").unwrap();
 }   
 
 // initial setup screen when the user saves the game path

@@ -2,15 +2,15 @@
 document.addEventListener('DOMContentLoaded', function () {
     // wait 2 seconds before firing the event to avoid store conflict..
     setTimeout(function() {
-        invoke('auto_find_game', {}); 
+        invoke('setup_auto_find', {}); 
     }, 3000);
 });
 
 // and in return, listen for game-path
 listen('game-path', (event) => {
     if (event.payload != 'empty') {
-        const gamePath = event.payload;
-        //gamePath = gamePath.replace(/\\\\/g, '\\');
+        let gamePath = event.payload;
+        gamePath = gamePath.replace(/\\\\/g, '\\');
         document.getElementById('tcoaal-path').value = gamePath;
         Swal.fire({
             title: "TCOAAL Found!",

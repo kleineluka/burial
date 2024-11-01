@@ -1,12 +1,13 @@
-use tauri::Manager;
 // imports
 use tauri::Window;
+use tauri::Manager;
 use tauri::command;
 use crate::config::settings;
 use crate::config::storage;
 use crate::config::cache;
 use crate::utils::deno;
 use crate::utils::files;
+use crate::utils::game;
 use crate::utils::hausmaerchen;
 
 // load settings
@@ -23,12 +24,13 @@ pub fn load_settings(window: Window) {
 
 // write settings
 #[command]
-pub fn save_settings(window: Window, tcoaal: String, output: String) {
+pub fn save_settings(window: Window, tcoaal: String, output: String, hotload: bool) {
     // read the current settings
     let mut settings = settings::read_settings();
     // update the settings
     settings.tcoaal = tcoaal;
     settings.output = output;
+    settings.hotload = hotload;
     // write the updated settings
     settings::write_settings(settings);
     window.emit("settings-saved", {}).unwrap(); 
@@ -80,3 +82,16 @@ pub fn install_dev_tools(window: Window) {
     // open the devtools folder
     files::open_folder(&dev_tools_path.to_string_lossy()).unwrap();
 }
+
+// try and automatically find the game path for the user, if it's empty
+#[command]
+pub fn settings_auto_find(window: Window) {
+    // try and find game path, emit response
+    let game_path = game::find_installation().unwrap_or(None);
+    if let Some(path) = game_path {
+        window.emit("game-path", path.to_str().unwrap()).unwrap();
+        return;
+    }
+    // emit back an error
+    window.emit("game-path", "empty").unwrap();
+}   

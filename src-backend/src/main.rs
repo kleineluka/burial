@@ -63,7 +63,7 @@ fn main() {
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
-            config::storage::insert_into_store(&app.handle(), "settings-launcher-hotload", serde_json::Value::Bool(user_settings.hotload)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-hotload", serde_json::Value::Bool(user_settings.hotload)).unwrap();
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-metadata-server", serde_json::Value::String(app_config.metadata_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
@@ -88,6 +88,7 @@ fn main() {
             settings::remove_deno,
             settings::remove_hausmaerchen,
             settings::install_dev_tools,
+            settings::settings_auto_find,
             metadata::get_local_version,
             commands::navigate,
             commands::folder_dialog,
@@ -95,7 +96,7 @@ fn main() {
             commands::open_browser,
             setup::setup_game,
             setup::setup_settings,
-            setup::auto_find_game,
+            setup::setup_auto_find,
             finished::setup_finish,
             decryption::decrypt,
             encryption::encrypt,

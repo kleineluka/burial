@@ -39,9 +39,11 @@ function saveSettings() {
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
     store.set('settings-output', output);
+    store.set('settings-hotload', document.getElementById('dropdown-menu-hotload').value);
     store.save();
     // set values
-    invoke('save_settings', { tcoaal, output });
+    let hotload = (document.getElementById('dropdown-menu-hotload').value === 'true');
+    invoke('save_settings', { tcoaal, output, hotload});
 }
 
 // reset button
@@ -50,10 +52,12 @@ function resetSettings() {
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', '');
     store.set('settings-output', '');
+    store.set('settings-hotload', 'false');
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
     document.getElementById('output-path').value = '';
+    document.getElementById('dropdown-menu-hotload').value = 'false';
     // set values
     invoke('reset_settings', {});
 }
@@ -71,6 +75,39 @@ document.getElementById('remove-hausmaerchen-button').addEventListener('click', 
 // listen for click on install-dev-tools-button
 document.getElementById('install-dev-tools-button').addEventListener('click', function () {
     invoke('install_dev_tools', {});
+});
+
+// listen for click on auto-button-tcoaal
+document.getElementById('auto-button-tcoaal').addEventListener('click', function () {
+    invoke('settings_auto_find', {});
+});
+
+// listen for game-path
+listen('game-path', (event) => {
+    if (event.payload != "empty") {
+        let gamePath = event.payload;
+        gamePath = gamePath.replace(/\\\\/g, '\\');
+        document.getElementById('tcoaal-path').value = gamePath;
+        Swal.fire({
+            title: "TCOAAL Found!",
+            text: "We autofilled it for you! :)",
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: true,
+            confirmButtonText: "Yay!",
+            timer: 5000,
+        });
+    } else {
+        Swal.fire({
+            title: "TCOAAL wasn't found!",
+            text: "Please try and locate the path manually.",
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: true,
+            confirmButtonText: "Oki..",
+            timer: 5000,
+        });
+    }
 });
 
 // listen for when the settings are saved

@@ -58,8 +58,9 @@ window.onload = async () => {
     // set the user settings if necessary
     const setting_tcoaal = document.getElementById('tcoaal-path');
     const setting_output = document.getElementById('output-path');
+    const setting_hotload = document.getElementById('dropdown-menu-hotload')
     const setting_tcoaal_classes = document.getElementsByClassName('tcoaal-path');
-    const require_settings = setting_tcoaal || setting_output || setting_tcoaal_classes.length > 0;
+    const require_settings = setting_tcoaal || setting_output || setting_output || setting_tcoaal_classes.length > 0;
     if (require_settings) {
         if (setting_tcoaal) {
             const tcoaal = await store.get('settings-tcoaal');
@@ -68,6 +69,10 @@ window.onload = async () => {
         if (setting_output) {
             const output = await store.get('settings-output');
             setting_output.value = output;
+        }
+        if (setting_output) {
+            const hotload = await store.get('settings-hotload');
+            setting_hotload.value = hotload;
         }
         if (setting_tcoaal_classes.length > 0) {
             const tcoaal = await store.get('settings-tcoaal');

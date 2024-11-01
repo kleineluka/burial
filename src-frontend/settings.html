@@ -41,19 +41,31 @@
     <div class="container">
       <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
       <div id="main-settings">
+        <!-- switched to advanced -->
         <button id="advanced-button" class="button-action advanced-settings hvr-shrink">Advanced Menu 🧪</button>
+        <!-- settings -->
         <div class="file-path-container">
           <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
           <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
+          <button id="auto-button-tcoaal" class="browse-button hvr-shrink">Auto</button>
         </div>
         <div class="file-path-container">
           <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
           <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
         </div>
+        <div class="file-path-container dropdown-container">
+          <label for="dropdown-menu-hotload" class=>Instance Player:</label>
+          <select id="dropdown-menu-hotload" class="dropdown-menu">
+            <option value="false">Swap Game Files</option>
+            <option value="true">Hotload Game Files</option>
+          </select>
+        </div>
+        <!-- actions -->
         <button id="save-button" class="decrypt-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
         <button id="reset-button" class="decrypt-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
         <button id="tutorial-button" class="decrypt-button navigate-button button-action hvr-shrink" data-page="sub/tutorial/index.html">Open Tutorial 🧸</button>
       </div>
+      <!-- advanced settings -->
       <div id="advanced-settings" class="hidden">
         <button id="main-button" class="button-action advanced-settings hvr-shrink">Main Settings ⚙️</button>
         <div class="advanced-button-container">
