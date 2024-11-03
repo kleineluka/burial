@@ -20,14 +20,14 @@
 
 .backups-list-container div {
     font-size: 2.5vmin;
-    color: #F595B2;
+    color: var(--main-colour);
 }
 
 .backup-entry {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     border-radius: 5px;
     padding: 10px;
     margin-top: 5px;
@@ -66,7 +66,7 @@
 
 /* Override Default Styles */
 .button-navbar {
-    background-color: #F595B2 !important;
+    background-color: var(--main-colour) !important;
     color: #000 !important;
 }
 
@@ -75,5 +75,5 @@
 }
 
 .advanced-border {
-    border: 2px solid #F595B2 !important;
+    border: 2px solid var(--main-colour) !important;
 }

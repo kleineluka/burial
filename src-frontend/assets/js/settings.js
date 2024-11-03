@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     // load the storage
     const storage = loadStorage();
     if (!storage) return;
+    // autofill other storage options
+    const theme = await storage.get('settings-theme');
+    // dropdown-menu-theme = select <select> element with theme
+    document.getElementById('dropdown-menu-theme').value = theme;
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -16,34 +20,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('version').innerText = version;
 });
 
-// listen for click on advanced-button button
-document.getElementById('advanced-button').addEventListener('click', function() {
-    // toggle class hidden on main-settings and advanced-settings
-    document.getElementById('main-settings').classList.toggle('hidden');
-    document.getElementById('advanced-settings').classList.toggle('hidden');
-});
-
-// listen for click on main-button button
-document.getElementById('main-button').addEventListener('click', function () {
-    // toggle class hidden on main-settings and advanced-settings
-    document.getElementById('main-settings').classList.toggle('hidden');
-    document.getElementById('advanced-settings').classList.toggle('hidden');
-});
-
 // write new settings
-function saveSettings() {
+async function saveSettings() {
     // get values
     var tcoaal = document.getElementById('tcoaal-path').value;
     var output = document.getElementById('output-path').value;
+    var hotload = (document.getElementById('dropdown-menu-hotload').value === 'true');
+    var theme = document.getElementById('dropdown-menu-theme').value;
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
     store.set('settings-output', output);
-    store.set('settings-hotload', document.getElementById('dropdown-menu-hotload').value);
+    store.set('settings-hotload', hotload);
+    store.set('settings-theme', theme);
     store.save();
     // set values
-    let hotload = (document.getElementById('dropdown-menu-hotload').value === 'true');
-    invoke('save_settings', { tcoaal, output, hotload});
+    invoke('save_settings', { tcoaal, output, hotload, theme });
+    // reload theme
+    document.documentElement.setAttribute('data-theme', theme);
 }
 
 // reset button
@@ -52,12 +46,14 @@ function resetSettings() {
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', '');
     store.set('settings-output', '');
-    store.set('settings-hotload', 'false');
+    store.set('settings-hotload', false);
+    store.set('settings-theme', 'ashley');
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
     document.getElementById('output-path').value = '';
     document.getElementById('dropdown-menu-hotload').value = 'false';
+    document.getElementById('dropdown-menu-theme').value = 'ashley';
     // set values
     invoke('reset_settings', {});
 }
@@ -167,5 +163,26 @@ listen('dev-tools-installed', (event) => {
         showConfirmButton: true,
         confirmButtonText: "Yay!",
         timer: 2000,
+    });
+});
+
+// switch between horizontal navbars
+document.addEventListener('DOMContentLoaded', () => {
+    const navOptions = document.querySelectorAll('.page-navbar-option');
+    const subContainers = document.querySelectorAll('.page-container');
+    navOptions.forEach(option => {
+        option.addEventListener('click', (event) => {
+            event.preventDefault();
+            // clear current selection
+            navOptions.forEach(nav => nav.classList.remove('selected'));
+            subContainers.forEach(container => container.classList.add('hidden'));
+            // show what was selected
+            option.classList.add('selected');
+            const id = option.id;
+            const subContainer = document.getElementById(`sub-${id}`);
+            if (subContainer) {
+                subContainer.classList.remove('hidden');
+            }
+        });
     });
 });

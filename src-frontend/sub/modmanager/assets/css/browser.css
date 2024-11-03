@@ -3,7 +3,7 @@
     font-size: 2.5vmin;
     padding-right: 5vmin;
     padding-left: 5vmin;
-    color: #F595B2;
+    color: var(--main-colour);
 }
 
 /* Sorting Row */
@@ -14,7 +14,7 @@
     font-size: 3vmin;
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    color: #F595B2;
+    color: var(--main-colour);
     gap: 20px;
 }
 
@@ -23,14 +23,14 @@
     padding: 2px 15px; 
     font-size: 3vmin; 
     font-family: 'Nunito', sans-serif;
-    background-color: #F595B2; 
+    background-color: var(--main-colour); 
     appearance: none; 
     cursor: pointer; 
     transition: border-color 0.3s;
 }
 
 .sort-circular-dropdown:hover {
-    border-color: #F595B2; 
+    border-color: var(--main-colour); 
 }
 
 /* Mod Entries */
@@ -118,7 +118,7 @@
 }
 
 .mod-tag {
-    background-color: #F595B2; 
+    background-color: var(--main-colour); 
     color: #333; 
     border-radius: 12px; 
     padding: 5px 10px; 

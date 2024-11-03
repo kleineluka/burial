@@ -9,6 +9,7 @@ pub struct Settings {
     pub tcoaal: String,
     pub output: String,
     pub hotload: bool,
+    pub theme: String,
 }
 
 pub fn check_settings() {
@@ -21,6 +22,7 @@ pub fn check_settings() {
             tcoaal: "".to_string(),
             output: "".to_string(),
             hotload: false,
+            theme: "ashley".to_string(),
         };
         // serialize the config to a JSON string
         let json_data = serde_json::to_string_pretty(&default_settings)

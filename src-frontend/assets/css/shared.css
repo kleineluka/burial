@@ -1,3 +1,29 @@
+/* Themes */
+:root {
+    --background-gradient: linear-gradient(135deg, #F595B2 0%, #C37084 100%); /* ashley's Eyes + Background */
+    --main-colour: #F595B2;
+}
+
+[data-theme='ashley'] {
+    --background-gradient: linear-gradient(135deg, #F595B2 0%, #C37084 100%); 
+    --main-colour: #F595B2;
+}
+
+[data-theme='andrew'] {
+    --background-gradient: linear-gradient(135deg, #89D27C 0%, #95B874 100%);
+    --main-colour: #89D27C;
+}
+
+[data-theme='renee'] {
+    --background-gradient: linear-gradient(135deg, #D7DD80 0%, #D8DC94 100%);
+    --main-colour: #D7DD80;
+}
+
+[data-theme='julia'] {
+    --background-gradient: linear-gradient(135deg, #FFEBA2 0%, #D8DC94 100%);
+    --main-colour: #FFEBA2;
+}
+
 /* Font(s) */
 @font-face {
     font-family: 'Noto Sans';
@@ -39,7 +65,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #F595B2 0%, #C37084 100%); /* ashley's Eyes + Background */
+    background: var(--background-gradient);
     font-family: 'Noto Sans', sans-serif;
     overflow: hidden;
     z-index: -2; /* Change this if removing overlay */
@@ -100,7 +126,7 @@ body::after {
     width: 20vmin;
     margin-left: 5px;
     font-size: 3vmin;
-    color: #F595B2;
+    color: var(--main-colour);
     background-color: #000;
     border: none;
     border-radius: 5px;
@@ -120,7 +146,7 @@ body::after {
 .button-option {
     padding: 10px 20px;
     font-size: 3vmin;
-    color: #F595B2;
+    color: var(--main-colour);
     background-color: #000;
     border: none;
     border-radius: 5px;
@@ -146,7 +172,7 @@ body::after {
 .button-action {
     padding: 10px 20px;
     font-size: 3vmin;
-    color: #F595B2;
+    color: var(--main-colour);
     background-color: #030000;
     border: none;
     border-radius: 5px;
@@ -163,7 +189,7 @@ body::after {
     border-radius: 5px;
     border: 1px solid #030000;
     background-color: #030000;
-    color: #F595B2;
+    color: var(--main-colour);
     width: 40vmin;
     text-align: center;
 }
@@ -199,7 +225,7 @@ body::after {
 
 .page-navbar-option {
     text-decoration: none;
-    color: #F595B2;
+    color: var(--main-colour);
     font-weight: 600;
     padding: 5px 15px;
     transition: color 0.3s ease, background-color 0.3s ease;
@@ -207,18 +233,18 @@ body::after {
 
 .page-navbar-option.selected {
     color: #fff;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     border-radius: 5px;
 }
 
 .page-navbar-option.hvr-underline-from-center:before {
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     /* Unused for now, looks clunky.. but I want to rework it eventually */
 }
 
 .page-navbar-option:hover {
     color: #fff;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     border-radius: 5px;
 }
 
@@ -243,6 +269,32 @@ body::after {
 
 .page-container.hidden {
     display: none;
+}
+
+/* Bottom Section of Page Navbar */
+.page-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    background-color: #000;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: 0 auto;
+    font-size: 3vmin;
+}
+
+.disable-bottom-curves {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.bottom-row-button {
+    color: #000 !important;
+    background-color: var(--main-colour) !important;
 }
 
 /* Advanced Settings Dropdown */
@@ -280,13 +332,13 @@ body::after {
     margin-right: 0.5vmin;
     margin-left: 0.5vmin;
     background-color: #000;
-    color: #F595B2;
+    color: var(--main-colour);
     font-size: 2.5vmin;
     padding: 2vmin;
 }
 
 .advanced-settings-button-options-container button.selected {
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     color: #fff;
     font-weight: bold;
     text-decoration: none !important;
@@ -294,4 +346,28 @@ body::after {
 
 #advanced-settings-toggle {
     cursor: pointer;
+}
+
+/* Progress Stuffs */
+.progress-container {
+    flex: 1;
+    margin-left: 25%;
+    transition: margin-left 0.3s ease;
+    position: absolute;
+    bottom: 3%;
+    background: #F1E2C5;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 2.5vmin;
+    display: none;
+    outline: 5px solid black;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.progress-container.toggled {
+    margin-left: 0;
+}
+
+.progress-text {
+    font-size: 2.5vmin;
 }

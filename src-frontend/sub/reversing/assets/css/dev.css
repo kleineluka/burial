@@ -1,13 +1,13 @@
 /* Bring Colour To The Navbar */
 .button-navbar {
-    background-color: #F595B2 !important;
+    background-color: var(--main-colour) !important;
     color: #000 !important;
 }
 
 .button-smol-navbar {
     padding: 9px !important;
     margin-left: 5px !important;
-    background-color: #F595B2 !important;
+    background-color: var(--main-colour) !important;
     color: #000 !important;
 }
 

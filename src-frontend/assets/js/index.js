@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (start_tutorial) {
         invoke('navigate', { page: 'sub/tutorial/index.html' });
     } else {
+        // set the theme
+        const theme = await store.get('settings-theme');
+        if (theme) {
+            const img = document.querySelector('img.center-image');
+            if (img) {
+                const newSrc = img.getAttribute(`data-${theme}`);
+                if (newSrc) {
+                    img.src = newSrc;
+                }
+            }
+        }
         // check the local and remote versions
         const localVersion = await store.get('state-local-version');
         const remoteVersion = await store.get('metadata-version');

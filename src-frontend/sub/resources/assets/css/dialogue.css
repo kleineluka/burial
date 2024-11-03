@@ -17,6 +17,6 @@
 
 /* Override Default Styles to Fit Into Horiz Navbar */
 .button-navbar {
-    background-color: #F595B2 !important;
+    background-color: var(--main-colour) !important;
     color: #000 !important;
 }

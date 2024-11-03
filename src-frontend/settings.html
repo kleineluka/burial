@@ -22,58 +22,108 @@
       <a class="navigate-button hvr-grow" data-page="index.html">Home 🍅</a>
       <a class="navigate-button hvr-grow" data-page="sub/resources/index.html">Resources ✂️</a>
       <a class="navigate-button hvr-grow" data-page="sub/reversing/index.html">Reversing 🧬</a>
-      <a class="navigate-button hvr-grow" data-page="sub/modtools/index.html">Mod Tools 🖍️</a>
       <a class="navigate-button hvr-grow" data-page="sub/modmanager/index.html">Mod Manager 📦</a>
+      <a class="navigate-button hvr-grow" data-page="sub/modmaking/index.html">Mod Making 🖍️</a>
       <a class="navigate-button hvr-grow" data-page="sub/knowledge/index.html">Knowledge 📔</a>
       <a class="navigate-button sidebar-current" data-page="settings.html">Settings 🍪</a>
     </div>
     <div class="sidebar-footer">
       <a id="github-link" class="sidebar-hide-link" target="_blank">
-        <img src="assets/img/github-pink.png" alt="GitHub" class="sidebar-icon hvr-grow">
+        <img src="assets/img/github-pink.png"
+          data-ashley="assets/img/github-pink.png"
+          data-andy="assets/img/github-green.png"
+          data-renee="assets/img/github-yellow.png"
+          data-julia="assets/img/github-yellow.png"
+        alt="GitHub" class="sidebar-icon hvr-grow">
       </a>
       <a id="discord-link" class="sidebar-hide-link" target="_blank">
-        <img src="assets/img/discord-pink.png" alt="Discord" class="sidebar-icon hvr-grow">
+        <img src="assets/img/discord-pink.png" data-ashley="assets/img/discord-pink.png"
+          data-andy="assets/img/discord-green.png" data-renee="assets/img/discord-yellow.png"
+          data-julia="assets/img/discord-yellow.png" alt="Discord" class="sidebar-icon hvr-grow">
+      </a>
+      <a id="attributions-link" class="sidebar-hide-link" target="_blank">
+        <img src="assets/img/heart-pink.png" data-ashley="assets/img/heart-pink.png" data-andy="assets/img/heart-green.png"
+          data-renee="assets/img/heart-yellow.png" data-julia="assets/img/heart-yellow.png" alt="Attributions"
+          class="sidebar-icon hvr-grow">
       </a>
     </div>
   </div>
   <!-- main content -->
   <div class="main-content">
     <div class="container">
-      <img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">
-      <div id="main-settings">
-        <!-- switched to advanced -->
-        <button id="advanced-button" class="button-action advanced-settings hvr-shrink">Advanced Menu 🧪</button>
-        <!-- settings -->
-        <div class="file-path-container">
-          <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
-          <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
-          <button id="auto-button-tcoaal" class="browse-button hvr-shrink">Auto</button>
+      <!--<img src="assets/img/settings.png" alt="" class="header-image hvr-shrink">-->
+        <!-- Horizontal Navbar -->
+        <div class="page-navbar">
+          <a href="#" id="essentials" class="page-navbar-option selected">Essentials</a>
+          <a href="#" id="visuals" class="page-navbar-option">Visuals</a>
+          <a href="#" id="advanced" class="page-navbar-option">Advanced</a>
         </div>
-        <div class="file-path-container">
-          <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
-          <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+        <!-- Sub Container: Essentials -->
+        <div id="sub-essentials" class="page-container disable-bottom-curves">
+          <div class="settings-sub-container">
+            <div class="file-path-container">
+              <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Game Path" value="">
+              <button id="browse-button-tcoaal" class="browse-button hvr-shrink">Browse</button>
+              <button id="auto-button-tcoaal" class="browse-button hvr-shrink">Auto</button>
+            </div>
+            <div class="file-path-container">
+              <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
+              <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
+              <button id="auto-button-tcoaal" class="browse-button hvr-shrink">Auto</button>
+            </div>
+            <div class="file-path-container dropdown-container">
+              <label for="dropdown-menu-hotload" class=>Instance Player:</label>
+              <select id="dropdown-menu-hotload" class="dropdown-menu">
+                <option value="false">Swap Game Files</option>
+                <option value="true">Hotload Game Files</option>
+              </select>
+            </div>
+            <div class="file-path-container dropdown-container">
+              <label for="dropdown-menu-hotload" class=>Check for Updates:</label>
+              <select id="dropdown-menu-hotload" class="dropdown-menu">
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="file-path-container dropdown-container">
-          <label for="dropdown-menu-hotload" class=>Instance Player:</label>
-          <select id="dropdown-menu-hotload" class="dropdown-menu">
-            <option value="false">Swap Game Files</option>
-            <option value="true">Hotload Game Files</option>
-          </select>
+        <!-- Sub Container: Visuals  -->
+        <div id="sub-visuals" class="page-container disable-bottom-curves hidden">
+          <div class="settings-sub-container">
+              <div class="file-path-container dropdown-container">
+                <label for="dropdown-menu-theme" class=>Theme:</label>
+                <select id="dropdown-menu-theme" class="dropdown-menu">
+                  <option value="ashley">Ashley</option>
+                  <option value="andrew">Andrew</option>
+                  <option value="renee">Renee</option>
+                  <option value="julia">Julia</option>
+                </select>
+              </div>
+              <div class="file-path-container dropdown-container">
+                <label for="dropdown-menu-hotload" class=>UI Animations:</label>
+                <select id="dropdown-menu-hotload" class="dropdown-menu">
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              </div>
+          </div>
         </div>
-        <!-- actions -->
-        <button id="save-button" class="decrypt-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
-        <button id="reset-button" class="decrypt-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
-        <button id="tutorial-button" class="decrypt-button navigate-button button-action hvr-shrink" data-page="sub/tutorial/index.html">Open Tutorial 🧸</button>
-      </div>
-      <!-- advanced settings -->
-      <div id="advanced-settings" class="hidden">
-        <button id="main-button" class="button-action advanced-settings hvr-shrink">Main Settings ⚙️</button>
-        <div class="advanced-button-container">
-          <button id="remove-deno-button" class="hvr-shrink">Remove Deno 🦕</button>
-          <button id="remove-hausmaerchen-button" class="hvr-shrink">Remove Hausmärchen 🍬</button>
-          <button id="install-dev-tools-button" class="hvr-shrink">Install Burial Dev Tools 🐍</button>
+        <!-- Sub Container: Advanced -->
+        <div id="sub-advanced" class="page-container disable-bottom-curves hidden">
+          <div class="settings-sub-container">
+            <div class="advanced-button-container">
+              <button id="remove-deno-button" class="hvr-shrink">Remove Deno 🦕</button>
+              <button id="remove-hausmaerchen-button" class="hvr-shrink">Remove Hausmärchen 🍬</button>
+              <button id="install-dev-tools-button" class="hvr-shrink">Install Burial Dev Tools 🐍</button>
+            </div>
+          </div>
         </div>
-      </div>
+        <!-- Bottom Buttons -->
+        <div class="page-bottom">
+          <button id="save-button" class="bottom-row-button button-action hvr-shrink" onclick="saveSettings()">Save 🖍️</button>
+          <button id="reset-button" class="bottom-row-button button-action hvr-shrink" onclick="resetSettings()">Reset 🧼</button>
+          <button id="tutorial-button" class="bottom-row-button navigate-button button-action hvr-shrink" data-page="sub/tutorial/index.html">Open Tutorial 🧸</button>
+        </div>
     </div>
     <!-- footer -->
     <div id="footer" class="footer-container">

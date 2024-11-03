@@ -19,7 +19,7 @@
     font-size: 2.5vmin;
     padding-right: 5vmin;
     padding-left: 5vmin;
-    color: #F595B2;
+    color: var(--main-colour);
 }
 
 /* Bottom Buttons */
@@ -36,7 +36,7 @@
 .button-refresh {
     padding-bottom: 5px;
     font-size: 3.5vmin;
-    color: #F595B2;
+    color: var(--main-colour);
     background-color: #030000;
     border: none;
     border-radius: 5px;

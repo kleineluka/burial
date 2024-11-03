@@ -5,14 +5,14 @@
 }
 
 .dropdown-container {
-    color: #F595B2 !important;
+    color: var(--main-colour) !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
 .dropdown-menu {
     color: #000 !important;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
 }
 
 /* Override the Text Input */
@@ -39,7 +39,7 @@
     align-items: center;
     padding: 10px;
     margin: 10px 10px;
-    background-color: #f595b2;
+    background-color: var(--main-colour);
     border: 1px solid #ddd;
     border-radius: 10px;
 }
@@ -78,7 +78,7 @@
 }
 
 .instance-btn {
-    /* background: #f595b2; */
+    /* background: var(--main-colour); */
     background: #000;
     width: 6vmin;
     height: 6vmin;

@@ -53,7 +53,7 @@
 }
 
 .sidebar-current {
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
@@ -97,7 +97,7 @@
     font-size: 1.5vw;
     border: none;
     border-radius: 5%;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     padding: 10px 15px;
     margin-left: 0.5vmax;
     cursor: pointer;
@@ -113,7 +113,7 @@
     font-size: 1.5vw;
     border: none;
     border-radius: 10%;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
@@ -122,21 +122,4 @@
 
 #toggleSidebar.toggled {
     background-color: #F1E2C5;
-}
-
-/* Progress */
-.progress-container {
-    flex: 1;
-    margin-left: 25%;
-    transition: margin-left 0.3s ease;
-    position: absolute;
-    bottom: 3%;
-}
-
-.progress-container.toggled {
-    margin-left: 0;
-}
-
-.progress-text {
-    font-size: 2.5vmin;
 }

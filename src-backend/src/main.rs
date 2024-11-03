@@ -10,7 +10,7 @@ mod resources;
 mod reversing;
 mod tutorial;
 mod modmanager;
-mod modtools;
+mod modmaking;
 
 // (other) imports
 use tauri::Manager;
@@ -37,8 +37,8 @@ use tutorial::finished;
 use modmanager::modloader;
 use modmanager::installed;
 use modmanager::instances;
-use modtools::differences;
-use modtools::modjson;
+use modmaking::differences;
+use modmaking::modjson;
 
 // main
 fn main() {
@@ -64,6 +64,7 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-hotload", serde_json::Value::Bool(user_settings.hotload)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-theme", serde_json::Value::String(user_settings.theme)).unwrap();
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-metadata-server", serde_json::Value::String(app_config.metadata_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();

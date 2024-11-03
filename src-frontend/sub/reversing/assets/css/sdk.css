@@ -5,12 +5,12 @@
 }
 
 .navbar-dropdown-container {
-    color: #F595B2 !important;
+    color: var(--main-colour) !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
 .navbar-dropdown-menu {
     color: #000 !important;
-    background-color: #F595B2;
+    background-color: var(--main-colour);
 }

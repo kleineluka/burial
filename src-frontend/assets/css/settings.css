@@ -32,17 +32,29 @@
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    width: 125%;
-    margin-left: -12.5%;
 }
 
 .advanced-button-container button {
     padding: 10px 20px;
     font-size: 3vmin;
-    color: #F595B2;
+    color: var(--main-colour);
     background-color: #030000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+/* Container */
+.container {
+    width: 100%;
+}
+
+/* Settings Sub Menus */
+.settings-sub-container {
+    padding-right: 5vmin;
+    padding-left: 5vmin;
+    resize: vertical;
+    max-height: 40vh;
+    overflow-y: auto;
 }

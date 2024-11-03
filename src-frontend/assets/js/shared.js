@@ -44,6 +44,19 @@ function loadStorage() {
 window.onload = async () => {
     // load the store 
     const store = loadStorage();
+    // set the theme
+    const theme = await store.get('settings-theme');
+    if (theme) {
+        // update sidebar icons
+        document.documentElement.setAttribute('data-theme', theme);
+        const imgs = document.querySelectorAll('img.sidebar-icon');
+        imgs.forEach(img => {
+            const newSrc = img.getAttribute(`data-${theme}`);
+            if (newSrc) {
+                img.src = newSrc;
+            }
+        });
+    }
     // set the metadata
     const discord = document.getElementById('discord-link');
     const github = document.getElementById('github-link');
@@ -58,9 +71,8 @@ window.onload = async () => {
     // set the user settings if necessary
     const setting_tcoaal = document.getElementById('tcoaal-path');
     const setting_output = document.getElementById('output-path');
-    const setting_hotload = document.getElementById('dropdown-menu-hotload')
     const setting_tcoaal_classes = document.getElementsByClassName('tcoaal-path');
-    const require_settings = setting_tcoaal || setting_output || setting_output || setting_tcoaal_classes.length > 0;
+    const require_settings = setting_tcoaal || setting_output || setting_tcoaal_classes.length > 0;
     if (require_settings) {
         if (setting_tcoaal) {
             const tcoaal = await store.get('settings-tcoaal');
@@ -69,10 +81,6 @@ window.onload = async () => {
         if (setting_output) {
             const output = await store.get('settings-output');
             setting_output.value = output;
-        }
-        if (setting_output) {
-            const hotload = await store.get('settings-hotload');
-            setting_hotload.value = hotload;
         }
         if (setting_tcoaal_classes.length > 0) {
             const tcoaal = await store.get('settings-tcoaal');
@@ -99,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // listeners for various updates and conditions
 listen('status', (event) => {
     const logElement = document.getElementById('status');
+    const parent = logElement.parentElement;
+    parent.style.display = "block";
     logElement.innerHTML = event.payload;
 });
 

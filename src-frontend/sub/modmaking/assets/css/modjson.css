@@ -197,7 +197,7 @@
 
 .page-navbar .file-path-container .file-path-input {
     color: #000 !important;
-    background-color: #F595B2 !important;
+    background-color: var(--main-colour) !important;
 }
 
 ::placeholder {
@@ -205,7 +205,7 @@
 }
 
 .browse-button {
-    background-color: #F595B2 !important;
+    background-color: var(--main-colour) !important;
     color: #000 !important;
 }
 

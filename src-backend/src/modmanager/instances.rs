@@ -2,8 +2,10 @@
 use std::path::PathBuf;
 use serde::{Serialize, Deserialize};
 use tauri::command;
+use tauri::Manager;
 use tauri::Window;
 use crate::config::cache;
+use crate::config::storage;
 use crate::modmanager::modloader;
 use crate::modmanager::installed;
 use crate::utils::dates;
@@ -49,10 +51,10 @@ pub fn instances_path() -> PathBuf {
 }
 
 // create the default instances.json (of current instance)
-fn default_instances(in_path: String) -> String {
+fn default_instances(window: &Window, in_path: String) -> String {
     // make sure it's even a game folder (?)
     let is_game = game::verify_game(&in_path).unwrap();
-    if (!is_game) {
+    if !is_game {
         return "error:gamepath".to_string();
     } 
     // gather required data about the instance
@@ -89,6 +91,10 @@ fn default_instances(in_path: String) -> String {
     let instances_path = instances_path();
     let instances_file = instances_path.join("instances.json");
     std::fs::write(instances_file, instances_json).unwrap();
+    // branch based on if we are hot loading or not
+    let hotload = storage::read_from_store(&window.app_handle(), "settings-hotload")
+        .map(|v| v.as_bool().unwrap_or(false))
+        .unwrap_or(false);
     // in the game path, make a file called .instance with the instance name
     let instance_file = PathBuf::from(in_path).join(".instance");
     std::fs::write(instance_file, "default").unwrap();
@@ -103,7 +109,7 @@ pub fn load_instances(window: &Window, in_path: String) -> String {
     // check if instances.json exists
     if !instances_file.exists() {
         // create the default instances.json (if it can)
-        let result = default_instances(in_path);
+        let result = default_instances(window, in_path);
         if result == "error:gamepath" {
             return "error:gamepath".to_string();
         }
@@ -126,7 +132,7 @@ pub fn load_current_instance(window: &Window, in_path: String) -> String {
     // check if instances.json exists
     if !instances_file.exists() {
         // create the default instances.json (if it can)
-        let result = default_instances(in_path);
+        let result = default_instances(window, in_path);
         if result == "error:gamepath" {
             return "error:gamepath".to_string();
         }
