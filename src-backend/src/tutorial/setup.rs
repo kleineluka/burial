@@ -48,6 +48,7 @@ pub fn setup_game(window: Window, in_path: String) {
         tcoaal: String::from(in_path),
         output: String::from(""),
         hotload: false,
+        updates: true,
         theme: String::from("ashley"),
     };
     // write the updated settings

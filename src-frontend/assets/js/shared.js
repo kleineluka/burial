@@ -89,20 +89,15 @@ window.onload = async () => {
             }
         }
     }
-};
-
-// listen for button click to navigate between pages 
-document.addEventListener('DOMContentLoaded', () => {
-    // get all elements with the class 'navigate-button'
+    // get all elements with the class 'navigate-button' + loop through the collection and add event listeners
     const navigateButtons = document.getElementsByClassName('navigate-button');
-    // loop through the collection and add event listeners
     for (let i = 0; i < navigateButtons.length; i++) {
         navigateButtons[i].addEventListener('click', (event) => {
             let pageToNavigate = event.target.dataset.page;
             navigatePage(pageToNavigate);
         });
     }
-});
+};
 
 // listeners for various updates and conditions
 listen('status', (event) => {

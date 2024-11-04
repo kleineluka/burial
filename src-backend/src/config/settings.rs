@@ -9,6 +9,7 @@ pub struct Settings {
     pub tcoaal: String,
     pub output: String,
     pub hotload: bool,
+    pub updates: bool,
     pub theme: String,
 }
 
@@ -22,6 +23,7 @@ pub fn check_settings() {
             tcoaal: "".to_string(),
             output: "".to_string(),
             hotload: false,
+            updates: true,
             theme: "ashley".to_string(),
         };
         // serialize the config to a JSON string

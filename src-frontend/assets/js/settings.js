@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (!storage) return;
     // autofill other storage options
     const theme = await storage.get('settings-theme');
-    // dropdown-menu-theme = select <select> element with theme
     document.getElementById('dropdown-menu-theme').value = theme;
+    const hotload = await storage.get('settings-hotload');
+    document.getElementById('dropdown-menu-hotload').value = hotload.toString();
+    const updates = await storage.get('settings-updates');
+    document.getElementById('dropdown-menu-updates').value = updates.toString();
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -26,16 +29,18 @@ async function saveSettings() {
     var tcoaal = document.getElementById('tcoaal-path').value;
     var output = document.getElementById('output-path').value;
     var hotload = (document.getElementById('dropdown-menu-hotload').value === 'true');
+    var updates = (document.getElementById('dropdown-menu-updates').value === 'true');
     var theme = document.getElementById('dropdown-menu-theme').value;
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
     store.set('settings-output', output);
     store.set('settings-hotload', hotload);
+    store.set('settings-updates', updates);
     store.set('settings-theme', theme);
     store.save();
     // set values
-    invoke('save_settings', { tcoaal, output, hotload, theme });
+    invoke('save_settings', { tcoaal, output, hotload, updates, theme });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
 }
@@ -47,6 +52,7 @@ function resetSettings() {
     store.set('settings-tcoaal', '');
     store.set('settings-output', '');
     store.set('settings-hotload', false);
+    store.set('settings-updates', true);
     store.set('settings-theme', 'ashley');
     store.save();
     // set the values to empty
