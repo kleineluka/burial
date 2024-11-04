@@ -68,8 +68,8 @@
             </div>
             <div class="file-path-container">
               <input id="output-path" type="text" class="file-path-input" placeholder="Default Output Folder" value="">
-              <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-              <button id="auto-button-tcoaal" class="browse-button hvr-shrink">Auto</button>
+              <button id="browse-button-output" class="browse-button hvr-shrink">Browse</button>
+              <button id="auto-button-output" class="browse-button hvr-shrink">Auto</button>
             </div>
             <div class="file-path-container dropdown-container">
               <label for="dropdown-menu-hotload" class=>Instance Player:</label>
@@ -79,7 +79,14 @@
               </select>
             </div>
             <div class="file-path-container dropdown-container">
-              <label for="dropdown-menu-updates" class=>Check for Updates:</label>
+              <label for="dropdown-menu-hotload" class=>Instance Storage:</label>
+              <select id="dropdown-menu-hotload" class="dropdown-menu">
+                <option value="false">Only Necessary Files</option>
+                <option value="true">Entire Game (Lots of Space)</option>
+              </select>
+            </div>
+            <div class="file-path-container dropdown-container">
+              <label for="dropdown-menu-updates" class=>Update Check:</label>
               <select id="dropdown-menu-updates" class="dropdown-menu">
                 <option value="true">True</option>
                 <option value="false">False</option>

@@ -35,18 +35,17 @@ use reversing::dev;
 use tutorial::setup;
 use tutorial::finished;
 use modmanager::modloader;
-use modmanager::installed;
 use modmanager::instances;
 use modmaking::differences;
 use modmaking::modjson;
 
 // main
 fn main() {
-    // load the config for the app + fetch metadata (w/ blocking..) + user settings
+    // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..)
     let app_config = app::load_config();
     let rt = tokio::runtime::Runtime::new().unwrap();
-    let metadata = rt.block_on(metadata::get_metadata(&app_config)).unwrap();
     let user_settings = config::settings::read_settings();
+    let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings)).unwrap();
     // build tauri app
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::default().build())
@@ -91,6 +90,7 @@ fn main() {
             settings::remove_hausmaerchen,
             settings::install_dev_tools,
             settings::settings_auto_find,
+            settings::output_auto_find,
             metadata::get_local_version,
             commands::navigate,
             commands::folder_dialog,
@@ -136,6 +136,7 @@ fn main() {
             modloader::uninstall_modloader,
             modloader::modloader_version,
             modloader::modloader_versions,
+            instances::load_instances,
             dialogue::export_dialogue,
             dialogue::import_dialogue,
             dialogue::preview_export,

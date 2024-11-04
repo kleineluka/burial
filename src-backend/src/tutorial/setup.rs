@@ -3,6 +3,7 @@ use tauri::Window;
 use tauri::Manager;
 use tauri::command;
 use crate::config::storage;
+use crate::utils;
 use crate::utils::game;
 use crate::config::settings;
 
@@ -43,10 +44,13 @@ pub fn setup_game(window: Window, in_path: String) {
  // move on to here once we know the path is good or the user doesn't care	
  #[command]
  pub fn setup_settings(window: Window, in_path: String) {
+    // try and get a default output path, if possible
+    let output_path = utils::files::find_output().unwrap_or_default();
+    let output_path_string = output_path.to_str().unwrap_or("").to_string();
      // save the game path
     let settings = settings::Settings {
         tcoaal: String::from(in_path),
-        output: String::from(""),
+        output: output_path_string,
         hotload: false,
         updates: true,
         theme: String::from("ashley"),

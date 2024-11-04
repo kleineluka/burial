@@ -1,4 +1,5 @@
 // imports
+use std::fs;
 use tauri::Window;
 use tauri::Manager;
 use tauri::command;
@@ -96,4 +97,17 @@ pub fn settings_auto_find(window: Window) {
     }
     // emit back an error
     window.emit("game-path", "empty").unwrap();
+}   
+
+// automatically create an output folder in the documents (documents + Burial) or whatever os equivalent
+#[command]
+pub fn output_auto_find(window: Window) {
+    // try and find output path, emit response
+    let output_path = files::find_output();
+    if let Some(path) = output_path {
+        window.emit("output-path", path.to_str().unwrap()).unwrap();
+        return;
+    }
+    // emit back an error
+    window.emit("output-path", "empty").unwrap();
 }   

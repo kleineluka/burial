@@ -84,6 +84,11 @@ document.getElementById('auto-button-tcoaal').addEventListener('click', function
     invoke('settings_auto_find', {});
 });
 
+// listen for click on auto-button-output
+document.getElementById('auto-button-output').addEventListener('click', function () {
+    invoke('output_auto_find', {});
+});
+
 // listen for game-path
 listen('game-path', (event) => {
     if (event.payload != "empty") {
@@ -102,6 +107,34 @@ listen('game-path', (event) => {
     } else {
         Swal.fire({
             title: "TCOAAL wasn't found!",
+            text: "Please try and locate the path manually.",
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: true,
+            confirmButtonText: "Oki..",
+            timer: 5000,
+        });
+    }
+});
+
+// listen for output-path
+listen('output-path', (event) => {
+    if (event.payload != "empty") {
+        let outputPath = event.payload;
+        outputPath = outputPath.replace(/\\\\/g, '\\');
+        document.getElementById('output-path').value = outputPath;
+        Swal.fire({
+            title: "Output Found!",
+            text: "We autofilled it for you! :)",
+            toast: true,
+            position: "bottom-right",
+            showConfirmButton: true,
+            confirmButtonText: "Yay!",
+            timer: 5000,
+        });
+    } else {
+        Swal.fire({
+            title: "Output wasn't found!",
             text: "Please try and locate the path manually.",
             toast: true,
             position: "bottom-right",

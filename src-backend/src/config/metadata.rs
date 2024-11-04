@@ -4,6 +4,9 @@ use serde::{Deserialize, Serialize};
 use tokio::time::{self, Duration};
 use reqwest::Error;
 use crate::config::app;
+use crate::config::settings;
+
+use super::settings::Settings;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Metadata {
@@ -26,7 +29,11 @@ impl Default for Metadata {
 }
 
 // load the metadata from the url
-pub async fn get_metadata(app_config: &app::Config) -> Result<Metadata, Error> {
+pub async fn get_metadata(app_config: &app::Config, user_settings: &Settings) -> Result<Metadata, Error> {
+    // if the user doesn't want to fetch metadata, return the default (RESPECT PRIVACY!!!!!!!!!!!!)
+    if !user_settings.updates {
+        return Ok(Metadata::default());
+    }
     // since we are going to be blocking, it's a safe bet to set a timeout
     let timeout_duration = Duration::from_secs(app_config.metadata_timeout);
     match time::timeout(timeout_duration, reqwest::get(&app_config.metadata_server)).await {

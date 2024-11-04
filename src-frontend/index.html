@@ -88,4 +88,15 @@
 <script src="assets/ext/sweetalert2.min.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/index.js"></script>
+<!-- if the page was redirected from a 404 and not properly loaded -->
+<script>
+  // this is only relevant for development, we can disable it in prod builds!
+  document.addEventListener("DOMContentLoaded", function () {
+    // see if the scripts were loaded
+    if (typeof Swal === 'undefined') {
+      // redirect one level up
+      window.location.href = '../index.html';
+    }
+  });
+</script>
 </html>

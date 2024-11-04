@@ -297,3 +297,23 @@ pub fn index_directory_all<P: AsRef<Path>>(dir: P) -> (usize, Vec<String>) {
         .collect();
     (file_count, folder_names)
 }
+
+pub fn find_output() -> Option<PathBuf> {
+    // find documents
+    let documents_dir = match dirs::document_dir() {
+        Some(dir) => dir,
+        None => {
+            return None;
+        }
+    };
+    // make burial folder in it
+    let burial_dir = documents_dir.join("burial");
+    if !burial_dir.exists() {
+        if let Err(e) = fs::create_dir_all(&burial_dir) {
+            eprintln!("Failed to create burial directory: {}", e);
+            return None;
+        }
+    }
+    // return the burial folder
+    Some(burial_dir)
+}

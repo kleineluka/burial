@@ -111,3 +111,22 @@
     border-radius: 7.5px;
     padding: 0.5vmin 1.5vmin;
 }
+
+.instance-info {
+    font-size: 3vmin;
+    padding-right: 3vmin;
+    padding-left: 3vmin;
+    padding-top: 1.5vmin;
+    padding-bottom: 1.5vmin;
+}
+
+.instance-info a {
+    color: #fff;
+    background-color: #000;
+    border-radius: 10px;
+    padding: 0.5vmin;
+    margin-right: 0.25vmin;
+    margin-left: 0.25vmin;
+    text-decoration: none;
+    line-height: 5vmin;
+}

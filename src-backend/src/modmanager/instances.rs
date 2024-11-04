@@ -42,7 +42,7 @@ pub fn verify_instances() {
     }
 }
 
-// return deno path
+// return instances path
 pub fn instances_path() -> PathBuf {
     verify_instances();
     let cache = cache::cache_folder();
@@ -74,7 +74,7 @@ fn default_instances(window: &Window, in_path: String) -> String {
     let days_passed = dates::days_passed(date.clone());
     let game_version = game::game_version(in_path.clone());
     let instance = GameInstance {
-        name: "default".to_string(),
+        name: "Default".to_string(),
         last_played: days_passed,
         index_kind: index_kind,
         mod_count: total_mods,
@@ -102,16 +102,18 @@ fn default_instances(window: &Window, in_path: String) -> String {
 }
 
 // load instances
-pub fn load_instances(window: &Window, in_path: String) -> String {
+#[command]
+pub fn load_instances(window: Window, in_path: String) {
     // get the instances path
     let instances_path = instances_path();
     let instances_file = instances_path.join("instances.json");
     // check if instances.json exists
     if !instances_file.exists() {
         // create the default instances.json (if it can)
-        let result = default_instances(window, in_path);
+        let result = default_instances(&window, in_path);
         if result == "error:gamepath" {
-            return "error:gamepath".to_string();
+            window.emit("instances-errored", "gamepath").unwrap();
+            return;
         }
     }
     // read the file
@@ -121,7 +123,7 @@ pub fn load_instances(window: &Window, in_path: String) -> String {
     // to hold off errors for now
     let instances = serde_json::to_string(&instances).unwrap();
     // return the instances
-    instances
+    window.emit("instances-loaded", instances).unwrap();
 }
 
 // load current instance
@@ -147,6 +149,12 @@ pub fn load_current_instance(window: &Window, in_path: String) -> String {
     let current_instance = serde_json::to_string(&current_instance).unwrap();
     // return the current instance
     current_instance
+}
+
+// rename an instance
+#[command]
+pub fn rename_instance(window: Window, old_name: String, new_name: String) {
+    // to-do
 }
 
 // clone an instance
