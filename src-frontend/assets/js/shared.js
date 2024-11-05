@@ -57,6 +57,22 @@ window.onload = async () => {
             }
         });
     }
+    // disable animations if necessary (boring!)
+    const animations = await store.get('settings-animations');
+    if (!animations) {
+        // add disable-animations class to body
+        document.body.classList.add('disable-animations');
+        // remove hvr-<animation> from all classes that have one (ex. hvr-grow, hvr-shrink, etc - it can be any of them)
+        const elements = document.querySelectorAll('[class*="hvr-"]');
+        elements.forEach(element => {
+            const classes = element.classList;
+            for (let i = 0; i < classes.length; i++) {
+                if (classes[i].includes('hvr-')) {
+                    element.classList.remove(classes[i]);
+                }
+            }
+        });
+    }
     // set the metadata
     const discord = document.getElementById('discord-link');
     const github = document.getElementById('github-link');

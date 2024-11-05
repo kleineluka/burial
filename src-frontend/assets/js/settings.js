@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     const storage = loadStorage();
     if (!storage) return;
     // autofill other storage options
-    const theme = await storage.get('settings-theme');
-    document.getElementById('dropdown-menu-theme').value = theme;
     const biginstance = await storage.get('settings-biginstance');
     document.getElementById('dropdown-menu-biginstance').value = biginstance.toString();
     const updates = await storage.get('settings-updates');
     document.getElementById('dropdown-menu-updates').value = updates.toString();
+    const theme = await storage.get('settings-theme');
+    document.getElementById('dropdown-menu-theme').value = theme;
+    const animations = await storage.get('settings-animations');
+    document.getElementById('dropdown-menu-animations').value = animations.toString();
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -31,6 +33,7 @@ async function saveSettings() {
     var biginstance = (document.getElementById('dropdown-menu-biginstance').value === 'true');
     var updates = (document.getElementById('dropdown-menu-updates').value === 'true');
     var theme = document.getElementById('dropdown-menu-theme').value;
+    var animations = (document.getElementById('dropdown-menu-animations').value === 'true');
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
@@ -38,9 +41,10 @@ async function saveSettings() {
     store.set('settings-biginstance', biginstance);
     store.set('settings-updates', updates);
     store.set('settings-theme', theme);
+    store.set('settings-animations', animations);
     store.save();
     // set values
-    invoke('save_settings', { tcoaal, output, biginstance, updates, theme });
+    invoke('save_settings', { tcoaal, output, biginstance, updates, theme, animations });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -50,6 +54,21 @@ async function saveSettings() {
             img.src = newSrc;
         }
     });
+    // reload animations
+    if (!animations) {
+        document.body.classList.add('disable-animations');
+        const elements = document.querySelectorAll('[class*="hvr-"]');
+        elements.forEach(element => {
+            const classes = element.classList;
+            for (let i = 0; i < classes.length; i++) {
+                if (classes[i].includes('hvr-')) {
+                    element.classList.remove(classes[i]);
+                }
+            }
+        });
+    } else {
+        document.body.classList.remove('disable-animations');
+    }
 }
 
 // reset button
@@ -60,12 +79,14 @@ function resetSettings() {
     store.set('settings-output', '');
     store.set('settings-updates', true);
     store.set('settings-theme', 'ashley');
+    store.set('settings-animations', true);
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
     document.getElementById('output-path').value = '';
     document.getElementById('dropdown-menu-biginstance').value = 'false';
     document.getElementById('dropdown-menu-theme').value = 'ashley';
+    document.getElementById('dropdown-menu-animations').value = 'true';
     // set values
     invoke('reset_settings', {});
 }

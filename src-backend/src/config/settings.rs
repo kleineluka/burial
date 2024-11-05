@@ -11,6 +11,7 @@ pub struct Settings {
     pub biginstance: bool,
     pub updates: bool,
     pub theme: String,
+    pub animations: bool,
 }
 
 pub fn check_settings() {
@@ -25,6 +26,7 @@ pub fn check_settings() {
             biginstance: false,
             updates: true,
             theme: "ashley".to_string(),
+            animations: true,
         };
         // serialize the config to a JSON string
         let json_data = serde_json::to_string_pretty(&default_settings)

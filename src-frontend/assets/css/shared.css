@@ -371,3 +371,9 @@ body::after {
 .progress-text {
     font-size: 2.5vmin;
 }
+
+/* Disable Animations Universally (if desired) */
+.disable-animations * {
+    animation: none !important;
+    transition: none !important;
+}
