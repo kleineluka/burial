@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     // autofill other storage options
     const theme = await storage.get('settings-theme');
     document.getElementById('dropdown-menu-theme').value = theme;
-    const hotload = await storage.get('settings-hotload');
-    document.getElementById('dropdown-menu-hotload').value = hotload.toString();
+    const biginstance = await storage.get('settings-biginstance');
+    document.getElementById('dropdown-menu-biginstance').value = biginstance.toString();
     const updates = await storage.get('settings-updates');
     document.getElementById('dropdown-menu-updates').value = updates.toString();
     // set footer based on operating system
@@ -28,21 +28,28 @@ async function saveSettings() {
     // get values
     var tcoaal = document.getElementById('tcoaal-path').value;
     var output = document.getElementById('output-path').value;
-    var hotload = (document.getElementById('dropdown-menu-hotload').value === 'true');
+    var biginstance = (document.getElementById('dropdown-menu-biginstance').value === 'true');
     var updates = (document.getElementById('dropdown-menu-updates').value === 'true');
     var theme = document.getElementById('dropdown-menu-theme').value;
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
     store.set('settings-output', output);
-    store.set('settings-hotload', hotload);
+    store.set('settings-biginstance', biginstance);
     store.set('settings-updates', updates);
     store.set('settings-theme', theme);
     store.save();
     // set values
-    invoke('save_settings', { tcoaal, output, hotload, updates, theme });
+    invoke('save_settings', { tcoaal, output, biginstance, updates, theme });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
+    const imgs = document.querySelectorAll('img.sidebar-icon');
+    imgs.forEach(img => {
+        const newSrc = img.getAttribute(`data-${theme}`);
+        if (newSrc) {
+            img.src = newSrc;
+        }
+    });
 }
 
 // reset button
@@ -51,14 +58,13 @@ function resetSettings() {
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', '');
     store.set('settings-output', '');
-    store.set('settings-hotload', false);
     store.set('settings-updates', true);
     store.set('settings-theme', 'ashley');
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
     document.getElementById('output-path').value = '';
-    document.getElementById('dropdown-menu-hotload').value = 'false';
+    document.getElementById('dropdown-menu-biginstance').value = 'false';
     document.getElementById('dropdown-menu-theme').value = 'ashley';
     // set values
     invoke('reset_settings', {});
@@ -124,8 +130,8 @@ listen('output-path', (event) => {
         outputPath = outputPath.replace(/\\\\/g, '\\');
         document.getElementById('output-path').value = outputPath;
         Swal.fire({
-            title: "Output Found!",
-            text: "We autofilled it for you! :)",
+            title: "Default Output Set!",
+            text: "We autofilled a Burial folder in your documents!",
             toast: true,
             position: "bottom-right",
             showConfirmButton: true,

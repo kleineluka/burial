@@ -25,13 +25,13 @@ pub fn load_settings(window: Window) {
 
 // write settings
 #[command]
-pub fn save_settings(window: Window, tcoaal: String, output: String, hotload: bool, updates: bool, theme: String) {
+pub fn save_settings(window: Window, tcoaal: String, output: String, biginstance: bool, updates: bool, theme: String) {
     // read the current settings
     let mut settings = settings::read_settings();
     // update the settings
     settings.tcoaal = tcoaal;
     settings.output = output;
-    settings.hotload = hotload;
+    settings.biginstance = biginstance;
     settings.updates = updates;
     settings.theme = theme;
     // write the updated settings

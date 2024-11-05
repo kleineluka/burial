@@ -4,6 +4,7 @@ use serde::{Serialize, Deserialize};
 use tauri::command;
 use tauri::Manager;
 use tauri::Window;
+use crate::config;
 use crate::config::cache;
 use crate::config::storage;
 use crate::modmanager::modloader;
@@ -51,7 +52,7 @@ pub fn instances_path() -> PathBuf {
 }
 
 // create the default instances.json (of current instance)
-fn default_instances(window: &Window, in_path: String) -> String {
+fn default_instances(in_path: String) -> String {
     // make sure it's even a game folder (?)
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
@@ -92,9 +93,7 @@ fn default_instances(window: &Window, in_path: String) -> String {
     let instances_file = instances_path.join("instances.json");
     std::fs::write(instances_file, instances_json).unwrap();
     // branch based on if we are hot loading or not
-    let hotload = storage::read_from_store(&window.app_handle(), "settings-hotload")
-        .map(|v| v.as_bool().unwrap_or(false))
-        .unwrap_or(false);
+
     // in the game path, make a file called .instance with the instance name
     let instance_file = PathBuf::from(in_path).join(".instance");
     std::fs::write(instance_file, "default").unwrap();
@@ -110,10 +109,13 @@ pub fn load_instances(window: Window, in_path: String) {
     // check if instances.json exists
     if !instances_file.exists() {
         // create the default instances.json (if it can)
-        let result = default_instances(&window, in_path);
+        let result = default_instances(in_path);
         if result == "error:gamepath" {
             window.emit("instances-errored", "gamepath").unwrap();
             return;
+        } else {
+            // set in the local cache the active instance (Default)
+            let _ = config::storage::insert_into_store(&window.app_handle(), "active-instance", serde_json::Value::String("Default".to_string())).unwrap();
         }
     }
     // read the file
@@ -126,6 +128,36 @@ pub fn load_instances(window: Window, in_path: String) {
     window.emit("instances-loaded", instances).unwrap();
 }
 
+// load active instance
+pub fn active_instance(in_path: String) -> String {
+    // first of, see if the game path is valid
+    let is_game = game::verify_game(&in_path).unwrap();
+    if !is_game {
+        return "default".to_string();
+    }
+    // first - try and load the instance from the .instance file
+    let instance_file = PathBuf::from(in_path.clone()).join(".instance");
+    if instance_file.exists() {
+        let instance = std::fs::read_to_string(instance_file).unwrap();
+        return instance;
+    }
+    // if the file doesn't exist, let's look at the instances.json
+    let instances_path = instances_path();
+    let instances_file = instances_path.join("instances.json");
+    if !instances_file.exists() {
+        // create the default instances.json (if it can)
+        let result = default_instances(in_path.clone());
+        if result == "error:gamepath" {
+            return "default".to_string();
+        }
+    }
+    // get the active instance
+    let instances_json = std::fs::read_to_string(instances_file).unwrap();
+    let instances: GameInstances = serde_json::from_str(&instances_json).unwrap();
+    let active_instance = instances.instances.iter().find(|&x| x.is_active == true).unwrap();
+    active_instance.name.clone()
+}
+
 // load current instance
 pub fn load_current_instance(window: &Window, in_path: String) -> String {
     // get the instances path
@@ -134,7 +166,7 @@ pub fn load_current_instance(window: &Window, in_path: String) -> String {
     // check if instances.json exists
     if !instances_file.exists() {
         // create the default instances.json (if it can)
-        let result = default_instances(window, in_path);
+        let result = default_instances(in_path);
         if result == "error:gamepath" {
             return "error:gamepath".to_string();
         }
