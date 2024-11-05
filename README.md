@@ -20,7 +20,7 @@ A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900
 <!-- Navigation + Preview -->
 <div align="center">
 
-[Features 🐰](#features-) • [Install ☕](#install-) • [Documentation 📻](#guides--faq-) • [Roadmap 🚧](#roadmap-) • [Contribute 🩷](https://github.com/kleineluka/burial/wiki/Contributing)) • [Credits 🎉](https://github.com/kleineluka/burial/blob/main/ATTRIBUTIONS.md)
+[Features 🐰](#features-) • [Install ☕](#install-) • [Documentation 📻](#guides--faq-) • [Roadmap 🚧](#roadmap-) • [Contribute 🩷](https://github.com/kleineluka/burial/wiki/Contributing) • [Credits 🎉](https://github.com/kleineluka/burial/blob/main/ATTRIBUTIONS.md)
 
 <br>
 
