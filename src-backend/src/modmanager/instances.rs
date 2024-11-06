@@ -51,6 +51,15 @@ pub fn instances_path() -> PathBuf {
     instances_path
 }
 
+// check if an instance name is available
+fn instance_name_available(instances: &GameInstances, name: String) -> bool {
+    let instance = instances.instances.iter().find(|x| x.name == name);
+    if instance.is_none() {
+        return true;
+    }
+    false
+}
+
 // create the default instances.json (of current instance)
 fn default_instances(in_path: String) -> String {
     // make sure it's even a game folder (?)
@@ -96,36 +105,8 @@ fn default_instances(in_path: String) -> String {
 
     // in the game path, make a file called .instance with the instance name
     let instance_file = PathBuf::from(in_path).join(".instance");
-    std::fs::write(instance_file, "default").unwrap();
+    std::fs::write(instance_file, "Default").unwrap();
     "success".to_string()
-}
-
-// load instances
-#[command]
-pub fn load_instances(window: Window, in_path: String) {
-    // get the instances path
-    let instances_path = instances_path();
-    let instances_file = instances_path.join("instances.json");
-    // check if instances.json exists
-    if !instances_file.exists() {
-        // create the default instances.json (if it can)
-        let result = default_instances(in_path);
-        if result == "error:gamepath" {
-            window.emit("instances-errored", "gamepath").unwrap();
-            return;
-        } else {
-            // set in the local cache the active instance (Default)
-            let _ = config::storage::insert_into_store(&window.app_handle(), "active-instance", serde_json::Value::String("Default".to_string())).unwrap();
-        }
-    }
-    // read the file
-    let instances_json = std::fs::read_to_string(instances_file).unwrap();
-    // parse the json
-    let instances: GameInstances = serde_json::from_str(&instances_json).unwrap();
-    // to hold off errors for now
-    let instances = serde_json::to_string(&instances).unwrap();
-    // return the instances
-    window.emit("instances-loaded", instances).unwrap();
 }
 
 // load active instance
@@ -133,7 +114,7 @@ pub fn active_instance(in_path: String) -> String {
     // first of, see if the game path is valid
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
-        return "default".to_string();
+        return "Default".to_string();
     }
     // first - try and load the instance from the .instance file
     let instance_file = PathBuf::from(in_path.clone()).join(".instance");
@@ -148,7 +129,7 @@ pub fn active_instance(in_path: String) -> String {
         // create the default instances.json (if it can)
         let result = default_instances(in_path.clone());
         if result == "error:gamepath" {
-            return "default".to_string();
+            return "Default".to_string();
         }
     }
     // get the active instance
@@ -183,14 +164,166 @@ pub fn load_current_instance(window: &Window, in_path: String) -> String {
     current_instance
 }
 
+// load instances
+#[command]
+pub fn load_instances(window: Window, in_path: String) {
+    // get the instances path
+    let instances_path = instances_path();
+    let instances_file = instances_path.join("instances.json");
+    // check if instances.json exists
+    if !instances_file.exists() {
+        // create the default instances.json (if it can)
+        let result = default_instances(in_path);
+        if result == "error:gamepath" {
+            window.emit("instances-errored", "gamepath").unwrap();
+            return;
+        } else {
+            // set in the local cache the active instance (Default)
+            let _ = config::storage::insert_into_store(&window.app_handle(), "active-instance", serde_json::Value::String("Default".to_string())).unwrap();
+        }
+    }
+    // read the file
+    let instances_json = std::fs::read_to_string(instances_file).unwrap();
+    // parse the json
+    let instances: GameInstances = serde_json::from_str(&instances_json).unwrap();
+    // to hold off errors for now
+    let instances = serde_json::to_string(&instances).unwrap();
+    // return the instances
+    window.emit("instances-loaded", instances).unwrap();
+}
+
+// instance verifier
+#[command]
+pub fn verify_instance(window: Window, instance: String) {
+    // get the instances path
+    let instances_path = instances_path();
+    let instances_file = instances_path.join("instances.json");
+    // check if instances.json exists, if not, error + return
+    if !instances_file.exists() {
+        window.emit("instances-verification", "error").unwrap();
+        return;
+    }
+    // read the file
+    let instances_json = std::fs::read_to_string(instances_file).unwrap();
+    // parse the json
+    let instances: GameInstances = serde_json::from_str(&instances_json).unwrap();
+    // see if the instance exists
+    let instance_exists = instances.instances.iter().find(|&x| x.name == instance);
+    if instance_exists.is_none() {
+        window.emit("instances-verification", "error").unwrap();
+        return;
+    }
+    window.emit("instances-verification", "success").unwrap();
+}
+
+// refresh active instance
+#[command]
+pub fn refresh_active(window: Window, in_path: String) {
+    // wrapper for active_instance to update on load
+    let active = active_instance(in_path);
+    window.emit("active-instance", active).unwrap();
+}
+
 // rename an instance
 #[command]
-pub fn rename_instance(window: Window, old_name: String, new_name: String) {
-    // to-do
+pub fn rename_instance(window: Window, in_path: String, old_name: String, new_name: String) {
+    // there are two places to rename the instance:.instance file, instances.json
+    window.emit("status", "Loading instances from storage..").unwrap();
+    let instances_path = instances_path();
+    let instances_file = instances_path.join("instances.json");
+    // read the file
+    let instances_json = std::fs::read_to_string(&instances_file).unwrap();
+    // parse the json
+    let mut instances: GameInstances = serde_json::from_str(&instances_json).unwrap();
+    // make sure 1) the instance exists
+    window.emit("status", "Making sure the name is not taken..").unwrap();
+    if instances.instances.iter().find(|x| x.name == old_name).is_none() {
+        window.emit("instances-renamed", "errror-nonexistant").unwrap();
+        return;
+    }
+    // and 2) the new name doesn't already exist
+    if !instance_name_available(&instances, new_name.clone()) {
+        window.emit("instances-renamed", "error-taken").unwrap();
+        return;
+    }
+    // find the instance
+    window.emit("status", "Renaming instance~").unwrap();
+    let instance = instances.instances.iter_mut().find(|x| x.name == old_name).unwrap();
+    // rename the instance
+    instance.name = new_name.clone();
+    // write the file
+    let instances_json = serde_json::to_string(&instances).unwrap();
+    std::fs::write(instances_file, instances_json).unwrap();
+    // rename the .instance file IF it is the old name (aka the active instance)
+    window.emit("status", "Checking active instance..").unwrap();
+    let active_file = PathBuf::from(in_path.clone()).join(".instance");
+    if active_file.exists() {
+        let active_instance = std::fs::read_to_string(&active_file).unwrap();
+        if active_instance == old_name {
+            window.emit("status", "Changing active instance to new name..").unwrap();
+            std::fs::write(active_file, new_name.clone()).unwrap();
+        }
+    }
+    // update the active instance
+    let active = active_instance(in_path.clone());
+    window.emit("active-instance", active).unwrap();
+    // update the instances
+    let instances = serde_json::to_string(&instances).unwrap();
+    window.emit("instances-loaded", instances).unwrap();
+    // return success
+    window.emit("status", format!("Instance renamed to {}!", &new_name)).unwrap();
+    window.emit("instances-renamed", "success").unwrap();
 }
 
 // clone an instance
 #[command]
-pub fn clone_instance(window: Window, in_path: String, instance_name: String) {
-    // to do
+pub fn clone_instance(window: Window, in_path: String, old_instance: String, new_instance: String) {
+    // load instances
+    window.emit("status", "Loading instances from storage..").unwrap();
+    let instances_path = instances_path();
+    let instances_file = instances_path.join("instances.json");
+    // read the file
+    let instances_json = std::fs::read_to_string(&instances_file).unwrap();
+    // parse the json
+    let mut instances: GameInstances = serde_json::from_str(&instances_json).unwrap();
+    // make sure 1) the instance exists
+    window.emit("status", "Making sure the name is not taken..").unwrap();
+    if instances.instances.iter().find(|x| x.name == old_instance).is_none() {
+        window.emit("instances-cloned", "errror-nonexistant").unwrap();
+        return;
+    }
+    // and 2) the new name doesn't already exist
+    if !instance_name_available(&instances, new_instance.clone()) {
+        window.emit("instances-cloned", "error-taken").unwrap();
+        return;
+    }
+    // and now, copy all files in instances_path/old/ to instances_path/new/
+    window.emit("status", "Cloning instance files..").unwrap();
+    let old_instance_path = instances_path.join(old_instance.clone());
+    // make sure old instance exists (just called empty for easy error handling)
+    if !old_instance_path.exists() {
+        window.emit("instances-cloned", "error-empty").unwrap();
+        return;
+    }
+    let new_instance_path = instances_path.join(new_instance.clone());
+    std::fs::create_dir(&new_instance_path).unwrap();
+    // copy all files
+    let _ = std::fs::copy(&old_instance_path, &new_instance_path).unwrap();
+    // find the instance
+    window.emit("status", "Adding new instance to the registry~").unwrap();
+    let instance = instances.instances.iter().find(|x| x.name == old_instance).unwrap();
+    // clone the instance
+    let new_instance = GameInstance {
+        name: new_instance.clone(),
+        last_played: instance.last_played,
+        index_kind: instance.index_kind.clone(),
+        mod_count: instance.mod_count,
+        date_created: instance.date_created.clone(),
+        game_version: instance.game_version.clone(),
+        is_active: false
+    };
+    instances.instances.push(new_instance);
+    // write the file
+    let instances_json = serde_json::to_string(&instances).unwrap();
+    std::fs::write(instances_file, instances_json).unwrap();
 }

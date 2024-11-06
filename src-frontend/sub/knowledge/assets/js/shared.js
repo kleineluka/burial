@@ -11,7 +11,13 @@ document.getElementById('toggleSidebar').addEventListener('click', function () {
     homeButton.classList.toggle('toggled');
 });
 
-// open the wiki
-function openWiki() {
+// open the burial wiki
+function openBurialWiiki() {
+    invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki' });
+}
+
+// open the coffin modding wiki
+function openCoffinWiki() {
     invoke('open_browser', { url: 'https://coffin-wiki.basil.cafe/' });
 }
+

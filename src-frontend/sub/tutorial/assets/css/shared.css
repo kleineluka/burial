@@ -72,8 +72,8 @@
 
 .sidebar-icon {
     width: 6vmin;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 }
-
 .sidebar-version {
     font-size: 1.15em;
     margin-left: 10px;

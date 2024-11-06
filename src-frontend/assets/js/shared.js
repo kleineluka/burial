@@ -76,6 +76,7 @@ window.onload = async () => {
     // set the metadata
     const discord = document.getElementById('discord-link');
     const github = document.getElementById('github-link');
+    const attributes = document.getElementById('attributions-link');	
     if (discord) {
         const metadata_discord = await store.get('metadata-discord');
         discord.href = metadata_discord;
@@ -83,6 +84,10 @@ window.onload = async () => {
     if (github) {
         const metadata_github = await store.get('metadata-github');
         github.href = metadata_github;
+        if (attributes) {
+            let metadata_attributes = metadata_github + '/blob/main/ATTRIBUTIONS.md';
+            attributes.href = metadata_attributes;
+        }
     }
     // set the user settings if necessary
     const setting_tcoaal = document.getElementById('tcoaal-path');
