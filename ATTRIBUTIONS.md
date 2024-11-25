@@ -22,6 +22,6 @@
 # Licenses 📖
 - [**Tauri**](https://github.com/tauri-apps/tauri), the Rust-based front-end framework, is licensed under MIT/Apache.
 - **Rust Crates** can be seen in the [**Cargo.toml**](https://github.com/kleineluka/burial/blob/main/src-backend/Cargo.toml) file.
-- **JavaScript Libraries** can be seen in both [**package.json**](https://github.com/kleineluka/burial/blob/main/package.json) and [**src/assets/ext**](https://github.com/kleineluka/burial/tree/main/src-frontend/assets/ext).
+- **CSS and JavaScript Libraries** can be seen in both [**package.json**](https://github.com/kleineluka/burial/blob/main/package.json) and [**src/assets/ext**](https://github.com/kleineluka/burial/tree/main/src-frontend/assets/ext).
 -  **NotoSans** and **Nunito** (fonts used in Burial) are under the [**Open Font License**](https://openfontlicense.org/).
 - Burial can install **third-party** resources to assist in mod loading. [**Tomb**](https://codeberg.org/basil/tomb) by Basil can be installed as the mod loader and mods are pulled from the [**Llamaware Page**](https://github.com/Llamaware/Llamaware.github.io/tree/main/src). Naturally, any mods installed through Burial are the **property of their creator**.

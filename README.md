@@ -4,7 +4,7 @@
 <img src="https://github.com/kleineluka/burial/blob/main/preview/leyley.png" width="100" height="100">
 
 # Burial
-A (pretty) one stop shop for [TCOAAL](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding! 
+A (pretty) one stop shop for [Coffin of Andy and Leyley](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding! 
 <br>
 **Please** leave a ⭐ Star ⭐ on Github to support!
 <br>
@@ -65,11 +65,10 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] Language Support
 - [ ] Steam Deck Compatibility
 - [ ] General Linux Improvements
-- [ ] Proper Status Bar
-- [ ] More User Settings
 - [ ] More Tooltips + Custom Design
 - [ ] Universal and Friendlier™ Path Input Solution
 - [ ] Home Page Setting
-- [ ] Theming
+- [x] Theming
+- [x] More User Settings
 - [x] Rebrand Mod Tools to Mod Making to avoid confusion
 - [x] Development Build Scripts

@@ -51,49 +51,38 @@
         </div>
         <div class="container">
             <div class="page-navbar">
-                <!-- Sorting and Filtering Row -->
-                <div class="sort-filter-row">
-                    <div class="sort-by">
-                        <label for="sortDropdown">Sort By:</label>
-                        <select id="sortDropdown" class="sort-circular-dropdown">
-                            <option value="name">Name</option>
-                            <option value="date">Date</option>
-                            <option value="author">Author</option>
-                        </select>
+                <div class="sort-collection">
+                    <!-- Search Bar Row -->
+                    <div class="sort-search-row">
+                        <div class="search-by">
+                            <label for="searchBar">Search:</label>
+                            <input type="text" id="searchBar" class="search-bar" placeholder="Search for mods...">
+                        </div>
                     </div>
-                    <div class="filter-by">
-                        <label for="filterDropdown">Filter By:</label>
-                        <select id="filterDropdown" class="sort-circular-dropdown">
-                            <option value="all">All</option>
-                            <option value="client">Client</option>
-                            <option value="localization">Localization</option>
-                        </select>
+                    <!-- Sorting and Filtering Row -->
+                    <div class="sort-filter-row">
+                        <div class="sort-by">
+                            <label for="sortDropdown">Sort By:</label>
+                            <select id="sortDropdown" class="sort-circular-dropdown">
+                                <option value="name">Name</option>
+                                <option value="date">Date</option>
+                            </select>
+                        </div>
+                        <div class="filter-by">
+                            <label for="filterDropdown">Filter By:</label>
+                            <select id="filterDropdown" class="sort-circular-dropdown">
+                                <option value="all">All</option>
+                                <option value="content">New Content</option>
+                                <option value="qol">QoL Changes</option>
+                                <option value="mature">Mature Themes</option>
+                                <option value="dev">Developer Tools</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="page-container">
-                <!-- Example Entry -->
-                <div class="mod-entry" data-id="12345">
-                    <div class="mod-row">
-                        <div class="mod-icon">
-                            <img src="assets/img/sidedishes.png" alt="Mod Icon" class="mod-provided-icon">
-                        </div>
-                        <div class="mod-details">
-                            <h3 class="mod-name">Side Dishes <span class="mod-author">(by Canopy) [v1.0]</span><span class="mod-open-link-symbol hvr-grow">🔗</span></h3>
-                            <p class="mod-description">This TCoAaL mod adds about an hour of content to episode 1.</p>
-                        </div>
-                        <div class="mod-actions">
-                            <img src="assets/img/download.png" alt="Download Button" class="mod-download-icon hvr-shrink">
-                        </div>
-                    </div>
-                    <div class="mod-row">
-                        <div class="mod-tags">
-                            <span class="mod-tag">Content</span>
-                            <span class="mod-tag">Dialogue</span>
-                            <span class="mod-tag">New Art</span>
-                            <span class="mod-tag">Generative AI</span>
-                        </div>
-                    </div>
+                <div class="mods-container">
                 </div>
             </div>
         </div>
@@ -103,6 +92,7 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/fuse.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/browser.js"></script>

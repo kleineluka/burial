@@ -183,3 +183,30 @@ listen('instances-errored', (event) => {
         instanceContainer.appendChild(instanceInfo);
     }
 });
+
+listen('instances-error', (event) => {
+    // match the error with the correct message
+    let message = '';
+    switch (event.payload) {
+        case 'current-nonexistant':
+            message = 'There was an error renaming the instance..';
+            break;
+        case 'old-nonexistant':
+            message = 'There was an error cloning the instance..';
+            break;
+        case 'name-taken':
+            message = 'There was an error deleting the instance..';
+            break;
+        case 'name-toolong':
+            message = 'The name you entered was too long..';
+            break;
+        case 'error-empty':
+            message = 'The name you entered was empty..';
+            break;
+    }
+    Swal.fire({
+        title: 'There was an issue!',
+        text: message,
+        confirmButtonText: 'Oki!'
+    });
+});

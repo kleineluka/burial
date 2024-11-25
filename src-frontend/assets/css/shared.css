@@ -2,26 +2,31 @@
 :root {
     --background-gradient: linear-gradient(135deg, #F595B2 0%, #C37084 100%); /* ashley's Eyes + Background */
     --main-colour: #F595B2;
+    --light-colour: #f7c8d5;
 }
 
 [data-theme='ashley'] {
     --background-gradient: linear-gradient(135deg, #F595B2 0%, #C37084 100%); 
     --main-colour: #F595B2;
+    --light-colour: #f7c8d5;
 }
 
 [data-theme='andrew'] {
     --background-gradient: linear-gradient(135deg, #89D27C 0%, #95B874 100%);
     --main-colour: #89D27C;
+    --light-colour: #a2f594;
 }
 
 [data-theme='renee'] {
     --background-gradient: linear-gradient(135deg, #D7DD80 0%, #D8DC94 100%);
     --main-colour: #D7DD80;
+    --light-colour: #e4e9a1;
 }
 
 [data-theme='julia'] {
     --background-gradient: linear-gradient(135deg, #FFEBA2 0%, #D8DC94 100%);
     --main-colour: #FFEBA2;
+    --light-colour: #f7f9c0;
 }
 
 /* Font(s) */

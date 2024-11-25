@@ -31,6 +31,8 @@ struct GameInstances {
 
 // constant for the manifest
 const MANIFEST: &str = "1.0.0";
+const DEFAULT_INSTANCE: &str = "Default";
+const INSTANCE_NAME_LENGTH: usize = 10;
 
 // get the instances folder
 pub fn verify_instances() {
@@ -84,7 +86,7 @@ fn default_instances(in_path: String) -> String {
     let days_passed = dates::days_passed(date.clone());
     let game_version = game::game_version(in_path.clone());
     let instance = GameInstance {
-        name: "Default".to_string(),
+        name: DEFAULT_INSTANCE.to_string(),
         last_played: days_passed,
         index_kind: index_kind,
         mod_count: total_mods,
@@ -105,7 +107,7 @@ fn default_instances(in_path: String) -> String {
 
     // in the game path, make a file called .instance with the instance name
     let instance_file = PathBuf::from(in_path).join(".instance");
-    std::fs::write(instance_file, "Default").unwrap();
+    std::fs::write(instance_file, DEFAULT_INSTANCE).unwrap();
     "success".to_string()
 }
 
@@ -114,7 +116,7 @@ pub fn active_instance(in_path: String) -> String {
     // first of, see if the game path is valid
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
-        return "Default".to_string();
+        return DEFAULT_INSTANCE.to_string();
     }
     // first - try and load the instance from the .instance file
     let instance_file = PathBuf::from(in_path.clone()).join(".instance");
@@ -129,7 +131,7 @@ pub fn active_instance(in_path: String) -> String {
         // create the default instances.json (if it can)
         let result = default_instances(in_path.clone());
         if result == "error:gamepath" {
-            return "Default".to_string();
+            return DEFAULT_INSTANCE.to_string();
         }
     }
     // get the active instance
@@ -179,7 +181,7 @@ pub fn load_instances(window: Window, in_path: String) {
             return;
         } else {
             // set in the local cache the active instance (Default)
-            let _ = config::storage::insert_into_store(&window.app_handle(), "active-instance", serde_json::Value::String("Default".to_string())).unwrap();
+            let _ = config::storage::insert_into_store(&window.app_handle(), "active-instance", serde_json::Value::String(DEFAULT_INSTANCE.to_string())).unwrap();
         }
     }
     // read the file
@@ -238,12 +240,17 @@ pub fn rename_instance(window: Window, in_path: String, old_name: String, new_na
     // make sure 1) the instance exists
     window.emit("status", "Making sure the name is not taken..").unwrap();
     if instances.instances.iter().find(|x| x.name == old_name).is_none() {
-        window.emit("instances-renamed", "errror-nonexistant").unwrap();
+        window.emit("instances-error", "current-nonexistant").unwrap();
         return;
     }
     // and 2) the new name doesn't already exist
     if !instance_name_available(&instances, new_name.clone()) {
-        window.emit("instances-renamed", "error-taken").unwrap();
+        window.emit("instances-error", "name-taken").unwrap();
+        return;
+    }
+    // 3) make sure the new name is not too long
+    if new_name.len() > INSTANCE_NAME_LENGTH {
+        window.emit("instances-error", "name-toolong").unwrap();
         return;
     }
     // find the instance
@@ -289,12 +296,17 @@ pub fn clone_instance(window: Window, in_path: String, old_instance: String, new
     // make sure 1) the instance exists
     window.emit("status", "Making sure the name is not taken..").unwrap();
     if instances.instances.iter().find(|x| x.name == old_instance).is_none() {
-        window.emit("instances-cloned", "errror-nonexistant").unwrap();
+        window.emit("instances-error", "old-nonexistant").unwrap();
         return;
     }
     // and 2) the new name doesn't already exist
     if !instance_name_available(&instances, new_instance.clone()) {
-        window.emit("instances-cloned", "error-taken").unwrap();
+        window.emit("instances-error", "name-taken").unwrap();
+        return;
+    }
+    // 3) make sure the new name is not too long
+    if new_instance.len() > INSTANCE_NAME_LENGTH {
+        window.emit("instances-error", "name-toolong").unwrap();
         return;
     }
     // and now, copy all files in instances_path/old/ to instances_path/new/
