@@ -52,6 +52,14 @@
         data-julia="assets/img/heart-yellow.png"
         alt="Attributions" class="sidebar-icon hvr-grow">
       </a>
+      <a id="launch-game" class="sidebar-hide-link">
+        <img src="/assets/img/play-pink.png" 
+        data-ashley="../../assets/img/play-pink.png"
+        data-andrew="../../assets/img/play-green.png" 
+        data-renee="../../assets/img/play-yellow.png"
+        data-julia="../../assets/img/play-yellow.png" 
+        alt="Attributions" class="sidebar-icon hvr-grow">
+      </a>
     </div>
   </div>
   <!-- main content -->
@@ -90,7 +98,7 @@
 <script src="assets/js/index.js"></script>
 <!-- if the page was redirected from a 404 and not properly loaded -->
 <script>
-  // this is only relevant for development, we can disable it in prod builds!
+  // this is only relevant for development, we can disable it in prod builds! (or keep it for weird obscure errors)
   document.addEventListener("DOMContentLoaded", function () {
     // see if the scripts were loaded
     if (typeof Swal === 'undefined') {

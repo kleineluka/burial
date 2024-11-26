@@ -3,6 +3,7 @@ const repo = "https://llamawa.re/repo.json";
 let repo_data = null;
 let repo_status = false;
 let search_cache = null;
+let mod_ready = 'ready';
 let fuse = null;
 
 // filter tag names
@@ -194,8 +195,28 @@ searchBar.addEventListener('input', async () => {
     build_repo(sortKind, filterKind);
 });
 
-// on page load, fetch the repository
+// listen for mod ready statuses
+listen('mod-ready', (event) => {
+    switch (event.payload) {
+        case "error_game_path":
+            set_status('Please set your TCOAAL game path in settings!');
+            mod_ready = 'Please set your TCOAAL game path in the settings page!';
+            break;
+        case "error_modloader":
+            set_status('Please install the Tomb modloader first!');
+            mod_ready = 'Please install the Tomb modloader first!';
+            break;
+        default:
+            // success, assuming.. nothing for now
+            break;
+    }
+});
+
+// on page load, check mod ready status and fetch the repository
 window.addEventListener('load', async () => {
+    const store = loadStorage();
+    const inPath = await store.get('settings-tcoaal');
+    invoke('mod_ready', { inPath });
     await download_repo(); // avoid redownloading
     build_repo('name', 'all'); 
 });

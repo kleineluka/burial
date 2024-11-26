@@ -1,9 +1,11 @@
 // imports
 use tauri::Window;
 use tauri::command;
-use std::fs::File;
+use std::fs;
+use std::fs::{File, OpenOptions};
+use std::io::Read;
 use std::path::Path;
-use std::io::{self, BufRead};
+use std::io::{self, BufRead, BufReader, Write};
 use regex::Regex;
 use crate::config::downloads;
 use crate::utils::codeberg;
@@ -18,11 +20,47 @@ const MODLOADER_FILE : &str = "tomb.zip";
 // check if a modloader is present
 pub fn modloader_prescence(in_path: String) -> bool {
     // there should be a "mods" and "tomb" folder in the game directory
-    let mods_dir = format!("{}\\www\\mods", in_path);
-    let tomb_dir = format!("{}\\www\\tomb", in_path);
-    let mods_exists = Path::new(&mods_dir).exists();
+    let tomb_dir = format!("{}\\tomb", in_path);
     let tomb_exists = Path::new(&tomb_dir).exists();
-    return mods_exists && tomb_exists;
+    tomb_exists
+}
+
+// edit the package.json to either install or uninstall tomb
+fn edit_package(package_path: String, direction: String) -> bool {
+    // Determine the target and replacement strings
+    let (target, replacement) = match direction.as_str() {
+        "install" => ("www/index.html", "tomb/index.html"),
+        "uninstall" => ("tomb/index.html", "www/index.html"),
+        _ => panic!("Invalid direction! Use 'install' or 'uninstall'."),
+    };
+
+    // Read the package.json file
+    let mut package_file = File::open(&package_path).expect("Failed to open package.json file");
+    let mut package_content = String::new();
+    package_file
+        .read_to_string(&mut package_content)
+        .expect("Failed to read package.json");
+
+    // Check if the target string exists
+    if !package_content.contains(target) {
+        println!("Target string not found in package.json");
+        return false; // Nothing to edit
+    }
+
+    // Perform the replacement
+    let new_content = package_content.replace(target, replacement);
+
+    // Write the updated content back to the file
+    let mut package_file = OpenOptions::new()
+        .write(true)
+        .truncate(true)
+        .open(&package_path)
+        .expect("Failed to open package.json for writing");
+    package_file
+        .write_all(new_content.as_bytes())
+        .expect("Failed to write to package.json");
+
+    true
 }
 
 // download the latest release of tomb
@@ -51,13 +89,24 @@ pub async fn install_modloader(window: Window, in_path: String) {
     let extraction_destination_str = format!("{}\\{}", downloads_dir, "modloader");
     let extraction_destination = Path::new(&extraction_destination_str);
     compression::decompress_directory(&tomb_file_location, &extraction_destination).unwrap();
-    // backup index.html in game\\www, then delete it
-    let game_index_html = format!("{}\\www\\index.html", in_path);
-    files::backup_file_multiple(&game_index_html);
-    files::delete_file(&game_index_html);
+    // edit the package.json file
+    window.emit("status", "Rewriting package.json..").unwrap();
+    let game_package_json = format!("{}\\package.json", in_path);
+    println!("{}", game_package_json);
+    let package_edited = edit_package(game_package_json, "install".to_string());
+    if !package_edited {
+        window.emit("error", "Failed to edit package.json!").unwrap();
+        window.emit("status-clear", "").unwrap();
+        return;
+    }
+    // in the game directory, make a "tomb" folder if it doesn't exist
+    let tomb_dir = format!("{}\\tomb", in_path);
+    if !Path::new(&tomb_dir).exists() {
+        fs::create_dir_all(&tomb_dir).unwrap();
+    }
     // copy the tomb modloader to the game directory
     window.emit("status", "Copying to game installation..").unwrap();
-    let game_destination = format!("{}\\www", in_path);
+    let game_destination = format!("{}\\tomb", in_path);
     files::copy_directory(&extraction_destination.to_string_lossy(), &game_destination).unwrap();
     // cleanup
     window.emit("status", "Cleaning up..").unwrap();
@@ -79,17 +128,24 @@ pub fn uninstall_modloader(window: Window, in_path: String) {
         return;
     }
     // check if the modloader is present
+    window.emit("status", "Checking for mod loader..").unwrap();
     let modloader_present = modloader_prescence(in_path.clone());
     if !modloader_present {
         window.emit("error", "No mod loader installed!").unwrap();
         return;
     }
     // delete the tomb modloader
-    let tomb_dir = format!("{}\\www\\tomb", in_path);
+    window.emit("status", "Uninstalling mod loader..").unwrap();
+    let tomb_dir = format!("{}\\tomb", in_path);
     files::delete_folder(&tomb_dir);
-    // restore index.html in game\\www
-    let game_index_html = format!("{}\\www\\index.html", in_path);
-    files::restore_file_multiple(&game_index_html);
+    // edit the package.json file
+    window.emit("status", "Rewriting package.json..").unwrap();
+    let game_package_json = format!("{}\\package.json", in_path);
+    let package_edited = edit_package(game_package_json, "uninstall".to_string());
+    if !package_edited {
+        window.emit("error", "Failed to edit package.json!").unwrap();
+        return;
+    }
     // done + reload installed modloader version
     window.emit("status", "Mod loader uninstalled!").unwrap();
     modloader_version(window, in_path);
@@ -130,7 +186,7 @@ pub fn modloader_version(window: Window, in_path: String) {
         return;
     }
     // open in_path + tomb/tomb.js
-    let tomb_js_path = format!("{}\\www\\tomb\\tomb.js", &in_path);
+    let tomb_js_path = format!("{}\\tomb\\tomb.js", &in_path);
     let tomb_js_file = File::open(tomb_js_path).unwrap();
     let tomb_js_reader = io::BufReader::new(tomb_js_file);
     // find the first line before the version is declared, as it is unique, then extract the version..

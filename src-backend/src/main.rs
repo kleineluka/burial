@@ -36,6 +36,7 @@ use tutorial::setup;
 use tutorial::finished;
 use modmanager::modloader;
 use modmanager::instances;
+use modmanager::browser;
 use modmaking::differences;
 use modmaking::modjson;
 
@@ -141,6 +142,7 @@ fn main() {
             instances::rename_instance,
             instances::clone_instance,
             instances::refresh_active,
+            browser::mod_ready,
             dialogue::export_dialogue,
             dialogue::import_dialogue,
             dialogue::preview_export,

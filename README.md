@@ -8,7 +8,7 @@ A (pretty) one stop shop for [Coffin of Andy and Leyley](https://store.steampowe
 <br>
 **Please** leave a ⭐ Star ⭐ on Github to support!
 <br>
-**Current Status:** 🚧 In Development! 🚧 75% Complete! 
+**Current Status:** 🚧 Almost done!! 🚧 Looking for artists, testers, or developers 💗
 
 
 [Straight to Downloads 🕯️](https://github.com/kleineluka/burial/releases) • [Discord 🥰](https://www.discord.gg/WWxAjJMspk) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) 
@@ -63,11 +63,9 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 # Roadmap 🚧
 (In no particular order and beyond basic planned features, aka things that will start after the first release..)
 - [ ] Language Support
-- [ ] Steam Deck Compatibility
-- [ ] General Linux Improvements
-- [ ] More Tooltips + Custom Design
+- [ ] Steam Deck Compatibility (and Linux improvements)
+- [ ] More Tooltips
 - [ ] Universal and Friendlier™ Path Input Solution
-- [ ] Home Page Setting
 - [x] Theming
 - [x] More User Settings
 - [x] Rebrand Mod Tools to Mod Making to avoid confusion

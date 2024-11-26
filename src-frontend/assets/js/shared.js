@@ -16,7 +16,17 @@ async function navigatePage(page) {
 // manually set the status
 function set_status(status) {
     const logElement = document.getElementById('status');
+    const parent = logElement.parentElement;
+    parent.style.display = "block";
     logElement.innerHTML = status;
+}
+
+// clear the status
+function clear_status() {
+    const logElement = document.getElementById('status');
+    const parent = logElement.parentElement;
+    parent.style.display = "none";
+    logElement.innerHTML = '';
 }
 
 // load the persistant storage
@@ -126,6 +136,13 @@ listen('status', (event) => {
     const parent = logElement.parentElement;
     parent.style.display = "block";
     logElement.innerHTML = event.payload;
+});
+
+listen('status-clear', (event) => {
+    const logElement = document.getElementById('status');
+    const parent = logElement.parentElement;
+    parent.style.display = "none";
+    logElement.innerHTML = '';
 });
 
 listen('error', (event) => {
