@@ -97,6 +97,7 @@ fn main() {
             commands::folder_dialog,
             commands::file_dialog,
             commands::open_browser,
+            commands::launch_game,
             setup::setup_game,
             setup::setup_settings,
             setup::setup_auto_find,

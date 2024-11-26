@@ -67,6 +67,5 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] More Tooltips
 - [ ] Universal and Friendlier™ Path Input Solution
 - [x] Theming
-- [x] More User Settings
-- [x] Rebrand Mod Tools to Mod Making to avoid confusion
+- [x] More User Settings!
 - [x] Development Build Scripts

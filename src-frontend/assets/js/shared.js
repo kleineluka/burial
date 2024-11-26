@@ -87,6 +87,7 @@ window.onload = async () => {
     const discord = document.getElementById('discord-link');
     const github = document.getElementById('github-link');
     const attributes = document.getElementById('attributions-link');	
+    const launcher = document.getElementById('launch-game');
     if (discord) {
         const metadata_discord = await store.get('metadata-discord');
         discord.href = metadata_discord;
@@ -98,6 +99,13 @@ window.onload = async () => {
             let metadata_attributes = metadata_github + '/blob/main/ATTRIBUTIONS.md';
             attributes.href = metadata_attributes;
         }
+    }
+    if (launcher) {
+        // add a click event listener to the launch game button, and if clicked, invoke the launch_game function
+        launcher.addEventListener('click', async () => {
+            const tcoaal = await store.get('settings-tcoaal');
+            invoke('launch_game', { inPath: tcoaal });
+        });
     }
     // set the user settings if necessary
     const setting_tcoaal = document.getElementById('tcoaal-path');

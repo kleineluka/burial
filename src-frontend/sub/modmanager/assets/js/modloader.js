@@ -1,8 +1,4 @@
-function test() {
-    invoke("install_tomb", { inPath: "D:\\Games\\Steam\\steamapps\\common\\The Coffin of Andy and Leyley" } );
-}
-
-// Listen first
+// listen first
 listen('modloader-version', (event) => {
     const dropdown = document.getElementById('dropdown-menu-current');
     dropdown.innerHTML = '';
@@ -15,15 +11,19 @@ listen('modloader-version', (event) => {
 listen('modloader-versions', (event) => {
     const dropdown = document.getElementById('dropdown-menu-install'); 
     dropdown.innerHTML = '';
+    // add all versions from remote to dropdown
     event.payload.forEach((version, index) => {
         const option = document.createElement('option');
         option.value = version;
         option.textContent = version;
-        if (index === 0) {
-            option.selected = true;
-        }
         dropdown.appendChild(option);
     });
+    // make a "Latest (recommended)" option and select it
+    const option = document.createElement('option');
+    option.value = 'latest';
+    option.textContent = 'Latest (recommended)';
+    dropdown.appendChild(option);
+    dropdown.selectedIndex = dropdown.length - 1;
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -35,8 +35,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // install selected version
 function installSelected() {
-    const inPath = document.getElementById('tcoaal-path').value;
-    invoke("install_modloader", { inPath } );
+    // make sure the length of the dropdown is greater than 1 (i.e. not loading)
+    const dropdown = document.getElementById('dropdown-menu-install');
+    if (dropdown.length > 1) {
+        const inPath = document.getElementById('tcoaal-path').value;
+        invoke("install_modloader", { inPath } );
+    } else {
+        set_status('Please wait for the Tomb versions to load!');
+    }
 }
 
 // uninstall mod loader

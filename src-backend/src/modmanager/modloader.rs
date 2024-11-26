@@ -27,30 +27,25 @@ pub fn modloader_prescence(in_path: String) -> bool {
 
 // edit the package.json to either install or uninstall tomb
 fn edit_package(package_path: String, direction: String) -> bool {
-    // Determine the target and replacement strings
+    // determine the target and replacement strings
     let (target, replacement) = match direction.as_str() {
         "install" => ("www/index.html", "tomb/index.html"),
         "uninstall" => ("tomb/index.html", "www/index.html"),
         _ => panic!("Invalid direction! Use 'install' or 'uninstall'."),
     };
-
-    // Read the package.json file
+    // read the package.json file
     let mut package_file = File::open(&package_path).expect("Failed to open package.json file");
     let mut package_content = String::new();
     package_file
         .read_to_string(&mut package_content)
         .expect("Failed to read package.json");
-
-    // Check if the target string exists
+    // check if the target string exists
     if !package_content.contains(target) {
         println!("Target string not found in package.json");
-        return false; // Nothing to edit
+        return false; // maybe a past manual edit?
     }
-
-    // Perform the replacement
+    // replace and rewrite
     let new_content = package_content.replace(target, replacement);
-
-    // Write the updated content back to the file
     let mut package_file = OpenOptions::new()
         .write(true)
         .truncate(true)
@@ -59,13 +54,12 @@ fn edit_package(package_path: String, direction: String) -> bool {
     package_file
         .write_all(new_content.as_bytes())
         .expect("Failed to write to package.json");
-
-    true
+    true // (yay!)
 }
 
-// download the latest release of tomb
+// download and install tomb
 #[command]
-pub async fn install_modloader(window: Window, in_path: String) {
+pub async fn install_modloader(window: Window, in_path: String, in_name: String) {
     // make sure that the provided path is a valid game folder
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
@@ -76,8 +70,12 @@ pub async fn install_modloader(window: Window, in_path: String) {
     window.emit("status", "Downloading mod loader..").unwrap();
     let downloads_dir = downloads::downloads_folder().to_string_lossy().to_string();
     downloads::verify_downloads().unwrap();
-    // download the latest release of tomb
-    let download_result = codeberg::download_latest_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir).await;
+    // download a specific or the latest release of tomb
+    let download_result = if in_name == "latest" {
+        codeberg::download_latest_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir).await
+    } else {
+        codeberg::download_specific_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir, &in_name).await
+    };
     if !download_result {
         window.emit("error", "Failed to download the mod loader!").unwrap();
         return;

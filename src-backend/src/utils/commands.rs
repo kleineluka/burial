@@ -3,6 +3,7 @@ use tauri::api::dialog::FileDialogBuilder;
 use tauri::command;
 use tauri::Window;
 use webbrowser;
+use super::game;
 
 // navigate to different pages
 #[command]
@@ -60,4 +61,25 @@ pub async fn file_dialog(window: Window, emit_event: String, file_type: String) 
             }
         });
     });
+}
+
+// launch the game from the launcher
+#[command]
+pub fn launch_game(window: Window, in_path: String) {
+    // verify the game path
+    let is_game = game::verify_game(&in_path);
+    if is_game.is_err() {
+        window.emit("error", "Please set your TCOAAL game path in settings!").unwrap();
+        return;
+    }
+    let game_path = format!("{}/Game.exe", in_path);
+    match std::process::Command::new(&game_path).spawn() {
+        Ok(_) => {
+            window.emit("status", "TCOAAL has been launched!").unwrap();
+        }
+        Err(err) => {
+            let error_message = format!("Failed to launch the game! :( [{}]", err);
+            window.emit("error", &error_message).unwrap();
+        }
+    }
 }
