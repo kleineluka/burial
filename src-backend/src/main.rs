@@ -34,6 +34,7 @@ use reversing::code;
 use reversing::dev;
 use tutorial::setup;
 use tutorial::finished;
+use modmanager::installed;
 use modmanager::modloader;
 use modmanager::instances;
 use modmanager::browser;
@@ -63,6 +64,7 @@ fn main() {
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-biginstance", serde_json::Value::Bool(user_settings.biginstance)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-updates", serde_json::Value::Bool(user_settings.updates)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-theme", serde_json::Value::String(user_settings.theme)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-animations", serde_json::Value::Bool(user_settings.animations)).unwrap();
@@ -143,7 +145,10 @@ fn main() {
             instances::rename_instance,
             instances::clone_instance,
             instances::refresh_active,
+            installed::installed_mods,
+            installed::uninstall_mod,
             browser::mod_ready,
+            browser::install_mod,
             dialogue::export_dialogue,
             dialogue::import_dialogue,
             dialogue::preview_export,

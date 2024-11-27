@@ -3,11 +3,13 @@ let annotation_one;
 let annotation_two;
 let annotation_three;
 let annotation_four;
+
 function oneAnnotation() {
     const selected_element = document.getElementById('sidebar-items');
     annotation_one = RoughNotation.annotate(selected_element, { type: 'bracket', color: '#F1E2C5', padding: [-50, 10], strokeWidth: 3, brackets: ['right'] });
     annotation_one.show();
 }
+
 setTimeout(function () {
     oneAnnotation();
 }, 1000);

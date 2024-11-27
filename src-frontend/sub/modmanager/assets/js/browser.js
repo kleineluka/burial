@@ -1,9 +1,11 @@
 // constant (for now at least)
 const repo = "https://llamawa.re/repo.json";
 let repo_data = null;
-let repo_status = false;
+let repo_status = false;    
+let installed_cache = null;
 let search_cache = null;
 let mod_ready = 'ready';
+let inPath = null;
 let fuse = null;
 
 // filter tag names
@@ -86,6 +88,8 @@ function build_repo(sort_kind, filter_kind) {
         }
         // see if the search query is in the cache
         if (!search_cache[initialData.id]) return;
+        // see if the mod is already installed
+        let is_installed = (installed_cache[modData.id]) ? true : false;
         // create mod container
         const modEntry = document.createElement('div');
         modEntry.classList.add('mod-entry');
@@ -119,16 +123,46 @@ function build_repo(sort_kind, filter_kind) {
         const description = document.createElement('p');
         description.classList.add('mod-description');
         description.textContent = modData.description || 'No description provided';
+        // installed notice 
+        if (is_installed) {
+            const installedText = document.createElement('span');
+            installedText.classList.add('mod-installed-text');
+            installedText.textContent = ` You have version ${installed_cache[modData.id].version} installed.`;
+            description.appendChild(installedText);
+        }
         detailsDiv.appendChild(nameHeading);
         detailsDiv.appendChild(description);
         // actions
         const actionsDiv = document.createElement('div');
         actionsDiv.classList.add('mod-actions');
-        const downloadIcon = document.createElement('img');
-        downloadIcon.src = 'assets/img/download.png';
-        downloadIcon.alt = 'Download Button';
-        downloadIcon.classList.add('mod-download-icon', 'hvr-shrink');
-        actionsDiv.appendChild(downloadIcon);
+        if (is_installed) {
+            const deleteIcon = document.createElement('img');
+            deleteIcon.src = 'assets/img/delete.png';
+            deleteIcon.alt = 'Delete Button';
+            deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
+            actionsDiv.appendChild(deleteIcon);
+            // on delete click
+            deleteIcon.addEventListener('click', async () => {
+                console.log('Deleting mod:', modData.name);
+                const modPath = installed_cache[modData.id].path;
+                invoke('uninstall_mod', { modPath });
+            });
+        } else {
+            const downloadIcon = document.createElement('img');
+            downloadIcon.src = 'assets/img/download.png';
+            downloadIcon.alt = 'Download Button';
+            downloadIcon.classList.add('mod-download-icon', 'hvr-shrink');
+            actionsDiv.appendChild(downloadIcon);
+            // on download click
+            downloadIcon.addEventListener('click', async () => {
+                console.log('Downloading mod:', modData.name);
+                const store = loadStorage();
+                const inPath = await store.get('settings-tcoaal');
+                const modPath = initialData.url || 'unknown_name';
+                const modHash = initialData.sha256 || 'unknown_hash';
+                invoke('install_mod', { inPath, modPath, modHash });
+            });
+        }
         // finish first row
         firstRow.appendChild(iconDiv);
         firstRow.appendChild(detailsDiv);
@@ -197,14 +231,17 @@ searchBar.addEventListener('input', async () => {
 
 // listen for mod ready statuses
 listen('mod-ready', (event) => {
+    let status_message = 'all good :)';
     switch (event.payload) {
         case "error_game_path":
-            set_status('Please set your TCOAAL game path in settings!');
-            mod_ready = 'Please set your TCOAAL game path in the settings page!';
+            status_message = 'Please set your TCOAAL game path in settings!';
+            set_status(status_message);
+            mod_ready = status_message;
             break;
         case "error_modloader":
-            set_status('Please install the Tomb modloader first!');
-            mod_ready = 'Please install the Tomb modloader first!';
+            status_message = 'Please install the Tomb modloader first, or use the Mod Pack page to do it all for you!';
+            set_status(status_message);
+            mod_ready = status_message;
             break;
         default:
             // success, assuming.. nothing for now
@@ -212,11 +249,65 @@ listen('mod-ready', (event) => {
     }
 });
 
-// on page load, check mod ready status and fetch the repository
-window.addEventListener('load', async () => {
+// move to function to make it reusable (ex. after mod is installed)
+async function load_browser() {
     const store = loadStorage();
-    const inPath = await store.get('settings-tcoaal');
+    inPath = await store.get('settings-tcoaal');
+    invoke('installed_mods', { inPath });
+}
+
+// on page load see what mods are installed
+window.addEventListener('load', async () => {
+    load_browser();
+});
+
+// when a mod is installed
+listen('mod-install', async (event) => {
+    // branch based on response
+    switch (event.payload) {
+        case "error_game_path":
+            set_status('Please set your TCOAAL game path in settings!');
+            break;
+        case "error_modloader":
+            set_status('Please install the Tomb modloader first, or use the Mod Pack page to do it all for you!');
+            break;
+        case "error_connection":
+            set_status('Failed to connect to the mod\'s host..');
+            break;
+        case "error_file_open":
+            set_status('Failed to open the mod file..');
+            break;
+        case "error_hash_mismatch":
+            set_status('Failed to verify the hash of the mod file..');
+            break;
+        default:
+            // success
+            set_status('Mod installed successfully!');
+            break
+    }
+    // reload the browser
+    load_browser();
+});
+
+// when a mod is uninstalled
+listen('mod-uninstall', async (event) => {
+    // reload the browser
+    load_browser();
+});
+
+// update what mods are already installed
+listen('installed-mods', async (event) => {
+    // simplify the installed mods data for easier searching
+    installed_cache = event.payload.reduce((acc, mod) => {
+        const { id, version } = mod.modjson;
+        acc[id] = {
+            path: mod.folder,
+            version: version
+        };
+        return acc;
+    }, {});
+    // download + build repo (regardless of installed status)
     invoke('mod_ready', { inPath });
     await download_repo(); // avoid redownloading
-    build_repo('name', 'all'); 
+    build_repo('name', 'all');
 });

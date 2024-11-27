@@ -365,8 +365,10 @@ body::after {
     padding: 10px;
     font-size: 2.5vmin;
     display: none;
-    outline: 5px solid black;
+    outline: 3px solid black;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.6);
+    max-width: 50%;
+    text-align: center;
 }
 
 .progress-container.toggled {

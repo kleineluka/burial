@@ -5,7 +5,8 @@ use std::io::Read;
 use tauri::Window;
 use tauri::command;
 use sha2::{Sha256, Digest};
-use crate::config::cache;
+use crate::config::downloads;
+use crate::utils::compression;
 use crate::utils::connection;
 use crate::utils::game;
 use crate::modmanager::modloader;
@@ -32,16 +33,32 @@ pub fn mod_ready(window: Window, in_path: String) {
 // install a mod
 #[command]
 pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_hash: String) {
-    // assume everything is valid at this stage!
-    let cache = cache::cache_folder();
-    if let Err(e) = connection::download_file(&mod_path, &cache.to_string_lossy()).await {
-        window.emit("mod-download", "error_connection").unwrap();
+    // verify that the game path is right
+    window.emit("status", "Making sure that everything is ready..").unwrap();
+    let is_game = game::verify_game(&in_path).unwrap();
+    if !is_game {
+        window.emit("mod-install", "error_game_path").unwrap();
+        return;
+    }
+    // make sure that the modloader is present
+    let modloader_presence = modloader::modloader_prescence(in_path.clone());
+    if !modloader_presence {
+        window.emit("mod-install", "error_modloader").unwrap();
+        return;
+    }
+    // download the mod (and lock the ui from doing other stuff..)
+    window.emit("lock-ui", "enable").unwrap();
+    window.emit("status", "Downloading the mod! Please wait, this may take a moment..").unwrap();
+    let downloads = downloads::downloads_folder();
+    if let Err(e) = connection::download_file(&mod_path, &downloads.to_string_lossy()).await {
+        window.emit("mod-install", "error_connection").unwrap();
         return;
     }
     // get the name of the zip file and then open it
+    window.emit("status", "Verifying the hash of the mod..").unwrap();
     let mod_name = mod_path.split("/").last().unwrap();
-    let mod_file = cache.join(mod_name);
-    let mut file = match File::open(&mod_file) {
+    let mod_file = downloads.join(mod_name);
+    let file = match File::open(&mod_file) {
         Ok(f) => f,
         Err(_) => {
             window.emit("mod-install", "error_file_open").unwrap();
@@ -63,5 +80,17 @@ pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_
         window.emit("mod-install", "error_hash_mismatch").unwrap();
         return;
     }
-    // extract the mod into 
+    // extract the mod contents into the game folder/tomb/mods/<mod name>
+    window.emit("status", "Extracting the mod into the game directory..").unwrap();
+    let mod_folder = format!("{}/tomb/mods/{}", in_path.clone(), mod_name.replace(".zip", ""));
+    let mod_folder_path = std::path::Path::new(&mod_folder);
+    compression::decompress_directory(&mod_file, &mod_folder_path).unwrap();
+    // delete the downloads folder 
+    window.emit("status", "Cleaning up..").unwrap();
+    std::fs::remove_file(&mod_file).unwrap();
+    downloads::clear_downloads().unwrap();
+    // all done!
+    window.emit("status", "Mod installed successfully!").unwrap();
+    window.emit("mod-install", "success").unwrap();
+    window.emit("lock-ui", "disable").unwrap();
 }

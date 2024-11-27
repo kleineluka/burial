@@ -19,3 +19,10 @@ pub fn verify_downloads() -> std::io::Result<()> {
     files::verify_folder(&burial_dir)?;
     Ok(())
 }
+
+// clear the downloads folder
+pub fn clear_downloads() -> std::io::Result<()> {
+    let burial_dir = downloads_folder().to_string_lossy().to_string();
+    files::delete_folder(&burial_dir);
+    Ok(())
+}

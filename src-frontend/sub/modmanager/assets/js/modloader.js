@@ -24,6 +24,8 @@ listen('modloader-versions', (event) => {
     option.textContent = 'Latest (recommended)';
     dropdown.appendChild(option);
     dropdown.selectedIndex = dropdown.length - 1;
+    // clear the status (in case the user tried to install before hand)
+    clear_status();
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -38,8 +40,9 @@ function installSelected() {
     // make sure the length of the dropdown is greater than 1 (i.e. not loading)
     const dropdown = document.getElementById('dropdown-menu-install');
     if (dropdown.length > 1) {
+        const inName = document.getElementById('dropdown-menu-install').value;
         const inPath = document.getElementById('tcoaal-path').value;
-        invoke("install_modloader", { inPath } );
+        invoke("install_modloader", { inPath, inName } );
     } else {
         set_status('Please wait for the Tomb versions to load!');
     }

@@ -64,9 +64,10 @@
 .sidebar-footer {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: auto;
-    padding: 10px;
+    padding-bottom: 10px;
+    padding-right: 5px;
     gap: 5px;
 }
 

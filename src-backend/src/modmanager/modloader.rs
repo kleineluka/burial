@@ -21,8 +21,12 @@ const MODLOADER_FILE : &str = "tomb.zip";
 pub fn modloader_prescence(in_path: String) -> bool {
     // there should be a "mods" and "tomb" folder in the game directory
     let tomb_dir = format!("{}\\tomb", in_path);
+    let tomb_js_path = format!("{}\\tomb\\tomb\\tomb.js", in_path);
+    let tomb_index_path = format!("{}\\tomb\\index.html", in_path);
     let tomb_exists = Path::new(&tomb_dir).exists();
-    tomb_exists
+    let tomb_js_exists = Path::new(&tomb_js_path).exists();
+    let tomb_index_exists = Path::new(&tomb_index_path).exists();
+    tomb_exists && tomb_js_exists && tomb_index_exists
 }
 
 // edit the package.json to either install or uninstall tomb
@@ -71,6 +75,7 @@ pub async fn install_modloader(window: Window, in_path: String, in_name: String)
     let downloads_dir = downloads::downloads_folder().to_string_lossy().to_string();
     downloads::verify_downloads().unwrap();
     // download a specific or the latest release of tomb
+    println!("{}", in_name);
     let download_result = if in_name == "latest" {
         codeberg::download_latest_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir).await
     } else {
@@ -180,11 +185,11 @@ pub fn modloader_version(window: Window, in_path: String) {
     // is SOME mod loader installed?
     let modloader_present = modloader_prescence(in_path.clone());
     if !modloader_present {
-        window.emit("modloader-version", Some("Tomb not installed.")).unwrap();
+        window.emit("modloader-version", Some("Tomb not installed")).unwrap();
         return;
     }
     // open in_path + tomb/tomb.js
-    let tomb_js_path = format!("{}\\tomb\\tomb.js", &in_path);
+    let tomb_js_path = format!("{}\\tomb\\tomb\\tomb.js", &in_path);  
     let tomb_js_file = File::open(tomb_js_path).unwrap();
     let tomb_js_reader = io::BufReader::new(tomb_js_file);
     // find the first line before the version is declared, as it is unique, then extract the version..

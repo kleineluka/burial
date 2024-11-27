@@ -8,6 +8,7 @@
 .center-text {
   font-size: 6vmin;
   margin-bottom: 20px;
+  margin-top: 0px;
   color: #030000;
   font-family: 'Nunito', sans-serif;
   font-weight: bolder !important;
