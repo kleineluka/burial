@@ -1,4 +1,3 @@
-// constant (for now at least)
 const repo = "https://llamawa.re/repo.json";
 let repo_data = null;
 let repo_status = false;    
@@ -76,6 +75,7 @@ function build_repo(sort_kind, filter_kind) {
     // go through the data and populate the html
     const container = document.querySelector(".mods-container");
     container.innerHTML = "";
+    let added_mods = 0;
     repo_data.forEach(entry => {
         // get mod data
         const initialData = entry.data || {};
@@ -184,7 +184,15 @@ function build_repo(sort_kind, filter_kind) {
         modEntry.appendChild(firstRow);
         modEntry.appendChild(secondRow);
         container.appendChild(modEntry);
+        added_mods++;
     });
+    if (added_mods == 0) {
+        //<div class="loading">Loading the mod repository<span class="dots"></span></div>
+        const noMods = document.createElement('div');
+        noMods.classList.add('loading');
+        noMods.textContent = 'No mods found for this search criteria.. maybe yours can be the first?';
+        container.appendChild(noMods);
+    }
 }
 
 // on sort dropdown update 
@@ -193,6 +201,8 @@ sortDropdown.addEventListener('change', async () => {
     const sortKind = sortDropdown.value;
     const filterKind = document.querySelector('#filterDropdown').value;
     build_repo(sortKind, filterKind); 
+    const scrollContainer = document.querySelector('.mods-container');
+    scrollContainer.scrollTop = 0;
 });
 
 // on filter update
@@ -202,6 +212,8 @@ filterDropdown.addEventListener('change', async () => {
     const filterKind = filterDropdown.value;
     const searchQuery = document.querySelector('#searchBar').value;
     build_repo(sortKind, filterKind, searchQuery); 
+    const scrollContainer = document.querySelector('.mods-container');
+    scrollContainer.scrollTop = 0;
 });
 
 // on search update

@@ -87,6 +87,12 @@ pub fn uninstall_mod(window: Window, mod_path: String) {
     window.emit("status", "Uninstalling mod..").unwrap();
     let mod_path = std::path::Path::new(&mod_path);
     if mod_path.exists() {
+        // if the folder we are deleting (ex. the directory ends in /tomb) is tomb we can't delete it! (it's a core mod)
+        if mod_path.ends_with("tomb") {
+            window.emit("error", "You can't uninstall the core Tomb mod!").unwrap();
+            window.emit("status-clear", "").unwrap();
+            return;
+        }
         std::fs::remove_dir_all(mod_path).unwrap();
         window.emit("mod-uninstall", "success").unwrap();
         window.emit("status", "Mod uninstalled!").unwrap();

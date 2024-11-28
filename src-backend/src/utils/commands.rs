@@ -1,3 +1,5 @@
+use std::process::Command;
+
 // imports
 use tauri::api::dialog::FileDialogBuilder;
 use tauri::command;
@@ -81,5 +83,25 @@ pub fn launch_game(window: Window, in_path: String) {
             let error_message = format!("Failed to launch the game! :( [{}]", err);
             window.emit("error", &error_message).unwrap();
         }
+    }
+}
+
+// open a path in the file explorer
+#[command]
+pub async fn open_folder(window: Window, in_path: String) {
+    #[cfg(target_os = "windows")]
+    {
+        Command::new("explorer")
+            .arg(format!("\"{}\"", in_path))
+            .spawn()
+            .unwrap();
+    }
+    #[cfg(target_os = "macos")]
+    {
+        Command::new("open").arg(in_path).spawn().unwrap();
+    }
+    #[cfg(target_os = "linux")]
+    {
+        Command::new("xdg-open").arg(in_path).spawn().unwrap();
     }
 }

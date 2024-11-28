@@ -26,34 +26,6 @@
     gap: 40px;
 }
 
-/* Search Row */
-.sort-search-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3vmin;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    color: var(--main-colour);
-    gap: 20px;
-    padding-bottom: 10px;
-}
-
-.search-bar {
-    border-radius: 9px;
-    padding: 2px 14px;
-    font-size: 2.75vmin;
-    font-family: 'Nunito', sans-serif;
-    background-color: var(--main-colour);
-    appearance: none;
-    cursor: pointer;
-    transition: border-color 0.3s;
-    color: #000 I !important;
-}
-
-::placeholder {
-    color: #000 !important;
-}
 
 /* Sorting Row */
 .sort-filter-row {
@@ -80,6 +52,18 @@
 
 .sort-circular-dropdown:hover {
     border-color: var(--main-colour);
+}
+
+/* Update All Button in a similar fashion */
+.header-action-button {
+    border-radius: 10px;
+    padding: 2px 15px;
+    font-size: 3vmin;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--main-colour);
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
 }
 
 /* Mod Entries */

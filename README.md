@@ -66,6 +66,7 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] Steam Deck Compatibility (and Linux improvements)
 - [ ] More Tooltips
 - [ ] Universal and Friendlier™ Path Input Solution
+- [ ] Easier Save Editor
 - [x] Theming
 - [x] More User Settings!
 - [x] Development Build Scripts
