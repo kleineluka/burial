@@ -1,3 +1,6 @@
+const repo = "https://llamawa.re/repo.json";
+let repo_data = null;
+let repo_status = false;
 let installed_cache = null;
 let inPath = null;
 
@@ -17,13 +20,52 @@ function filter_tags(tag) {
     }
 }
 
+// pwetty.. (but optional!)
+function rainbowify(text, offset) {
+    const colors = ['#CC4C4C', '#CC744C', '#CC9F4C', '#4CCC4C', '#4C88CC', '#774CCC', '#CC4C88'];
+    let rainbowText = '';
+    for (let i = 0; i < text.length; i++) {
+        const colorIndex = (i + offset) % colors.length;
+        rainbowText += `<span style="color:${colors[colorIndex]}">${text[i]}</span>`;
+    }
+    return rainbowText;
+}
+
 // put the json into an html list
-function build_list() {
+async function build_list() {
+    // need to see if animations are enabled..
+    const store = loadStorage();
+    const animations = await store.get('settings-animations');
+    // connect to the repo list to get updates
+    const response = await fetch(repo);
+    if (!response.ok) {
+        repo_status = false;
+        console.error("Failed to fetch repository data");
+        set_status("Couldn't connect to the mod repository - updates are not shown.");  
+    }
+    const data = await response.json();
+    if (!data) {
+        repo_status = false;
+        console.error("Failed to parse repository data");
+        set_status("Couldn't connect to the mod repository - updates are not shown.");
+    }
+    repo_status = true;
+    repo_data = data;
     // go through the data and populate the html
     const container = document.querySelector(".mods-container");
     container.innerHTML = "";
     let added_mods = 0;
     installed_cache.forEach(entry => {
+        // check if there is a matching entry in the repo
+        let update_available = false;
+        if (repo_status) {
+            const repoEntry = repo_data.find(repoEntry => repoEntry.modJson.id === entry.modjson.id);
+            if (repoEntry) {
+                if (repoEntry.modJson.version !== entry.modjson.version) {
+                    update_available = true;
+                }
+            }
+        }
         // create mod container
         const modEntry = document.createElement('div');
         modEntry.classList.add('mod-entry');
@@ -62,22 +104,58 @@ function build_list() {
         installedText.classList.add('mod-installed-text');
         installedText.textContent = ` You have version ${entry.modjson.version} installed.`;
         description.appendChild(installedText);
+        if (update_available) {
+            const updateAvailable = document.createElement('span');
+            if (animations) {
+                let updateRainbow = 'update';
+                let rainbowOffset = 0;
+                setInterval(() => {
+                    let rainbowContainer = rainbowify(updateRainbow, rainbowOffset);
+                    rainbowOffset = (rainbowOffset - 1 + updateRainbow.length) % updateRainbow.length;
+                    updateAvailable.innerHTML = ' By the way, there is an ' + rainbowContainer + ' available!';
+                }, 150); 
+            } else {
+                updateAvailable.innerHTML = ' By the way, there is an update available!';
+            }    
+            updateAvailable.classList.add('mod-installed-text');
+            description.appendChild(updateAvailable);
+        }
         detailsDiv.appendChild(nameHeading);
         detailsDiv.appendChild(description);
         // actions
         const actionsDiv = document.createElement('div');
         actionsDiv.classList.add('mod-actions');
-        const deleteIcon = document.createElement('img');
-        deleteIcon.src = 'assets/img/delete.png';
-        deleteIcon.alt = 'Delete Button';
-        deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
-        actionsDiv.appendChild(deleteIcon);
-        // on delete click
-        deleteIcon.addEventListener('click', async () => {
-            console.log('Deleting mod:', entry.modjson.name);
-            const modPath = entry.folder;
-            invoke('uninstall_mod', { modPath });
-        });
+        if (update_available) {
+            // action to display: update
+            const updateIcon = document.createElement('img');
+            updateIcon.src = 'assets/img/update.png';
+            updateIcon.alt = 'Download Button';
+            updateIcon.classList.add('mod-download-icon', 'hvr-shrink');
+            actionsDiv.appendChild(updateIcon);
+            // on update click
+            updateIcon.addEventListener('click', async () => {
+                console.log('Downloading (and updating) mod:', modData.name);
+                const store = loadStorage();
+                const inPath = await store.get('settings-tcoaal');
+                const modPath = initialData.url || 'unknown_name';
+                const modHash = initialData.sha256 || 'unknown_hash';
+                const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
+                invoke('install_mod', { inPath, modPath, modHash, sanitizedName });
+            });
+        } else {    
+            // action to dispaly: delete
+            const deleteIcon = document.createElement('img');
+            deleteIcon.src = 'assets/img/delete.png';
+            deleteIcon.alt = 'Delete Button';
+            deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
+            actionsDiv.appendChild(deleteIcon);
+            // on delete click
+            deleteIcon.addEventListener('click', async () => {
+                console.log('Deleting mod:', entry.modjson.name);
+                const modPath = entry.folder;
+                invoke('uninstall_mod', { modPath });
+            });
+        }
         // finish first row
         firstRow.appendChild(iconDiv);
         firstRow.appendChild(detailsDiv);

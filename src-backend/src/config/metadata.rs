@@ -4,8 +4,6 @@ use serde::{Deserialize, Serialize};
 use tokio::time::{self, Duration};
 use reqwest::Error;
 use crate::config::app;
-use crate::config::settings;
-
 use super::settings::Settings;
 
 #[derive(Serialize, Deserialize, Debug)]

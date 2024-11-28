@@ -90,6 +90,12 @@ function build_repo(sort_kind, filter_kind) {
         if (!search_cache[initialData.id]) return;
         // see if the mod is already installed
         let is_installed = (installed_cache[modData.id]) ? true : false;
+        let is_old_version = false;
+        if (is_installed) {
+            const installed_version = installed_cache[modData.id].version
+            const latest_version = modData.version;
+            is_old_version = (installed_version !== latest_version);
+        }
         // create mod container
         const modEntry = document.createElement('div');
         modEntry.classList.add('mod-entry');
@@ -128,6 +134,9 @@ function build_repo(sort_kind, filter_kind) {
             const installedText = document.createElement('span');
             installedText.classList.add('mod-installed-text');
             installedText.textContent = ` You have version ${installed_cache[modData.id].version} installed.`;
+            if (is_old_version) {
+                installedText.textContent += ' A newer version is available!';
+            }
             description.appendChild(installedText);
         }
         detailsDiv.appendChild(nameHeading);
@@ -136,18 +145,39 @@ function build_repo(sort_kind, filter_kind) {
         const actionsDiv = document.createElement('div');
         actionsDiv.classList.add('mod-actions');
         if (is_installed) {
-            const deleteIcon = document.createElement('img');
-            deleteIcon.src = 'assets/img/delete.png';
-            deleteIcon.alt = 'Delete Button';
-            deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
-            actionsDiv.appendChild(deleteIcon);
-            // on delete click
-            deleteIcon.addEventListener('click', async () => {
-                console.log('Deleting mod:', modData.name);
-                const modPath = installed_cache[modData.id].path;
-                invoke('uninstall_mod', { modPath });
-            });
+            if (is_old_version) {
+                // action to display: update
+                const updateIcon = document.createElement('img');
+                updateIcon.src = 'assets/img/update.png';
+                updateIcon.alt = 'Download Button';
+                updateIcon.classList.add('mod-download-icon', 'hvr-shrink');
+                actionsDiv.appendChild(updateIcon);
+                // on update click
+                updateIcon.addEventListener('click', async () => {
+                    console.log('Downloading (and updating) mod:', modData.name);
+                    const store = loadStorage();
+                    const inPath = await store.get('settings-tcoaal');
+                    const modPath = initialData.url || 'unknown_name';
+                    const modHash = initialData.sha256 || 'unknown_hash';
+                    const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
+                    invoke('install_mod', { inPath, modPath, modHash, sanitizedName });
+                });
+            } else {
+                // action to display: delete
+                const deleteIcon = document.createElement('img');
+                deleteIcon.src = 'assets/img/delete.png';
+                deleteIcon.alt = 'Delete Button';
+                deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
+                actionsDiv.appendChild(deleteIcon);
+                // on delete click
+                deleteIcon.addEventListener('click', async () => {
+                    console.log('Deleting mod:', modData.name);
+                    const modPath = installed_cache[modData.id].path;
+                    invoke('uninstall_mod', { modPath });
+                });
+            }
         } else {
+            // action to display: download
             const downloadIcon = document.createElement('img');
             downloadIcon.src = 'assets/img/download.png';
             downloadIcon.alt = 'Download Button';
@@ -160,7 +190,8 @@ function build_repo(sort_kind, filter_kind) {
                 const inPath = await store.get('settings-tcoaal');
                 const modPath = initialData.url || 'unknown_name';
                 const modHash = initialData.sha256 || 'unknown_hash';
-                invoke('install_mod', { inPath, modPath, modHash });
+                const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
+                invoke('install_mod', { inPath, modPath, modHash, sanitizedName });
             });
         }
         // finish first row
@@ -186,8 +217,8 @@ function build_repo(sort_kind, filter_kind) {
         container.appendChild(modEntry);
         added_mods++;
     });
+    // cute little message to say "hey, it isn't broken!"
     if (added_mods == 0) {
-        //<div class="loading">Loading the mod repository<span class="dots"></span></div>
         const noMods = document.createElement('div');
         noMods.classList.add('loading');
         noMods.textContent = 'No mods found for this search criteria.. maybe yours can be the first?';
