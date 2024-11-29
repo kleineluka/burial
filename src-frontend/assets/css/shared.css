@@ -3,6 +3,7 @@
     --background-gradient: linear-gradient(135deg, #F595B2 0%, #C37084 100%); /* ashley's Eyes + Background */
     --main-colour: #F595B2;
     --light-colour: #f7c8d5;
+    --accent-colour: #F1E2C5; /* universal between all themes */
 }
 
 [data-theme='ashley'] {

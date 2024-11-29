@@ -63,3 +63,37 @@ function moveImageRandomly() {
 
 // move leyley around randomly on an interval
 setInterval(moveImageRandomly, 100);
+
+// splash text
+const splashTexts = [
+    "Now with 100% more siblings!",
+    "I saw you eat that cake!",
+    "Mmm.. rubbish tomatoes!",
+    "Never say never, my dear Andrew!",
+    "We aren't like that, are we?",
+    "*Eating sounds*",
+    "Also try Omori!",
+    "Deplorable!",
+    "Deflowerable?",
+    "No hussies allowed!",
+    "Floozies-b-gone",
+    "Doormat extraordinare",
+    "Very not good!",
+    "Cry about it!",
+    "A VHS player. Cannot be eaten.",
+    "Big words don't fit in your mouth.",
+    "Oh, it's mom..",
+    "Now unbanned in Australia!",
+    "Maybe we can make a deal?",
+    "Star us on Github! Wait, can I put ads here?",
+    "Don't talk about her like that.",
+    "Releasing: in decades",
+    "Where are your robes?"
+];
+function updateSplashText() {
+    const splashTextElement = document.getElementById("splash-text");
+    const randomIndex = Math.floor(Math.random() * splashTexts.length);
+    splashTextElement.textContent = splashTexts[randomIndex];
+}
+setInterval(updateSplashText, 3000);
+window.onload = updateSplashText;

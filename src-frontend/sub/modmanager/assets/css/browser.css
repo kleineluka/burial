@@ -148,6 +148,8 @@
 
 .mod-actions {
     flex: 0 0 auto;
+    display: flex;
+    gap: 5px;
 }
 
 .mod-download-icon {

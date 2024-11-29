@@ -142,20 +142,19 @@ async function build_list() {
                 const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
                 invoke('install_mod', { inPath, modPath, modHash, sanitizedName });
             });
-        } else {    
-            // action to dispaly: delete
-            const deleteIcon = document.createElement('img');
-            deleteIcon.src = 'assets/img/delete.png';
-            deleteIcon.alt = 'Delete Button';
-            deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
-            actionsDiv.appendChild(deleteIcon);
-            // on delete click
-            deleteIcon.addEventListener('click', async () => {
-                console.log('Deleting mod:', entry.modjson.name);
-                const modPath = entry.folder;
-                invoke('uninstall_mod', { modPath });
-            });
         }
+        // action to dispaly: delete
+        const deleteIcon = document.createElement('img');
+        deleteIcon.src = 'assets/img/delete.png';
+        deleteIcon.alt = 'Delete Button';
+        deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
+        actionsDiv.appendChild(deleteIcon);
+        // on delete click
+        deleteIcon.addEventListener('click', async () => {
+            console.log('Deleting mod:', entry.modjson.name);
+            const modPath = entry.folder;
+            invoke('uninstall_mod', { modPath });
+        });
         // finish first row
         firstRow.appendChild(iconDiv);
         firstRow.appendChild(detailsDiv);
@@ -209,7 +208,6 @@ listen('mod-uninstall', async (event) => {
 // update what mods are already installed
 listen('installed-mods', async (event) => {
     installed_cache = event.payload;
-    console.log(installed_cache);
     build_list();
 });
 

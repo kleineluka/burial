@@ -6,6 +6,7 @@
 }
 
 .center-text {
+  position: relative;
   font-size: 6vmin;
   margin-bottom: 20px;
   margin-top: 0px;
@@ -49,4 +50,35 @@
 
 .update-button-hide {
   display: none;
+}
+
+/* Splash Text */
+.splash-text {
+  position: absolute;
+  font-size: 2vmin;
+  color: var(--accent-colour);
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  transform-origin: center; 
+  pointer-events: none; 
+  transform: rotate(-10deg) scale(1);
+  animation: growInOut 3s ease-in-out infinite;
+  left: 55%;
+  bottom: 7.5px;
+  z-index: 1000;
+}
+
+@keyframes growInOut {
+  0% {
+    opacity: 0.8;
+    transform: rotate(-10deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(-10deg) scale(1.2);
+  }
+  100% {
+    opacity: 0.8;
+    transform: rotate(-10deg) scale(1);
+  }
 }
