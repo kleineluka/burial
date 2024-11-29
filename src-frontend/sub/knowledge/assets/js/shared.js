@@ -21,3 +21,7 @@ function openCoffinWiki() {
     invoke('open_browser', { url: 'https://coffin-wiki.basil.cafe/' });
 }
 
+// open the publish mod page
+function openPublishMod() {
+    invoke('open_browser', { url: 'https://github.com/Llamaware/Llamaware.github.io/' });
+}

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/modjson.css">
+    <link rel="stylesheet" href="assets/css/repojson.css">
 </head>
 <!-- body -->
 <body>
@@ -19,8 +19,8 @@
     <div class="sidebar">
         <div class="sidebar-items">
             <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
-            <a class="navigate-button sidebar-current" data-page="modjson.html">Mod JSON 🍱</a>
-            <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
+            <a class="navigate-button hvr-grow" data-page="modjson.html">Mod JSON 🍱</a>
+            <a class="navigate-button sidebar-current" data-page="repojson.html">Repo JSON 🌧️</a>
             <a class="navigate-button hvr-grow" data-page="differences.html">Differences ♊</a>
             <a class="navigate-button hvr-grow" data-page="packager.html">Packager 🎁</a>
         </div>
@@ -57,88 +57,62 @@
             <!-- Horizontal Navbar -->
             <div class="page-navbar">
                 <div class="file-path-container">
-                    <input id="input-modjson" type="text" class="file-path-input" placeholder="Path to either load or save.." value="">
+                    <input id="input-repojson" type="text" class="file-path-input" placeholder="Path to either load or save.." value="">
                     <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
                 </div>
                 <div class="button-row">
-                    <button id="load-modjson" class="browse-button navbar-browse-button hvr-shrink">Load JSON ⬆️</button>
-                    <button id="save-modjson" class="browse-button navbar-browse-button hvr-shrink">Save JSON ⬇️</button>
+                    <button id="load-repojson" class="browse-button navbar-browse-button hvr-shrink">Load JSON ⬆️</button>
+                    <button id="save-repojson" class="browse-button navbar-browse-button hvr-shrink">Save JSON ⬇️</button>
                 </div>
                 <div class="button-row">
-                    <button id="clear-modjson" class="browse-button navbar-browse-button hvr-shrink">Clear Fields ♻️</button>
-                    <button id="example-modjson" class="browse-button navbar-browse-button hvr-shrink">Load Example 🍹</button>
+                    <button id="clear-repojson" class="browse-button navbar-browse-button hvr-shrink">Clear Fields ♻️</button>
+                    <button id="example-repojson" class="browse-button navbar-browse-button hvr-shrink">Load Example 🍹</button>
                 </div>
             </div>
             <!-- Sub Container -->
             <div class="page-container">
                 <div class="scrollable-area">
-                    <!-- Mod ID -->
-                    <div class="text-container">
-                        <p>Mod ID:</p>
-                        <input id="input-id" type="text" class="file-path-input" value="">
-                    </div>
-                    <!-- Mod Name -->
-                    <div class="text-container">
-                        <p>Mod Name:</p>
-                        <input id="input-name" type="text" class="file-path-input" value="">
-                    </div>
-                    <!-- Authors -->
-                    <div id="authors-container" class="multi-container">
+                    <!-- Last Updated -->
+                    <div class="multi-container">
                         <div class="first-row">
-                            <p>Authors:</p>
-                            <input id="input-author" type="text" class="file-path-input input-author" value="">
-                            <button id="add-author" class="browse-button hvr-shrink">+</button>
+                        <p>Last Updated:</p>
+                        <input id="input-date" type="text" class="file-path-input" value="">
+                        <button id="set-date" class="browse-button hvr-shrink">Set</button>
                         </div>
                     </div>
-                    <!-- Description -->
+                    <!-- URL -->
                     <div class="text-container">
-                        <p>Description:</p>
-                        <input id="input-description" type="text" class="file-path-input" value="">
+                        <p>Zip URL:</p>
+                        <input id="input-url" type="text" class="file-path-input" value="">
                     </div>
-                    <!-- Version -->
+                    <!-- Source -->
                     <div class="text-container">
-                        <p>Version:</p>
-                        <input id="input-version" oninput="inputVersion(this)" class="file-path-input" value="">
+                        <p>Source URL:</p>
+                        <input id="input-source" type="text" class="file-path-input" value="">
                     </div>
-                    <!-- Spec -->
-                    <div class="text-container">
-                        <p>Spec:</p>
-                        <input id="input-spec" oninput="inputVersion(this)" class="file-path-input" placeholder="Optional value.." value="">
-                    </div>
-                    <!-- Dependency: Game -->
-                    <div class="text-container">
-                        <p>Game Dep:</p>
-                        <input id="input-dep-game" class="file-path-input" value="">
-                    </div>
-                    <!-- Dependency: Spec -->
-                    <div class="text-container">
-                        <p>Spec Dep:</p>
-                        <input id="input-dep-spec" class="file-path-input" value="">
-                    </div>
-                    <!-- Dependency: Mods -->
-                    <div id="mod-dep-container" class="multi-container">
-                        <div class="double-row">
-                            <p>Mod Dep:</p>
-                            <input id="input-mod-id" class="file-path-input input-mod-id" placeholder="ID (Optional)" value="">
-                            <input id="input-mod-version" class="file-path-input input-mod-version" placeholder="Ver. (Optional)" value="">
-                            <button id="add-mod-dep" class="browse-button hvr-shrink">+</button>
+                    <!-- SHA256 -->
+                    <div class="multi-container">
+                        <div class="first-row">
+                            <p>SHA-256:</p>
+                            <input id="input-sha256" type="text" class="file-path-input" value="">
+                            <button id="set-sha256" class="browse-button hvr-shrink">Calc</button>
                         </div>
                     </div>
-                    <!-- Files -->
-                    <div id="files-container" class="multi-container">
+                    <!-- Tags -->
+                    <div id="tags-container" class="multi-container">
                         <div class="selection-row">
-                            <p>Files:</p>
+                            <p>Tags:</p>
                             <div class="file-path-container dropdown-container">
-                                <select id="dropdown-menu-file" class="dropdown-menu">
-                                    <option value="assets">Assets</option>
-                                    <option value="imageDeltas">Image Deltas</option>
-                                    <option value="dataDeltas">Data Deltas</option>
-                                    <option value="plugins">Plugins</option>
-                                    <option value="languages">Languages</option>
-                                    <option value="inject">Inject</option>
+                                <select id="dropdown-menu-tags" class="dropdown-menu">
+                                    <option value="content">New Content</option>
+                                    <option value="dev">Developer Tool</option>
+                                    <option value="qol">Quality of Life</option>
+                                    <option value="lib">Code Library</option>
+                                    <option value="mature">Mature Themes</option>
+                                    <option value="gen-ai">Generative AI</option>
                                 </select>
                             </div>
-                            <button id="add-file" class="browse-button hvr-shrink">+</button>
+                            <button id="add-tag" class="browse-button hvr-shrink">+</button>
                         </div>
                     </div>
                 </div>
@@ -156,5 +130,5 @@
 <script src="../../assets/ext/sweetalert2.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/modjson.js"></script>
+<script src="assets/js/repojson.js"></script>
 </html>

@@ -62,6 +62,8 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] More Tooltips
 - [ ] Better Folder & File Dialog Handling
 - [ ] Easier Save Editor
+- [ ] Code Cleanup
+- [ ] UI Improvements
 - [x] Theming
 - [x] More User Settings!
 - [x] Development Build Scripts

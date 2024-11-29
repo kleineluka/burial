@@ -40,6 +40,7 @@ use modmanager::instances;
 use modmanager::browser;
 use modmaking::differences;
 use modmaking::modjson;
+use modmaking::repojson;
 
 // main
 fn main() {
@@ -157,6 +158,8 @@ fn main() {
             differences::find_differences,
             modjson::load_modjson,
             modjson::save_modjson,
+            repojson::load_repojson,
+            repojson::save_repojson,
             info::general_info])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");

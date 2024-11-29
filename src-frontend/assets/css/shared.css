@@ -88,7 +88,7 @@ body::after {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.4;
+    opacity: 0.5;
     mix-blend-mode: multiply;
     z-index: -1;
     pointer-events: none;

@@ -12,34 +12,6 @@ function compareVersions(local, remote) {
     return false;
 }
 
-// see if it is the first run, overrides store (but fine for index)
-document.addEventListener('DOMContentLoaded', async () => {
-    const store = loadStorage();
-    const start_tutorial = await store.get('state-first-run');
-    if (start_tutorial) {
-        invoke('navigate', { page: 'sub/tutorial/index.html' });
-    } else {
-        // set the theme
-        const theme = await store.get('settings-theme');
-        if (theme) {
-            const img = document.querySelector('img.center-image');
-            if (img) {
-                const newSrc = img.getAttribute(`data-${theme}`);
-                if (newSrc) {
-                    img.src = newSrc;
-                }
-            }
-        }
-        // check the local and remote versions
-        const localVersion = await store.get('state-local-version');
-        const remoteVersion = await store.get('metadata-version');
-        if (compareVersions(localVersion, remoteVersion)) {
-            const updateButton = document.getElementById('update-button');
-            updateButton.classList.remove('update-button-hide');
-        }
-    }
-});
-
 // open docs
 function openDocs() {
     invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki' });
@@ -90,10 +62,42 @@ const splashTexts = [
     "Releasing: in decades",
     "Where are your robes?"
 ];
+
 function updateSplashText() {
     const splashTextElement = document.getElementById("splash-text");
     const randomIndex = Math.floor(Math.random() * splashTexts.length);
     splashTextElement.textContent = splashTexts[randomIndex];
 }
-setInterval(updateSplashText, 3000);
-window.onload = updateSplashText;
+
+
+// see if it is the first run, overrides store (but fine for index)
+document.addEventListener('DOMContentLoaded', async () => {
+    // see if first run
+    const store = loadStorage();
+    const start_tutorial = await store.get('state-first-run');
+    if (start_tutorial) {
+        invoke('navigate', { page: 'sub/tutorial/index.html' });
+    } else {
+        // set the theme
+        const theme = await store.get('settings-theme');
+        if (theme) {
+            const img = document.querySelector('img.center-image');
+            if (img) {
+                const newSrc = img.getAttribute(`data-${theme}`);
+                if (newSrc) {
+                    img.src = newSrc;
+                }
+            }
+        }
+        // check the local and remote versions
+        const localVersion = await store.get('state-local-version');
+        const remoteVersion = await store.get('metadata-version');
+        if (compareVersions(localVersion, remoteVersion)) {
+            const updateButton = document.getElementById('update-button');
+            updateButton.classList.remove('update-button-hide');
+        }
+        // start splash text
+        updateSplashText();
+        setInterval(updateSplashText, 3000);
+    }
+});

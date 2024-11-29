@@ -1,0 +1,7 @@
+{
+    "lastUpdate": "2024-01-01T00:00:00Z",
+    "url": "https://example.com/path/to/your/mod.zip",
+    "source": "https://example.com/path/to/the/source/code",
+    "sha256": "3e8f7a6c9d5b23f7a2e48d9c6b4f5aef29c1d8b76e3a8f17c7e5b2d9a1f0c3d8",
+    "tags": ["gen-ai", "content"]
+}
