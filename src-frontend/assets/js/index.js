@@ -69,7 +69,6 @@ function updateSplashText() {
     splashTextElement.textContent = splashTexts[randomIndex];
 }
 
-
 // see if it is the first run, overrides store (but fine for index)
 document.addEventListener('DOMContentLoaded', async () => {
     // see if first run
@@ -98,6 +97,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         // start splash text
         updateSplashText();
-        setInterval(updateSplashText, 3000);
+        setInterval(updateSplashText, 5000);
     }
 });

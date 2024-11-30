@@ -1,0 +1,13 @@
+{
+    "Side Dishes QoL": {
+        "modloader_version": "latest",
+        "mods": {
+            "sidedishes": {
+                "version": "latest"
+            },
+            "yep_x_messagebacklog": {
+                "version": "latest"
+            }
+        }
+    }
+}

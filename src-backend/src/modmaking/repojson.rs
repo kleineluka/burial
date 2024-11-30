@@ -16,7 +16,7 @@ pub fn load_repojson(window: Window, in_path: String) {
     window.emit("status", "Loaded the repo.json file!").unwrap();
 }
 
-// write mod json
+// write repo json
 #[command]
 pub fn save_repojson(window: Window, in_path: String, repojson: String) {
     // make a file at the given path, if it is not empty

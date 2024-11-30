@@ -1,6 +1,6 @@
-MIT License
+Modified MIT License
 
-Copyright (c) 2024 zoey
+Copyright (c) 2024 Zoey (KleineLuka)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -9,13 +9,42 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. AI Model Use Restriction:
+    The Software, including its source code and associated resources, may not be used to train, develop, or enhance any artificial intelligence or machine learning models.
+
+2. End User License Agreement (EULA):
+    Any derivative works, modifications, or distributions of the Software must include this license in its entirety, and an accompanying End User License Agreement (EULA) must be presented to and accepted by end users before they use or access the Software.
+
+3. Mod Installer Restriction:
+    The Software may not be used to create standalone or derivative mod installers, including but not limited to mod installers designed to support other repositories or specific mods.
+
+4. Attribution Requirement:
+    All derivative works or distributions must provide clear and visible attribution to the original author, Zoey (KleineLuka), in the documentation, credits, or an equivalent prominent location, including a link to the official repository or specified source.
+
+5. Non-Commercial Use:
+    The Software and its derivatives may not be used for commercial purposes without prior written permission from the copyright holder.
+
+6. Modification Disclosure:
+    Any modified versions of the Software must be clearly marked as such, along with a brief description of the changes made, to avoid confusion with the original work.
+
+7. Prohibition of Harmful Use:
+    The Software may not be used in any project or application that engages in unlawful, unethical, or harmful activities, including but not limited to malware, spyware, or any activity that violates user privacy.
+
+8. License Revocation:
+    The author reserves the right to revoke this license if the terms outlined in this agreement are violated, without notice or recourse.
+
+9. Distribution of Binaries:
+    All distributed binaries derived from the original source code must meet the following conditions:
+    - Distributed binaries must prominently link back to the official repository or distribution site as specified by the original author, Zoey.
+    - Redistribution of pre-built binaries or packaged versions of the Software by third parties is prohibited unless they are identical to the official binaries provided by the author or unless express permission is granted.
+    - Individuals may freely modify and/or build the Software from source for personal or public use, provided they adhere to the terms of this license.
+
+The above copyright notice, along with this modified permission notice, shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+IN THE SOFTWARE.

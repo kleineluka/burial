@@ -132,6 +132,7 @@ function loadRepojson(data) {
         // prep: get container, create row
         const container = document.getElementById("tags-container");
         let newRow = document.createElement("div");
+        newRow.className = "tag-container"; // for easy removal
         // add the row with the filled in value
         newRow.innerHTML = `<div class="second-row" data-type="tags">
                                 <p></p>
@@ -155,7 +156,7 @@ function clearRepojson() {
     document.getElementById('input-source').value = "";
     document.getElementById('input-sha256').value = "";
     // clear tags
-    const tags = document.querySelectorAll('div[data-type="tags"]');
+    const tags = document.querySelectorAll('.tag-container');
     tags.forEach(tag => {
         tag.remove();
     });
