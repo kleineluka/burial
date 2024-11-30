@@ -8,7 +8,7 @@ use crate::config::cache;
 pub struct Settings {
     pub tcoaal: String,
     pub output: String,
-    pub biginstance: bool,
+    pub instances: bool,
     pub updates: bool,
     pub theme: String,
     pub animations: bool,
@@ -23,7 +23,7 @@ pub fn check_settings() {
         let default_settings = Settings {
             tcoaal: "".to_string(),
             output: "".to_string(),
-            biginstance: false,
+            instances: false,
             updates: true,
             theme: "ashley".to_string(),
             animations: true,

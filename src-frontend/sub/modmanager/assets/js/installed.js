@@ -182,7 +182,7 @@ async function build_list() {
         //<div class="loading">Loading the mod repository<span class="dots"></span></div>
         const noMods = document.createElement('div');
         noMods.classList.add('loading');
-        noMods.textContent = 'No mods found for this search criteria.. maybe yours can be the first?';
+        noMods.textContent = 'Hmm.. it doesn\'t look like you have any mods installed yet. Why not try installing some?';
         container.appendChild(noMods);
     }
 }
@@ -207,7 +207,11 @@ listen('mod-uninstall', async (event) => {
 
 // update what mods are already installed
 listen('installed-mods', async (event) => {
-    installed_cache = event.payload;
+    if (event.payload === "error_modloader") {
+        installed_cache = [];
+    } else {
+        installed_cache = event.payload;
+    }
     build_list();
 });
 

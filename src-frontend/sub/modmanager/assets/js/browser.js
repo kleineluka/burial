@@ -339,15 +339,20 @@ listen('mod-uninstall', async (event) => {
 
 // update what mods are already installed
 listen('installed-mods', async (event) => {
-    // simplify the installed mods data for easier searching
-    installed_cache = event.payload.reduce((acc, mod) => {
-        const { id, version } = mod.modjson;
-        acc[id] = {
-            path: mod.folder,
-            version: version
-        };
-        return acc;
-    }, {});
+    if (event.payload === 'error_modloader') {
+        // make installed_cache an empty object
+        installed_cache = {};
+    } else {
+        // simplify the installed mods data for easier searching
+        installed_cache = event.payload.reduce((acc, mod) => {
+            const { id, version } = mod.modjson;
+            acc[id] = {
+                path: mod.folder,
+                version: version
+            };
+            return acc;
+        }, {});
+    }
     // download + build repo (regardless of installed status)
     invoke('mod_ready', { inPath });
     await download_repo(); // avoid redownloading

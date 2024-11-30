@@ -1,0 +1,219 @@
+/* Text Information (At Top) */
+.top-information {
+    font-size: 2.5vmin;
+    padding-right: 5vmin;
+    padding-left: 5vmin;
+    color: var(--main-colour);
+}
+
+/* Limit Size of Container */
+.mods-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    padding: 1vmin;
+    max-height: 45vh;
+}
+
+.mods-container>* {
+    width: 90%;
+}
+
+/* Sorting Collection */
+.sort-collection {
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Search Row */
+.sort-search-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vmin;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    color: var(--main-colour);
+    gap: 20px;
+    padding-bottom: 10px;
+}
+
+.search-bar {
+    border-radius: 9px;
+    padding: 2px 14px;
+    font-size: 2.75vmin;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--main-colour);
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    color: #000 I !important;
+}
+
+::placeholder {
+    color: #000 !important;
+}
+
+/* Sorting Row */
+.sort-filter-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 3vmin;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    color: var(--main-colour);
+    gap: 20px;
+}
+
+.sort-circular-dropdown {
+    border-radius: 10px;
+    padding: 2px 15px;
+    font-size: 3vmin;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--main-colour);
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.sort-circular-dropdown:hover {
+    border-color: var(--main-colour);
+}
+
+/* Mod Entries */
+.mod-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 10px;
+    background-color: var(--light-colour);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.mod-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mod-icon {
+    flex: 0 0 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mod-provided-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #000;
+    border-radius: 10%;
+}
+
+.mod-details {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.mod-name {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+}
+
+.mod-author {
+    font-weight: normal;
+    color: #666;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.mod-description {
+    margin: 5px 0 0;
+    font-size: 0.85em;
+    color: #444;
+    text-align: left;
+}
+
+.mod-installed-text {
+    font-weight: bold;
+}
+
+.mod-actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 5px;
+}
+
+.mod-download-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10%;
+    border: 2px solid #000;
+    transition: transform 0.3s, opacity 0.3s;
+    background-color: var(--main-colour);
+    background-blend-mode: screen;
+    margin-top: -20px;
+}
+
+.mod-download-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.mod-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mod-tag {
+    background-color: var(--main-colour);
+    color: #333;
+    border-radius: 12px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 0.85em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.mod-open-link-symbol {
+    cursor: pointer;
+    /* remove underline */
+    text-decoration: none;
+}
+
+/* Pretty Lil' Loading */
+.loading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.5vmin;
+}
+
+.dots::after {
+    content: '';
+    animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: '';
+    }
+    33% {
+        content: '.';
+    }
+    66% {
+        content: '..';
+    }
+    100% {
+        content: '...';
+    }
+}

@@ -51,7 +51,7 @@ pub fn setup_game(window: Window, in_path: String) {
     let settings = settings::Settings {
         tcoaal: String::from(in_path),
         output: output_path_string,
-        biginstance: false,
+        instances: false,
         updates: true,
         theme: String::from("ashley"),
         animations: true,

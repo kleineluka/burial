@@ -59,13 +59,13 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "state-hwid", serde_json::Value::String(utils::environment::get_hwid())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-local-version", serde_json::Value::String(metadata::get_local_version())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-operating-system", serde_json::Value::String(utils::environment::get_os().to_owned())).unwrap();
-            config::storage::insert_into_store(&app.handle(), "state-game-instance", serde_json::Value::String(modmanager::instances::active_instance(user_settings.tcoaal.clone()))).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-game-instance", serde_json::Value::String(modmanager::instances::active_instance(user_settings.tcoaal.clone(), user_settings.instances))).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-bundled-resources", serde_json::Value::String(utils::environment::get_resources(app).to_string_lossy().to_string())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-starting-page", serde_json::Value::String("home".to_string())).unwrap();
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
-            config::storage::insert_into_store(&app.handle(), "settings-biginstance", serde_json::Value::Bool(user_settings.biginstance)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-instances", serde_json::Value::Bool(user_settings.instances)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-updates", serde_json::Value::Bool(user_settings.updates)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-theme", serde_json::Value::String(user_settings.theme)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-animations", serde_json::Value::Bool(user_settings.animations)).unwrap();
@@ -142,11 +142,6 @@ fn main() {
             modloader::uninstall_modloader,
             modloader::modloader_version,
             modloader::modloader_versions,
-            instances::load_instances,
-            instances::verify_instance,
-            instances::rename_instance,
-            instances::clone_instance,
-            instances::refresh_active,
             installed::installed_mods,
             installed::install_mod,
             installed::uninstall_mod,

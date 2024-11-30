@@ -1,6 +1,7 @@
 {
     "Side Dishes QoL": {
-        "modloader_version": "latest",
+        "lastUpdate": "2024-10-14T18:47:23Z",
+        "modloaderVersion": "latest",
         "mods": {
             "sidedishes": {
                 "version": "latest"

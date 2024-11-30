@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const storage = loadStorage();
     if (!storage) return;
     // autofill other storage options
-    const biginstance = await storage.get('settings-biginstance');
-    document.getElementById('dropdown-menu-biginstance').value = biginstance.toString();
+    const instances = await storage.get('settings-instances');
+    document.getElementById('dropdown-menu-instances').value = instances.toString();
     const updates = await storage.get('settings-updates');
     document.getElementById('dropdown-menu-updates').value = updates.toString();
     const theme = await storage.get('settings-theme');
@@ -30,7 +30,7 @@ async function saveSettings() {
     // get values
     var tcoaal = document.getElementById('tcoaal-path').value;
     var output = document.getElementById('output-path').value;
-    var biginstance = (document.getElementById('dropdown-menu-biginstance').value === 'true');
+    var instances = (document.getElementById('dropdown-menu-instances').value === 'true');
     var updates = (document.getElementById('dropdown-menu-updates').value === 'true');
     var theme = document.getElementById('dropdown-menu-theme').value;
     var animations = (document.getElementById('dropdown-menu-animations').value === 'true');
@@ -38,13 +38,13 @@ async function saveSettings() {
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
     store.set('settings-output', output);
-    store.set('settings-biginstance', biginstance);
+    store.set('settings-instances', instances);
     store.set('settings-updates', updates);
     store.set('settings-theme', theme);
     store.set('settings-animations', animations);
     store.save();
     // set values
-    invoke('save_settings', { tcoaal, output, biginstance, updates, theme, animations });
+    invoke('save_settings', { tcoaal, output, instances, updates, theme, animations });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -84,7 +84,7 @@ function resetSettings() {
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
     document.getElementById('output-path').value = '';
-    document.getElementById('dropdown-menu-biginstance').value = 'false';
+    document.getElementById('dropdown-menu-instances').value = 'false';
     document.getElementById('dropdown-menu-theme').value = 'ashley';
     document.getElementById('dropdown-menu-animations').value = 'true';
     // set values

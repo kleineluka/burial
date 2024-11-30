@@ -130,3 +130,32 @@
     text-decoration: none;
     line-height: 5vmin;
 }
+
+/* Pretty Lil Loading */
+.loading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.5vmin;
+}
+
+.dots::after {
+    content: '';
+    animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: '';
+    }
+
+    33% {
+        content: '.';
+    }
+
+    66% {
+        content: '..';
+    }
+
+    100% {
+        content: '...';
+    }
+}

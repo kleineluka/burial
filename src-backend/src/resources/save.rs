@@ -7,6 +7,24 @@ use crate::config::appdata;
 use crate::utils::files;
 use crate::utils::rpgsave;
 
+// recursive backup of save files
+pub fn backup_rpgsave_files(dir: &PathBuf, backup: &PathBuf) {
+    if dir.is_dir() {
+        for entry in fs::read_dir(dir).expect("Failed to read directory") {
+            let entry = entry.expect("Failed to get directory entry");
+            let path = entry.path();
+            if path.is_dir() {
+                backup_rpgsave_files(&path, backup);
+            } else if let Some(extension) = path.extension() {
+                if extension == "rpgsave" {
+                    let backup_path = backup.join(path.file_name().expect("Failed to get file name"));
+                    fs::copy(&path, &backup_path).expect("Failed to copy file");
+                }
+            }
+        }
+    }
+}
+
 // find all saves in the save folder
 #[command]
 pub fn find_saves(window: Window) {
@@ -66,24 +84,7 @@ pub fn backup_saves(window: Window, backup_path: String) {
     if !backup_folder.exists() {
         fs::create_dir_all(&backup_folder).expect("Failed to create backup folder");
     }
-    // iterate over the save folder (recursive)
-    fn backup_rpgsave_files(dir: &PathBuf, backup: &PathBuf) {
-        if dir.is_dir() {
-            for entry in fs::read_dir(dir).expect("Failed to read directory") {
-                let entry = entry.expect("Failed to get directory entry");
-                let path = entry.path();
-                if path.is_dir() {
-                    backup_rpgsave_files(&path, backup);
-                } else if let Some(extension) = path.extension() {
-                    if extension == "rpgsave" {
-                        let backup_path = backup.join(path.file_name().expect("Failed to get file name"));
-                        fs::copy(&path, &backup_path).expect("Failed to copy file");
-                    }
-                }
-            }
-        }
-    }
-    // call the recursive function
+    // call the recursive backup function
     backup_rpgsave_files(&save_folder, &backup_folder);
     // return results to front end
     window.emit("status", Some("Save files backed up!")).unwrap();
