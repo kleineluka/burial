@@ -8,7 +8,7 @@
 <!-- Burial -->
 # Burial 🍅
 - Burial was made by **[kleineluka](https://github.com/kleineluka)**! ~~and if other people ever want to contribute, you can go here too...~~
-- **[Burial's code](https://www.github.com/kleineluka/burial)** is provided under the **[MIT](https://github.com/kleineluka/burial/blob/main/LICENSE) license**.
+- **[Burial's code](https://www.github.com/kleineluka/burial)** is provided under a **[modified MIT](https://github.com/kleineluka/burial/blob/main/LICENSE) license**.
 - By using or contributing to Burial, you agree to the **[EULA](https://github.com/kleineluka/burial/blob/main/EULA.md)**.
 
 <!-- Credits & Acknowledgements -->
