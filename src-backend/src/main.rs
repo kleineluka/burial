@@ -155,7 +155,8 @@ fn main() {
             modjson::save_modjson,
             repojson::load_repojson,
             repojson::save_repojson,
-            info::general_info])
+            info::general_info,
+            info::plugins_info])
         .run(tauri::generate_context!())
         .expect("Error running Burial.");
 }

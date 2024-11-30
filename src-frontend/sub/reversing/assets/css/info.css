@@ -7,3 +7,35 @@
     padding: 8px !important;
     margin-left: 5px !important;
 }
+
+/* Scroll Area for Plugins */
+.plugins-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    padding: 1vmin;
+    max-height: 45vh;
+}
+
+.plugins-container>* {
+    width: 90%;
+}
+
+/* Plugin Entries */
+.plugin-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 10px;
+    background-color: var(--light-colour);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.plugin-entry p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.5vmin;
+    padding: 5px;
+}

@@ -45,7 +45,7 @@ pub fn get_mainjs(dir_path: &str) -> PathBuf {
 // get the game version from the files
 pub fn game_version(in_path: String) -> String {
     // navigate from in_path to www/js/main.js
-     let main_js_path = format!("{}/www/js/main.js", in_path);
+     let main_js_path = format!("{}//www//js//main.js", in_path);
     // open main.js
     let file = File::open(main_js_path).unwrap();
     let reader = BufReader::new(file);
