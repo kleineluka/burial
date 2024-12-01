@@ -1,0 +1,26 @@
+{
+    "The Coffin of Andy and Renee": {
+        "url": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
+        "type": "git",
+        "version": "1.0.0",
+        "authors": [
+            "PomPomSqL",
+            "FlamerL13"
+        ],
+        "description": "Reimagined storyline with Andrew and his mother bonding.",
+        "tags": [
+            "content",
+            "mature"
+        ]
+    },
+    "The Coffin of Candy Scabs": {
+        "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
+        "type": "git",
+        "version": "1.0.0",
+        "authors": [ "Mr-Archive" ],
+        "description": "TCOAAL x Candy Scabs crossover.",
+        "tags": [
+            "content"
+        ]
+    }
+}

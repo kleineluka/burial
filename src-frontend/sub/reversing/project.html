@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/dev.css">
+    <link rel="stylesheet" href="assets/css/project.css">
 </head>
 <!-- body -->
 <body>
@@ -21,9 +21,9 @@
             <a class="navigate-button hvr-grow" data-page="index.html">Reversing 🧬</a>
             <a class="navigate-button hvr-grow" data-page="injection.html">Injection 💉</a>
             <a class="navigate-button hvr-grow" data-page="code.html">Game Code 💘</a>
-            <a class="navigate-button hvr-grow" data-page="project.html">RPG Project ⚔️</a>
+            <a class="navigate-button sidebar-current" data-page="project.html">RPG Project ⚔️</a>
             <a class="navigate-button hvr-grow" data-page="sdk.html">SDK Manager 🍡</a>
-            <a class="navigate-button sidebar-current" data-page="dev.html">Dev Tools 🔍</a>
+            <a class="navigate-button hvr-grow" data-page="dev.html">Dev Tools 🔍</a>
             <a class="navigate-button hvr-grow" data-page="info.html">Game Info 🌮</a>
             <a class="navigate-button hvr-grow" data-page="backups.html">Backups 🧺</a>
         </div>
@@ -53,10 +53,15 @@
         </div>
         <div class="container">
             <div class="page-navbar">
-              <div class="file-path-container">
-                <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder" value="">
-                <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
-                <button id="refresh-tcoaal-path" class="button-option button-smol-navbar hvr-shrink">♻️</button>
+              <div class="column-container">
+                <div class="file-path-container">
+                  <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder"
+                    value="">
+                  <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <div class="info-container">
+                  <a>The RPG Maker MV bundler is an implementation of <span>Tomb's</span>d  project generation feature.</a>
+                </div>
               </div>
             </div>
             <div class="page-container">
@@ -82,5 +87,5 @@
 <script src="../../assets/ext/sweetalert2.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/dev.js"></script>
+<script src="assets/js/project.js"></script>
 </html>

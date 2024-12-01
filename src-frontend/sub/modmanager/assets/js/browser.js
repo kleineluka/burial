@@ -1,4 +1,5 @@
 const repo = "https://llamawa.re/repo.json";
+const foreign = "data/supported/sifting.json"
 let repo_data = null;
 let repo_status = false;    
 let installed_cache = null;

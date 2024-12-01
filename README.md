@@ -31,10 +31,10 @@ Burial is a program for **mod players**, **mod creators**, **content creators** 
 - **Mod Manager** 🍱: One-click install of modpacks, manage Tomb modloader, browse and download mods, manage installed mods, and (beta) manage multiple instances of the game.
 - **Resources** ✂️: Decrypt/encrypt files from/to .k9a, export categories of resources, generate asset templates, parse/import dialogue, and decrypt/modify/manage save files.
 - **Reversing** 🧬: Targeted code injection, export/deobfuscate/comment the game's run-time code, manage NW.js SDK's, enable developer tools, view game information, and create backups of your game files.
-- **Mod Tools** 🖍️:  Edit mod json files, edit repo json files, generate mod differences, package your mod, and upload your mod.
-- **Knowledge** 📔: Easily access modding resources in one convienent place.
+- **Mod Tools** 🖍️:  Edit mod json files, edit repo json files, generate mod differences, and package your mod.
+- **Knowledge** 📔: Easily access modding resources in one convenient place.
 - **Easy and Safe** 🍵: Burial only takes a few clicks to get you playing mods and has safety guardrails in place.
-- **Quality of Life** 🌸: Pretty GUI with character-based themes, persistant settings, built-in tutorials, update checking, lots of emojis..
+- **Quality of Life** 🌸: Pretty GUI with character-based themes, persistent settings, built-in tutorials, update checking, lots of emojis..
 - **By Fans, Not Thieves** 🥰: A legal copy of the game is required to use Burial! Burial will **never** implement any piracy tools. 
 
 <!-- Install -->
