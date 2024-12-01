@@ -1,26 +1,56 @@
-{
-    "The Coffin of Andy and Renee": {
-        "url": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
-        "type": "git",
-        "version": "1.0.0",
-        "authors": [
-            "PomPomSqL",
-            "FlamerL13"
-        ],
-        "description": "Reimagined storyline with Andrew and his mother bonding.",
-        "tags": [
-            "content",
-            "mature"
-        ]
+[
+    {
+        "data": {
+            "lastUpdate": "2024-12-01T04:31:55.730Z",
+            "url": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
+            "source": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
+            "sha256": "nohash",
+            "id": "andyandrenee",
+            "tags": [
+                "content",
+                "mature",
+                "foreign"
+            ]
+        },
+        "modJson": {
+            "id": "andyandrenee",
+            "name": "The Coffin of Andy and Renee",
+            "description": "Reimagined storyline with Andrew and his mother bonding.",
+            "authors": [
+                "PomPomSqL",
+                "FlamerL13"
+            ],
+            "version": "1.0.0",
+            "dependencies": {
+                "game": "*",
+                "spec": "*"
+            }
+        }
     },
-    "The Coffin of Candy Scabs": {
-        "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
-        "type": "git",
-        "version": "1.0.0",
-        "authors": [ "Mr-Archive" ],
-        "description": "TCOAAL x Candy Scabs crossover.",
-        "tags": [
-            "content"
-        ]
+    {
+        "data": {
+            "lastUpdate": "2024-12-01T04:31:55.730Z",
+            "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
+            "source": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
+            "sha256": "nohash",
+            "id": "candyscabs",
+            "tags": [
+                "content",
+                "foreign"
+            ]
+        },
+        "modJson": {
+            "id": "candyscabs",
+            "name": "The Coffin of Candy Scabs",
+            "description": "TCOAAL x Candy Scabs crossover.",
+            "authors": [
+                "Mr-Archive"
+            ],
+            "version": "1.0.0",
+            "dependencies": {
+                "game": "*",
+                "spec": "*"
+            }
+        }
     }
-}
+]

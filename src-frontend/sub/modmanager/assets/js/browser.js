@@ -1,7 +1,9 @@
 const repo = "https://llamawa.re/repo.json";
-const foreign = "data/supported/sifting.json"
+const foreign = "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/foreign.json";
 let repo_data = null;
 let repo_status = false;    
+let foreign_data = null;
+let foreign_status = false;
 let installed_cache = null;
 let search_cache = null;
 let mod_ready = 'ready';
@@ -36,6 +38,23 @@ function sort_updated() {
     });
 }
 
+// download foreign json into a structured object
+async function download_foreign() {
+    // gather the data
+    const response = await fetch(foreign);
+    if (!response.ok) {
+        console.error("Failed to fetch foreign data");
+        return;
+    }
+    const data = await response.json();
+    if (!data) {
+        console.error("Failed to parse foreign data");
+        return;
+    }
+    foreign_data = data;
+    foreign_status = true;
+}
+
 // download json into a structured object
 async function download_repo() {
     // gather the data
@@ -53,19 +72,22 @@ async function download_repo() {
     }
     repo_data = data;
     repo_status = true;  
-    // build search cache
+}
+
+// normalize data for each json (for fuse.js mostly)
+
+// build search cache for fuse.js (support both local and foreign)
+function build_search_cache() {
     search_cache = {};
     repo_data.forEach(entry => {
         search_cache[entry.data.id] = true;
     });
-    const options = {
-        keys: ["modJson.name"], 
-        threshold: 0.1
-    };
-    fuse = new Fuse(repo_data, options);
+    Object.keys(foreign_data).forEach(name => {
+        search_cache[name] = true;
+    });
 }
 
-// download json into a structured object
+// build the repository
 function build_repo(sort_kind, filter_kind) {
     // sort the data before going through it
     if (sort_kind === 'name') {
