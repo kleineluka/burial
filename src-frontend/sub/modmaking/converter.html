@@ -11,20 +11,20 @@
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/backups.css">
+    <link rel="stylesheet" href="assets/css/converter.css">
 </head>
 <!-- body -->
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-items">
-            <a class="navigate-button hvr-grow" data-page="index.html">Reversing 🧬</a>
-            <a class="navigate-button hvr-grow" data-page="injection.html">Injection 💉</a>
-            <a class="navigate-button hvr-grow" data-page="code.html">Game Code 💘</a>
-            <a class="navigate-button hvr-grow" data-page="sdk.html">SDK Manager 🍡</a>
-            <a class="navigate-button hvr-grow" data-page="dev.html">Dev Tools 🔍</a>
-            <a class="navigate-button hvr-grow" data-page="info.html">Game Info 🌮</a>
-            <a class="navigate-button sidebar-current" data-page="backups.html">Backups 🧺</a>
+            <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
+            <a class="navigate-button hvr-grow" data-page="project.html">RPG Project ⚔️</a>
+            <a class="navigate-button sidebar-current" data-page="converter.html">Converter ♻️</a>
+            <a class="navigate-button hvr-grow" data-page="modjson.html">Mod JSON 🍱</a>
+            <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
+            <a class="navigate-button hvr-grow" data-page="differences.html">Differences ♊</a>
+            <a class="navigate-button hvr-grow" data-page="packager.html">Packager 🎁</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -52,48 +52,17 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-            <button id="toggleSidebar" class=" hvr-shrink">☰</button>
-            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+        <button id="toggleSidebar" class="hvr-shrink">☰</button>
+        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
             <!-- Horizontal Navbar -->
             <div class="page-navbar">
-                <button class="button-action button-navbar hvr-shrink" onclick="openBackups()">Open Backups Folder 📂</button>
+
             </div>
             <!-- Sub Container -->
-            <div id="sub-extract" class="page-container">
-                <!-- Backups List -->
-                <div class="backups-list-container">
-                    <div class="backups-list-contents">
-                        <!--<div class="backup-entry">
-                        <span class="backup-path">01-09-2024-39383.zip</span>
-                        <div class="backup-buttons">
-                            <button class="backup-button restore">Restore</button>
-                            <button class="backup-button delete">Delete</button>
-                        </div>-->
-                        <div>Loading backups..</div>
-                    </div>
-                </div>
-                <div class="file-path-container">
-                    <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Folder" value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <!-- Make / Delete -->
-                <div class="button-options-container">
-                    <button id="backup-make" class="button-option hvr-shrink">Create Backup 📦</button>
-                    <button id="backup-clean" class="button-option hvr-shrink">Delete Backups 🧼</button>
-                </div>
-                <!-- Optional Settings -->
-                <div class="advanced-settings-container">
-                    <button id="advanced-settings-toggle" class="button-option" onclick="advancedSettings()">Advanced Settings
-                        ⚙️</button>
-                    <div id="advanced-contents" class="advanced-settings-contents">
-                        <div id="optional-contents" class="file-path-container">
-                            <input id="backup-name" type="text" class="file-path-input advanced-border"
-                                placeholder="Optionally, use a custom backup name.." value="">
-                        </div>
-                    </div>
-                </div>
+            <div class="page-container">
+
             </div>
         </div>
     </div>
@@ -108,5 +77,5 @@
 <script src="../../assets/ext/sweetalert2.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/backups.js"></script>
+<script src="assets/js/converter.js"></script>
 </html>

@@ -64,7 +64,7 @@ listen('game-status', (event) => {
                 showCancelButton: true,
                 confirmButtonText: "Continue",
                 reverseButtons: true,
-                confirmButtonColor: "#F595B2",
+                confirmButtonColor: "var(--main-colour)",
             }).then((result) => {
                 if (result.isConfirmed) {
                     invoke('setup_settings', { inPath });
@@ -81,7 +81,7 @@ listen('game-status', (event) => {
                 showCancelButton: true,
                 confirmButtonText: "Continue",
                 reverseButtons: true,
-                confirmButtonColor: "#F595B2",
+                confirmButtonColor: "var(--main-colour)",
             }).then((result) => {
                 if (result.isConfirmed) {
                     invoke('setup_settings', { inPath });

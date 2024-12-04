@@ -18,14 +18,13 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-items">
-            <a class="navigate-button hvr-grow" data-page="index.html">Reversing 🧬</a>
-            <a class="navigate-button hvr-grow" data-page="injection.html">Injection 💉</a>
-            <a class="navigate-button hvr-grow" data-page="code.html">Game Code 💘</a>
+            <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
             <a class="navigate-button sidebar-current" data-page="project.html">RPG Project ⚔️</a>
-            <a class="navigate-button hvr-grow" data-page="sdk.html">SDK Manager 🍡</a>
-            <a class="navigate-button hvr-grow" data-page="dev.html">Dev Tools 🔍</a>
-            <a class="navigate-button hvr-grow" data-page="info.html">Game Info 🌮</a>
-            <a class="navigate-button hvr-grow" data-page="backups.html">Backups 🧺</a>
+            <a class="navigate-button hvr-grow" data-page="converter.html">Converter ♻️</a>
+            <a class="navigate-button hvr-grow" data-page="modjson.html">Mod JSON 🍱</a>
+            <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
+            <a class="navigate-button hvr-grow" data-page="differences.html">Differences ♊</a>
+            <a class="navigate-button hvr-grow" data-page="packager.html">Packager 🎁</a>
         </div>
         <div class="sidebar-footer">
           <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -53,25 +52,44 @@
         </div>
         <div class="container">
             <div class="page-navbar">
-              <div class="column-container">
-                <div class="file-path-container">
-                  <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder"
-                    value="">
-                  <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
-                </div>
-                <div class="info-container">
-                  <a>The RPG Maker MV bundler is an implementation of <span>Tomb's</span>d  project generation feature.</a>
-                </div>
+              <div class="info-container">
+                <a>The RPG Maker MV bundler is an implementation of <span class="ext-link" href="https://codeberg.org/basil/tomb">Tomb's</span> project
+                  generation feature. You can use this to generate an editable RPG Maker MV project for easier modding (or to turn an RPG Maker MV project into a Tomb mod).</a>
               </div>
             </div>
             <div class="page-container">
               <div class="file-path-container dropdown-container">
-                <label for="dropdown-menu-devtools" class=>Developer Tools:</label>
-                <select id="dropdown-menu-devtools" class="dropdown-menu">
-                  <option value="disabled">Disabled</option>
-                  <option value="enabled">Enabled</option>
+                <label for="dropdown-menu-direction" class=>Direction:</label>
+                <select id="dropdown-menu-direction" class="dropdown-menu">
+                  <option value="rpg">Game to RPG Maker</option>
+                  <option value="mod">RPG Maker to Mod</option>
                 </select>
-                <button id="save-devtools" class="button-option button-option-inline hvr-shrink">💾</button>
+              </div>
+              <div id="rpg-container">
+                <div class="file-path-container">
+                  <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder"
+                    value="">
+                  <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <div class="file-path-container">
+                  <input id="output-path" type="text" class="file-path-input file-path-navbar" placeholder="Where do you want the project to go?"
+                    value="">
+                  <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <button id="project-button" class="button-action hvr-shrink">Generate RPG Project ⚔️</button>
+              </div>
+              <div id="mod-container" class="hidden">
+                <div class="file-path-container">
+                  <input id="rpg-path" type="text" class="file-path-input file-path-navbar" placeholder="Your RPG Project Folder"
+                    value="">
+                  <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <div class="file-path-container">
+                  <input id="mod-path" type="text" class="file-path-input file-path-navbar"
+                    placeholder="Where do you want the mod to go?" value="">
+                  <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <button id="mod-button" class="button-action hvr-shrink">Generate Mod 🛡️</button>
               </div>
             </div>
         </div>

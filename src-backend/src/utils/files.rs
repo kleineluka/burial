@@ -6,6 +6,7 @@ use std::collections::HashSet;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use regex::Regex;
+use walkdir::WalkDir;
 
 // get the file name (without extension) from a file path
 pub fn file_name(file_path: &str) -> String {
@@ -127,6 +128,28 @@ pub fn verify_folder(path: &PathBuf) -> std::io::Result<()> {
         fs::create_dir_all(path)?;
     } 
     Ok(())
+}
+
+// keep making a folder until it exists (ex. if folder_name is taken, add a number to the end, return the final path)
+pub fn verify_folder_multiple(base_path: &String) -> String {
+    let mut path = PathBuf::from(base_path);
+    let mut i = 1;
+    while path.exists() {
+        path = PathBuf::from(format!("{}{}", base_path, i));
+        i += 1;
+    }
+    fs::create_dir_all(&path).unwrap();
+    path.to_string_lossy().to_string()
+}
+
+// get all files recursively in a directory
+pub fn collect_files_recursive(dir: String) -> Vec<PathBuf> {
+    WalkDir::new(dir)
+        .into_iter()
+        .filter_map(|entry| entry.ok()) // filter out errors
+        .filter(|entry| entry.path().is_file()) //only files
+        .map(|entry| entry.into_path()) // convert entries into PathBuf
+        .collect() // to vec of pathbuf
 }
 
 // backup file (make a copy and append .bak)

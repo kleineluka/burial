@@ -41,6 +41,7 @@ use modmanager::browser;
 use modmaking::differences;
 use modmaking::modjson;
 use modmaking::repojson;
+use modmaking::project;
 
 // main
 fn main() {
@@ -155,6 +156,7 @@ fn main() {
             modjson::save_modjson,
             repojson::load_repojson,
             repojson::save_repojson,
+            project::export_rpg_project,
             info::general_info,
             info::plugins_info])
         .run(tauri::generate_context!())

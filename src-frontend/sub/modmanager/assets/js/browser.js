@@ -4,6 +4,8 @@ let repo_data = null;
 let repo_status = false;    
 let foreign_data = null;
 let foreign_status = false;
+let combined_data = null;
+let combined_status = false;
 let installed_cache = null;
 let search_cache = null;
 let mod_ready = 'ready';
@@ -15,6 +17,12 @@ function filter_tags(tag) {
     switch (tag) {
         case "gen-ai":
             return "Generative AI";
+        case "content":
+            return "New Content";
+        case "mature":
+            return "Mature Themes";
+        case "foreign":
+            return "Third-Party";
         default:
             return tag;
     }
@@ -22,7 +30,7 @@ function filter_tags(tag) {
 
 // sort the data by modJson.name alphabetically
 function sort_alphabetically() {
-    repo_data.sort((a, b) => {
+    combined_data.sort((a, b) => {
         const a_name = a.modJson.name || 'Unnamed Mod';
         const b_name = b.modJson.name || 'Unnamed Mod';
         return a_name.localeCompare(b_name);
@@ -31,11 +39,30 @@ function sort_alphabetically() {
 
 // sort the data by data.lastUpdate (newest dates first)
 function sort_updated() {
-    repo_data.sort((a, b) => {
+    combined_data.sort((a, b) => {
         const dateA = new Date(a.data?.lastUpdate || 0);
         const dateB = new Date(b.data?.lastUpdate || 0);
         return dateB - dateA; 
     });
+}
+
+// download json into a structured object
+async function download_repo() {
+    // gather the data
+    const response = await fetch(repo);
+    if (!response.ok) {
+        repo_status = false;
+        console.error("Failed to fetch repository data");
+        return;
+    }
+    const data = await response.json();
+    if (!data) {
+        repo_status = false;
+        console.error("Failed to parse repository data");
+        return;
+    }
+    repo_data = data;
+    repo_status = true;
 }
 
 // download foreign json into a structured object
@@ -55,36 +82,23 @@ async function download_foreign() {
     foreign_status = true;
 }
 
-// download json into a structured object
-async function download_repo() {
-    // gather the data
-    const response = await fetch(repo);
-    if (!response.ok) {
-        repo_status = false;
-        console.error("Failed to fetch repository data");
-        return;
-    }
-    const data = await response.json();
-    if (!data) {
-        repo_status = false;
-        console.error("Failed to parse repository data");
-        return;
-    }
-    repo_data = data;
-    repo_status = true;  
+// combine the two jsons into one
+function combine_jsons() {
+    combined_data = repo_data.concat(foreign_data);
+    combined_status = true;
 }
-
-// normalize data for each json (for fuse.js mostly)
 
 // build search cache for fuse.js (support both local and foreign)
 function build_search_cache() {
     search_cache = {};
-    repo_data.forEach(entry => {
+    combined_data.forEach(entry => {
         search_cache[entry.data.id] = true;
     });
-    Object.keys(foreign_data).forEach(name => {
-        search_cache[name] = true;
-    });
+    const options = {
+        keys: ["modJson.name"],
+        threshold: 0.1
+    };
+    fuse = new Fuse(combined_data, options);
 }
 
 // build the repository
@@ -99,7 +113,7 @@ function build_repo(sort_kind, filter_kind) {
     const container = document.querySelector(".mods-container");
     container.innerHTML = "";
     let added_mods = 0;
-    repo_data.forEach(entry => {
+    combined_data.forEach(entry => {
         // get mod data
         const initialData = entry.data || {};
         const modData = entry.modJson || {};
@@ -119,6 +133,11 @@ function build_repo(sort_kind, filter_kind) {
             const latest_version = modData.version;
             is_old_version = (installed_version !== latest_version);
         }
+        // determine if this mod is a foreign mod (has foreign tag)
+        let is_foreign = false;
+        if (initialData.tags && initialData.tags.includes('foreign')) {
+            is_foreign = true;
+        }
         // create mod container
         const modEntry = document.createElement('div');
         modEntry.classList.add('mod-entry');
@@ -130,7 +149,14 @@ function build_repo(sort_kind, filter_kind) {
         const iconDiv = document.createElement('div');
         iconDiv.classList.add('mod-icon');
         const iconImg = document.createElement('img');
-        iconImg.src = modData.icon || 'assets/img/default.png'; 
+        iconImg.src = modData.icon;
+        if (!modData.icon) {
+            if (is_foreign) {
+                iconImg.src = 'assets/img/foreign.png';
+            } else {
+                iconImg.src = 'assets/img/default.png';
+            }
+        }
         iconImg.alt = 'Mod Icon';
         iconImg.classList.add('mod-provided-icon', 'hvr-shrink');
         iconDiv.appendChild(iconImg);
@@ -146,6 +172,11 @@ function build_repo(sort_kind, filter_kind) {
         if (initialData.source) {
             nameHTML += `
                 <a href="${initialData.source}" target="_blank" class="mod-open-link-symbol hvr-grow" title="View Source">🔗</a>
+            `;
+        }
+        if (is_foreign) {
+            nameHTML += `
+                <a onclick="notifyForeign()" target="_blank" class="mod-open-link-symbol hvr-grow" title="WARNING! (click to learn more)">⚠️</a>
             `;
         }
         nameHeading.innerHTML = nameHTML;
@@ -273,14 +304,14 @@ filterDropdown.addEventListener('change', async () => {
 const searchBar = document.querySelector('#searchBar');
 searchBar.addEventListener('input', async () => {
     if (!searchBar.value || searchBar.value === '') {
-        repo_data.forEach(entry => {
+        combined_data.forEach(entry => {
             search_cache[entry.data.id] = true;
         });
     } else {
         const query = searchBar.value;
         const results = fuse.search(query);
         const ids = results.map(result => result.item.data.id);
-        repo_data.forEach(entry => {
+        combined_data.forEach(entry => {
             const id = entry.data.id;
             if (ids.includes(id)) {
                 search_cache[id] = true;
@@ -379,5 +410,20 @@ listen('installed-mods', async (event) => {
     // download + build repo (regardless of installed status)
     invoke('mod_ready', { inPath });
     await download_repo(); // avoid redownloading
+    await download_foreign(); // avoid redownloading
+    combine_jsons(); // build them together (bleh, they need to just use tomb..)
+    build_search_cache(); // build the search cache
     build_repo('name', 'all');
 });
+
+// third-party mod warning
+function notifyForeign() {
+    Swal.fire({
+        title: 'This mod is not hosted on the official Llamaawa.re repository.',
+        text: 'Please be cautious when downloading and installing it. You may inspect the code yourself if you want. We do not vet third-party mods or gurantee their safety. This mod will automatically be translated to Tomb, so it may take more time to install or it may break. The developer of this mod may convert their mod to Tomb Modloader if they wish - feel free to ask them to so that TCOAAL modding can be more accessible!',
+        closeOnConfirm: true,
+        reverseButtons: true,
+        confirmButtonText: 'I Understood',
+        confirmButtonColor: "var(--main-colour)",
+    });
+}

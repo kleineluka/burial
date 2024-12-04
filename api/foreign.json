@@ -2,7 +2,7 @@
     {
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
-            "url": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
+            "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs/archive/refs/heads/main.zip",
             "source": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
             "sha256": "nohash",
             "id": "andyandrenee",
@@ -14,7 +14,7 @@
         },
         "modJson": {
             "id": "andyandrenee",
-            "name": "The Coffin of Andy and Renee",
+            "name": "The Coffin of Andrew and Renee",
             "description": "Reimagined storyline with Andrew and his mother bonding.",
             "authors": [
                 "PomPomSqL",
@@ -30,7 +30,7 @@
     {
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
-            "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
+            "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs/archive/refs/heads/main.zip",
             "source": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
             "sha256": "nohash",
             "id": "candyscabs",
@@ -44,7 +44,8 @@
             "name": "The Coffin of Candy Scabs",
             "description": "TCOAAL x Candy Scabs crossover.",
             "authors": [
-                "Mr-Archive"
+                "Mr-Archive",
+                "PomPomSqL"
             ],
             "version": "1.0.0",
             "dependencies": {

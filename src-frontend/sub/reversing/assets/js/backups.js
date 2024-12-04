@@ -69,7 +69,7 @@ function updateBackupsList(csv) {
                 confirmButtonText: "Restore Backup",
                 closeOnConfirm: true,
                 reverseButtons: true,
-                confirmButtonColor: "#F595B2",
+                confirmButtonColor: "var(--main-colour)",
             }).then((result) => {
                 if (result.isConfirmed) {
                     let inPath = document.getElementById('tcoaal-path').value;

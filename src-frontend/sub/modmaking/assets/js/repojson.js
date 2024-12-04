@@ -51,7 +51,7 @@ document.getElementById("set-sha256").addEventListener("click", function () {
         showCancelButton: true,
         confirmButtonText: "Continue",
         reverseButtons: true,
-        confirmButtonColor: "#F595B2",
+        confirmButtonColor: "var(--main-colour)",
         inputAttributes: {
             accept: '.zip',
             'aria-label': ' Please select the .zip file!'

@@ -43,10 +43,10 @@ pub struct FormatDetails {
 
 // the string used at the start of the loc files
 // to-do: move to bytes
-const LOC_HEADER: &str = "00000NEMLEI00000X ";
+pub const LOC_HEADER: &str = "00000NEMLEI00000X ";
 
 // remove the loc header from the language file
-fn remove_loc_header(s: &str) -> String {
+pub fn remove_loc_header(s: &str) -> String {
     let mut s = s.to_string();
     s.replace_range(0..LOC_HEADER.len(), "");
     s

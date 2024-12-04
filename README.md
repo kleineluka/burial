@@ -65,6 +65,8 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] More Error Handling (& Logging)
 - [ ] Game Instances
 - [ ] Self Updating
+- [ ] Better Code Re-Usability (ex. validating game path, errors)
+- [ ] More Async (where it would actually be useful)
 - [x] Theming
 - [x] More User Settings!
 - [x] Development Build Scripts

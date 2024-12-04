@@ -60,7 +60,7 @@ document.getElementById('delete-all-button').addEventListener('click', (event) =
         confirmButtonText: "Delete All Saves",
         closeOnConfirm: true,
         reverseButtons: true,
-        confirmButtonColor: "#F595B2",
+        confirmButtonColor: "var(--main-colour)",
     }).then((result) => {
         if (result.isConfirmed) {
             invoke('delete_all', {  });
@@ -78,7 +78,7 @@ document.getElementById('delete-auto-button').addEventListener('click', (event) 
         confirmButtonText: "Delete Auto Saves",
         closeOnConfirm: true,
         reverseButtons: true,
-        confirmButtonColor: "#F595B2",
+        confirmButtonColor: "var(--main-colour)",
     }).then((result) => {
         if (result.isConfirmed) {
             invoke('delete_auto', {});
@@ -156,7 +156,7 @@ function revertSave() {
         confirmButtonText: "Revert Save",
         closeOnConfirm: true,
         reverseButtons: true,
-        confirmButtonColor: "#F595B2",
+        confirmButtonColor: "var(--main-colour)",
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById('textarea-save').value = saveContent;
