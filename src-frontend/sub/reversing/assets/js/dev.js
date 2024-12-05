@@ -1,3 +1,15 @@
+// on load, see if dev tools are enabled
+document.addEventListener('DOMContentLoaded', async function () {
+    const store = loadStorage();
+    const inPath = await store.get('settings-tcoaal');
+    if (inPath) invoke('dev_presences', { inPath });
+});
+
+listen('devtools', (event) => {
+    console.log(event.payload);
+    document.getElementById('dropdown-menu-devtools').value = event.payload ? 'enabled' : 'disabled';
+});
+
 let devData = {};
 async function loadDev() {
     const response = await fetch('/data/supported/dev.json');

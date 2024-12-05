@@ -78,8 +78,9 @@ pub fn run_hausmaerchen(window: &tauri::Window, code_path: String, out_path: Str
     // run the command
     let output = command.output().expect("Failed to execute Deno command");
     // Check the command's output
+    let stdout = String::from_utf8_lossy(&output.stdout);
     if output.status.success() {
-        let _ = String::from_utf8_lossy(&output.stdout);
+        println!("Command succeeded: {}", stdout);
     } else {
         let stderr = String::from_utf8_lossy(&output.stderr);
         eprintln!("Error: {}", stderr);

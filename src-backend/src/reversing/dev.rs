@@ -5,12 +5,16 @@ use crate::utils::game;
 
 // check devtools status
 fn devtools_presence(in_path: &str) -> bool {
+    // if not a game path, return false
+    if !game::verify_game(in_path).unwrap() {
+        return false;
+    }
     // open the main.js file
     let mainjs_path = game::get_mainjs(in_path);
     let mainjs_content = std::fs::read_to_string(mainjs_path).unwrap();
     // check for devtools (iterate line by line for "start devtools")
     for line in mainjs_content.lines() {
-        if line.contains("start devtools") {
+        if line.contains("start: devtools") {
             return true;
         }
     }
@@ -20,9 +24,8 @@ fn devtools_presence(in_path: &str) -> bool {
 
 // get presence of devtools
 #[command]
-pub fn dev_presences(window: Window, in_path: String) -> bool {
-    // check if devtools are present
-    devtools_presence(&in_path)
+pub fn dev_presences(window: Window, in_path: String) {
+    window.emit("devtools", devtools_presence(&in_path)).unwrap();
 }
 
 // toggle developer tools
@@ -64,6 +67,11 @@ pub fn toggle_devtools(window: Window, in_path: String, injected_code: String, t
         // write the new content to the main.js file
         std::fs::write(mainjs_path_clone, new_content).unwrap();
     } else {
+        // if it already has devtools, return
+        if devtools_presence(&in_path) {
+            window.emit("status", "Devtools are already enabled.").unwrap();
+            return;
+        }
         // read the main.js file line by line
         let mainjs_content = std::fs::read_to_string(mainjs_path).unwrap();
         // find the line with the target_line and insert a new line after it with the devtools code

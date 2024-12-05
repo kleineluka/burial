@@ -14,6 +14,8 @@ pub mod codeberg;
 pub mod environment;
 pub mod deno;
 pub mod hausmaerchen;
+pub mod rpgmaker;
+pub mod modmaker;
 
 // unused for now:
 // pub mod popup;

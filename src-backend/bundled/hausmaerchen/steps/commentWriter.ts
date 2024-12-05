@@ -37,10 +37,10 @@ export default function commentWriter(code: string): string {
         // iterate through each line in the code (sorry, this will be slow. i need to rewrite this!)
         for (let i = 0; i < lines.length; i++) {
             // first, the current pattern needs converted from base64
-            pattern = decodeBase64(pattern);
+            const decodedPattern = decodeBase64(pattern);
             // pattern match the line
             const line = lines[i];
-            const regex = useRegex ? new RegExp(pattern) : new RegExp(pattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
+            const regex = useRegex ? new RegExp(decodedPattern) : new RegExp(decodedPattern.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
             if (regex.test(line.trim())) {  // `.trim()` to ignore leading spaces
                 // do some optional preprocessing stuff
                 const result = preprocess(lines, i, padBefore);

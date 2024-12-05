@@ -178,7 +178,7 @@ document.getElementById('deobfuscate-code').addEventListener('click', function (
     const dropdown = document.getElementById('dropdown-menu-method-deobfuscation');
     const selectedMethod = dropdown.value;
     // send to backend
-    invoke("beautify_code", { inPath: codePath, deobfuscateMethod: selectedMethod });
+    invoke("deobfuscate_code", { inPath: codePath, deobfuscateMethod: selectedMethod });
 });
 
 // do beautify

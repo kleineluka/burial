@@ -340,3 +340,7 @@ pub fn find_output() -> Option<PathBuf> {
     // return the burial folder
     Some(burial_dir)
 }
+
+pub fn relative_path(in_path: &String, file_path: &String) -> String {
+    file_path.split(in_path).collect::<Vec<&str>>()[1].to_string()
+}
