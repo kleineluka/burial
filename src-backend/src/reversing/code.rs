@@ -1,14 +1,23 @@
 // imports
 use tauri::Window;
 use tauri::command;
+use std::fs;
+use std::io;
 use std::path::Path;
 use crate::utils::hausmaerchen;
 use crate::utils::files;
 use crate::utils::game;
-use crate::utils::needle;
 use crate::utils::process::kill_process;
 use crate::utils::process::ProcessHandle;
 use crate::utils::deno;
+
+// replace string in a file (assuming it can be read as text)
+fn replace_text(file_path: &str, old_text: &str, new_text: &str) -> io::Result<()> {
+    let content = fs::read_to_string(file_path)?;
+    let updated_content = content.replace(old_text, new_text);
+    fs::write(file_path, updated_content)?;
+    Ok(())
+}
 
 // check deno status
 #[command]
@@ -45,7 +54,7 @@ pub fn extract_code(window: Window, in_path: String, in_file: String,
     files::backup_file(&in_file.to_string_lossy());
     // inject the code into the file
     window.emit("status", format!("Injecting code via {}..", extraction_method)).unwrap();
-    needle::replace_text(&in_file.to_string_lossy(), &old_text, &new_text).unwrap();
+    replace_text(&in_file.to_string_lossy(), &old_text, &new_text).unwrap();
     // now, it depends on the user's choices
     if auto_run {
         // run the game, wait 30 seconds, then restore the file

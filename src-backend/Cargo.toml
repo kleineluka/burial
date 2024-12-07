@@ -35,6 +35,9 @@ blake3 = "1.5.4"
 diff = "0.1.13"
 winreg = "0.52.0"
 json-patch = "3.0.1"
+rand = "0.8.5"
+image = "0.25.5"
+flate2 = "1.0.35"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

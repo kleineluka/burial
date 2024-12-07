@@ -341,6 +341,13 @@ pub fn find_output() -> Option<PathBuf> {
     Some(burial_dir)
 }
 
+// ex. www/data/actors.json + data/actors.json -> data/actors.json
 pub fn relative_path(in_path: &String, file_path: &String) -> String {
     file_path.split(in_path).collect::<Vec<&str>>()[1].to_string()
+}
+
+// ensure all folders leading up to a file exist
+pub fn validate_path(file_path: &str) {
+    let path = Path::new(file_path).parent().unwrap().to_str().unwrap();
+    fs::create_dir_all(path).unwrap();
 }
