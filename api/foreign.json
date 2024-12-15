@@ -1,5 +1,8 @@
 [
     {
+        "burial": {
+            "is_tomb": false
+        },
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
             "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs/archive/refs/heads/main.zip",
@@ -28,6 +31,9 @@
         }
     },
     {
+        "burial": {
+            "is_tomb": false
+        },
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
             "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs/archive/refs/heads/main.zip",

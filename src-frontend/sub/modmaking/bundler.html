@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/project.css">
+    <link rel="stylesheet" href="assets/css/bundler.css">
 </head>
 <!-- body -->
 <body>
@@ -19,12 +19,11 @@
     <div class="sidebar">
         <div class="sidebar-items">
             <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
-            <a class="navigate-button sidebar-current" data-page="project.html">RPG Project ⚔️</a>
+            <a class="navigate-button sidebar-current" data-page="bundler.html">Bundler ⚔️</a>
             <a class="navigate-button hvr-grow" data-page="converter.html">Converter ♻️</a>
             <a class="navigate-button hvr-grow" data-page="modjson.html">Mod JSON 🍱</a>
             <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
             <a class="navigate-button hvr-grow" data-page="differences.html">Differences ♊</a>
-            <a class="navigate-button hvr-grow" data-page="packager.html">Packager 🎁</a>
         </div>
         <div class="sidebar-footer">
           <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -42,6 +41,11 @@
               data-andrew="../../assets/img/heart-green.png" data-renee="../../assets/img/heart-yellow.png"
               data-julia="../../assets/img/heart-yellow.png" alt="Attributions" class="sidebar-icon hvr-grow">
           </a>
+          <a id="launch-game" class="sidebar-hide-link">
+            <img src="../../assets/img/play-pink.png" data-ashley="../../assets/img/play-pink.png"
+              data-andrew="../../assets/img/play-green.png" data-renee="../../assets/img/play-yellow.png"
+              data-julia="../../assets/img/play-yellow.png" alt="Attributions" class="sidebar-icon hvr-grow">
+          </a>
         </div>
     </div>
     <!-- Main Content -->
@@ -53,18 +57,16 @@
         <div class="container">
             <div class="page-navbar">
               <div class="info-container">
-                <a>The RPG Maker MV bundler is an implementation of <span class="ext-link" href="https://codeberg.org/basil/tomb">Tomb's</span> project
-                  generation feature. You can use this to generate an editable RPG Maker MV project for easier modding (or to turn an RPG Maker MV project into a Tomb mod).</a>
+                <div class="file-path-container dropdown-container-header">
+                  <label for="dropdown-menu-direction" class=>Direction:</label>
+                  <select id="dropdown-menu-direction" class="dropdown-menu-header">
+                    <option value="rpg">Game to RPG Maker</option>
+                    <option value="mod">RPG Maker to Mod</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="page-container">
-              <div class="file-path-container dropdown-container">
-                <label for="dropdown-menu-direction" class=>Direction:</label>
-                <select id="dropdown-menu-direction" class="dropdown-menu">
-                  <option value="rpg">Game to RPG Maker</option>
-                  <option value="mod">RPG Maker to Mod</option>
-                </select>
-              </div>
               <div id="rpg-container">
                 <div class="file-path-container">
                   <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder"
@@ -105,5 +107,5 @@
 <script src="../../assets/ext/sweetalert2.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/project.js"></script>
+<script src="assets/js/bundler.js"></script>
 </html>

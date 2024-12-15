@@ -283,7 +283,7 @@ pub fn difference_images(in_path: &String, out_path: &String, game_path: &String
             let patch_str = unsafe { String::from_utf8_unchecked(diff) }; // has to be a better way to do this
             let patch_path = format_mod_path(in_path, &file_path_str, out_path);
             let patch_pathbuf = Path::new(&patch_path);
-            let patch_olid = patch_pathbuf.with_extension("olid");
+            let patch_olid = patch_pathbuf.with_extension("png.olid");
             fs::write(patch_olid, patch_str).unwrap();
             // push the relative path
             mod_json.files.image_deltas.push(win_to_posix(files::relative_path(in_path, &file_path_str)));

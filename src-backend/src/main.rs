@@ -53,8 +53,8 @@ fn main() {
     let rpg_string = "C:\\Games\\SteamLibrary\\steamapps\\common\\The Coffin of Andy and Leyley\\project".to_string();
     let mod_string = "C:\\Users\\zoeym\\Documents\\burial\\exported_mod".to_string();
     let file_string = "C:\\Users\\zoeym\\Documents\\burial\\exported_project\\data\\Actors.json".to_string();
-    let testme = modmaker::project_to_mod(&rpg_string, &mod_string, &game_string);
-    return;
+    //let testme = modmaker::project_to_mod(&rpg_string, &mod_string, &game_string);
+    //return;
     // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..)
     let user_settings = config::settings::read_settings();
     let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings)).unwrap();

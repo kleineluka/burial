@@ -1,0 +1,38 @@
+.info-container {
+    color: var(--main-colour) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5vmin;
+    padding-right: 2vmin;
+    padding-left: 2vmin;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Overrides for top section */
+.dropdown-menu-header {
+    padding: 5px;
+    font-size: 3vmin;
+    border-radius: 5px;
+    border: 1px solid var(--main-colour);
+    background-color: var(--main-colour);
+    color: #030000;
+    width: 40vmin;
+    text-align: center;
+}
+
+.dropdown-container-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vmin;
+    margin-top: 2vmin;
+}
+
+.dropdown-container-header label {
+    font-size: 3vmin;
+    margin-right: 30px;
+    text-align: center;
+}
