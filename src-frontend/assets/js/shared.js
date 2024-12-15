@@ -50,6 +50,45 @@ function loadStorage() {
     }
 }
 
+// determine if we need to skip tooltips
+async function skipTooltips() {
+    const store = loadStorage();
+    const tooltips = await store.get('settings-tooltips');
+    return !tooltips;
+}
+
+// default tooltips
+function defaultTooltips() {
+    // github link
+    tippy('#github-link', {
+        content: 'View the source code on GitHub',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    // discord link
+    tippy('#discord-link', {
+        content: 'Join the Discord server',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    // attributions link
+    tippy('#attributions-link', {
+        content: 'View the attributions for the game',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    // launch game button
+    tippy('#launch-game', {
+        content: 'Launch the game',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+}
+
 // on load, see if any settings need fetched and if so pass it
 window.onload = async () => {
     // load the store 

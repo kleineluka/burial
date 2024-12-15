@@ -25,7 +25,7 @@ pub fn load_settings(window: Window) {
 
 // write settings
 #[command]
-pub fn save_settings(window: Window, tcoaal: String, output: String, instances: bool, updates: bool, theme: String, animations: bool) {
+pub fn save_settings(window: Window, tcoaal: String, output: String, instances: bool, updates: bool, theme: String, animations: bool, tooltips: bool) {
     // read the current settings
     let mut settings = settings::read_settings();
     // update the settings
@@ -35,6 +35,7 @@ pub fn save_settings(window: Window, tcoaal: String, output: String, instances: 
     settings.updates = updates;
     settings.theme = theme;
     settings.animations = animations;
+    settings.tooltips = tooltips;
     // write the updated settings
     settings::write_settings(settings);
     window.emit("settings-saved", {}).unwrap(); 

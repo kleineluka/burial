@@ -11,5 +11,6 @@
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1"
-  }
+  },
+  "dependencies": { }
 }

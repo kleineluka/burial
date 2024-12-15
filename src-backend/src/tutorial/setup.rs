@@ -55,6 +55,7 @@ pub fn setup_game(window: Window, in_path: String) {
         updates: true,
         theme: String::from("ashley"),
         animations: true,
+        tooltips: true,
     };
     // write the updated settings
     settings::write_settings(settings);

@@ -12,6 +12,7 @@ pub struct Settings {
     pub updates: bool,
     pub theme: String,
     pub animations: bool,
+    pub tooltips: bool,
 }
 
 pub fn check_settings() {
@@ -27,6 +28,7 @@ pub fn check_settings() {
             updates: true,
             theme: "ashley".to_string(),
             animations: true,
+            tooltips: true,
         };
         // serialize the config to a JSON string
         let json_data = serde_json::to_string_pretty(&default_settings)

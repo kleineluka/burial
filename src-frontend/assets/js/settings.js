@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('dropdown-menu-theme').value = theme;
     const animations = await storage.get('settings-animations');
     document.getElementById('dropdown-menu-animations').value = animations.toString();
+    const tooltips = await storage.get('settings-tooltips');
+    document.getElementById('dropdown-menu-tooltips').value = tooltips.toString();
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -34,6 +36,7 @@ async function saveSettings() {
     var updates = (document.getElementById('dropdown-menu-updates').value === 'true');
     var theme = document.getElementById('dropdown-menu-theme').value;
     var animations = (document.getElementById('dropdown-menu-animations').value === 'true');
+    var tooltips = (document.getElementById('dropdown-menu-tooltips').value === 'true');
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
@@ -42,9 +45,10 @@ async function saveSettings() {
     store.set('settings-updates', updates);
     store.set('settings-theme', theme);
     store.set('settings-animations', animations);
-    store.save();
+    store.set('settings-tooltips', tooltips);
+    store.save();   
     // set values
-    invoke('save_settings', { tcoaal, output, instances, updates, theme, animations });
+    invoke('save_settings', { tcoaal, output, instances, updates, theme, animations, tooltips });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -80,6 +84,7 @@ function resetSettings() {
     store.set('settings-updates', true);
     store.set('settings-theme', 'ashley');
     store.set('settings-animations', true);
+    store.set('settings-tooltips', true);
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
@@ -87,6 +92,7 @@ function resetSettings() {
     document.getElementById('dropdown-menu-instances').value = 'false';
     document.getElementById('dropdown-menu-theme').value = 'ashley';
     document.getElementById('dropdown-menu-animations').value = 'true';
+    document.getElementById('dropdown-menu-tooltips').value = 'true';
     // set values
     invoke('reset_settings', {});
 }
