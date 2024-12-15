@@ -9,10 +9,9 @@ use crate::utils::game;
 use crate::reversing::sdk;
 use crate::modmanager::modloader;
 
-fn parse_plugins(in_path: String) -> Result<Value, Box<dyn std::error::Error>> {
+pub fn parse_plugins(in_path: String) -> Result<Value, Box<dyn std::error::Error>> {
     // read the file
-    let file_path = format!("{}//www//js//plugins.js", in_path);
-    let mut file = File::open(file_path)?;
+    let mut file = File::open(in_path)?;
     let mut content = String::new();
     file.read_to_string(&mut content)?;
     // extract the array of plugins
@@ -66,7 +65,8 @@ pub fn plugins_info(window: Window, in_path: String) {
         return;
     }
     // parse the plugins
-    let plugins = parse_plugins(in_path.clone());
+    let plugins_path = format!("{}//www//js//plugins.js", in_path);
+    let plugins = parse_plugins(plugins_path);
     match plugins {
         Ok(plugins) => {
             window.emit("status", Some("Plugins information loaded!".to_string())).unwrap();

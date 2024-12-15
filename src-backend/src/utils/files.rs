@@ -7,6 +7,7 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use regex::Regex;
 use walkdir::WalkDir;
+use blake3::Hasher;
 
 // get the file name (without extension) from a file path
 pub fn file_name(file_path: &str) -> String {
@@ -350,4 +351,33 @@ pub fn relative_path(in_path: &String, file_path: &String) -> String {
 pub fn validate_path(file_path: &str) {
     let path = Path::new(file_path).parent().unwrap().to_str().unwrap();
     fs::create_dir_all(path).unwrap();
+}
+
+// wrapper for blake3 hashing
+pub fn get_blake3(path: &Path) -> String {
+    let mut file = File::open(path).expect("Failed to open file");
+    let mut hasher = Hasher::new();
+    std::io::copy(&mut file, &mut hasher).expect("Failed to hash file");
+    hasher.finalize().to_hex().to_string()
+}
+
+// wrapper for blake3 hash with byte input (sequence of data)
+pub fn get_blake3_bytes(data: &[u8]) -> String {
+    let mut hasher = Hasher::new();
+    hasher.update(data);
+    hasher.finalize().to_hex().to_string()
+}
+
+// see if a file has been modified (paths)
+pub fn is_modifie_pth(orig_path: &Path, new_path: &Path) -> bool {
+    let orig_hash = get_blake3(orig_path);
+    let new_hash = get_blake3(new_path);
+    orig_hash != new_hash
+}
+
+// see if a file has been modified (strings)
+pub fn is_modified_str(orig_path: &str, new_path: &str) -> bool {
+    let orig_hash = get_blake3(Path::new(orig_path));
+    let new_hash = get_blake3(Path::new(new_path));
+    orig_hash != new_hash
 }
