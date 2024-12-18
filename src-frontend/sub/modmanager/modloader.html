@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/modloader.css">
@@ -65,14 +66,14 @@
                         <select id="dropdown-menu-current" class="dropdown-menu">
                             <option value="loading">Loading...</option>
                         </select>
-                        <button id="backup-button" class="button-refresh hvr-shrink" onclick="refreshLocal()">♻️</button>
+                        <button id="refresh-local-button" class="button-refresh hvr-shrink" onclick="refreshLocal()">♻️</button>
                     </div>
                     <div class="file-path-container dropdown-container">
-                        <label for="dropdown-menu-install">Available Versions:</label>
+                        <label id="available-label" for="dropdown-menu-install">Available Versions:</label>
                         <select id="dropdown-menu-install" class="dropdown-menu">
                             <option value="loading">Loading...</option>
                         </select>
-                        <button id="backup-button" class="button-refresh hvr-shrink" onclick="refreshRemote()">♻️</button>
+                        <button id="refresh-remote-button" class="button-refresh hvr-shrink" onclick="refreshRemote()">♻️</button>
                     </div>
                     <div class="file-path-container">
                         <input id="tcoaal-path" type="text" class="file-path-input" placeholder="Your TCOAAL Path.." value="">
@@ -95,6 +96,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/modloader.js"></script>

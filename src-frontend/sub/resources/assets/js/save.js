@@ -172,3 +172,45 @@ function exitEditor() {
     document.getElementById('edit-sub-edit').classList.add('hidden-container');
     document.getElementById('navbar-edit').classList.add('hidden-container');
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#open-button', {
+        content: 'Open the folder where the saves are in your file explorer.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#navigate-edit-button', {
+        content: 'Open a text editor inside of Burial with the save decrypted.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#copy-button', {
+        content: 'Make a copy of the selected save.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#delete-all-button', {
+        content: 'This will delete all of your saves!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#delete-auto-button', {
+        content: 'This will delete your automatic saves!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#input-backup-out', {
+        content: 'Where to back up your saves to.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

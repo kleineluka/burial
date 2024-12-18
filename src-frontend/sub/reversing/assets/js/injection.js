@@ -95,7 +95,7 @@ function injectButton() {
     const selectedFile = document.getElementById('dropdown-menu-file').value;
     const selectedLocation = document.getElementById('dropdown-menu-location').value;
     const locationData = injectionData[selectedFile][selectedLocation];
-    // get the .location property and then fetch the json at injection_rules/.location.json
+    // get the .location property and then fetch the json at rules/injection/.location.json
     fetch(`/data/rules/injection/${locationData.location}`)
         .then(response => response.json())
         .then(data => {
@@ -118,8 +118,9 @@ function previewButton() {
     const selectedFile = document.getElementById('dropdown-menu-file').value;
     const selectedLocation = document.getElementById('dropdown-menu-location').value;
     const locationData = injectionData[selectedFile][selectedLocation];
-    // get the .location property and then fetch the json at injection_rules/.location.json
-    fetch(`/data/injection_rules/${locationData.location}`)
+    // get the .location property and then fetch the json at rules/injection/.location.json
+    console.log(locationData.location);
+    fetch(`/data/rules/injection/${locationData.location}`)
         .then(response => response.json())
         .then(data => {
             // send data to backend
@@ -159,3 +160,58 @@ function previewCopyButton() {
     navigator.clipboard.writeText(previewCode.value);
     set_status('Copied to clipboard!');
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#backup-button', {
+        content: 'Make a back up of the target file to return to after injecting.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#preview-button', {
+        content: 'Preview what the final injection will look like.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#open-file-button', {
+        content: 'Open the target file that is going to be injected.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#open-folder-button', {
+        content: 'Open the folder containing the target file.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#inject-button', {
+        content: 'Inject the code into the target file. You may want to back the file up first!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#inject-file-label', {
+        content: 'What TCOAAL file to put your code into.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#inject-point-label', {
+        content: 'Where in the file to put your code.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#code-path',
+        {
+            content: 'Path to the code you want to inject (like a .js file).',
+            animation: 'perspective-subtle',
+            placement: 'top',
+            theme: 'burial'
+        });
+});

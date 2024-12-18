@@ -187,3 +187,9 @@ listen('cancel-preview', () => {
     previewMenu.classList.add('hidden-container');
     previewNavbar.classList.add('hidden-container');
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+});

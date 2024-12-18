@@ -41,3 +41,9 @@ function createDifferences() {
 listen('diff-result', (event) => {
     console.log(event.payload);
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+});

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/info.css">
@@ -69,15 +70,15 @@
                     <button id="refresh-button" class="button-option button-option-inline hvr-shrink">♻️</button>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-game-version" class=>Game Version:</label>
+                    <label id="game-version-label" for="dropdown-menu-game-version" class=>Game Version:</label>
                     <select id="dropdown-menu-game-version" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-mod-loader" class=>Mod Loader:</label>
+                    <label id="mod-loader-label" for="dropdown-menu-mod-loader" class=>Mod Loader:</label>
                     <select id="dropdown-menu-mod-loader" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-sdk" class=>SDK Branch:</label>
+                    <label id="sdk-branch-label" for="dropdown-menu-sdk" class=>SDK Branch:</label>
                     <select id="dropdown-menu-sdk" class="dropdown-menu"></select>
                 </div>
             </div>
@@ -98,6 +99,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/info.js"></script>

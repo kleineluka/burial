@@ -123,3 +123,21 @@ function advancedSettings() {
     var advancedContents = document.getElementsByClassName('advanced-settings-contents')[0];
     advancedContents.classList.toggle('expanded');
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#backup-clean', {
+        content: 'Deletes all of your backups. Please note that this cannot be undone!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#open-backups', {
+        content: 'Open the folder where your backups are stored.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

@@ -60,16 +60,4 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;
     defaultTooltips();
-    tippy('#input-path', {
-        content: 'The folder or file to decrypt',
-        animation: 'perspective-subtle',
-        placement: 'top',
-        theme: 'burial'
-    });
-    tippy('#output-path', {
-        content: 'The folder to save the decrypted files',
-        animation: 'perspective-subtle',
-        placement: 'top',
-        theme: 'burial'
-    });
 });

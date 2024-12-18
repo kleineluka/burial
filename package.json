@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "tauri": "tauri",
-    "dev": "npm install && cd src-backend && cargo build && cd .. && npm run tauri dev",
-    "test": "tauri dev",
+    "setup": "npm install && cd src-backend && cargo build && cd .. && npm run tauri dev",
+    "dev": "tauri dev",
     "build": "tauri build"
   },
   "devDependencies": {

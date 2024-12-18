@@ -87,6 +87,35 @@ function defaultTooltips() {
         placement: 'top',
         theme: 'burial'
     });
+    // some defaults we may want to file in
+    // if #input-path exists, add a tooltip
+    let inputPath = document.getElementById('input-path');
+    if (inputPath) {
+        tippy('#input-path', {
+            content: 'The input path for the file or folder',
+            animation: 'perspective-subtle',
+            placement: 'top',
+            theme: 'burial'
+        });
+    }
+    let inputTcoaal = document.getElementById('tcoaal-path');
+    if (inputTcoaal) {
+        tippy('#tcoaal-path', {
+            content: 'The path to the TCOAAL folder',
+            animation: 'perspective-subtle',
+            placement: 'top',
+            theme: 'burial'
+        });
+    }
+    let outputPath = document.getElementById('output-path');
+    if (outputPath) {
+        tippy('#output-path', {
+            content: 'The folder to export the selected resources to',
+            animation: 'perspective-subtle',
+            placement: 'top',
+            theme: 'burial'
+        });
+    }
 }
 
 // on load, see if any settings need fetched and if so pass it

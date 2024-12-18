@@ -385,3 +385,18 @@ body::after {
     animation: none !important;
     transition: none !important;
 }
+
+/* Tooltip Theme */
+.tippy-box[data-theme='burial'] {
+    color: #000;
+    background-color: var(--main-colour);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 3vmin;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.tippy-box[data-theme~='burial'][data-placement^='top']>.tippy-arrow::before {
+    border-top-color: var(--main-colour);
+}

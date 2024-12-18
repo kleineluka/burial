@@ -258,3 +258,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#reset-button', {
+        content: 'This will reset all of the settings, not just the ones you can currently see!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

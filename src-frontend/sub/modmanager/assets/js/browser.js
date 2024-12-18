@@ -427,3 +427,9 @@ function notifyForeign() {
         confirmButtonColor: "var(--main-colour)",
     });
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+});

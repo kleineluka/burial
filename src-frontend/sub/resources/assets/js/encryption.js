@@ -80,3 +80,21 @@ document.addEventListener('DOMContentLoaded', () => {
         wholeButton.classList.remove('selected');
     });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();s
+    tippy('#select-byte-whole', {
+        content: 'Encrypt the whole file (suggested)',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#select-byte-original', {
+        content: 'Encrypt only a specific part of the file depending on extension (like tcoaal)',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

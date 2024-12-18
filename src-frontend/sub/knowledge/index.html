@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/index.css">
@@ -20,9 +21,13 @@
         <div class="sidebar-items">
             <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
             <a class="navigate-button sidebar-current" data-page="sub/resources/index.html">Knowledge 📔</a>
-            <a class="navigate-button hvr-grow" data-page="" onclick="openBurialWiki()">Burial Wiki 🍅</a>
-            <a class="navigate-button hvr-grow" data-page="" onclick="openCoffinWiki()">Modding Wiki 🔖</a>
-            <a class="navigate-button hvr-grow" data-page="" onclick="openPublishMod()">Publish Mod 🌈</a>
+            <a id="burial-links-button" class="navigate-button hvr-grow" data-page="" data-page="burial.html">Burial Links 🔗</a>
+            <a id="burial-wiki-button" class="navigate-button hvr-grow" data-page="" onclick="openBurialWiki()">Burial Wiki 🍅</a>
+            <a id="modding-wiki-button" class="navigate-button hvr-grow" data-page="" onclick="openCoffinWiki()">Modding Wiki 🔖</a>
+            <a id="llamaware-button" class="navigate-button hvr-grow" data-page="" data-page="llamaware.html">LLamawa.re 🦙</a>
+            <a id="playing-mods-button" class="navigate-button hvr-grow" data-page="" onclick="openPlayingMods()">Playing Mods 🕹️</a>
+            <a id="making-mods-button" class="navigate-button hvr-grow" data-page="" onclick="openMakingMods()">Making Mods 🛠️</a>
+            <a id="publish-mod-button" class="navigate-button hvr-grow" data-page="" onclick="openPublishMod()">Publish a Mod 🌈</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -70,6 +75,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/index.js"></script>

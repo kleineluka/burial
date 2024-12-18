@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/modjson.css">
@@ -75,51 +76,46 @@
                 <div class="scrollable-area">
                     <!-- Mod ID -->
                     <div class="text-container">
-                        <p>Mod ID:</p>
+                        <p id="mod-id-label">Mod ID:</p>
                         <input id="input-id" type="text" class="file-path-input" value="">
                     </div>
                     <!-- Mod Name -->
                     <div class="text-container">
-                        <p>Mod Name:</p>
+                        <p id="mod-name-label">Mod Name:</p>
                         <input id="input-name" type="text" class="file-path-input" value="">
                     </div>
                     <!-- Authors -->
                     <div id="authors-container" class="multi-container">
                         <div class="first-row">
-                            <p>Authors:</p>
+                            <p id="mod-authors-label">Authors:</p>
                             <input id="input-author" type="text" class="file-path-input input-author" value="">
                             <button id="add-author" class="browse-button hvr-shrink">+</button>
                         </div>
                     </div>
                     <!-- Description -->
                     <div class="text-container">
-                        <p>Description:</p>
+                        <p id="mod-description-label">Description:</p>
                         <input id="input-description" type="text" class="file-path-input" value="">
                     </div>
                     <!-- Version -->
                     <div class="text-container">
-                        <p>Version:</p>
+                        <p id="mod-version-label">Version:</p>
                         <input id="input-version" oninput="inputVersion(this)" class="file-path-input" value="">
-                    </div>
-                    <!-- Spec -->
-                    <div class="text-container">
-                        <p>Spec:</p>
-                        <input id="input-spec" oninput="inputVersion(this)" class="file-path-input" placeholder="Optional value.." value="">
                     </div>
                     <!-- Dependency: Game -->
                     <div class="text-container">
-                        <p>Game Dep:</p>
+                        <p id="game-dep-label">Game Dep:</p>
                         <input id="input-dep-game" class="file-path-input" value="">
                     </div>
                     <!-- Dependency: Spec -->
                     <div class="text-container">
-                        <p>Spec Dep:</p>
+                        <p id="spec-dep-label">Spec Dep:</p>
                         <input id="input-dep-spec" class="file-path-input" value="">
                     </div>
                     <!-- Dependency: Mods -->
                     <div id="mod-dep-container" class="multi-container">
                         <div class="double-row">
-                            <p>Mod Dep:</p>
+                            <p id="mod-dep-label">Mod Dep:</p>
                             <input id="input-mod-id" class="file-path-input input-mod-id" placeholder="ID (Optional)" value="">
                             <input id="input-mod-version" class="file-path-input input-mod-version" placeholder="Ver. (Optional)" value="">
                             <button id="add-mod-dep" class="browse-button hvr-shrink">+</button>
@@ -128,7 +124,7 @@
                     <!-- Files -->
                     <div id="files-container" class="multi-container">
                         <div class="selection-row">
-                            <p>Files:</p>
+                            <p id="files-label">Files:</p>
                             <div class="file-path-container dropdown-container">
                                 <select id="dropdown-menu-file" class="dropdown-menu">
                                     <option value="assets">Assets</option>
@@ -155,6 +151,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/modjson.js"></script>

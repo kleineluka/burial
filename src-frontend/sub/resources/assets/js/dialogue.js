@@ -237,3 +237,15 @@ function exitImportPreview() {
     previewMain.classList.add('hidden-container');
     navbarPreview.classList.add('hidden-container');
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#dialogue-path-import', {
+        content: 'The dialogue file to import',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

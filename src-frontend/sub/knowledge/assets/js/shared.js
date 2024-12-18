@@ -25,3 +25,49 @@ function openCoffinWiki() {
 function openPublishMod() {
     invoke('open_browser', { url: 'https://github.com/Llamaware/Llamaware.github.io/' });
 }
+
+// shared tooltips across all knowledge pages
+function knowledgeTooltips() {
+    tippy('#burial-links-button', {
+        content: 'The official websites associated with Burial.',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+    tippy('#burial-wiki-button', {
+        content: 'Learn more about Burial, how to use it, or how to contribute to it.',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+    tippy('#modding-wiki-button', {
+        content: 'Learn how TCOAAL works internally.',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+    tippy('#llamaware-button', {
+        content: 'Browse and download mods in your browser, as well as see other Llamawa.re projects.',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+    tippy('#playing-mods-button', {
+        content: 'Learn how to manually install and play mods (outside of Burial).',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+    tippy('#making-mods-button', {
+        content: 'Learn how to get started making TCOAAL mods.',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+    tippy('#publish-mod-button', {
+        content: 'Submit your mod to the Llamawa.re website for others to play!',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
+}

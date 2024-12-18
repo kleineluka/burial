@@ -41,3 +41,27 @@ function createDifferences() {
 listen('diff-result', (event) => {
     console.log(event.payload);
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#difference-format-label', {
+        content: 'This will control how the file outputted will be structured.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-one-path', {
+        content: 'The path to the .zip file of the first mod. Consider this the \"old\" or \"original\" mod.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-two-path', {
+        content: 'The path to the .zip file of the second mod. Consider this the \"new\" or \"updated\" mod.',  
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

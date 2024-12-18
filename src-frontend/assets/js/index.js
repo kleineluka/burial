@@ -100,3 +100,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         setInterval(updateSplashText, 5000);
     }
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+});

@@ -17,3 +17,15 @@ document.getElementById('project-button').addEventListener('click', function() {
     var outPath = document.getElementById('output-path').value;
     invoke('export_rpg_project', { inPath, outPath });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#dropdown-direction-label', {
+        content: 'Game to RPG Maker will dump your TCOAAL into an RPG Maker MV project to be edited. RPG Maker to Mod will turn your RPG Maker project into a Tomb-compatible mod.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

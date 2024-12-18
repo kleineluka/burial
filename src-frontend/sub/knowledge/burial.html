@@ -2,6 +2,7 @@
 <html lang="en">
 
 <!-- head -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,30 @@
     <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/differences.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <!-- body -->
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-items">
-            <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
-            <a class="navigate-button hvr-grow" data-page="bundler.html">Bundler ⚔️</a>
-            <a class="navigate-button hvr-grow" data-page="converter.html">Converter ♻️</a>
-            <a class="navigate-button hvr-grow" data-page="modjson.html">Mod JSON 🍱</a>
-            <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
-            <a class="navigate-button sidebar-current" data-page="differences.html">Differences ♊</a>
+            <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
+            <a class="navigate-button sidebar-current" data-page="sub/resources/index.html">Knowledge 📔</a>
+            <a id="burial-links-button" class="navigate-button hvr-grow" data-page="" data-page="burial.html">Burial
+                Links 🔗</a>
+            <a id="burial-wiki-button" class="navigate-button hvr-grow" data-page="" onclick="openBurialWiki()">Burial
+                Wiki 🍅</a>
+            <a id="modding-wiki-button" class="navigate-button hvr-grow" data-page="" onclick="openCoffinWiki()">Modding
+                Wiki 🔖</a>
+            <a id="llamaware-button" class="navigate-button hvr-grow" data-page="" data-page="llamaware.html">LLamawa.re
+                🦙</a>
+            <a id="playing-mods-button" class="navigate-button hvr-grow" data-page=""
+                onclick="openPlayingMods()">Playing Mods 🕹️</a>
+            <a id="making-mods-button" class="navigate-button hvr-grow" data-page="" onclick="openMakingMods()">Making
+                Mods 🛠️</a>
+            <a id="publish-mod-button" class="navigate-button hvr-grow" data-page="" onclick="openPublishMod()">Publish
+                a Mod 🌈</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -52,38 +64,21 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class="hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="toggleSidebar" class="hvr-shrink">☰</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home
+                🍅</button>
         </div>
         <div class="container">
-            <!-- Horizontal Navbar -->
-            <div class="page-navbar">
-                <div class="file-path-container dropdown-container">
-                    <label id="difference-format-label" for="dropdown-menu-difference" class=>Difference Format:</label>
-                    <select id="dropdown-menu-difference" class="dropdown-menu"></select>
-                </div>
+            <img src="assets/img/resources.png" alt="" class="header-image hvr-shrink">
+            <div class="small-title">
+                <p><b>Knowledge</b> let you learn more about how TCOAAL works.</p>
             </div>
-            <!-- Sub Container -->
-            <div class="page-container">
-                <div class="file-path-container">
-                    <input id="mod-one-path" type="text" class="file-path-input" placeholder="Your first mod's path.." value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <div class="file-path-container">
-                    <input id="mod-two-path" type="text" class="file-path-input" placeholder="Your second mod's path.." value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <div class="file-path-container">
-                    <input id="output-path" type="text" class="file-path-input" placeholder="Where do you wanna save it?" value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <button class="button-action hvr-shrink" onclick="createDifferences()">Generate Differences 🪓</button>
+            <div class="items-list">
+                <p>🍅 <b>Burial's Wiki</b> provides information on the program.</p>
+                <p>🔖 <b>Modding Wiki</b> explains how to make and manually play mods.</p>
+                <p>🌈 <b>Publish Mod</b> guides you to sharing your mods for others to play!</p>
             </div>
         </div>
-    </div>
-    <!-- Progress -->
-    <div class="progress-container">
-        <a id="status" class="progress-text"></a>
     </div>
 </body>
 <!-- javascript -->
@@ -94,5 +89,6 @@
 <script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/differences.js"></script>
+<script src="assets/js/index.js"></script>
+
 </html>

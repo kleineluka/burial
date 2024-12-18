@@ -220,3 +220,15 @@ document.querySelector('#refresh-mods').addEventListener('click', async () => {
     load_installed();
     set_status("Mods refreshed!");
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#update-mods', {
+        content: 'Download the latest version of all your mods - this may cause breaking changes!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

@@ -78,3 +78,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#refresh-button', {
+        content: 'Refresh information about your game (in case you changed something or updated the path).',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#game-version-label', {
+        content: 'The internal version of TCOAAL in your installation.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-loader-label', {
+        content: 'Whether or not the Tomb modloader is installed. You can install this in Burial!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#sdk-branch-label', {
+        content: 'Whether your TCOAAL has the player NWJS SDK or the developer NWJS SDK. TCOAAL comes with the player SDK, but you can use Burial to install the developer SDK.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

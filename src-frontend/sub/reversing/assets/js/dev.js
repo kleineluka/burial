@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 listen('devtools', (event) => {
-    console.log(event.payload);
     document.getElementById('dropdown-menu-devtools').value = event.payload ? 'enabled' : 'disabled';
 });
 
@@ -37,4 +36,28 @@ document.getElementById('save-devtools').addEventListener('click', async functio
     var codeIndent = devData['devtools'].indent;
     // invoke
     invoke("toggle_devtools", { inPath, injectedCode, targetLine, codeToggle, codeIndent });
+});
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#refresh-tcoaal-path', {
+        content: 'Refresh your game path and whether developer tools are enabled or disabled.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#devtools-label', {
+        content: 'Please note: this feature requires you to install the developer SDK! You can do so in Burial in the SDK tab.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#save-devtools', {
+        content: 'This will edit your TCOAAL installation to enable or disable devtools.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
 });

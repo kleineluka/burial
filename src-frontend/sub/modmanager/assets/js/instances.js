@@ -31,3 +31,9 @@ function noInstances() {
     option.innerHTML = 'Disabled';
     dropdown.appendChild(option);
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+});

@@ -65,3 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
         invoke('install_sdk', { inUrl, inPath });
     });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#sdk-label', {
+        content: 'TCOAAL comes with the NW.JS Player SDK by default. You may want to switch this to the developer SDK if you are planning on modding!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#sdk-version', {
+        content: 'The developer SDK comes with debugging tools, but is larger in size. The game SDK is smaller and is used solely for playing the game.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#sdk-branch', {
+        content: 'Leave this set to default to automatically use the correct version for your operating system.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

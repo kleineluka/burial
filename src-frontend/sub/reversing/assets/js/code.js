@@ -220,3 +220,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#extraction-method-label', {
+        content: 'Determines how Burial will dump the game\'s code. For now, this doesn\'t mean much.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#autorun-label', {
+        content: 'Automatically kill the game process after starting it (required to dump).',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#restore-script-label', {
+        content: 'Burial changes the game\'s code to dump it, this option will restore it to normal after dumping.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#deobfuscate-label', {
+        content: 'Automatically deobfuscate (make human readable) the dumped code.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#deobfuscation-method-label', {
+        content: 'Determines how Burial will deobfuscate the code. For now, this doesn\'t mean much.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#code-path-deobfuscate', {
+        content: 'The path to the dumped game code - this will be overwritten.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#beautify-method-label', {
+        content: 'Determines how Burial will beautify the code. For now, this doesn\'t mean much.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#code-path-beautify', {
+        content: 'The path to the deobfuscated game code - this will be overwritten.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

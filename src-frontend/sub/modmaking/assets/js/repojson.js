@@ -167,3 +167,57 @@ listen("load-repojson", (event) => {
     const repoData = JSON.parse(event.payload);
     loadRepojson(repoData);
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#clear-repojson', {
+        content: 'This will reset all entered data by clearing all fields - make sure you save first if needed!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#example-repojson', {
+        content: 'This will reset all entered data by entering in example data - make sure you save first if needed!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#last-updated-label', {
+        content: 'When you last updated your mod - must be in ISO format. Just use the button to set it!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#set-date', {
+        content: 'Automatically get the current timestamp in ISO format and set it in the repo json.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#zip-url-label', {
+        content: 'The URL to where your mod is hosted (ex. Github, Codeberg) for downloading. Please note that it must be a direct link to the zip file.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#source-url-label', {
+        content: 'The URL to where your source code is hosted (ex. Github, Codeberg). This is optional, but recommended!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#sha-256-label', {
+        content: 'The SHA-256 hash of your mod zip file. You can use the button to calculate it! This is to ensure that the mod is not tampered with and isn\'t corrupted.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#tags-label', {
+        content: 'Add tags to describe what your mod does and to help players find it. You can add as many as you want!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});

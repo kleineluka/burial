@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/sdk.css">
@@ -58,17 +59,17 @@
         <div class="container">
             <div class="page-navbar">
                 <div class="file-path-container dropdown-container navbar-dropdown-container">
-                    <label for="dropdown-menu-installed-sdk" class=>Installed SDK:</label>
+                    <label id="sdk-label" for="dropdown-menu-installed-sdk" class=>Installed SDK:</label>
                     <select id="dropdown-menu-installed-sdk" class="dropdown-menu navbar-dropdown-menu"></select>
                 </div>
             </div>
             <div class="page-container">
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-version" class=>SDK Version:</label>
+                    <label id="sdk-version" for="dropdown-menu-version" class=>SDK Version:</label>
                     <select id="dropdown-menu-version" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-branch" class=>SDK Branch:</label>
+                    <label id="sdk-branch" for="dropdown-menu-branch" class=>SDK Branch:</label>
                     <select id="dropdown-menu-branch" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container">
@@ -88,6 +89,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/sdk.js"></script>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/repojson.css">
@@ -76,25 +77,25 @@
                     <!-- Last Updated -->
                     <div class="multi-container">
                         <div class="first-row">
-                        <p>Last Updated:</p>
+                        <p id="last-updated-label">Last Updated:</p>
                         <input id="input-date" type="text" class="file-path-input" value="">
                         <button id="set-date" class="browse-button hvr-shrink">Set</button>
                         </div>
                     </div>
                     <!-- URL -->
                     <div class="text-container">
-                        <p>Zip URL:</p>
+                        <p id="zip-url-label">Zip URL:</p>
                         <input id="input-url" type="text" class="file-path-input" value="">
                     </div>
                     <!-- Source -->
                     <div class="text-container">
-                        <p>Source URL:</p>
+                        <p id="source-url-label">Source URL:</p>
                         <input id="input-source" type="text" class="file-path-input" value="">
                     </div>
                     <!-- SHA256 -->
                     <div class="multi-container">
                         <div class="first-row">
-                            <p>SHA-256:</p>
+                            <p id="sha-256-label">SHA-256:</p>
                             <input id="input-sha256" type="text" class="file-path-input" value="">
                             <button id="set-sha256" class="browse-button hvr-shrink">Calc</button>
                         </div>
@@ -102,7 +103,7 @@
                     <!-- Tags -->
                     <div id="tags-container" class="multi-container">
                         <div class="selection-row">
-                            <p>Tags:</p>
+                            <p id="tags-label">Tags:</p>
                             <div class="file-path-container dropdown-container">
                                 <select id="dropdown-menu-tags" class="dropdown-menu">
                                     <option value="content">New Content</option>
@@ -129,6 +130,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/repojson.js"></script>

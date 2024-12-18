@@ -1,10 +1,9 @@
 {
-	"id": "epic-ashley_mod1",
-	"name": "The Ashley Graves Mod!",
+	"id": "cute_mod",
+	"name": "The Cute Mod!",
 	"authors": ["Zoey aka Kleineluka", "Ashley Graves", "Basil", "OneHalf"],
 	"description": "We aren't like that, are we?",
 	"version": "0.0.1",
-	"spec": "0.1.0",
 	"dependencies": {
 		"game": ">=2.0.10",
 		"spec": "0.1.0",

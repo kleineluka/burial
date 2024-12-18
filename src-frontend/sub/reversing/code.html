@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../assets/ext/animate.min.css">
     <link rel="stylesheet" href="../../assets/ext/hover.min.css">
     <link rel="stylesheet" href="../../assets/ext/sweetalert2.min.css">
+    <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/code.css">
@@ -65,25 +66,25 @@
             <!-- Sub Container -->
             <div id="sub-extract" class="page-container">
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-method-extraction" class=>Extraction Method:</label>
+                    <label id="extraction-method-label" for="dropdown-menu-method-extraction" class=>Extraction Method:</label>
                     <select id="dropdown-menu-method-extraction" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-auto" class=>Auto Run and Kill:</label>
+                    <label id="autorun-label" for="dropdown-menu-auto" class=>Auto Run and Kill:</label>
                     <select id="dropdown-menu-auto" class="dropdown-menu">
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-cleanup" class=>Restore Script After:</label>
+                    <label id="restore-script-label" for="dropdown-menu-cleanup" class=>Restore Script After:</label>
                     <select id="dropdown-menu-cleanup" class="dropdown-menu">
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
                 </div>
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-deobfuscate" class=>Deobfuscate After:</label>
+                    <label id="deobfuscate-label" for="dropdown-menu-deobfuscate" class=>Deobfuscate After:</label>
                     <select id="dropdown-menu-deobfuscate" class="dropdown-menu">
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -101,7 +102,7 @@
             </div>
             <div id="sub-deobfuscate" class="page-container hidden">
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-method-deobfuscation" class=>Deobfuscation Method:</label>
+                    <label id="deobfuscation-method-label" for="dropdown-menu-method-deobfuscation" class=>Deobfuscation Method:</label>
                     <select id="dropdown-menu-method-deobfuscation" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container">
@@ -112,7 +113,7 @@
             </div>
             <div id="sub-beautify" class="page-container hidden">
                 <div class="file-path-container dropdown-container">
-                    <label for="dropdown-menu-method-beautify" class=>Beautify Method:</label>
+                    <label id="beautify-method-label" for="dropdown-menu-method-beautify" class=>Beautify Method:</label>
                     <select id="dropdown-menu-method-beautify" class="dropdown-menu"></select>
                 </div>
                 <div class="file-path-container">
@@ -132,6 +133,8 @@
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/popper.min.js"></script>
+<script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/code.js"></script>

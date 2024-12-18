@@ -92,3 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('output-path').value = event.payload;
     });
 });
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+});

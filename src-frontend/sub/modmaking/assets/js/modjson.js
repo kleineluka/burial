@@ -153,7 +153,6 @@ function buildModjson() {
         authors: [],
         description: document.getElementById('input-description').value.trim(),
         version: document.getElementById('input-version').value.trim(),
-        spec: document.getElementById('input-spec').value.trim() || undefined, // optional
         gameDep: document.getElementById('input-dep-game').value.trim(),
         specDep: document.getElementById('input-dep-spec').value.trim(),
         modDeps: {},
@@ -252,7 +251,6 @@ function loadModjson(modData) {
     document.getElementById('input-name').value = modData.name || '';
     document.getElementById('input-description').value = modData.description || '';
     document.getElementById('input-version').value = modData.version || '';
-    document.getElementById('input-spec').value = modData.spec || '';
     document.getElementById('input-dep-game').value = modData.dependencies.game || '';
     document.getElementById('input-dep-spec').value = modData.dependencies.spec || '';
     // dynamically added fields
@@ -393,7 +391,6 @@ function clearModjson() {
     document.getElementById('input-name').value = '';
     document.getElementById('input-description').value = '';
     document.getElementById('input-version').value = '';
-    document.getElementById('input-spec').value = '';
     document.getElementById('input-dep-game').value = '';
     document.getElementById('input-dep-spec').value = '';
     // dynamically added fields
@@ -427,4 +424,82 @@ function clearModjson() {
 listen("load-modjson", (event) => {
     const modData = JSON.parse(event.payload);
     loadModjson(modData);
+});
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#clear-modjson', {
+        content: 'This will reset all entered data by clearing all fields - make sure you save first if needed!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#example-modjson', {
+        content: 'This will reset all entered data by entering in example data - make sure you save first if needed!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-id-label', {
+        content: 'A unique identifier for your mod. For example: my_cute_mod.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-name-label', {
+        content: 'The freely formatted name of your mod. For example: My Cute Mod',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-authors-label', {
+        content: 'Who helped make this awesome mod? You can add multiple names here.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-authors-label', {
+        content: 'Who helped make this awesome mod? You can add multiple names here.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-description-label', {
+        content: 'What does your mod do? For example: My Cute Mod adds a new character introduced in Chapter 2!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-version-label', {
+        content: 'What version is your mod? Please follow \"X.X.X\" format (major, minor, patch). For example: 1.0.0',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#game-dep-label', {
+        content: 'What version of the game does your mod require? Please follow the \"X.X.X"\ format. You can see what version of the game you have in Burial\'s Reversing -> Game Info tab.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#spec-dep-label', {
+        content: 'What mod.json specification version are you using? This is optional and can be skipped.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#mod-dep-label', {
+        content: 'If your mod depends on other mods being installed to work, you may add them here. Use the mod id field instead of mod name, and make sure the version is in \"X.X.X\" format.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#files-label', {
+        content: 'What files in TCOAAL your mod will change - Burial or Tomb will automatically generate this, so please use that and only manually edit them if needed.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
 });

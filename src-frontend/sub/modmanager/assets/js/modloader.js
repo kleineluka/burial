@@ -75,3 +75,27 @@ function refreshRemote() {
     dropdown.appendChild(option);
     invoke("modloader_versions", { });
 }
+
+// tooltips
+document.addEventListener('DOMContentLoaded', async () => {
+    if (await skipTooltips()) return;
+    defaultTooltips();
+    tippy('#available-label', {
+        content: 'It is always suggested to let Burial download the latest!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#refresh-local-button', {
+        content: 'Refresh what version is installed in your TCOAAL.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#refresh-remote-button', {
+        content: 'Refresh the list of available versions.',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+});
