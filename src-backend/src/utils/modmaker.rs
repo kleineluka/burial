@@ -1,15 +1,14 @@
-use std::collections::HashMap;
 // imports
-use std::io;
+use std::collections::HashMap;
 use std::{fs, path::Path};
 use json_patch::diff;
 use serde::{Deserialize, Serialize};
 use serde_json::{to_string_pretty, Value};
-use crate::modmaking::project;
 use super::files;
 use super::cipher;
 use super::nemlang;
 use super::olid;
+use super::game;
 use crate::reversing::info;
 
 // mod.json structure
@@ -51,6 +50,9 @@ struct Plugin {
     parameters: std::collections::HashMap<String, String>,
 }
 
+// constants
+const MOD_JSON_SPEC: &str = "0.1.0";
+
 // format the path to posix for tomb compatibility (+ if it starts with slash, remove)
 fn win_to_posix(win_path: String) -> String {
     let new_path = win_path.replace("\\", "/");
@@ -84,6 +86,22 @@ fn format_mod_path(in_path: &String, file_path: &String, out_path: &String) -> S
     let new_output = format!("{}{}", out_path, relative_path);
     let path = Path::new(&new_output).parent().unwrap().to_str().unwrap();
     fs::create_dir_all(path).unwrap();
+    new_output
+}
+
+// relative language path
+fn relative_language_path(file_path: &String) -> String {
+    let path = Path::new(&file_path);
+    let folder = path.parent().unwrap().file_name().unwrap().to_str().unwrap();
+    let new_output = format!("languages\\{}.json", folder);
+    new_output
+}
+
+// convert a project language path to a tomb language path
+fn format_language_path(file_path: &String, out_path: &String) -> String {
+    let path = Path::new(&file_path);
+    let folder = path.parent().unwrap().file_name().unwrap().to_str().unwrap();
+    let new_output = format!("{}\\languages\\{}.json", out_path, folder);
     new_output
 }
 
@@ -159,12 +177,6 @@ pub fn difference_languages(in_path: &String, out_path: &String, game_path: &Str
     let game_path = format!("{}\\www", game_path);
     let lang_folders = format!("{}\\languages", in_path);
     let lang_files = files::collect_files_recursive(lang_folders.clone());
-    let sections = vec![
-        "sysLabel",
-        "sysMenus",
-        "labelLUT",
-        "linesLUT",
-    ];
     // go through every entry 
     for file in lang_files {
         let file_path_str = file.to_str().unwrap().to_string();
@@ -175,57 +187,76 @@ pub fn difference_languages(in_path: &String, out_path: &String, game_path: &Str
             continue;
         }
         let relative_path = files::relative_path(&in_path, &file_path_str);
+        let relative_language = relative_language_path(&file_path_str);
         let project_path = format!("{}{}", &in_path, relative_path);
-        // if the project_path doesn't exist, it cannot be patched (or loaded for now in tomb)
-        if !Path::new(&project_path).exists() {
-            continue;
-        }
         // if it's new, copy it over
-        let is_new = is_new_file(in_path, &project_path, &game_path);
+        let game_loc = format!("{}{}", game_path, relative_path);
+        let is_new = !Path::new(&game_loc).exists();
         if is_new {
-            fs::copy(file_path_str.clone(), format_mod_path(in_path, &file_path_str, out_path)).unwrap();
-            mod_json.files.languages.push(win_to_posix(relative_path));
+            println!("{} is new", file_path_str);
+            fs::copy(file_path_str.clone(), format_language_path(&file_path_str, out_path)).unwrap();
+            mod_json.files.languages.push(win_to_posix(relative_language));
             continue;
         }
+        // reading both files
+        println!("{} is different", file_path_str);
         // read both files and compare
-        let game_lang = nemlang::load_nemlang(&file_path_str).unwrap();
+        println!("{} {}", &file_path_str, &project_path);
+        let game_lang = nemlang::load_nemlang(&game_loc).unwrap();
         let project_lang = nemlang::load_nemlang(&project_path).unwrap();
         // parse them to JSON
         let game_json = serde_json::to_value(&game_lang).unwrap();
         let project_json = serde_json::to_value(&project_lang).unwrap();
-        // get the differences
+        // print out sysLabel of both
+        let game_syslabel = game_json.get("sysLabel").unwrap().as_object().unwrap();
+        let project_syslabel = project_json.get("sysLabel").unwrap().as_object().unwrap();
+        // print above
+        println!("Game sysLabel: {:?}", game_syslabel);
+        println!("Project sysLabel: {:?}", project_syslabel);
+        // Calculate differences
         let mut diff: HashMap<String, HashMap<String, Value>> = HashMap::new();
-        for section in &sections {
-            if let (Some(orig_section), Some(new_section)) = (
-                game_json.get(section),
-                project_json.get(section),
-            ) {
-                if let (Some(orig_map), Some(new_map)) = (
-                    orig_section.as_object(),
-                    new_section.as_object(),
-                ) {
-                    for (key, new_value) in new_map {
-                        if orig_map.get(key) != Some(new_value) {
-                            diff.entry(section.to_string())
-                                .or_insert_with(HashMap::new)
-                                .insert(key.clone(), new_value.clone());
+        let sections = vec![
+            "sysLabel",
+            "sysMenus",
+            "labelLUT",
+            "linesLUT",
+        ];
+        for section in sections {
+            let game_section = game_json.get(section).unwrap().as_object().unwrap();
+            let project_section = project_json.get(section).unwrap().as_object().unwrap();
+            let mut section_diff = HashMap::new();
+            for (key, project_value) in project_section {
+                match game_section.get(key) {
+                    Some(game_value) => {
+                        if game_value != project_value {
+                            section_diff.insert(key.clone(), project_value.clone());
                         }
                     }
+                    None => {
+                        section_diff.insert(key.clone(), project_value.clone());
+                    }
                 }
+            }   
+            if !section_diff.is_empty() {
+                diff.insert(section.to_string(), section_diff);
             }
         }
         // make sure there are differences
         if diff.is_empty() {
+            println!("{} has no differences", file_path_str);
             continue;
         }
-        // push the relative path then write the patch
-        mod_json.files.languages.push(win_to_posix(relative_path));
+        println!("{} has differences", file_path_str);
+        // push the relative path then write the patch (don't need to do jsond stuff here)
+        mod_json.files.languages.push(win_to_posix(relative_language));
         let patch_str = to_string_pretty(&diff).unwrap();
-        let patch_path = format_mod_path(in_path, &project_path, out_path);
+        let patch_path = format_language_path(&file_path_str, out_path);
         let patch_pathbuf = Path::new(&patch_path);
-        let patch_json = patch_pathbuf.with_extension("json");
-        // write it as .json
-        fs::write(patch_json, patch_str).unwrap();
+        println!("Writing to {}", patch_pathbuf.to_str().unwrap());
+        // make sure directory exists
+        let patch_dir = patch_pathbuf.parent().unwrap().to_str().unwrap();
+        fs::create_dir_all(patch_dir).unwrap();
+        fs::write(patch_pathbuf, patch_str).unwrap();
     }
     mod_json
 }
@@ -422,6 +453,12 @@ pub fn sanitize_json(mut mod_json: ModJSON) -> ModJSON {
 }
 
 pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String) {
+    // get the game version, but if can't, leave as *
+    let game_version = if game::game_version(game_path.clone()) == "Unknown" {
+        "*".to_string()
+    } else {
+        game::game_version(game_path.clone())
+    };
     // make empty mod.json
     let mod_json = ModJSON {
         id: "example_mod".to_string(),
@@ -430,8 +467,8 @@ pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String) {
         description: "An example mod.".to_string(),
         version: "1.0.0".to_string(),
         dependencies: Dependencies {
-            game: "*".to_string(),
-            spec: "0.1.0".to_string(),
+            game: game_version,
+            spec: MOD_JSON_SPEC.to_string(),
         },
         files: Files {
             assets: vec![],

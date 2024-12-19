@@ -1,10 +1,10 @@
 use std::fs;
 use std::io::Write;
 use serde::{Serialize, Deserialize};
-use serde_json;
+use serde_json::{self, Value};
 use crate::config::cache;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Default, Clone)]
 pub struct Settings {
     pub tcoaal: String,
     pub output: String,
@@ -13,6 +13,10 @@ pub struct Settings {
     pub theme: String,
     pub animations: bool,
     pub tooltips: bool,
+    pub modname: String,
+    pub modid: String,
+    pub modauthor: String,
+    pub moddescription: String,
 }
 
 pub fn check_settings() {
@@ -29,6 +33,10 @@ pub fn check_settings() {
             theme: "ashley".to_string(),
             animations: true,
             tooltips: true,
+            modname: "".to_string(),
+            modid: "".to_string(),
+            modauthor: "".to_string(),
+            moddescription: "".to_string(),
         };
         // serialize the config to a JSON string
         let json_data = serde_json::to_string_pretty(&default_settings)
@@ -41,6 +49,19 @@ pub fn check_settings() {
     }
 }
 
+fn merge_settings(base: Value, other: Value) -> Value {
+    match (base, other) {
+        (Value::Object(mut base_map), Value::Object(other_map)) => {
+            for (key, value) in other_map {
+                let base_value: &mut Value = base_map.entry(key.clone()).or_insert(Value::Null);
+                *base_value = merge_settings(base_value.take(), value);
+            }
+            Value::Object(base_map)
+        }
+        (_, other) => other, // Overwrite base with other for non-object values
+    }
+}
+
 pub fn read_settings() -> Settings {
     // cache_dir + settings.json
     let cache_dir = cache::cache_folder();
@@ -49,11 +70,17 @@ pub fn read_settings() -> Settings {
     if !file_path.exists() {
         check_settings();
     }
-    // read the file
-    let file = fs::File::open(file_path)
-        .expect("Failed to open file");
-    let settings: Settings = serde_json::from_reader(file)
-        .expect("Failed to read file");
+    let file = fs::File::open(&file_path).expect("Failed to open file");
+    let existing_data: Value = serde_json::from_reader(&file)
+        .unwrap_or_else(|_| Value::Null);
+    let default_settings = serde_json::to_value(Settings::default())
+        .expect("Failed to serialize default settings");
+    let merged_settings = merge_settings(default_settings, existing_data.clone());
+    let settings: Settings = serde_json::from_value(merged_settings.clone())
+        .expect("Failed to deserialize merged settings");
+    if existing_data != merged_settings {
+        write_settings(settings.clone());
+    }
     settings
 }
 

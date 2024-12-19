@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('dropdown-menu-animations').value = animations.toString();
     const tooltips = await storage.get('settings-tooltips');
     document.getElementById('dropdown-menu-tooltips').value = tooltips.toString();
+    const modname = await storage.get('settings-modname');
+    document.getElementById('mod-name').value = modname;
+    const modid = await storage.get('settings-modid');
+    document.getElementById('mod-id').value = modid;
+    const modauthor = await storage.get('settings-modauthor');
+    document.getElementById('mod-author').value = modauthor;
+    const moddescription = await storage.get('settings-moddescription');
+    document.getElementById('mod-description').value = moddescription;
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -37,6 +45,10 @@ async function saveSettings() {
     var theme = document.getElementById('dropdown-menu-theme').value;
     var animations = (document.getElementById('dropdown-menu-animations').value === 'true');
     var tooltips = (document.getElementById('dropdown-menu-tooltips').value === 'true');
+    var modname = document.getElementById('mod-name').value;
+    var modid = document.getElementById('mod-id').value;
+    var modauthor = document.getElementById('mod-author').value;
+    var moddescription = document.getElementById('mod-description').value;
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
@@ -46,9 +58,13 @@ async function saveSettings() {
     store.set('settings-theme', theme);
     store.set('settings-animations', animations);
     store.set('settings-tooltips', tooltips);
+    store.set('settings-modname', modname);
+    store.set('settings-modid', modid);
+    store.set('settings-modauthor', modauthor);
+    store.set('settings-moddescription', moddescription);
     store.save();   
     // set values
-    invoke('save_settings', { tcoaal, output, instances, updates, theme, animations, tooltips });
+    invoke('save_settings', { tcoaal, output, instances, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -85,6 +101,10 @@ function resetSettings() {
     store.set('settings-theme', 'ashley');
     store.set('settings-animations', true);
     store.set('settings-tooltips', true);
+    store.set('settings-modname', '');
+    store.set('settings-modid', '');
+    store.set('settings-modauthor', '');
+    store.set('settings-moddescription', '');
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
@@ -93,6 +113,10 @@ function resetSettings() {
     document.getElementById('dropdown-menu-theme').value = 'ashley';
     document.getElementById('dropdown-menu-animations').value = 'true';
     document.getElementById('dropdown-menu-tooltips').value = 'true';
+    document.getElementById('mod-name').value = '';
+    document.getElementById('mod-id').value = '';
+    document.getElementById('mod-author').value = '';
+    document.getElementById('mod-description').value = '';
     // set values
     invoke('reset_settings', {});
 }
@@ -120,6 +144,26 @@ document.getElementById('auto-button-tcoaal').addEventListener('click', function
 // listen for click on auto-button-output
 document.getElementById('auto-button-output').addEventListener('click', function () {
     invoke('output_auto_find', {});
+});
+
+// listen for click on reset-mod-name
+document.getElementById('reset-mod-name').addEventListener('click', function () {
+    document.getElementById('mod-name').value = '';
+});
+
+// listen for click on reset-mod-id
+document.getElementById('reset-mod-id').addEventListener('click', function () {
+    document.getElementById('mod-id').value = '';
+});
+
+// listen for click on reset-mod-author
+document.getElementById('reset-mod-author').addEventListener('click', function () {
+    document.getElementById('mod-author').value = '';
+});
+
+// listen for click on reset-mod-description
+document.getElementById('reset-mod-description').addEventListener('click', function () {
+    document.getElementById('mod-description').value = '';
 });
 
 // listen for game-path

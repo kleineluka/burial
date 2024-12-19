@@ -56,6 +56,10 @@ pub fn setup_game(window: Window, in_path: String) {
         theme: String::from("ashley"),
         animations: true,
         tooltips: true,
+        modname: String::from(""),
+        modid: String::from(""),
+        modauthor: String::from(""),
+        moddescription: String::from(""),
     };
     // write the updated settings
     settings::write_settings(settings);

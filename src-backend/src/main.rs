@@ -36,16 +36,16 @@ use tutorial::setup;
 use tutorial::finished;
 use modmanager::installed;
 use modmanager::modloader;
-use modmanager::instances;
 use modmanager::browser;
 use modmaking::differences;
 use modmaking::modjson;
 use modmaking::repojson;
-use modmaking::project;
-
+use modmaking::bundler;
 use utils::modmaker;
+
 // main
 fn main() {
+    // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..)
     let app_config = app::load_config();
     let rt = tokio::runtime::Runtime::new().unwrap();
     // set up some testing 
@@ -55,7 +55,6 @@ fn main() {
     let file_string = "C:\\Users\\zoeym\\Documents\\burial\\exported_project\\data\\Actors.json".to_string();
     //let testme = modmaker::project_to_mod(&rpg_string, &mod_string, &game_string);
     //return;
-    // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..)
     let user_settings = config::settings::read_settings();
     let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings)).unwrap();
     // build tauri app
@@ -79,6 +78,10 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "settings-theme", serde_json::Value::String(user_settings.theme)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-animations", serde_json::Value::Bool(user_settings.animations)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-tooltips", serde_json::Value::Bool(user_settings.tooltips)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-modname", serde_json::Value::String(user_settings.modname)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-modid", serde_json::Value::String(user_settings.modid)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-modauthor", serde_json::Value::String(user_settings.modauthor)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-moddescription", serde_json::Value::String(user_settings.moddescription)).unwrap();
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-metadata-server", serde_json::Value::String(app_config.metadata_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
@@ -165,7 +168,7 @@ fn main() {
             modjson::save_modjson,
             repojson::load_repojson,
             repojson::save_repojson,
-            project::export_rpg_project,
+            bundler::export_rpg_project,
             info::general_info,
             info::plugins_info])
         .run(tauri::generate_context!())

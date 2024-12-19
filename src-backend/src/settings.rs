@@ -25,7 +25,10 @@ pub fn load_settings(window: Window) {
 
 // write settings
 #[command]
-pub fn save_settings(window: Window, tcoaal: String, output: String, instances: bool, updates: bool, theme: String, animations: bool, tooltips: bool) {
+pub fn save_settings(window: Window, tcoaal: String, output: String, 
+    instances: bool, updates: bool, theme: String, animations: bool, 
+    tooltips: bool, modname: String, modid: String, modauthor: String, 
+    moddescription: String) {
     // read the current settings
     let mut settings = settings::read_settings();
     // update the settings
@@ -36,6 +39,10 @@ pub fn save_settings(window: Window, tcoaal: String, output: String, instances: 
     settings.theme = theme;
     settings.animations = animations;
     settings.tooltips = tooltips;
+    settings.modname = modname;
+    settings.modid = modid;
+    settings.modauthor = modauthor;
+    settings.moddescription = moddescription;
     // write the updated settings
     settings::write_settings(settings);
     window.emit("settings-saved", {}).unwrap(); 
