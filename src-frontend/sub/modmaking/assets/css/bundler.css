@@ -12,7 +12,7 @@
     display: none;
 }
 
-/* Overrides for top section */
+/* Overrides for this page specifically */
 .dropdown-menu-header {
     padding: 5px;
     font-size: 3vmin;
@@ -35,4 +35,19 @@
     font-size: 3vmin;
     margin-right: 30px;
     text-align: center;
+}
+
+.full-width-input {
+    width: 85% !important;
+}
+
+.dropdown-label {
+    font-size: 3vmin;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.no-extra-space {
+    margin-bottom: 0px !important;
+    margin-top: 5px !important;
 }

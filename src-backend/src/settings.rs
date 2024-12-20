@@ -1,5 +1,4 @@
 // imports
-use std::fs;
 use tauri::Window;
 use tauri::Manager;
 use tauri::command;

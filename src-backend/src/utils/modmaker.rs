@@ -51,7 +51,7 @@ struct Plugin {
 }
 
 // constants
-const MOD_JSON_SPEC: &str = "0.1.0";
+pub const MOD_JSON_SPEC: &str = "0.1.0";
 
 // format the path to posix for tomb compatibility (+ if it starts with slash, remove)
 fn win_to_posix(win_path: String) -> String {
@@ -125,6 +125,20 @@ fn read_decrypt_compare(file_path: &String, game_path: &String) -> (bool, Vec<u8
     (are_different, original_decrypted, new_content)
 }
 
+// verify that a folder contains an rpg maker project
+pub fn verify_rpg_project(in_path: &String) -> bool {
+    // check if the input folder exists
+    if !Path::new(&in_path).exists() {
+        return false;
+    }
+    // see if in the folder, the file Game.rpgproject exists
+    let game_path = format!("{}\\Game.rpgproject", in_path);
+    if !Path::new(&game_path).exists() {
+        return false;
+    }
+    true
+}
+
 // step one: generate difference between project data (aka the json files from rpg maker)
 pub fn difference_data(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // get all files (recursively) in in_path/data
@@ -193,27 +207,20 @@ pub fn difference_languages(in_path: &String, out_path: &String, game_path: &Str
         let game_loc = format!("{}{}", game_path, relative_path);
         let is_new = !Path::new(&game_loc).exists();
         if is_new {
-            println!("{} is new", file_path_str);
+            println!("New language file: {}", file_path_str);
+            println!("Unformatted out path {}", out_path);
+            println!("Output path: {}", format_language_path(&file_path_str, out_path));
             fs::copy(file_path_str.clone(), format_language_path(&file_path_str, out_path)).unwrap();
             mod_json.files.languages.push(win_to_posix(relative_language));
             continue;
         }
-        // reading both files
-        println!("{} is different", file_path_str);
         // read both files and compare
-        println!("{} {}", &file_path_str, &project_path);
         let game_lang = nemlang::load_nemlang(&game_loc).unwrap();
         let project_lang = nemlang::load_nemlang(&project_path).unwrap();
         // parse them to JSON
         let game_json = serde_json::to_value(&game_lang).unwrap();
         let project_json = serde_json::to_value(&project_lang).unwrap();
-        // print out sysLabel of both
-        let game_syslabel = game_json.get("sysLabel").unwrap().as_object().unwrap();
-        let project_syslabel = project_json.get("sysLabel").unwrap().as_object().unwrap();
-        // print above
-        println!("Game sysLabel: {:?}", game_syslabel);
-        println!("Project sysLabel: {:?}", project_syslabel);
-        // Calculate differences
+        // find differences
         let mut diff: HashMap<String, HashMap<String, Value>> = HashMap::new();
         let sections = vec![
             "sysLabel",
@@ -243,16 +250,13 @@ pub fn difference_languages(in_path: &String, out_path: &String, game_path: &Str
         }
         // make sure there are differences
         if diff.is_empty() {
-            println!("{} has no differences", file_path_str);
             continue;
         }
-        println!("{} has differences", file_path_str);
         // push the relative path then write the patch (don't need to do jsond stuff here)
         mod_json.files.languages.push(win_to_posix(relative_language));
         let patch_str = to_string_pretty(&diff).unwrap();
         let patch_path = format_language_path(&file_path_str, out_path);
         let patch_pathbuf = Path::new(&patch_path);
-        println!("Writing to {}", patch_pathbuf.to_str().unwrap());
         // make sure directory exists
         let patch_dir = patch_pathbuf.parent().unwrap().to_str().unwrap();
         fs::create_dir_all(patch_dir).unwrap();
@@ -335,7 +339,6 @@ pub fn difference_audio(in_path: &String, out_path: &String, game_path: &String,
     for folder in folders.iter() {
         let folder_path = format!("{}\\audio\\{}", in_path, folder);
         if !Path::new(&folder_path).exists() {
-            println!("{} does not exist", folder_path);
             continue;
         }
         let folder_files = files::collect_files_recursive(folder_path);
@@ -354,12 +357,11 @@ pub fn difference_audio(in_path: &String, out_path: &String, game_path: &String,
             }
             // ensure it is in a folder we care about
             let file_path_str = file.to_str().unwrap().to_string();
-            let file_path = Path::new(&file_path_str);
             let relative_path = files::relative_path(&in_path, &file_path_str);
             // new or modified file?
             let file_path_str = file.to_str().unwrap().to_string();
             let is_new = is_new_file(in_path, &file_path_str, &game_path);
-            let (is_different, original_bytes, new_bytes) = read_decrypt_compare(&file_path_str, &get_game_path(in_path, &file_path_str, &game_path));
+            let (is_different, _original_bytes, _new_bytes) = read_decrypt_compare(&file_path_str, &get_game_path(in_path, &file_path_str, &game_path));
             if is_new || is_different {
                 // copy the file over (no patches for audio)
                 fs::copy(file_path_str.clone(), format_mod_path(in_path, &file_path_str, out_path)).unwrap();
@@ -452,7 +454,9 @@ pub fn sanitize_json(mut mod_json: ModJSON) -> ModJSON {
     mod_json
 }
 
-pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String) {
+// reusable packager for other classes
+pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String, 
+    mod_name: &String, mod_id: &String, mod_author: &String, mod_description: &String) {
     // get the game version, but if can't, leave as *
     let game_version = if game::game_version(game_path.clone()) == "Unknown" {
         "*".to_string()
@@ -461,10 +465,10 @@ pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String) {
     };
     // make empty mod.json
     let mod_json = ModJSON {
-        id: "example_mod".to_string(),
-        name: "Example Mod".to_string(),
-        authors: vec!["Your name!".to_string()],
-        description: "An example mod.".to_string(),
+        id: mod_id.clone(),
+        name: mod_name.clone(),
+        authors: vec![mod_author.clone()],
+        description: mod_description.clone(),
         version: "1.0.0".to_string(),
         dependencies: Dependencies {
             game: game_version,

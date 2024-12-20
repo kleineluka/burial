@@ -68,6 +68,7 @@
               </div>
             </div>
             <div class="page-container">
+              <!-- To RPG Project -->
               <div id="rpg-container">
                 <div class="file-path-container">
                   <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder"
@@ -79,11 +80,18 @@
                     value="">
                   <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
                 </div>
+                <input id="project-name" type="text" class="file-path-input file-path-navbar full-width-input" placeholder='Name of RPG Maker project (default is "my_project")' value="">
                 <button id="project-button" class="button-action hvr-shrink">Generate RPG Project ⚔️</button>
               </div>
+              <!-- To Mod Folder -->
               <div id="mod-container" class="hidden">
                 <div class="file-path-container">
-                  <input id="rpg-path" type="text" class="file-path-input file-path-navbar" placeholder="Your RPG Project Folder"
+                  <input id="rpg-project-path" type="text" class="file-path-input file-path-navbar" placeholder="Your RPG Project Folder"
+                    value="">
+                  <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <div class="file-path-container">
+                  <input id="tcoaal-path-mod" type="text" class="file-path-input file-path-navbar" placeholder="Your TCOAAL Folder"
                     value="">
                   <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
                 </div>
@@ -91,6 +99,14 @@
                   <input id="mod-path" type="text" class="file-path-input file-path-navbar"
                     placeholder="Where do you want the mod to go?" value="">
                   <button id="browse-button-out" class="browse-button hvr-shrink button-navbar">Browse</button>
+                </div>
+                <input id="mod-folder" type="text" class="file-path-input file-path-navbar full-width-input" placeholder='Name of created mod folder (default is "my_mod\)' value="">
+                <div class="file-path-container no-extra-space">
+                  <p class="dropdown-label no-extra-space">Auto .zip Folder:</p>
+                  <select id="dropdown-auto-zip" class="dropdown-menu no-extra-space">
+                    <option value="false">no thanks..</option>
+                    <option value="true">yes please!</option>
+                  </select>
                 </div>
                 <button id="mod-button" class="button-action hvr-shrink">Generate Mod 🛡️</button>
               </div>

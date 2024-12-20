@@ -9,6 +9,7 @@ use crate::utils::files;
 // take a file from the game directory and format it for the rpg directory
 pub fn format_rpg_path(in_path: &String, out_path: &String, extension: &String) -> String {
     let relative_path = in_path.split("www").collect::<Vec<&str>>()[1].to_string();
+    let relative_path = relative_path.split(".").collect::<Vec<&str>>()[0].to_string();
     let new_output = format!("{}\\{}.{}", out_path, relative_path, extension);
     let path = Path::new(&new_output).parent().unwrap().to_str().unwrap();
     fs::create_dir_all(path).unwrap();
@@ -118,7 +119,7 @@ pub fn patch_index(out_path: &String) {
     fs::write(&index_path, updated_index).expect("Failed to write index.html");
 }
 
-// reusable packaqge for other classes
+// reusable packager for other classes
 pub fn game_to_rpg(in_path: String, out_path: String) {
     copy_game(&in_path, &out_path);
     generate_project(&out_path);

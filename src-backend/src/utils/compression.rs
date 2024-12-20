@@ -5,6 +5,7 @@ use walkdir::WalkDir;
 use zip::write::SimpleFileOptions;
 use zip::ZipWriter;
 
+// zip a directory to an output file
 pub fn compress_directory<T>(src_dir: &Path, output_file: T) -> zip::result::ZipResult<()> where T: Write + Seek, {
     // create the zip options
     let mut zip = ZipWriter::new(output_file);

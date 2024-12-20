@@ -58,7 +58,7 @@ fn merge_settings(base: Value, other: Value) -> Value {
             }
             Value::Object(base_map)
         }
-        (_, other) => other, // Overwrite base with other for non-object values
+        (_, other) => other,
     }
 }
 
