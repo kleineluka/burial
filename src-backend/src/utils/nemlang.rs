@@ -219,9 +219,7 @@ pub fn load_loc(file_path: &str) -> Result<NemLang, io::Error> {
     } else {
         // locate the signature 
         let data = fs::read(file_path)?;
-        println!("{:?}", String::from_utf8_lossy(&data[..100]));
         let signature_len = LOC_SIGNATURE.len();
-
         if let Some(start_index) = data.windows(signature_len).position(|window| window == LOC_SIGNATURE.as_bytes()) {
             let sliced_data = &data[start_index + signature_len + LOC_OFFSET..];
             String::from_utf8(sliced_data.to_vec()).map_err(|_| io::Error::new(ErrorKind::InvalidData, "Invalid UTF-8 data"))?

@@ -431,6 +431,10 @@ pub fn difference_plugins(in_path: &String, out_path: &String, game_path: &Strin
         if !plugin.status {
             continue;
         }
+        // if the plugin name is "No Tomb Code", skip it
+        if plugin.name == "No Tomb Code" {
+            continue;
+        }
         // see if the plugin is in the game
         let is_in_game = game_array.iter().any(|old_plugin| plugin.name == old_plugin.name);
         if is_in_game {

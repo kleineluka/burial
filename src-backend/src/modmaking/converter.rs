@@ -117,7 +117,7 @@ pub fn convert_to_tomb(in_path: String, game_path: String, out_path: String,
     let _ = files::delete_folder(&mod_temp_folder.to_str().unwrap());
     // finally, convert it to a mod
     let mod_path = cache::create_temp_with_name(&format!("{}_tomb_mod", mod_id));
-    let mod_authors_str = mod_authors.join(", ");
+    let mod_authors_str = mod_authors.join(", "); // to do: support multiple authors
     let _ = modmaker::project_to_mod(&project_temp_folder.to_str().unwrap().to_string(), &mod_path.to_str().unwrap().to_string(), &game_path, &mod_name, &mod_id, &mod_authors_str, &mod_description, &mod_version);
     // move the mod to the out path (make it if it doesn't exist)
     let out_path = std::path::Path::new(&out_path);

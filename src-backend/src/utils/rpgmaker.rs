@@ -20,7 +20,6 @@ pub fn format_rpg_path(in_path: &String, out_path: &String, extension: &String) 
 pub fn copy_game(in_path: &String, out_path: &String) {
     // get all files (recursively) in in_path/wwww
     let files = files::collect_files_recursive(format!("{}\\www", in_path));
-    // print everything in files
     for file in files {
         // get the file's path and ext
         let path = Path::new(&file);

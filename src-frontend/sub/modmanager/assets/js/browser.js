@@ -213,8 +213,10 @@ function build_repo(sort_kind, filter_kind) {
                     const inPath = await store.get('settings-tcoaal');
                     const modPath = initialData.url || 'unknown_name';
                     const modHash = initialData.sha256 || 'unknown_hash';
+                    const modTags = initialData.tags || ['No Tags Yet'];
                     const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
-                    invoke('install_mod', { inPath, modPath, modHash, sanitizedName });
+                    const modJson = combined_data.find(entry => entry.data.id === initialData.id).modJson;
+                    invoke('install_mod', { inPath, modPath, modHash, modTags, sanitizedName, modJson });
                 });
             } 
             // action to display: delete
@@ -243,8 +245,10 @@ function build_repo(sort_kind, filter_kind) {
                 const inPath = await store.get('settings-tcoaal');
                 const modPath = initialData.url || 'unknown_name';
                 const modHash = initialData.sha256 || 'unknown_hash';
+                const modTags = initialData.tags || ['No Tags Yet'];
                 const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
-                invoke('install_mod', { inPath, modPath, modHash, sanitizedName });
+                const modJson = combined_data.find(entry => entry.data.id === initialData.id).modJson;
+                invoke('install_mod', { inPath, modPath, modHash, modTags, sanitizedName, modJson });
             });
         }
         // finish first row

@@ -12,7 +12,7 @@ document.getElementById('toggleSidebar').addEventListener('click', function () {
 });
 
 // open the burial wiki
-function openBurialWiiki() {
+function openBurialWiki() {
     invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki' });
 }
 

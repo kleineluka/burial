@@ -75,7 +75,6 @@ pub async fn install_modloader(window: Window, in_path: String, in_name: String)
     let downloads_dir = downloads::downloads_folder().to_string_lossy().to_string();
     downloads::verify_downloads().unwrap();
     // download a specific or the latest release of tomb
-    println!("{}", in_name);
     let download_result = if in_name == "latest" {
         codeberg::download_latest_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir).await
     } else {
@@ -95,7 +94,6 @@ pub async fn install_modloader(window: Window, in_path: String, in_name: String)
     // edit the package.json file
     window.emit("status", "Rewriting package.json..").unwrap();
     let game_package_json = format!("{}\\package.json", in_path);
-    println!("{}", game_package_json);
     let package_edited = edit_package(game_package_json, "install".to_string());
     if !package_edited {
         window.emit("error", "Failed to edit package.json!").unwrap();

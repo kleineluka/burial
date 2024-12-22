@@ -73,16 +73,20 @@ pub fn decompress_directory(zip_file_path: &Path, output_folder: &Path) -> io::R
 pub fn decompress_directory_nosub(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
     // decompress the directory first
     decompress_directory(zip_file_path, output_folder)?;
-    let zip_file_name = zip_file_path.file_stem().unwrap();
-    let extracted_folder_path = output_folder.join(zip_file_name);
-    // move to parent folder
+    // find the extracted folder by looking for the first subdirectory in the output folder
+    let extracted_folder_path = fs::read_dir(output_folder)?
+        .filter_map(|entry| entry.ok()) // ignore errors
+        .find(|entry| entry.path().is_dir()) // find the first directory
+        .map(|entry| entry.path()) // get its path
+        .ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "Extracted folder not found..?"))?;
+    // move files from the extracted folder to the output folder
     for entry in fs::read_dir(&extracted_folder_path)? {
         let entry = entry?;
         let path = entry.path();
         let new_path = output_folder.join(path.file_name().unwrap());
         fs::rename(path, new_path)?;
     }
-    // remove original extracted folder
-    fs::remove_dir(extracted_folder_path)?; 
+    // remove the original extracted folder
+    fs::remove_dir(extracted_folder_path)?;
     Ok(())
 }
