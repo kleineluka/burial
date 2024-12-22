@@ -78,7 +78,6 @@ pub async fn install_foreign_mod(window: Window, in_path: String, mod_path: Stri
     // extract that mod into a new folder in the same directory as the mod_file called "non_tomb"
     window.emit("status", "Extracting the mod..").unwrap();
     let mod_folder = temp_path.join("non_tomb");
-    println!("Decompressing {} into {}", mod_file.to_str().unwrap(), mod_folder.to_str().unwrap());
     compression::decompress_directory_nosub(&mod_file, &mod_folder).unwrap();
     // and convert it
     window.emit("status", "Converting the mod to use Tomb modloader..").unwrap();

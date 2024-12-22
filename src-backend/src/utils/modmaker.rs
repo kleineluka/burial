@@ -142,6 +142,16 @@ pub fn verify_rpg_project(in_path: &String) -> bool {
     true
 }
 
+// hardcode parameters into a plugin
+fn hardcore_parameters(in_plugin: &Plugin, plugin_text: &String) -> String {
+    let parameters_json = serde_json::to_string(&in_plugin.parameters).unwrap();
+    let mut modified_text = plugin_text.clone();
+    let find = format!("var parameters = PluginManager.parameters('{}');", in_plugin.name);
+    let replace = format!("var parameters = {};", parameters_json);
+    modified_text = modified_text.replace(&find, &replace);
+    modified_text
+}
+
 // step one: generate difference between project data (aka the json files from rpg maker)
 pub fn difference_data(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // get all files (recursively) in in_path/data
@@ -425,14 +435,16 @@ pub fn difference_plugins(in_path: &String, out_path: &String, game_path: &Strin
         return mod_json; // or handle the error appropriately
     };
     let game_array: Vec<Plugin> = serde_json::from_value(game_plugins).unwrap();
+    // create a list of plugin names we want to skip if they are present for some reason..
+    let skip_plugins = vec!["No Tomb Code", "deobfuscated"];
     // go through all plugins in the project
     for plugin in project_array {
         // see if its disabled
         if !plugin.status {
             continue;
         }
-        // if the plugin name is "No Tomb Code", skip it
-        if plugin.name == "No Tomb Code" {
+        // skip plugins if their name matches a banned token
+        if skip_plugins.contains(&plugin.name.as_str()) {
             continue;
         }
         // see if the plugin is in the game
@@ -445,6 +457,12 @@ pub fn difference_plugins(in_path: &String, out_path: &String, game_path: &Strin
         let file_path = Path::new(&file);
         let file_path_str = file_path.to_str().unwrap().to_string();
         fs::copy(file_path_str.clone(), format_mod_path(in_path, &file_path_str, out_path)).unwrap();
+        // if the plugin has parameters, we need to hard-core them (for now)
+        if plugin.parameters.len() > 0 {
+            let plugin_text = fs::read_to_string(file_path_str.clone()).unwrap();
+            let modified_text = hardcore_parameters(&plugin, &plugin_text);
+            fs::write(format_mod_path(in_path, &file_path_str, out_path), modified_text).unwrap();
+        }
         mod_json.files.plugins.push(win_to_posix(files::relative_path(in_path, &file_path_str)));
     }
     mod_json
