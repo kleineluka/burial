@@ -1,5 +1,5 @@
 // imports
-use std::fs;
+use std::{fs, io};
 use std::fs::File;
 use std::io::{Read, Write};
 use std::collections::HashSet;
@@ -79,6 +79,9 @@ pub fn copy_folder(from: &str, to: &str) {
 
 // delete folder
 pub fn delete_folder(folder_path: &str) {
+    if !PathBuf::from(folder_path).exists() {
+        return;
+    }
     fs::remove_dir_all(folder_path).unwrap();
 }
 
@@ -125,7 +128,6 @@ pub fn clear_folder(folder_path: &str) {
 // create a folder if it does not already exist
 pub fn verify_folder(path: &PathBuf) -> std::io::Result<()> {
     if !path.exists() {
-        // Create the directory if it doesn't exist
         fs::create_dir_all(path)?;
     } 
     Ok(())
@@ -380,4 +382,33 @@ pub fn is_modified_str(orig_path: &str, new_path: &str) -> bool {
     let orig_hash = get_blake3(Path::new(orig_path));
     let new_hash = get_blake3(Path::new(new_path));
     orig_hash != new_hash
+}
+
+pub fn merge_directories(patch_directory: &Path, base_directory: &Path) -> io::Result<()> {
+    if !base_directory.is_dir() {
+        return Err(io::Error::new(io::ErrorKind::NotFound, "Base directory does not exist"));
+    }
+    if !patch_directory.is_dir() {
+        return Err(io::Error::new(io::ErrorKind::NotFound, "Patch directory does not exist"));
+    }
+    for entry in fs::read_dir(patch_directory)? {
+        let entry = entry?;
+        let patch_path = entry.path();
+        let relative_path = patch_path.strip_prefix(patch_directory).unwrap();
+        let base_path = base_directory.join(relative_path);
+        if patch_path.is_dir() {
+            if !base_path.exists() {
+                fs::create_dir_all(&base_path)?;  
+            }
+            merge_directories(&patch_path, &base_path).unwrap();
+        } else {
+            if let Some(parent) = base_path.parent() {
+                if !parent.exists() {
+                    fs::create_dir_all(parent)?;  
+                }
+            }
+            fs::copy(patch_path, base_path)?;
+        }
+    }
+    Ok(())
 }

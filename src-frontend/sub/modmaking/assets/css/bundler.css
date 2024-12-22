@@ -12,6 +12,10 @@
     display: none;
 }
 
+.bottom-padding {
+    margin-bottom: 2vmin !important;
+}
+
 /* Overrides for this page specifically */
 .dropdown-menu-header {
     padding: 5px;
@@ -50,4 +54,17 @@
 .no-extra-space {
     margin-bottom: 0px !important;
     margin-top: 5px !important;
+}
+
+/* Scrolling Container */
+.scrollable-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 1vmin;
+    max-height: 40vh;
 }

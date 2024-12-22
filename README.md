@@ -28,7 +28,7 @@ Burial is a program for **mod players**, **mod creators**, **content creators** 
 - **Mod Manager** 🍱: One-click install of modpacks, manage Tomb modloader, browse and download mods, manage installed mods, and (beta) manage multiple instances of the game.
 - **Resources** ✂️: Decrypt/encrypt files from/to .k9a, export categories of resources, generate asset templates, parse/import dialogue, and decrypt/modify/manage save files.
 - **Reversing** 🧬: Targeted code injection, export/deobfuscate/comment the game's run-time code, manage NW.js SDK's, enable developer tools, view game information, and create backups of your game files.
-- **Mod Tools** 🖍️:  Create an RPG Maker project, export an RPG Maker project to a Tomb mod, edit mod json files, edit repo json files, and generate mod differences.
+- **Mod Tools** 🖍️:  Create an RPG Maker project, export an RPG Maker project to a Tomb mod, convert a non-Tomb mod to Tomb, edit mod json files, edit repo json files, and generate mod differences.
 - **Knowledge** 📔: Easily access modding resources in one convenient place.
 - **Easy and Safe** 🍵: Burial only takes a few clicks to get you playing mods, has lots of tooltips, and implements safety guardrails to protect your saves.
 - **Quality of Life** 🌸: Pretty GUI with character-based themes, persistent settings, built-in tutorials, update checking, lots of emojis..
@@ -55,7 +55,7 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] Steam Deck / Linux Improvements
 - [ ] Better Folder & File Dialog Handling
 - [ ] Easier Save Editor
-- [ ] Cleanup (Code, UI, Structure, Logging, Async I/O)
+- [ ] Cleanup (Code, UI, Responsiveness, Structure, Logging, Async I/O)
 - [ ] Game Instances
 - [ ] Self Updating
 - [ ] One-Click GameBanana Installation

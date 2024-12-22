@@ -42,7 +42,8 @@ pub fn export_rpg_project(window: Window, in_path: String, out_path: String, pro
 // public facing rpg to mod command for project.html
 #[command]
 pub fn export_mod_folder(window: Window, in_path: String, game_path: String, out_path: String, 
-    folder_name: String, auto_zip: bool, mod_name: String, mod_id: String, mod_author: String, mod_description: String) {
+    folder_name: String, auto_zip: bool, mod_name: String, mod_id: String, mod_author: String, 
+    mod_description: String, mod_version: String) {
     window.emit("status", "Getting everything ready...").unwrap();
     // make sure that the input folder is an rpg project
     let is_rpg = modmaker::verify_rpg_project(&in_path);
@@ -81,7 +82,7 @@ pub fn export_mod_folder(window: Window, in_path: String, game_path: String, out
         name: mod_name,
         authors: vec![mod_author],
         description: mod_description,
-        version: "1.0.0".to_string(),
+        version: mod_version,
         dependencies: modmaker::Dependencies {
             game: game_version,
             spec: modmaker::MOD_JSON_SPEC.to_string(),

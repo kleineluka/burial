@@ -35,6 +35,16 @@ pub fn temp_folder() -> PathBuf {
     burial_dir
 }
 
+// create temporary folder with a name
+pub fn create_temp_with_name(name: &str) -> PathBuf {
+    let burial_dir: PathBuf = create_temp();
+    let mut burial_dir: PathBuf = burial_dir;
+    burial_dir.push(name);
+    files::delete_folder(&burial_dir.to_str().unwrap());
+    files::verify_folder(&burial_dir).unwrap();
+    burial_dir
+}
+
 // delete the temporary folder
 pub fn clear_temp() {
     let burial_dir: PathBuf = create_temp();

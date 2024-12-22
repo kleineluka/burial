@@ -41,6 +41,7 @@ use modmaking::differences;
 use modmaking::modjson;
 use modmaking::repojson;
 use modmaking::bundler;
+use modmaking::converter;
 
 // main
 fn main() {
@@ -162,6 +163,7 @@ fn main() {
             repojson::save_repojson,
             bundler::export_rpg_project,
             bundler::export_mod_folder,
+            converter::convert_mod,
             info::general_info,
             info::plugins_info])
         .run(tauri::generate_context!())

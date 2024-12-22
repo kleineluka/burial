@@ -33,9 +33,9 @@ pub struct Dependencies {
 pub struct Files {
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub assets: Vec<String>,
-    #[serde(skip_serializing_if = "Vec::is_empty")]
+    #[serde(skip_serializing_if = "Vec::is_empty", rename = "dataDeltas")]
     pub data_deltas: Vec<String>,
-    #[serde(skip_serializing_if = "Vec::is_empty")]
+    #[serde(skip_serializing_if = "Vec::is_empty", rename = "imageDeltas")]
     pub image_deltas: Vec<String>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub plugins: Vec<String>,
@@ -114,7 +114,10 @@ fn clear_if_empty<T>(vec: &mut Vec<T>) {
 
 // decrypt a file and then compare it to another file (returns: different check, game bytes decrypted, new bytes)
 fn read_decrypt_compare(file_path: &String, game_path: &String) -> (bool, Vec<u8>, Vec<u8>) {
-    // decrypt original game asset,
+    // decrypt original game asset
+    if !Path::new(&game_path).exists() || !Path::new(&file_path).exists() {
+        return (false, vec![], vec![]);
+    }
     let original_encrypted = fs::read(game_path).unwrap();
     let original_decrypted = cipher::decrypt(&original_encrypted, &game_path);
     let new_content = fs::read(file_path.clone()).unwrap();
@@ -207,9 +210,6 @@ pub fn difference_languages(in_path: &String, out_path: &String, game_path: &Str
         let game_loc = format!("{}{}", game_path, relative_path);
         let is_new = !Path::new(&game_loc).exists();
         if is_new {
-            println!("New language file: {}", file_path_str);
-            println!("Unformatted out path {}", out_path);
-            println!("Output path: {}", format_language_path(&file_path_str, out_path));
             fs::copy(file_path_str.clone(), format_language_path(&file_path_str, out_path)).unwrap();
             mod_json.files.languages.push(win_to_posix(relative_language));
             continue;
@@ -320,8 +320,10 @@ pub fn difference_images(in_path: &String, out_path: &String, game_path: &String
             let patch_pathbuf = Path::new(&patch_path);
             let patch_olid = patch_pathbuf.with_extension("png.olid");
             fs::write(patch_olid, patch_str).unwrap();
-            // push the relative path
-            mod_json.files.image_deltas.push(win_to_posix(files::relative_path(in_path, &file_path_str)));
+            // push the relative path, but remove the .olid
+            //let patch_png =files::relative_path(in_path, &file_path_str).replace(".png.olid", ".png");
+            let delta_path = format!("{}.olid", files::relative_path(in_path, &file_path_str));
+            mod_json.files.image_deltas.push(win_to_posix(delta_path));
         }
     }
     mod_json
@@ -456,20 +458,21 @@ pub fn sanitize_json(mut mod_json: ModJSON) -> ModJSON {
 
 // reusable packager for other classes
 pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String, 
-    mod_name: &String, mod_id: &String, mod_author: &String, mod_description: &String) {
+    mod_name: &String, mod_id: &String, mod_author: &String, mod_description: &String,
+    mod_version: &String) {
     // get the game version, but if can't, leave as *
     let game_version = if game::game_version(game_path.clone()) == "Unknown" {
         "*".to_string()
     } else {
         game::game_version(game_path.clone())
     };
-    // make empty mod.json
+    // make empty mod.json (to do: make it support multiple authors)
     let mod_json = ModJSON {
         id: mod_id.clone(),
         name: mod_name.clone(),
         authors: vec![mod_author.clone()],
         description: mod_description.clone(),
-        version: "1.0.0".to_string(),
+        version: mod_version.clone(),
         dependencies: Dependencies {
             game: game_version,
             spec: MOD_JSON_SPEC.to_string(),

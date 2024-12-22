@@ -1,6 +1,5 @@
 // imports
-use tauri::Window;
-use tauri::command;
+use tauri::{command, Window};
 use std::collections::HashMap;
 use std::fs;
 use std::io::BufReader;

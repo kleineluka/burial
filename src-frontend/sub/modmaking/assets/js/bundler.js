@@ -10,6 +10,18 @@ document.getElementById('dropdown-menu-direction').addEventListener('change', fu
     }
 });
 
+// only allow x.x.x in mod-version
+document.getElementById('mod-version').addEventListener('input', function() {
+    let value = document.getElementById('mod-version').value;
+    let newValue = '';
+    for (let i = 0; i < value.length; i++) {
+        if (value[i].match(/[0-9.]/)) {
+            newValue += value[i];
+        }
+    }
+    document.getElementById('mod-version').value = newValue;
+});
+
 // convert game to project on backend
 document.getElementById('project-button').addEventListener('click', function() {
     // get the in path
@@ -35,15 +47,17 @@ document.getElementById('mod-button').addEventListener('click', async function (
     var gamePath = document.getElementById('tcoaal-path-mod').value;
     var outPath = document.getElementById('mod-path').value;
     var folderName = document.getElementById('mod-folder').value;
+    let modVersion = document.getElementById('mod-version').value;
     var autoZip = (document.getElementById('dropdown-auto-zip').value === 'true');
     if (folderName === '') folderName = 'my_project'; // default, not required
+    if (modVersion === '') modVersion = '1.0.0'; // default, not required
     // see if we can get default mod properties from settings
     let store = loadStorage();
     let modName = (await store.get('settings-modname')) || 'My Mod';
     let modId = (await store.get('settings-modid')) || 'my_mod';
     let modAuthor = (await store.get('settings-modauthor')) || 'The Author';
     let modDescription = (await store.get('settings-moddescription')) || 'A mod that certainly does something..';
-    invoke('export_mod_folder', { inPath, gamePath, outPath, folderName, autoZip, modName, modId, modAuthor, modDescription });
+    invoke('export_mod_folder', { inPath, gamePath, outPath, folderName, autoZip, modName, modId, modAuthor, modDescription, modVersion });
 });
 
 // tooltips

@@ -3,3 +3,4 @@ pub mod differences;
 pub mod modjson;
 pub mod repojson;
 pub mod bundler;
+pub mod converter;

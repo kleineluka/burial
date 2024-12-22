@@ -1,9 +1,9 @@
 use std::fs::{self, File};
 use std::io::{self, Seek, Write};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 use zip::write::SimpleFileOptions;
-use zip::ZipWriter;
+use zip::{ZipArchive, ZipWriter};
 
 // zip a directory to an output file
 pub fn compress_directory<T>(src_dir: &Path, output_file: T) -> zip::result::ZipResult<()> where T: Write + Seek, {
@@ -66,5 +66,23 @@ pub fn decompress_directory(zip_file_path: &Path, output_folder: &Path) -> io::R
     }
     // delete the zip file after extraction is complete
     // fs::remove_file(zip_file_path)?;
+    Ok(())
+}
+
+// don't make sub folder inside of it..
+pub fn decompress_directory_nosub(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
+    // decompress the directory first
+    decompress_directory(zip_file_path, output_folder)?;
+    let zip_file_name = zip_file_path.file_stem().unwrap();
+    let extracted_folder_path = output_folder.join(zip_file_name);
+    // move to parent folder
+    for entry in fs::read_dir(&extracted_folder_path)? {
+        let entry = entry?;
+        let path = entry.path();
+        let new_path = output_folder.join(path.file_name().unwrap());
+        fs::rename(path, new_path)?;
+    }
+    // remove original extracted folder
+    fs::remove_dir(extracted_folder_path)?; 
     Ok(())
 }
