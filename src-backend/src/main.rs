@@ -84,6 +84,9 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "metadata-discord", serde_json::Value::String(metadata.discord)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-github", serde_json::Value::String(metadata.github)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-website", serde_json::Value::String(metadata.website)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-itchio", serde_json::Value::String(metadata.itchio)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-gamebanana", serde_json::Value::String(metadata.gamebanana)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-nexusmods", serde_json::Value::String(metadata.nexusmods)).unwrap();
             Ok(())
         }).on_window_event(|event| {
             if let tauri::WindowEvent::CloseRequested { .. } = event.event() {

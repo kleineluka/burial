@@ -12,6 +12,9 @@ pub struct Metadata {
     pub discord: String,
     pub github: String,
     pub website: String,
+    pub itchio: String,
+    pub gamebanana: String,
+    pub nexusmods: String,
 }
 
 // construct a default metadata in the case of an error
@@ -22,6 +25,9 @@ impl Default for Metadata {
             discord: "https://discord.gg/WWxAjJMspk".to_string(),
             github: "https://github.com/kleineluka/burial/".to_string(),
             website: "https://github.com/kleineluka/burial/".to_string(),
+            itchio: "".to_string(),
+            gamebanana: "".to_string(),
+            nexusmods: "".to_string()
         }
     }
 }

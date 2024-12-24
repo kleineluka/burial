@@ -2,7 +2,6 @@
 <html lang="en">
 
 <!-- head -->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,27 +15,19 @@
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <!-- body -->
-
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-items">
             <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
-            <a class="navigate-button sidebar-current" data-page="sub/resources/index.html">Knowledge 📔</a>
-            <a id="burial-links-button" class="navigate-button hvr-grow" data-page="" data-page="burial.html">Burial
-                Links 🔗</a>
-            <a id="burial-wiki-button" class="navigate-button hvr-grow" data-page="" onclick="openBurialWiki()">Burial
-                Wiki 🍅</a>
-            <a id="modding-wiki-button" class="navigate-button hvr-grow" data-page="" onclick="openCoffinWiki()">Modding
-                Wiki 🔖</a>
-            <a id="llamaware-button" class="navigate-button hvr-grow" data-page="" data-page="llamaware.html">LLamawa.re
-                🦙</a>
-            <a id="playing-mods-button" class="navigate-button hvr-grow" data-page=""
-                onclick="openPlayingMods()">Playing Mods 🕹️</a>
-            <a id="making-mods-button" class="navigate-button hvr-grow" data-page="" onclick="openMakingMods()">Making
-                Mods 🛠️</a>
-            <a id="publish-mod-button" class="navigate-button hvr-grow" data-page="" onclick="openPublishMod()">Publish
-                a Mod 🌈</a>
+            <a class="navigate-button hvr-grow" data-page="index.html">Knowledge 📔</a>
+            <a id="burial-links-button" class="navigate-button hvr-grow" data-page="burial.html">Burial Links 🔗</a>
+            <a id="burial-wiki-button" class="navigate-button hvr-grow" onclick="openBurialWiki()">Burial Wiki 🍅</a>
+            <a id="modding-wiki-button" class="navigate-button hvr-grow" onclick="openCoffinWiki()">Modding Wiki 🔖</a>
+            <a id="llamaware-button" class="navigate-button sidebar-current" data-page="llamaware.html">LLamawa.re 🦙</a>
+            <a id="playing-mods-button" class="navigate-button hvr-grow" onclick="openPlayingMods()">Playing Mods 🕹️</a>
+            <a id="making-mods-button" class="navigate-button hvr-grow" onclick="openMakingMods()">Making Mods 🛠️</a>
+            <a id="publish-mod-button" class="navigate-button hvr-grow" onclick="openPublishMod()">Publish a Mod 🌈</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -69,14 +60,20 @@
                 🍅</button>
         </div>
         <div class="container">
-            <img src="assets/img/resources.png" alt="" class="header-image hvr-shrink">
-            <div class="small-title">
-                <p><b>Knowledge</b> let you learn more about how TCOAAL works.</p>
+            <!-- Horizontal Navbar -->
+            <div class="page-navbar">
+                <p class="top-information"><b><i>Weaving magical software for the information age.</i></b><br> A group of like-minded programmers, modders, and tinkerers. We make game mods and modding tools, primarily around The Coffin of Andy and Leyley and Library of Ruina.</p>
             </div>
-            <div class="items-list">
-                <p>🍅 <b>Burial's Wiki</b> provides information on the program.</p>
-                <p>🔖 <b>Modding Wiki</b> explains how to make and manually play mods.</p>
-                <p>🌈 <b>Publish Mod</b> guides you to sharing your mods for others to play!</p>
+            <!-- Sub Container -->
+            <div id="sub-export" class="page-container">
+                <div class="scrollable-area">
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openLlamawareGithub()">Github 🐙</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openLlamawareWebsite()">Website 🦙</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openLlamawareMods()">Mod Depository ⚰️</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openLlamawareBlog()">Blog ✏️</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openLlamawareProjects()">Projects 📦</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openLlamawareDiscord()">Discord (Creators) 📱</button>
+                </div>
             </div>
         </div>
     </div>
@@ -90,5 +87,5 @@
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
 <script src="assets/js/index.js"></script>
-
+<script src="assets/js/llamaware.js"></script>
 </html>

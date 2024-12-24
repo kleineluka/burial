@@ -26,6 +26,14 @@ function openPublishMod() {
     invoke('open_browser', { url: 'https://github.com/Llamaware/Llamaware.github.io/' });
 }
 
+function openPlayingMods() {
+    invoke('open_browser', { url: 'https://coffin-wiki.basil.cafe/playing' });
+}
+
+function openMakingMods() {
+    invoke('open_browser', { url: 'https://coffin-wiki.basil.cafe/modding' });
+}
+
 // shared tooltips across all knowledge pages
 function knowledgeTooltips() {
     tippy('#burial-links-button', {

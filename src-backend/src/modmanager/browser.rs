@@ -5,7 +5,6 @@ use std::fs::File;
 use std::io::{BufReader, Read};
 use sha2::{Sha256, Digest};
 use crate::config::downloads;
-use crate::config::cache;
 use crate::modmaking::converter;
 use crate::utils::compression;
 use crate::utils::connection;
