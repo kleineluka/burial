@@ -55,10 +55,12 @@ The tech stack 🍡 is a Rust back-end (Tauri framework), a Javascript front-end
 - [ ] Steam Deck / Linux Improvements
 - [ ] Better Folder & File Dialog Handling
 - [ ] Easier Save Editor
-- [ ] Cleanup (Code, UI, Responsiveness, Structure, Logging, Async I/O)
-- [ ] Game Instances
+- [ ] Cleanup (Code, UI, Responsiveness, Code Warnings, Var Ownership, Structure, JS -> Rust, Logging, Async I/O)
 - [ ] Self Updating
 - [ ] One-Click GameBanana Installation
+- [ ] Symbolic Linking (for Profiles)
+- [ ] Space Awareness
+- [x] Game Instances (Profiles)
 - [x] More Tooltips
 - [x] Theming System
 - [x] Settings System

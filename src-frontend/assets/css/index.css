@@ -52,6 +52,12 @@
   display: none;
 }
 
+.inline-icon {
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+}
+
 /* Splash Text */
 .splash-text {
   position: absolute;
@@ -80,5 +86,28 @@
   100% {
     opacity: 0.8;
     transform: rotate(-10deg) scale(1);
+  }
+}
+
+/* Wavey Text */
+.wavey-text {
+  display: inline-flex;
+}
+
+.wavey-text span {
+  display: inline-block;
+}
+
+.wavey-text.wave span {
+  animation: wave 1.5s infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(1px);
+  }
+  50% {
+    transform: translateY(-1px);
   }
 }

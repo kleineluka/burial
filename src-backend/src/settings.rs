@@ -25,7 +25,7 @@ pub fn load_settings(window: Window) {
 // write settings
 #[command]
 pub fn save_settings(window: Window, tcoaal: String, output: String, 
-    instances: bool, updates: bool, theme: String, animations: bool, 
+    updates: bool, theme: String, animations: bool, 
     tooltips: bool, modname: String, modid: String, modauthor: String, 
     moddescription: String) {
     // read the current settings
@@ -33,7 +33,6 @@ pub fn save_settings(window: Window, tcoaal: String, output: String,
     // update the settings
     settings.tcoaal = tcoaal;
     settings.output = output;
-    settings.instances = instances;
     settings.updates = updates;
     settings.theme = theme;
     settings.animations = animations;

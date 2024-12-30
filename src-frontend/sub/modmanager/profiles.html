@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/instances.css">
+    <link rel="stylesheet" href="assets/css/profiles.css">
 </head>
 <!-- body -->
 <body>
@@ -24,7 +24,8 @@
             <a class="navigate-button hvr-grow" data-page="modloader.html">Mod Loader🪦</a>
             <a class="navigate-button hvr-grow" data-page="browser.html">Mod Browser 🕹️</a>
             <a class="navigate-button hvr-grow" data-page="installed.html">Installed Mods 🛍️</a>
-            <a class="navigate-button sidebar-current" data-page="instances.html">Game Instances 🎮</a>
+            <a class="navigate-button sidebar-current" data-page="profiles.html">Profiles 🎮</a>
+            <a class="navigate-button hvr-grow" data-page="external.html">External 📥</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -58,25 +59,25 @@
         <div class="container">
             <div id="sub-preview" class="sub-menu">
                 <div class="page-navbar">
+                    <div id="installation-notification-container" class="installation-notification">
+                        <img src="assets/img/warning.png"/>
+                    </div>
                     <div class="file-path-container dropdown-container">
-                        <label for="dropdown-menu-current-instance" class=>Current Instance:</label>
-                        <select id="dropdown-menu-current-instance" class="dropdown-menu"></select>
+                        <label for="dropdown-menu-current-profile" class=>Profile:</label>
+                        <select id="dropdown-menu-current-profile" class="dropdown-menu">
+                            <option value=")">Loading..</option>
+                        </select>
+                        <button id="delete-button" class="small-buttons">-</button>
+                        <button id="add-button" class="small-buttons">+</button>
+                        <button id="play-button" class="small-buttons">Play!</button>
                     </div>
                 </div>
-                <div id="instances-container" class="page-container">
-                    <!-- Stickied to Top -->
-                    <div class="file-path-container">
-                        <input id="new-instance-name" type="text" class="file-path-input" placeholder="Name of new instance.." value="">
-                        <button id="make-new-instance" class="browse-button hvr-shrink">Create Instance 🍨</button>
-                    </div>
-                    <!-- Instance List -->
-                    <div class="instance-container">
-                        <div class="instance-info">
-                            <!-- Loading -->
-                            <div class="loading">Loading your instances<span class="dots"></span></div>
-                        </div>
-                    </div>
+            <div class="page-container">
+                <div class="mods-container">
+                    <!-- Loading -->
+                    <div class="loading">Loading your installed mods<span class="dots"></span></div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
@@ -93,5 +94,5 @@
 <script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/instances.js"></script>
+<script src="assets/js/profiles.js"></script>
 </html>

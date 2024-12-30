@@ -113,7 +113,7 @@ body::after {
 /* File Path Selection */
 .file-path-container {
     display: flex;
-    justify-content: center;
+    justify-content: center;    
     align-items: center;
     margin-top: 1.5vmin;
     margin-bottom: 1.5vmin;

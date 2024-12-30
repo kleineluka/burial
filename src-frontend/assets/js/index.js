@@ -101,6 +101,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+// on load, start the animation
+document.addEventListener('DOMContentLoaded', () => {
+    const buttonText = document.querySelector('.wavey-text');
+    if (buttonText) {
+        buttonText.innerHTML = [...buttonText.textContent].map((letter, i) =>
+            letter.trim() === ''
+                ? '&nbsp;' // Replace spaces with non-breaking spaces
+                : `<span style="--i: ${i}">${letter}</span>`
+        ).join('');
+
+        // Trigger the wave animation on load
+        buttonText.classList.add('wave');
+    }
+});
+
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

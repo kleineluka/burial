@@ -1,0 +1,248 @@
+/* Override Default Styles to Fit Into Horiz Navbar */
+.page-navbar {
+    position: relative;
+    flex-direction: column !important;
+    gap: 2vmin !important;
+}
+
+.dropdown-container {
+    color: var(--main-colour) !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.dropdown-menu {
+    color: #000 !important;
+    background-color: var(--main-colour);
+    width: 30vmin !important;
+}
+
+.small-buttons {
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-size: 3vmin;
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--main-colour);
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    margin-left: 1vmin;
+}
+
+/* Override the Text Input */
+.file-path-input {
+    width: 40vmin !important;
+    margin-left: 2vmin;
+}
+
+.browse-button {
+    width: 35vmin !important;
+    margin-right: 2vmin;
+}
+
+/* Scrollable Area */
+.profile-list {
+    max-height: 50vmin;
+    overflow-y: auto;
+}
+
+/* Limit Size of Container */
+.mods-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    padding: 1vmin;
+    max-height: 45vh;
+}
+
+.mods-container>* {
+    width: 90%;
+}
+
+/* Mod Entries */
+.mod-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 10px;
+    background-color: var(--light-colour);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.mod-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mod-icon {
+    flex: 0 0 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mod-provided-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #000;
+    border-radius: 10%;
+}
+
+.mod-details {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.mod-name {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+}
+
+.mod-author {
+    font-weight: normal;
+    color: #666;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+.mod-description {
+    margin: 5px 0 0;
+    font-size: 0.85em;
+    color: #444;
+    text-align: left;
+}
+
+.mod-installed-text {
+    font-weight: bold;
+}
+
+.mod-actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 5px;
+}
+
+.mod-download-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10%;
+    border: 2px solid #000;
+    transition: transform 0.3s, opacity 0.3s;
+    background-color: var(--main-colour);
+    background-blend-mode: screen;
+    margin-top: -20px;
+}
+
+.mod-download-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.mod-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.mod-tag {
+    background-color: var(--main-colour);
+    color: #333;
+    border-radius: 12px;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 0.85em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.mod-open-link-symbol {
+    cursor: pointer;
+    /* remove underline */
+    text-decoration: none;
+}
+
+/* Pretty Lil Loading */
+.loading {
+    font-family: 'Nunito', sans-serif;
+    font-size: 3.5vmin;
+}
+
+.dots::after {
+    content: '';
+    animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: '';
+    }
+
+    33% {
+        content: '.';
+    }
+
+    66% {
+        content: '..';
+    }
+
+    100% {
+        content: '...';
+    }
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    z-index: 9;
+}
+
+.bypass-disabled {
+    cursor: pointer !important;
+    opacity: 1 !important;
+    z-index: 10 !important;
+}
+
+/* Installation Button */
+.installation-notification {
+    position: absolute; 
+    top: -27px; 
+    right: 5px; 
+    width: 32px; 
+    height: 25px;
+    background-color: var(--main-colour); 
+    border: 2px solid #000; 
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.installation-notification img {
+    max-width: 80%; 
+    max-height: 80%;
+    object-fit: contain;
+    transition: transform 0.5s ease-in-out;
+}
+
+.installation-notification img:hover {
+    transform: scale(0.8);
+}
+
+.main-content {
+    overflow: visible !important;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,32 +1,8 @@
-const repo = "https://llamawa.re/repo.json";
-const foreign = "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/foreign.json";
-let repo_data = null;
-let repo_status = false;    
-let foreign_data = null;
-let foreign_status = false;
-let combined_data = null;
-let combined_status = false;
 let installed_cache = null;
 let search_cache = null;
 let mod_ready = 'ready';
 let inPath = null;
 let fuse = null;
-
-// filter tag names
-function filter_tags(tag) {
-    switch (tag) {
-        case "gen-ai":
-            return "Generative AI";
-        case "content":
-            return "New Content";
-        case "mature":
-            return "Mature Themes";
-        case "foreign":
-            return "Third-Party";
-        default:
-            return tag;
-    }
-}
 
 // sort the data by modJson.name alphabetically
 function sort_alphabetically() {
@@ -44,48 +20,6 @@ function sort_updated() {
         const dateB = new Date(b.data?.lastUpdate || 0);
         return dateB - dateA; 
     });
-}
-
-// download json into a structured object
-async function download_repo() {
-    // gather the data
-    const response = await fetch(repo);
-    if (!response.ok) {
-        repo_status = false;
-        console.error("Failed to fetch repository data");
-        return;
-    }
-    const data = await response.json();
-    if (!data) {
-        repo_status = false;
-        console.error("Failed to parse repository data");
-        return;
-    }
-    repo_data = data;
-    repo_status = true;
-}
-
-// download foreign json into a structured object
-async function download_foreign() {
-    // gather the data
-    const response = await fetch(foreign);
-    if (!response.ok) {
-        console.error("Failed to fetch foreign data");
-        return;
-    }
-    const data = await response.json();
-    if (!data) {
-        console.error("Failed to parse foreign data");
-        return;
-    }
-    foreign_data = data;
-    foreign_status = true;
-}
-
-// combine the two jsons into one
-function combine_jsons() {
-    combined_data = repo_data.concat(foreign_data);
-    combined_status = true;
 }
 
 // build search cache for fuse.js (support both local and foreign)
@@ -219,13 +153,58 @@ function build_repo(sort_kind, filter_kind) {
                     invoke('install_mod', { inPath, modPath, modHash, modTags, sanitizedName, modJson });
                 });
             } 
+            // branch based on whether mods enabled
+            let is_enabled = installed_cache[modData.id].status || false;
+            if (is_enabled) {
+                // action to display: disable
+                const disableIcon = document.createElement('img');
+                disableIcon.src = 'assets/img/disable.png';
+                disableIcon.alt = 'Disable Button';
+                disableIcon.classList.add('mod-download-icon', 'hvr-shrink');
+                actionsDiv.appendChild(disableIcon);
+                tippy(disableIcon, {
+                    content: 'Disable the mod!',
+                    animation: 'perspective-subtle',
+                    placement: 'left',
+                    theme: 'burial'
+                });
+                disableIcon.addEventListener('click', async () => {
+                    console.log('Disabling mod:', modData.name);
+                    const inPath = installed_cache[modData.id].path;
+                    invoke('disable_mod', { inPath });
+                });
+            } else {
+                // action to display: enable
+                const enableIcon = document.createElement('img');
+                enableIcon.src = 'assets/img/enable.png';
+                enableIcon.alt = 'Enable Button';
+                enableIcon.classList.add('mod-download-icon', 'hvr-shrink');
+                actionsDiv.appendChild(enableIcon);
+                tippy(enableIcon, {
+                    content: 'Enable the mod!',
+                    animation: 'perspective-subtle',
+                    placement: 'left',
+                    theme: 'burial'
+                });
+                enableIcon.addEventListener('click', async () => {
+                    console.log('Enabling mod:', modData.name);
+                    const inPath = installed_cache[modData.id].path;
+                    const gamePath = await loadStorage().get('settings-tcoaal');
+                    invoke('enable_mod', { inPath, gamePath });
+                });
+            }
             // action to display: delete
             const deleteIcon = document.createElement('img');
             deleteIcon.src = 'assets/img/delete.png';
             deleteIcon.alt = 'Delete Button';
             deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
             actionsDiv.appendChild(deleteIcon);
-            // on delete click
+            tippy(deleteIcon, {
+                content: 'Delete the mod!',
+                animation: 'perspective-subtle',
+                placement: 'left',
+                theme: 'burial'
+            });
             deleteIcon.addEventListener('click', async () => {
                 console.log('Deleting mod:', modData.name);
                 const modPath = installed_cache[modData.id].path;
@@ -238,6 +217,13 @@ function build_repo(sort_kind, filter_kind) {
             downloadIcon.alt = 'Download Button';
             downloadIcon.classList.add('mod-download-icon', 'hvr-shrink');
             actionsDiv.appendChild(downloadIcon);
+            // add tooltip
+            tippy(downloadIcon, {
+                content: 'Download the mod!',
+                animation: 'perspective-subtle',
+                placement: 'left',
+                theme: 'burial'
+            });
             // on download click
             downloadIcon.addEventListener('click', async () => {
                 console.log('Downloading mod:', modData.name);
@@ -389,12 +375,6 @@ listen('mod-install', async (event) => {
     load_browser();
 });
 
-// when a mod is uninstalled
-listen('mod-uninstall', async (event) => {
-    // reload the browser
-    load_browser();
-});
-
 // update what mods are already installed
 listen('installed-mods', async (event) => {
     if (event.payload === 'error_modloader') {
@@ -403,10 +383,11 @@ listen('installed-mods', async (event) => {
     } else {
         // simplify the installed mods data for easier searching
         installed_cache = event.payload.reduce((acc, mod) => {
-            const { id, version } = mod.modjson;
+            const { id, version, status } = mod.modjson;
             acc[id] = {
                 path: mod.folder,
-                version: version
+                version: version,
+                status: status
             };
             return acc;
         }, {});

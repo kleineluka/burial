@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     const storage = loadStorage();
     if (!storage) return;
     // autofill other storage options
-    const instances = await storage.get('settings-instances');
-    document.getElementById('dropdown-menu-instances').value = instances.toString();
     const updates = await storage.get('settings-updates');
     document.getElementById('dropdown-menu-updates').value = updates.toString();
     const theme = await storage.get('settings-theme');
@@ -40,7 +38,6 @@ async function saveSettings() {
     // get values
     var tcoaal = document.getElementById('tcoaal-path').value;
     var output = document.getElementById('output-path').value;
-    var instances = (document.getElementById('dropdown-menu-instances').value === 'true');
     var updates = (document.getElementById('dropdown-menu-updates').value === 'true');
     var theme = document.getElementById('dropdown-menu-theme').value;
     var animations = (document.getElementById('dropdown-menu-animations').value === 'true');
@@ -53,7 +50,6 @@ async function saveSettings() {
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
     store.set('settings-output', output);
-    store.set('settings-instances', instances);
     store.set('settings-updates', updates);
     store.set('settings-theme', theme);
     store.set('settings-animations', animations);
@@ -64,7 +60,7 @@ async function saveSettings() {
     store.set('settings-moddescription', moddescription);
     store.save();   
     // set values
-    invoke('save_settings', { tcoaal, output, instances, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription });
+    invoke('save_settings', { tcoaal, output, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -109,7 +105,6 @@ function resetSettings() {
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
     document.getElementById('output-path').value = '';
-    document.getElementById('dropdown-menu-instances').value = 'false';
     document.getElementById('dropdown-menu-theme').value = 'ashley';
     document.getElementById('dropdown-menu-animations').value = 'true';
     document.getElementById('dropdown-menu-tooltips').value = 'true';
@@ -309,6 +304,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     defaultTooltips();
     tippy('#reset-button', {
         content: 'This will reset all of the settings, not just the ones you can currently see!',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#updates-check-label', {
+        content: 'Check for updates on launch',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#profiles-copy-label', {
+        content: 'Profiles use a second copy of the game and don\'t affect the original',
         animation: 'perspective-subtle',
         placement: 'top',
         theme: 'burial'

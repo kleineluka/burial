@@ -14,7 +14,6 @@ use crate::utils::game;
 use crate::utils::files;
 use crate::config::cache;
 use crate::config::appdata;
-use crate::resources::save;
 use crate::modmanager::modloader;
 use crate::modmanager::installed;
 

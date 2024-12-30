@@ -1,6 +1,3 @@
-const repo = "https://llamawa.re/repo.json";
-let repo_data = null;
-let repo_status = false;
 let installed_cache = null;
 let inPath = null;
 
@@ -8,16 +5,6 @@ let inPath = null;
 function openFolder(inPath) {
     console.log('Opening folder:', inPath); 
     invoke('open_folder', { inPath });
-}
-
-// filter tag names
-function filter_tags(tag) {
-    switch (tag) {
-        case "gen-ai":
-            return "Generative AI";
-        default:
-            return tag;
-    }
 }
 
 // pwetty.. (but optional!)
@@ -36,21 +23,6 @@ async function build_list() {
     // need to see if animations are enabled..
     const store = loadStorage();
     const animations = await store.get('settings-animations');
-    // connect to the repo list to get updates
-    const response = await fetch(repo);
-    if (!response.ok) {
-        repo_status = false;
-        console.error("Failed to fetch repository data");
-        set_status("Couldn't connect to the mod repository - updates are not shown.");  
-    }
-    const data = await response.json();
-    if (!data) {
-        repo_status = false;
-        console.error("Failed to parse repository data");
-        set_status("Couldn't connect to the mod repository - updates are not shown.");
-    }
-    repo_status = true;
-    repo_data = data;
     // go through the data and populate the html
     const container = document.querySelector(".mods-container");
     container.innerHTML = "";
@@ -58,12 +30,15 @@ async function build_list() {
     installed_cache.forEach(entry => {
         // check if there is a matching entry in the repo
         let update_available = false;
-        if (repo_status) {
-            const repoEntry = repo_data.find(repoEntry => repoEntry.modJson.id === entry.modjson.id);
+        if (combined_status) {
+            const repoEntry = combined_data.find(repoEntry => repoEntry.modJson.id === entry.modjson.id);
             if (repoEntry) {
+                // see if there is nau pdate
                 if (repoEntry.modJson.version !== entry.modjson.version) {
                     update_available = true;
                 }
+                // replace the tags with the repo tags, since they aren't stored locally
+                entry.modjson.tags = repoEntry.data.tags;
             }
         }
         // create mod container
@@ -102,9 +77,17 @@ async function build_list() {
         // installed notice 
         const installedText = document.createElement('span');
         installedText.classList.add('mod-installed-text');
-        installedText.textContent = ` You have version ${entry.modjson.version} installed.`;
+        if (entry.modjson.id !== 'tomb') {
+            if (entry.modjson.status) {
+                installedText.textContent = ` You have version ${entry.modjson.version} installed.`;
+            } else {
+                installedText.textContent = ` This mod is disabled. You can enable it again by hitting the button to the right.`;
+            } 
+        } else {
+                installedText.textContent = `. Tomb can be updated and managed in the Mod Loader 🪦 tab.`;
+        }
         description.appendChild(installedText);
-        if (update_available) {
+        if (update_available && entry.modjson.status) {
             const updateAvailable = document.createElement('span');
             if (animations) {
                 let updateRainbow = 'update';
@@ -125,7 +108,7 @@ async function build_list() {
         // actions
         const actionsDiv = document.createElement('div');
         actionsDiv.classList.add('mod-actions');
-        if (update_available) {
+        if (update_available && entry.modjson.status) {
             // action to display: update
             const updateIcon = document.createElement('img');
             updateIcon.src = 'assets/img/update.png';
@@ -145,18 +128,65 @@ async function build_list() {
                 invoke('install_mod', { inPath, modPath, modHash, modTags, sanitizedName, modJson });
             });
         }
-        // action to dispaly: delete
-        const deleteIcon = document.createElement('img');
-        deleteIcon.src = 'assets/img/delete.png';
-        deleteIcon.alt = 'Delete Button';
-        deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
-        actionsDiv.appendChild(deleteIcon);
-        // on delete click
-        deleteIcon.addEventListener('click', async () => {
-            console.log('Deleting mod:', entry.modjson.name);
-            const modPath = entry.folder;
-            invoke('uninstall_mod', { modPath });
-        });
+        if (entry.modjson.id !== 'tomb') {
+            if (entry.modjson.status) {
+                // action to display: disable
+                const disableIcon = document.createElement('img');
+                disableIcon.src = 'assets/img/disable.png';
+                disableIcon.alt = 'Disable Button';
+                disableIcon.classList.add('mod-download-icon', 'hvr-shrink');
+                actionsDiv.appendChild(disableIcon);
+                tippy(disableIcon, {
+                    content: 'Disable the mod!',
+                    animation: 'perspective-subtle',
+                    placement: 'left',
+                    theme: 'burial'
+                });
+                disableIcon.addEventListener('click', async () => {
+                    console.log('Disabling mod:', entry.modjson.name);
+                    const inPath = entry.folder;
+                    invoke('disable_mod', { inPath });
+                });
+            } else {
+                // action to display: enable
+                const enableIcon = document.createElement('img');
+                enableIcon.src = 'assets/img/enable.png';
+                enableIcon.alt = 'Enable Button';
+                enableIcon.classList.add('mod-download-icon', 'hvr-shrink');
+                actionsDiv.appendChild(enableIcon);
+                tippy(enableIcon, {
+                    content: 'Enable the mod!',
+                    animation: 'perspective-subtle',
+                    placement: 'left',
+                    theme: 'burial'
+                });
+                enableIcon.addEventListener('click', async () => {
+                    console.log('Enabling mod:', entry.modjson.name);
+                    const inPath = entry.folder;
+                    const gamePath = await loadStorage().get('settings-tcoaal');
+                    invoke('enable_mod', { inPath, gamePath });
+                });
+            }
+            // action to display: delete
+            const deleteIcon = document.createElement('img');
+            deleteIcon.src = 'assets/img/delete.png';
+            deleteIcon.alt = 'Delete Button';
+            deleteIcon.classList.add('mod-download-icon', 'hvr-shrink');
+            actionsDiv.appendChild(deleteIcon);
+            // add tooltip
+            tippy(deleteIcon, {
+                content: 'Delete the mod!',
+                animation: 'perspective-subtle',
+                placement: 'left',
+                theme: 'burial'
+            });
+            // on delete click
+            deleteIcon.addEventListener('click', async () => {
+                console.log('Deleting mod:', entry.modjson.name);
+                const modPath = entry.folder;
+                invoke('uninstall_mod', { modPath });
+            });
+        }
         // finish first row
         firstRow.appendChild(iconDiv);
         firstRow.appendChild(detailsDiv);
@@ -201,12 +231,6 @@ window.addEventListener('load', async () => {
     load_installed();
 });
 
-// when a mod is uninstalled
-listen('mod-uninstall', async (event) => {
-    // reload the browser
-    load_browser();
-});
-
 // update what mods are already installed
 listen('installed-mods', async (event) => {
     if (event.payload === "error_modloader") {
@@ -214,6 +238,9 @@ listen('installed-mods', async (event) => {
     } else {
         installed_cache = event.payload;
     }
+    await download_repo(); // avoid redownloading
+    await download_foreign(); // avoid redownloading
+    combine_jsons(); // build them together (bleh, they need to just use tomb..)
     build_list();
 });
 
