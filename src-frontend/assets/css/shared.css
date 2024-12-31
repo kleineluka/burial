@@ -384,6 +384,8 @@ body::after {
 
 .progress-text {
     font-size: 2.5vmin;
+    opacity: 1;
+    transition: opacity 1s ease;
 }
 
 /* Disable Animations Universally (if desired) */
@@ -406,3 +408,4 @@ body::after {
 .tippy-box[data-theme~='burial'][data-placement^='top']>.tippy-arrow::before {
     border-top-color: var(--main-colour);
 }
+

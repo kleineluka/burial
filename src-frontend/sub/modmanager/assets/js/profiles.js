@@ -1,11 +1,12 @@
 let installed_cache = null;
-let inPath = null;
-let currentProfile = null;
+let profilesJson = null;
+let currentProfile = 'test';
 let copyVersion = 'notset';
 
 // put the json into an html list
 async function build_profile_list() {
-    const store = loadStorage();
+    if (installed_cache == null) return; // avoid loading when we, uh, can't..
+    let inPath = await loadStorage().get('settings-tcoaal');
     const container = document.querySelector(".mods-container");
     const children = Array.from(container.children);
     children.forEach(child => {
@@ -15,6 +16,9 @@ async function build_profile_list() {
     });
     let added_mods = 0;
     installed_cache.forEach(entry => {
+        // get this mod in the profile (via profilesJson.profiles.mod.x.id vs entry.modjson.id)
+        const profileEntry = profilesJson.profiles.find(profile => profile.name === currentProfile).mods.find(mod => mod.id === entry.modjson.id);
+        if (profileEntry === undefined || profileEntry === null) return; // skip if for some reason we can't find the mod in the profile
         // create mod container
         const modEntry = document.createElement('div');
         modEntry.classList.add('mod-entry');
@@ -44,9 +48,9 @@ async function build_profile_list() {
         detailsDiv.appendChild(description);
         // actions (depending on the profile and mod)
         const actionsDiv = document.createElement('div');
-        actionsDiv.classList.add('mod-actions');
-        const currentProfile = document.getElementById('dropdown-menu-current-profile').value;
-        if (currentProfile === 'Default') {
+        actionsDiv.classList.add('mod-actions')
+        const selectedProfile = document.getElementById('dropdown-menu-current-profile').value;
+        if (selectedProfile === 'Default') {
             // action to display: notice
             const noticeIcon = document.createElement('img');
             noticeIcon.src = 'assets/img/warning.png';
@@ -63,18 +67,18 @@ async function build_profile_list() {
             if (entry.modjson.id !== 'tomb') {
                 // action to display: toggle
                 const toggleIcon = document.createElement('img');
-                toggleIcon.src = 'assets/img/disable.png';
+                toggleIcon.src = (profileEntry.status) ? 'assets/img/disable.png' : 'assets/img/enable.png';
                 toggleIcon.alt = 'Disable Button';
                 toggleIcon.classList.add('mod-download-icon', 'hvr-shrink', "bypass-disabled");
                 actionsDiv.appendChild(toggleIcon);
                 tippy(toggleIcon, {
-                    content: 'Toggle the mod for this profile.',
+                    content: 'Toggle the mod for this profile only.',
                     animation: 'perspective-subtle',
                     placement: 'left',
                     theme: 'burial'
                 });
                 toggleIcon.addEventListener('click', async () => {
-                    console.log('Toggling mod:', entry.modjson.name);
+                    invoke('toggle_profile_mod', { inPath, profileName: selectedProfile, modId: profileEntry.id });
                 });
             } else {
                 // action to display: notice
@@ -100,7 +104,6 @@ async function build_profile_list() {
         container.appendChild(modEntry);
         // grey out if tomb
         if (currentProfile === 'Default') {
-            console.log('Default profile, disabling all');
             modEntry.classList.add('disabled');
         } else if (entry.modjson.id === 'tomb') {
             modEntry.classList.add('disabled');
@@ -115,29 +118,20 @@ async function build_profile_list() {
     }
 }
 
-// move to function to make it reusable (ex. after mod is installed)
+// move to function to make it reusable 
 async function load_installed() {
-    const store = loadStorage();
-    inPath = await store.get('settings-tcoaal');
+    let inPath = await loadStorage().get('settings-tcoaal');
     invoke('installed_mods', { inPath });
 }
 
-// on page load see what mods are installed
-window.addEventListener('load', async () => {
-    load_installed();
-});
-
-// update what mods are already installed
+// got installed mods, then build them into a list
 listen('installed-mods', async (event) => {
     if (event.payload === "error_modloader") {
         installed_cache = [];
     } else {
         installed_cache = event.payload;
     }
-    await download_repo(); // avoid redownloading
-    await download_foreign(); // avoid redownloading
-    combine_jsons(); // build them together (bleh, they need to just use tomb..)
-    build_profile_list();
+    await build_profile_list();
 });
 
 // listen for click on installation-notification-container
@@ -160,21 +154,45 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // we got the profiles !
 listen('profiles-loaded', async (event) => {
-    const profiles_json = JSON.parse(event.payload);
-    const profiles = profiles_json.profiles;
-    currentProfile = profiles_json.current;
-    copyVersion = profiles_json.version;
+    profilesJson = JSON.parse(event.payload);
+    const profiles = profilesJson.profiles;
+    currentProfile = profilesJson.current;
+    copyVersion = profilesJson.version;
     const dropdown = document.getElementById('dropdown-menu-current-profile');
     dropdown.innerHTML = '';
     profiles.forEach(profile => {
         const option = document.createElement('option');
         option.value = profile.name;
         option.textContent = profile.name;
-        if (profile === currentProfile) {
+        if (profile.name === currentProfile) {
             option.selected = true;
         }
         dropdown.appendChild(option);
     });
+    const inPath = await loadStorage().get('settings-tcoaal');
+    invoke('game_copy_version', { inPath });
+});
+
+// and.. we got the game version (hopefully)
+listen('game-copy-version', async (event) => {
+    if (event.payload === 'notset') {
+        document.getElementById('installation-notification-container').classList.remove('hidden');
+        tippy('#installation-notification-container', {
+            content: 'Click to set up the profile feature!',
+            animation: 'installation-notification-container',
+            placement: 'left',
+            theme: 'burial'
+        });
+    } else if (event.payload === 'different') {
+        document.getElementById('installation-notification-container').classList.remove('hidden');
+        tippy('#installation-notification-container', {
+            content: 'Click to set up the profile feature!',
+            animation: 'installation-notification-container',
+            placement: 'left',
+            theme: 'burial'
+        }); 
+    }
+    await load_installed();
 });
 
 
@@ -184,7 +202,6 @@ document.getElementById('add-button').addEventListener('click', async () => {
     Swal.fire({
         title: 'What do you wanna call it?',
         input: 'text',
-        closeOnConfirm: true,
         reverseButtons: true,
         confirmButtonText: 'Create Profile',
         confirmButtonColor: "var(--main-colour)"
@@ -193,9 +210,25 @@ document.getElementById('add-button').addEventListener('click', async () => {
             const dropdown = document.getElementById('dropdown-menu-current-profile');
             const profileName = result.value;
             let inPath = await loadStorage().get('settings-tcoaal');
-            invoke('profile_add', { inPath, profileName });
+            invoke('add_profile', { inPath, profileName });
         }
     });
+});
+
+// we added a profile !
+listen('profile-added', async (event) => {
+    if (event.payload === 'exists') {
+        Swal.fire({
+            title: "Hey, listen!",
+            text: "A profile with this name already exists! Maybe try another name?",
+            showConfirmButton: true,
+            confirmButtonColor: '#F595B2'
+        });
+        return;
+    } 
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('load_profiles', { inPath });
+    set_status('Profile added!');
 });
 
 // listen for the click on remove button
@@ -207,21 +240,51 @@ document.getElementById('delete-button').addEventListener('click', async () => {
         return;
     }
     let inPath = await loadStorage().get('settings-tcoaal');
-    invoke('profile_delete', { inPath, profileName });
+    invoke('remove_profile', { inPath, profileName });
 });
 
 // we deleted a profile
-listen('profile-deleted', async (event) => {
+listen('profile-removed', async (event) => {
     if (event.payload === 'default') {
         Swal.fire({
-            title: "Wait!",
-            text: "You can't delete the default profile. If you want to edit the mods in it, just uninstall or disable them in the Installed Mods  tab.",
+            title: "Hey, listen!",
+            text: "You can't delete the default profile. If you want to edit the mods in it, just uninstall or disable them in the Installed Mods 🛍️ tab.",
             showConfirmButton: true,
             confirmButtonColor: '#F595B2'
         });
         return;
     }
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('load_profiles', { inPath });
     set_status('Profile deleted!');
+});
+
+// we toggled a mod
+listen('profile-mod-toggled', async (event) => {
+    if (event.payload === 'success') {
+        set_status('Mod toggled!');
+    } else {
+        set_error('Failed to toggle mod.');
+    }
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('load_profiles', { inPath });
+});
+
+// listen for a change on dropdown and reload the mods list
+document.getElementById('dropdown-menu-current-profile').addEventListener('change', async () => {
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('set_profile', { inPath, profileName: document.getElementById('dropdown-menu-current-profile').value });
+});
+
+// we set the profile
+listen('current-profile-updated', async (event) => {
+    if (event.payload === 'success') {
+        set_status('Profile set!');
+    } else {
+        set_error('Failed to set profile.');
+    }
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('load_profiles', { inPath });
 });
 
 // tooltips
@@ -256,12 +319,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         content: 'Launch the game with this profile',
         animation: 'perspective-subtle',
         placement: 'top',
-        theme: 'burial'
-    });
-    tippy('#installation-notification-container', {
-        content: 'Set up your profile\'s installation folder',
-        animation: 'installation-notification-container',
-        placement: 'left',
         theme: 'burial'
     });
 });

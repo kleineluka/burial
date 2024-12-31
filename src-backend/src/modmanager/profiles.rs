@@ -184,12 +184,13 @@ fn add_profile_db(in_path: String, profile_name: String) -> String {
         return "exists".to_string();
     }
     let new_profile = Profile {
-        name: profile_name,
+        name: profile_name.clone(),
         mods: vec![],
     };
     let installed_mods = installed::get_installed_mods(in_path.clone());
     let updated_profile = update_profile(new_profile, installed_mods);
     profiles.profiles.push(updated_profile);
+    profiles.current = profile_name;
     write_profiles(profiles);
     "success".to_string()
 }
@@ -201,6 +202,9 @@ fn remove_profile_db(in_path: String, profile_name: String) -> String {
         return "default".to_string();
     }
     if profiles.profiles.iter().any(|p| p.name == profile_name) {
+        if profiles.current == profile_name {
+        profiles.current = "Default".to_string();
+        }
         profiles.profiles.retain(|p| p.name != profile_name);
         write_profiles(profiles);
         return "success".to_string();
@@ -217,6 +221,33 @@ fn update_db(in_path: String) {
         *profile = updated_profile;
     }
     write_profiles(profiles);
+}
+
+// toggle the status of a mod in a profile in the db
+fn toggle_mod_db(in_path: String, profile_name: String, mod_id: String) -> String {
+    let mut profiles = read_profiles(in_path.clone());
+    let profile = profiles.profiles.iter_mut().find(|p| p.name == profile_name);
+    if let Some(profile) = profile {
+        if let Some(mod_index) = profile.mods.iter().position(|m| m.id == mod_id) {
+            profile.mods[mod_index].status = !profile.mods[mod_index].status;
+            write_profiles(profiles);
+            return "success".to_string();
+        } else {
+            return "mod_not_found".to_string(); 
+        }
+    }
+    "profile_not_found".to_string() 
+}
+
+// update current profilt in db
+fn update_current_profile(in_path: String, profile_name: String) -> String {
+    let mut profiles = read_profiles(in_path.clone());
+    if profiles.profiles.iter().any(|p| p.name == profile_name) {
+        profiles.current = profile_name;
+        write_profiles(profiles);
+        return "success".to_string();
+    }
+    "notfound".to_string()
 }
 
 // get the version of the installation
@@ -276,6 +307,20 @@ fn reset_installation(in_path: String) -> String {
     "failed".to_string()
 }
 
+// need to update?
+fn compare_installation(in_path: String) -> String {
+    let is_game = game::verify_game(&in_path).unwrap();
+    if !is_game {
+        return "nogame".to_string();
+    }
+    let game_ver = game::game_version(in_path.clone());
+    let copy_ver = get_installation();
+    if game_ver == copy_ver {
+        return "same".to_string();
+    }
+    "different".to_string()
+}
+
 // public-facing command for reading the profiles
 #[command]
 pub fn load_profiles(window: Window, in_path: String) {
@@ -324,6 +369,34 @@ pub fn install_game_copy(window: Window, in_path: String) {
 pub fn delete_game_copy(window: Window) {
     let result = delete_installation();
     window.emit("game-copy-deleted", Some(result)).unwrap();
+}
+
+// public-facing command for getting the game copy version
+#[command]
+pub fn game_copy_version(window: Window) {
+    let version = get_installation();
+    window.emit("game-copy-version", Some(version)).unwrap();
+}
+
+// public-facing command for toggling a mod in a profile
+#[command]
+pub fn toggle_profile_mod(window: Window, in_path: String, profile_name: String, mod_id: String) {
+    let result = toggle_mod_db(in_path, profile_name, mod_id);
+    window.emit("profile-mod-toggled", Some(result)).unwrap();
+}
+
+// public-facing command for updating the current profile
+#[command]
+pub fn set_profile(window: Window, in_path: String, profile_name: String) {
+    let result = update_current_profile(in_path, profile_name);
+    window.emit("current-profile-updated", Some(result)).unwrap();
+}
+
+// public-facing command for comparing the installation
+#[command]
+pub fn compare_install(window: Window, in_path: String) {
+    let result = compare_installation(in_path);
+    window.emit("installation-compared", Some(result)).unwrap();
 }
 
 // public-facing command for launching a specific profile

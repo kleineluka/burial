@@ -208,6 +208,10 @@ async function build_list() {
         modEntry.appendChild(firstRow);
         modEntry.appendChild(secondRow);
         container.appendChild(modEntry);
+        // finally, add a filter if the mod is disabled
+        if (!entry.modjson.status) {
+            modEntry.classList.add('disabled-mod');
+        }
         added_mods++;
     });
     if (added_mods == 0) {
