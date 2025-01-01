@@ -43,7 +43,13 @@ async function build_profile_list() {
         nameHeading.innerHTML = nameHTML;
         const description = document.createElement('p');
         description.classList.add('mod-description');
-        description.textContent = entry.modjson.description || 'No description provided';
+        description.textContent = entry.modjson.description || 'No description provided.';
+        if (!profileEntry.status) {
+            const disabledText = document.createElement('span');
+            disabledText.classList.add('mod-installed-text');
+            disabledText.textContent = ' (Disabled for this profile only.)';
+            description.appendChild(disabledText);
+        }
         detailsDiv.appendChild(nameHeading);
         detailsDiv.appendChild(description);
         // actions (depending on the profile and mod)
@@ -103,11 +109,9 @@ async function build_profile_list() {
         modEntry.appendChild(firstRow);
         container.appendChild(modEntry);
         // grey out if tomb
-        if (currentProfile === 'Default') {
+        if (currentProfile === 'Default' || entry.modjson.id === 'tomb' || !profileEntry.status) {
             modEntry.classList.add('disabled');
-        } else if (entry.modjson.id === 'tomb') {
-            modEntry.classList.add('disabled');
-        }
+        } 
         added_mods++;
     });
     if (added_mods == 0) {
@@ -132,13 +136,6 @@ listen('installed-mods', async (event) => {
         installed_cache = event.payload;
     }
     await build_profile_list();
-});
-
-// listen for click on installation-notification-container
-document.getElementById('installation-notification-container').addEventListener('click', async () => {
-    const store = loadStorage();
-    const inPath = await store.get('settings-tcoaal');
-    invoke('profiles_install', { inPath });
 });
 
 // we got the installation !
@@ -191,10 +188,41 @@ listen('game-copy-version', async (event) => {
             placement: 'left',
             theme: 'burial'
         }); 
+    } else {
+        document.getElementById('deletion-notification-container').classList.remove('hidden');
+        tippy('#deletion-notification-container', {
+            content: 'Delete your second copy of the game used for profiles. You can always set it up again, and your profiles will be saved!',
+            animation: 'deletion-notification-container',
+            placement: 'left',
+            theme: 'burial'
+        });  
     }
+    // add listener to notification buttons
+    let notification_install = document.getElementById('installation-notification-container');
+    notification_install.addEventListener('click', async () => {
+        let inPath = await loadStorage().get('settings-tcoaal');
+        invoke('init_install', { inPath });
+    });
+    let notification_deletion = document.getElementById('deletion-notification-container');
+    notification_deletion.addEventListener('click', async () => {
+        invoke('delete_game_copy', { });
+    });
     await load_installed();
 });
 
+// we created the game installation
+listen('installation-initialized', async (event) => {
+    console.log('Initialized:', event.payload);
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('game_copy_version', { inPath });
+});
+
+// .. or we deleted it ~ either way, reload the notification
+listen('game-copy-deleted', async (event) => {
+    console.log('Deleted:', event.payload);
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('game_copy_version', { inPath });
+});
 
 // listen for the click on add button
 document.getElementById('add-button').addEventListener('click', async () => {
@@ -207,7 +235,6 @@ document.getElementById('add-button').addEventListener('click', async () => {
         confirmButtonColor: "var(--main-colour)"
     }).then(async (result) => {
         if (result.value) {
-            const dropdown = document.getElementById('dropdown-menu-current-profile');
             const profileName = result.value;
             let inPath = await loadStorage().get('settings-tcoaal');
             invoke('add_profile', { inPath, profileName });
@@ -285,6 +312,13 @@ listen('current-profile-updated', async (event) => {
     }
     let inPath = await loadStorage().get('settings-tcoaal');
     invoke('load_profiles', { inPath });
+});
+
+// listen for click on play-button
+document.getElementById('play-button').addEventListener('click', async () => {
+    let inPath = await loadStorage().get('settings-tcoaal');
+    let profileName = document.getElementById('dropdown-menu-current-profile').value;
+    invoke('launch_profile', { inPath, profileName });
 });
 
 // tooltips

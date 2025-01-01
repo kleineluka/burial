@@ -105,3 +105,21 @@ pub async fn open_folder(window: Window, in_path: String) {
         Command::new("xdg-open").arg(in_path).spawn().unwrap();
     }
 }
+
+// helper function to (potentially) emit a status update to a window
+#[allow(dead_code)]
+pub fn optional_status(message: &str, window: &Option<&tauri::Window>) {
+    if let Some(w) = window {
+        let _ = w.emit("status", message);
+    }
+}
+
+// helper function to (potentially) emit an error to a window
+#[allow(dead_code)]
+pub fn optional_error(message: &str, window: &Option<&tauri::Window>) {
+    if let Some(w) = window {
+        let _ = w.emit("error", message);
+    }
+}
+
+

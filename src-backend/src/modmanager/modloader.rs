@@ -12,6 +12,7 @@ use crate::utils::codeberg;
 use crate::utils::game;
 use crate::utils::compression;
 use crate::utils::files;
+use crate::utils::commands;
 
 // there should be a better way to store/fetch these
 const MODLOADER_REPO: &str = "https://codeberg.org/basil/tomb";
@@ -61,7 +62,49 @@ fn edit_package(package_path: String, direction: String) -> bool {
     true // (yay!)
 }
 
-// download and install tomb
+// for use in other functions to easily install the latest version of tomb
+pub async fn install_latest(in_path: String) -> String {
+    // make sure that the provided path is a valid game folder
+    let is_game = game::verify_game(&in_path).unwrap();
+    if !is_game {
+        return "nogame".to_string();
+    }
+    // ensure that there is a valid downloads folder in the cache
+    let downloads_dir = downloads::downloads_folder().to_string_lossy().to_string();
+    downloads::verify_downloads().unwrap();
+    // download a specific or the latest release of tomb
+    let download_result = codeberg::download_latest_release(MODLOADER_REPO, MODLOADER_FILE, &downloads_dir).await;
+    if !download_result {
+        return "downloadfail".to_string();
+    }
+    // extract the tomb modloader
+    let tomb_file_location_str = format!("{}\\{}", downloads_dir, MODLOADER_FILE);
+    let tomb_file_location = Path::new(&tomb_file_location_str);
+    let extraction_destination_str = format!("{}\\{}", downloads_dir, "modloader");
+    let extraction_destination = Path::new(&extraction_destination_str);
+    compression::decompress_directory(&tomb_file_location, &extraction_destination).unwrap();
+    // edit the package.json file
+    let game_package_json = format!("{}\\package.json", in_path);
+    let package_edited = edit_package(game_package_json, "install".to_string());
+    if !package_edited {
+        return "packagefail".to_string();
+    }
+    // in the game directory, make a "tomb" folder if it doesn't exist
+    let tomb_dir = format!("{}\\tomb", in_path);
+    if !Path::new(&tomb_dir).exists() {
+        fs::create_dir_all(&tomb_dir).unwrap();
+    }
+    // copy the tomb modloader to the game directory
+    let game_destination = format!("{}\\tomb", in_path);
+    files::copy_directory(&extraction_destination.to_string_lossy(), &game_destination).unwrap();
+    // cleanup
+    files::delete_file(&tomb_file_location_str);
+    files::delete_folder(&extraction_destination.to_string_lossy());
+    files::delete_folder(&downloads_dir);
+    "success".to_string()
+}
+
+// public-facing command to download and install tomb
 #[command]
 pub async fn install_modloader(window: Window, in_path: String, in_name: String) {
     // make sure that the provided path is a valid game folder

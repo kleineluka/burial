@@ -167,6 +167,7 @@ fn main() {
             profiles::toggle_profile_mod,
             profiles::set_profile,
             profiles::compare_install,
+            profiles::init_install,
             profiles::launch_profile,
             dialogue::export_dialogue,
             dialogue::import_dialogue,

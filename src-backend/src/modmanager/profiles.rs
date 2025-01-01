@@ -6,6 +6,8 @@ use dirs::config_dir;
 use tauri::{command, Window};
 use crate::modmanager::installed;
 use crate::utils::{files, game};
+use crate::modmanager::modloader;
+use crate::utils::commands;
 
 // structure containing mod folder and mod.json file
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -265,6 +267,11 @@ fn get_installation() -> String {
 
 // delete the installation
 fn delete_installation() -> String {
+    // set the current version to notset
+    let mut profiles = read_profiles("".to_string());
+    profiles.copy_version = "notset".to_string();
+    write_profiles(profiles);
+    // and then delete the folder
     let installation_path = ProflesPath::new().game_copy();
     if installation_path.exists() {
         files::delete_folder(&installation_path.to_string_lossy().to_string());
@@ -274,7 +281,7 @@ fn delete_installation() -> String {
 }
 
 // build the installation
-fn init_installation(in_path: String) -> String {
+async fn init_installation(in_path: String) -> String {
     // verify that the game is installed
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
@@ -290,6 +297,14 @@ fn init_installation(in_path: String) -> String {
     if version == "Unknown" {
         version = "notset".to_string();
     }
+    // see if tomb is installed, and if not, install it
+    let is_modded = modloader::modloader_prescence(installation_path.to_string_lossy().to_string());
+    if !is_modded {
+        let install_modloar = modloader::install_latest(installation_path.to_string_lossy().to_string()).await;
+        if install_modloar != "success" {
+            return install_modloar;
+        }
+    }
     // update the profiles database
     let mut profiles = read_profiles(in_path.clone());
     profiles.copy_version = version;
@@ -298,9 +313,9 @@ fn init_installation(in_path: String) -> String {
 }
 
 // reset the installation
-fn reset_installation(in_path: String) -> String {
+async fn reset_installation(in_path: String) -> String {
     let deletion = delete_installation();
-    let init = init_installation(in_path);
+    let init = init_installation(in_path).await;
     if deletion == "success" && init == "success" {
         return "success".to_string();
     }
@@ -313,8 +328,11 @@ fn compare_installation(in_path: String) -> String {
     if !is_game {
         return "nogame".to_string();
     }
-    let game_ver = game::game_version(in_path.clone());
     let copy_ver = get_installation();
+    if copy_ver == "notset" {
+        return "notset".to_string();
+    }
+    let game_ver = game::game_version(in_path.clone());
     if game_ver == copy_ver {
         return "same".to_string();
     }
@@ -346,10 +364,10 @@ pub fn remove_profile(window: Window, in_path: String, profile_name: String) {
 
 // public-facing command for resetting the profiles
 #[command]
-pub fn reset_profile(window: Window, in_path: String, reset_game_copy: bool) {
+pub async fn reset_profile(window: Window, in_path: String, reset_game_copy: bool) {
     init_profiles_db(in_path.clone());
     if reset_game_copy {
-        let result = reset_installation(in_path.clone());
+        let result = reset_installation(in_path.clone()).await;
         window.emit("profile-reset", Some(result)).unwrap();
     } else {
         window.emit("profile-reset", Some("success".to_string())).unwrap();
@@ -359,16 +377,18 @@ pub fn reset_profile(window: Window, in_path: String, reset_game_copy: bool) {
 
 // public-facing command for installing the game copy
 #[command]
-pub fn install_game_copy(window: Window, in_path: String) {
-    let result = init_installation(in_path);
+pub async fn install_game_copy(window: Window, in_path: String) {
+    let result = init_installation(in_path).await;
     window.emit("game-copy-installed", Some(result)).unwrap();
 }
 
 // public-facing command for deleting the game copy
 #[command]
 pub fn delete_game_copy(window: Window) {
+    window.emit("status", "Deleting game copy...").unwrap();
     let result = delete_installation();
     window.emit("game-copy-deleted", Some(result)).unwrap();
+    window.emit("status", "Game copy deleted! You can always remake it to use the Profiles feature again.").unwrap();
 }
 
 // public-facing command for getting the game copy version
@@ -396,11 +416,81 @@ pub fn set_profile(window: Window, in_path: String, profile_name: String) {
 #[command]
 pub fn compare_install(window: Window, in_path: String) {
     let result = compare_installation(in_path);
-    window.emit("installation-compared", Some(result)).unwrap();
+    window.emit("installation-compared", Some(result.clone())).unwrap();
+    // switch statement to match result
+    match result.as_str() {
+        "nogame" => {
+            window.emit("status", "Please set your TCOAAL game path in the settings to use the Profiles feature!").unwrap();
+        }, "notset" => {
+            window.emit("status", "Please set up your game copy to use the Profiles feature!").unwrap();
+        }, "different" => {
+            window.emit("status", "Your game copy is different from your game installation!").unwrap();
+        }, "same" => {
+            // nothing to see here..
+        }, _ => {
+            window.emit("status", "An error occurred while comparing your game copy to your game installation!").unwrap();
+        }
+    }
+}
+
+// public-facing command for initializing the installation
+#[command]
+pub async fn init_install(window: Window, in_path: String) {
+    window.emit("status", "Copying game files to profiles folder...").unwrap();
+    let result = init_installation(in_path).await;
+    window.emit("installation-initialized", Some(result.clone())).unwrap();
+    match result.as_str() {
+        "success" => {
+            window.emit("status", "The Profiles feature is ready to use now!").unwrap();
+        }, "nogame" => {
+            window.emit("status", "Please set your TCOAAL game path in the settings to use the Profiles feature!").unwrap();
+        }, _ => {
+            window.emit("status", "An error occurred while copying game files to the profiles folder!").unwrap();
+        }
+    }
 }
 
 // public-facing command for launching a specific profile
 #[command]
 pub fn launch_profile(window: Window, in_path: String, profile_name: String) {
-    // to-do
+    // verify that the game is installed
+    window.emit("status", "Setting up your profile environment...").unwrap();
+    let is_game = game::verify_game(&in_path).unwrap();
+    if !is_game {
+        window.emit("error", "Please set your TCOAAL game path in the settings to use the Profiles feature!").unwrap();
+        return;
+    }
+    // are we just launching the default profile?
+    if profile_name == "Default" {
+        commands::launch_game(window, in_path);
+        return;
+    }
+    // read the profile
+    let profiles = read_profiles(in_path.clone());
+    let is_profile_set = get_installation();
+    if is_profile_set == "notset" {
+        window.emit("profile-launched", "notset").unwrap();
+        return;
+    }
+    // clear out the mods folder in the profile (NOT main installation)
+    let game_copy = ProflesPath::new().game_copy();
+    let mods_folder = game_copy.join("tomb").join("mods");
+    files::delete_folder(&mods_folder.to_string_lossy().to_string());
+    files::verify_folder(&mods_folder).unwrap();
+    // for each mod enabled in the profile, copy the folder to the mods folder
+    window.emit("status", "Copying mods to the profile game copy...").unwrap();
+    let profile = profiles.profiles.iter().find(|p| p.name == profile_name);
+    if let Some(profile) = profile {
+        for profile_mod in &profile.mods {
+            if profile_mod.status {
+                let mod_folder = game_copy.join("tomb").join("mods").join(&profile_mod.folder);
+                let destination_folder = mods_folder.join(profile_mod.id.clone());
+                files::verify_folder(&destination_folder).unwrap();
+                files::copy_folder(&mod_folder.to_string_lossy().to_string(), &destination_folder.to_string_lossy().to_string());
+            }
+        }
+    }
+    window.emit("status", "Launching your profile!").unwrap();
+    // launch the game
+    commands::launch_game(window, game_copy.to_string_lossy().to_string());
 }
