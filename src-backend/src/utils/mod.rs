@@ -17,3 +17,5 @@ pub mod rpgmaker;
 pub mod modmaker;
 pub mod nemlang;
 pub mod olid;
+pub mod services; // folder
+pub mod protocol;

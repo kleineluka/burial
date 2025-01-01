@@ -63,6 +63,7 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 - [ ] One-Click GameBanana Installation
 - [ ] Symbolic Linking (for Profiles)
 - [ ] Disk Space Awareness
+- [ ] Tauri V2 Miration
 - [x] Game Instances (Profiles)
 - [x] More Tooltips
 - [x] Theming System

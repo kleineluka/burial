@@ -18,6 +18,7 @@
 - **[OneLoaderImageDelta](https://github.com/rphsoftware/OneLoaderImageDelta)** (MIT) was referenced for my implementation of OLID, which also referenced Basil's TypeScript implementation [OLID.ts](https://codeberg.org/basil/OLID.ts).
 - **[LlamaToolkit](https://github.com/Llamaware/LlamaToolkit/)** ([**GLWTPL**](https://github.com/me-shaon/GLWTPL)) was referenced for portions of Burial's original [cipher.rs](https://github.com/kleineluka/burial/blob/main/src-backend/src/utils/cipher.rs) implementation. Similarly, **[Llamaloader](https://github.com/Llamaware/LlamaLoader)** has a neat little trick to find the game installation.
 - [**RPG Save Converter**](https://github.com/13xforever/rpgsave-converter) (MIT) was a great read for understanding the save format of RPG Maker MV games.
+- [**Concursus**](https://github.com/MadMax1960/Concursus) was an awesome reference for GameBanana's endpoints implementation!
 
 <!-- Licenses -->
 # Licenses 📖
