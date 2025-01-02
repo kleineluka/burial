@@ -25,7 +25,7 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 # Features 🐰
 Burial is a program for TCOAAL **mod players**, **mod creators**, **content creators** and **data miners**~ 🍅
 
-- **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods, manage installed mods, and switch mods easily with a profile system.
+- **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods, manage installed mods, install mods from external URLs, one-click mod installation from websites (burial:// protocol), and switch mods easily with a profile system.
 - **Resources** ✂️: Decrypt/encrypt .k9a files, export categories of resources, generate asset templates, parse/import dialogue, and decrypt/modify save files.
 - **Reversing** 🧬: Targeted code injection, export/deobfuscate/comment game run-time code, manage NW.js SDK's, manage developer tools, view game information, and create backups of your game files.
 - **Mod Tools** 🖍️:  Turn the game to an RPG Maker project, export an RPG Maker project to a mod, convert a non-Tomb mod to a Tomb mod, edit mod.json files, edit repo,json files, and generate mod version differences.

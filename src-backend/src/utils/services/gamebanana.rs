@@ -110,4 +110,7 @@ impl GamebananaMod {
         Some(mod_instance)
     }
 
+    // fill in mod info from a url rather than id (extract id from https://gamebanana.com/mods/553302)
+    //pub async fn extract_mod_url(in)
+
 }

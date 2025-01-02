@@ -18,6 +18,7 @@ use tauri::Manager;
 // (local) imports
 use utils::files;
 use utils::commands;
+use utils::protocol;
 use config::app;
 use config::metadata;
 use resources::decryption;
@@ -46,11 +47,12 @@ use modmaking::converter;
 
 // main
 fn main() {
-    // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..)
+    // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..) + set up protocol (if not already)
     let app_config = app::load_config();
     let rt = tokio::runtime::Runtime::new().unwrap();
     let user_settings = config::settings::read_settings();
     let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings)).unwrap();
+    let _protocol_init = protocol::register_protocol();
     // build tauri app
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::default().build())

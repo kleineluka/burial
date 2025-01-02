@@ -5,3 +5,4 @@ pub mod instances;
 pub mod browser;
 pub mod modpacks;
 pub mod profiles;
+pub mod external;
