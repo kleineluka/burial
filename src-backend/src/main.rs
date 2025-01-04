@@ -39,6 +39,7 @@ use modmanager::installed;
 use modmanager::modloader;
 use modmanager::browser;
 use modmanager::profiles;
+use modmanager::external;
 use modmaking::differences;
 use modmaking::modjson;
 use modmaking::repojson;
@@ -68,7 +69,6 @@ fn main() {
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
-
             config::storage::insert_into_store(&app.handle(), "settings-updates", serde_json::Value::Bool(user_settings.updates)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-theme", serde_json::Value::String(user_settings.theme)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-animations", serde_json::Value::Bool(user_settings.animations)).unwrap();

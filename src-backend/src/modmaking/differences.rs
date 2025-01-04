@@ -170,8 +170,8 @@ fn extract_mods(path_one: &str, path_two: &str) -> (PathBuf, PathBuf) {
     let mod_two = Path::new(path_two);
     let dest_one = temp_dir.join("mod1");
     let dest_two = temp_dir.join("mod2");
-    compression::decompress_directory(mod_one, &dest_one).unwrap();
-    compression::decompress_directory(mod_two, &dest_two).unwrap();
+    compression::decompress_zip(mod_one, &dest_one).unwrap();
+    compression::decompress_zip(mod_two, &dest_two).unwrap();
     (dest_one, dest_two)
 }
 

@@ -1,9 +1,29 @@
+use std::f32::consts::E;
 use std::fs::{self, File};
-use std::io::{self, Seek, Write};
+use std::io::{self, Read, Seek, Write};
 use std::path::{Path, PathBuf};
+use unrar::Archive;
 use walkdir::WalkDir;
 use zip::write::SimpleFileOptions;
 use zip::{ZipArchive, ZipWriter};
+
+// detects what kind of an archive this is
+pub fn get_archive_type(file_path: &Path) -> Result<&'static str, std::io::Error> {
+    let mut file = std::fs::File::open(file_path)?;
+    let mut buffer = [0; 4]; // Read the first 4 bytes
+    file.read_exact(&mut buffer)?;
+    if buffer == [0x50, 0x4B, 0x03, 0x04] || buffer == [0x50, 0x4B, 0x05, 0x06] {
+        Ok("zip")
+    } else if buffer == [0x52, 0x61, 0x72, 0x21] {
+        Ok("rar")
+    } else {
+        Err(std::io::Error::new(
+            std::io::ErrorKind::InvalidData,
+            "Unsupported file type",
+        ))
+    }
+}
+
 
 // zip a directory to an output file
 pub fn compress_directory<T>(src_dir: &Path, output_file: T) -> zip::result::ZipResult<()> where T: Write + Seek, {
@@ -33,7 +53,7 @@ pub fn compress_directory<T>(src_dir: &Path, output_file: T) -> zip::result::Zip
 }
 
 // decompress a zip file to a directory (don't delete zip for now..)
-pub fn decompress_directory(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
+pub fn decompress_zip(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
     let file = File::open(zip_file_path)?;
     let mut archive = zip::ZipArchive::new(file)?;
     for i in 0..archive.len() {
@@ -70,9 +90,9 @@ pub fn decompress_directory(zip_file_path: &Path, output_folder: &Path) -> io::R
 }
 
 // don't make sub folder inside of it..
-pub fn decompress_directory_nosub(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
+pub fn decompress_zip_nosub(zip_file_path: &Path, output_folder: &Path) -> io::Result<()> {
     // decompress the directory first
-    decompress_directory(zip_file_path, output_folder)?;
+    decompress_zip(zip_file_path, output_folder)?;
     // find the extracted folder by looking for the first subdirectory in the output folder
     let extracted_folder_path = fs::read_dir(output_folder)?
         .filter_map(|entry| entry.ok()) // ignore errors
@@ -88,5 +108,25 @@ pub fn decompress_directory_nosub(zip_file_path: &Path, output_folder: &Path) ->
     }
     // remove the original extracted folder
     fs::remove_dir(extracted_folder_path)?;
+    Ok(())
+}
+
+// decompress EITHER a zip or rar
+pub fn decompress_archive(file_path: &Path, output_folder: &Path, no_sub: bool) -> Result<(), Box<dyn std::error::Error>> {
+    match get_archive_type(file_path)? {
+        "zip" => {
+            if no_sub {
+                decompress_zip_nosub(file_path, output_folder)?;
+            } else {
+                decompress_zip(file_path, output_folder)?;
+            }
+        }
+        "rar" => {
+            return Err("Rar decompression not yet implemented".into());
+        }
+        _ => {
+            return Err("Unsupported archive type".into());
+        }
+    }
     Ok(())
 }

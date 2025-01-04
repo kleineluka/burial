@@ -82,7 +82,7 @@ pub async fn install_latest(in_path: String) -> String {
     let tomb_file_location = Path::new(&tomb_file_location_str);
     let extraction_destination_str = format!("{}\\{}", downloads_dir, "modloader");
     let extraction_destination = Path::new(&extraction_destination_str);
-    compression::decompress_directory(&tomb_file_location, &extraction_destination).unwrap();
+    compression::decompress_zip(&tomb_file_location, &extraction_destination).unwrap();
     // edit the package.json file
     let game_package_json = format!("{}\\package.json", in_path);
     let package_edited = edit_package(game_package_json, "install".to_string());
@@ -133,7 +133,7 @@ pub async fn install_modloader(window: Window, in_path: String, in_name: String)
     let tomb_file_location = Path::new(&tomb_file_location_str);
     let extraction_destination_str = format!("{}\\{}", downloads_dir, "modloader");
     let extraction_destination = Path::new(&extraction_destination_str);
-    compression::decompress_directory(&tomb_file_location, &extraction_destination).unwrap();
+    compression::decompress_zip(&tomb_file_location, &extraction_destination).unwrap();
     // edit the package.json file
     window.emit("status", "Rewriting package.json..").unwrap();
     let game_package_json = format!("{}\\package.json", in_path);

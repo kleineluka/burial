@@ -96,7 +96,7 @@ pub fn convert_to_tomb(in_path: String, game_path: String, out_path: String,
         // extract the contents of the zip to the temp folder
         let source_path = std::path::Path::new(&in_path);
         let destination_path = std::path::Path::new(&mod_temp_folder);
-        let _ = compression::decompress_directory_nosub(&source_path, &destination_path).unwrap();
+        let _ = compression::decompress_zip_nosub(&source_path, &destination_path).unwrap();
     } else if mod_type == "folder" {
         // copy the contents of the folder to the temp folder
         let _ = files::copy_directory(&in_path, mod_temp_folder.to_str().unwrap()).unwrap();
@@ -116,15 +116,15 @@ pub fn convert_to_tomb(in_path: String, game_path: String, out_path: String,
     // delete the temp mod folder
     let _ = files::delete_folder(&mod_temp_folder.to_str().unwrap());
     // finally, convert it to a mod
-    let mod_path = cache::create_temp_with_name(&format!("{}_tomb_mod", mod_id));
+    let mod_out_path = cache::create_temp_with_name(&format!("{}_tomb_mod", mod_id));
     let mod_authors_str = mod_authors.join(", "); // to do: support multiple authors
-    let _ = modmaker::project_to_mod(&project_temp_folder.to_str().unwrap().to_string(), &mod_path.to_str().unwrap().to_string(), &game_path, &mod_name, &mod_id, &mod_authors_str, &mod_description, &mod_version);
+    let _ = modmaker::project_to_mod(&project_temp_folder.to_str().unwrap().to_string(), &mod_out_path.to_str().unwrap().to_string(), &game_path, &mod_name, &mod_id, &mod_authors_str, &mod_description, &mod_version);
     // move the mod to the out path (make it if it doesn't exist)
     let out_path = std::path::Path::new(&out_path);
-    let _ = files::validate_path(out_path.to_str().unwrap());
+    files::validate_path(out_path.to_str().unwrap());
     // make the output path + mod id folder
     let out_path = out_path.join(format!("{}_tomb_mod", mod_id));
-    let _ = files::copy_directory(&mod_path.to_str().unwrap(), out_path.to_str().unwrap());
+    files::copy_directory(&mod_out_path.to_str().unwrap(), out_path.to_str().unwrap()).unwrap();
     // clear temp
     let _ = cache::clear_temp();
     // return folder name

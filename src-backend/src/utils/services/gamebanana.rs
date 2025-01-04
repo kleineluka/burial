@@ -7,6 +7,7 @@ use std::path::PathBuf;
 // constant endpoints for GameBanana
 const IMAGE_ENDPOINT: &str = "https://images.gamebanana.com/img/ss/mods/";
 const MOD_INFO_ENDPOINT: &str = "https://api.gamebanana.com/Core/Item/Data?itemtype=Mod&itemid=<MOD_ID>&fields=Game%28%29.name%2Cname%2COwner%28%29.name%2Ctext%2CFiles%28%29.aFiles%28%29%2Cscreenshots%2CUpdates%28%29.aGetLatestUpdates%28%29";
+const TCOAAL_GAME_ID: &str = "18762";
 
 // gamebanana data structures (adapted from https://github.com/MadMax1960/Concursus)
 #[derive(Serialize, Deserialize, Debug)]
@@ -111,6 +112,16 @@ impl GamebananaMod {
     }
 
     // fill in mod info from a url rather than id (extract id from https://gamebanana.com/mods/553302)
-    //pub async fn extract_mod_url(in)
+    pub async fn extract_mod_url(mod_url: String) -> Option<Self> {
+        let mod_id = mod_url.split("/").last()?;
+        Self::get_mod_info(TCOAAL_GAME_ID, mod_id).await
+    }
+
+    // return the download link (latest in the files list)
+    pub async fn get_download_link(&self) -> Option<(String, String)> {
+        let file = self.files.values().next()?;
+        let file_id = self.files.keys().next()?;
+        Some((file_id.clone(), file.download_link.clone()))
+    }
 
 }

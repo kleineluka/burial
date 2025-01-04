@@ -77,7 +77,7 @@ pub async fn install_foreign_mod(window: Window, in_path: String, mod_path: Stri
     // extract that mod into a new folder in the same directory as the mod_file called "non_tomb"
     window.emit("status", "Extracting the mod..").unwrap();
     let mod_folder = temp_path.join("non_tomb");
-    compression::decompress_directory_nosub(&mod_file, &mod_folder).unwrap();
+    compression::decompress_zip_nosub(&mod_file, &mod_folder).unwrap();
     // and convert it
     window.emit("status", "Converting the mod to use Tomb modloader..").unwrap();
     let tomb_mod_folder = temp_path.join("tomb");
@@ -153,7 +153,7 @@ pub async fn install_tomb_mod(window: Window, in_path: String, mod_path: String,
         window.emit("status", "Removing the previous installation of the mod..").unwrap();
         std::fs::remove_dir_all(&mod_folder).unwrap();
     }
-    compression::decompress_directory(&mod_file, &mod_folder_path).unwrap();
+    compression::decompress_zip(&mod_file, &mod_folder_path).unwrap();
     // delete the downloads folder 
     window.emit("status", "Cleaning up..").unwrap();
     std::fs::remove_file(&mod_file).unwrap();

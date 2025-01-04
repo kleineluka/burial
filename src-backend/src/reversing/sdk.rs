@@ -62,7 +62,7 @@ pub async fn install_sdk(window: Window, in_url: String, in_path: String) {
     let sdk_file_location = format!("{}\\{}", downloads_dir, sdk_name);
     let path_sdk = Path::new(&sdk_file_location);
     let path_extracted = Path::new(&downloads_dir);
-    compression::decompress_directory(&path_sdk, &path_extracted).unwrap();
+    compression::decompress_zip(&path_sdk, &path_extracted).unwrap();
     // move all files in folder to game folder (in_path)
     window.emit("status", Some("Moving SDK files to game folder..".to_string())).unwrap();
     let sdk_extracted = path_extracted.join(sdk_name.replace(".zip", ""));

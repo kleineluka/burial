@@ -148,7 +148,7 @@ pub fn restore_backup(window: Window, in_path: String, in_name: String) {
     files::clear_folder(&in_path.to_string_lossy());
     // decompress the backup to the game folder
     window.emit("status", Some("Restoring backup to game folder..".to_string())).unwrap();
-    compression::decompress_directory(&zip_path, &in_path).unwrap();
+    compression::decompress_zip(&zip_path, &in_path).unwrap();
     window.emit("status", Some("Backup restored!".to_string())).unwrap();
 }
 

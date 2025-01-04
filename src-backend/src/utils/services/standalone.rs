@@ -1,8 +1,10 @@
+use std::fs;
 // imports
 use std::path::Path;
+use chrono::format;
 use serde::{Deserialize, Serialize};
 use crate::modmaking::converter;
-use crate::config::cache;
+use crate::config::{cache, downloads};
 use crate::utils::game;
 use crate::modmanager::modloader;
 
@@ -178,13 +180,22 @@ pub fn get_mod_issues(in_path: String, mod_type: ModType) -> SpecialCases {
 fn get_mod_name(in_path: String) -> String {
     let path = Path::new(&in_path);
     let folder_name = path.file_name().unwrap().to_str().unwrap();
-    let sanitized_name = folder_name.chars().filter(|c| c.is_alphanumeric() || c.is_whitespace()).collect::<String>();
+    let sanitized_name = folder_name.chars()
+        .filter(|c| c.is_alphanumeric() || c.is_whitespace() || *c == '_').collect::<String>()
+        .replace("extracted", "")
+        .replace("_", " ")
+        .trim_end_matches('_') // remove trailing _
+        .to_string(); // (probably the stupidest daisy chain i've wrote)
     sanitized_name
 }
 
 // based on a mod name, get the mod id
-fn get_mod_id(mod_name: String) -> String {
-    let mod_id = mod_name.to_lowercase().replace(" ", "-");
+fn get_mod_id(mod_path: String) -> String {
+    let mod_name = get_mod_name(mod_path.clone());
+    let mod_id = mod_name.to_lowercase()
+        .replace(" ", "_")
+        .trim_end_matches('_') // remove trailing _
+        .to_string();
     mod_id
 }
 
@@ -205,6 +216,7 @@ pub fn install_standalone(in_path: String, mod_path: String) -> String {
     if mod_type == ModType::Unknown {
         return "unsupported".to_string();
     }
+    // print the mod type
     let formatted_path = mod_type.formatted_path();
     // get any issues with the mod
     let issues = get_mod_issues(mod_path.clone(), mod_type);
@@ -225,19 +237,34 @@ pub fn install_standalone(in_path: String, mod_path: String) -> String {
     }
     // CASE: NotTomb~ we need to convert the mod folder first !
     let mut working_mod_path = mod_path.clone();
+    if formatted_path != "" {
+        working_mod_path = Path::new(&mod_path).join(formatted_path).to_str().unwrap().to_string();
+    }
+    let mod_name = get_mod_name(working_mod_path.clone());
+    let mod_id = get_mod_id(working_mod_path.clone());
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::NotTomb) {
-        let mod_name = get_mod_name(mod_path.clone());
-        let mod_id = get_mod_id(mod_name.clone());
         let mod_authors = vec![format!("{} Creator(s)", mod_name)];
         let mod_desscription = format!("For a better experience, reach out to the creators of {} for a native Tomb port!", mod_name.clone());
         let mod_version = "1.0.0".to_string();
-        let out_path = cache::create_temp_with_name(&mod_id).to_str().unwrap().to_string();
-        let conversion_result = converter::convert_to_tomb(in_path, formatted_path, out_path.clone(), mod_name, mod_id, mod_authors, mod_desscription, mod_version);
+        let out_path = downloads::downloads_folder();
+        let conversion_result = converter::convert_to_tomb(mod_path.clone(), in_path.clone(), out_path.to_str().unwrap().to_string(), mod_name.clone(), mod_id.clone(), mod_authors, mod_desscription, mod_version);
         let tomb_mod_path = Path::new(&out_path).join(conversion_result);
         working_mod_path = tomb_mod_path.to_str().unwrap().to_string();
-        std::fs::remove_dir_all(&mod_path).unwrap();
+        fs::remove_dir_all(&mod_path).unwrap();
     }
     // now, after converting the mod or if we are just doing a normal installation, install it!
-    le
-    "temporary".to_string()
+    let game_mods_folder = Path::new(&in_path.clone()).join("tomb").join("mods");
+    let final_mod_path = game_mods_folder.join(mod_id.clone());
+    std::fs::create_dir_all(&final_mod_path).map_err(|e| println!("Failed to create directory: {:?}", e)).ok();
+    // copy all files inside working mod path to final mod path
+    for entry in fs::read_dir(&working_mod_path).unwrap() {
+        let entry = entry.unwrap();
+        let path = entry.path();
+        let new_path = final_mod_path.join(path.file_name().unwrap());
+        fs::rename(path, new_path).map_err(|e| println!("Failed to move file: {:?}", e)).ok();
+    }
+    // delete the original mod folder
+    std::fs::remove_dir_all(&working_mod_path).unwrap();
+    downloads::clear_downloads().unwrap();
+    "success".to_string()
 }

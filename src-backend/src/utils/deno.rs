@@ -101,7 +101,7 @@ pub async fn install_deno(operating_system: &String, deno_info: DenoInfo) -> boo
     }
     // now in deno_path + deno_version, extract the zip
     let deno_zip = deno_path.join(deno_version);
-    compression::decompress_directory(&deno_zip, &deno_path).unwrap();
+    compression::decompress_zip(&deno_zip, &deno_path).unwrap();
     // delete the zip
     std::fs::remove_file(&deno_zip).unwrap();
     // in the path, write a version.txt file with the version
