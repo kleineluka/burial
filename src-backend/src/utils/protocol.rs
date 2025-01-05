@@ -48,7 +48,6 @@ pub fn unregister_protocol_windows(subkey: String) -> std::io::Result<()> {
     let burial_key = classes.open_subkey(&subkey);
     // if the key does not exist, skip
     if burial_key.is_err() {
-        println!("Key '{}' does not exist", subkey);
         return Ok(());
     }
     // delete the "burial" key
@@ -215,7 +214,10 @@ pub fn unregister_protocol_linux(app_name: String, scheme_name: String) -> std::
 }
 
 // universal command for registering the custom URL scheme
-pub fn register_protocol() -> std::io::Result<()> {
+pub fn register_protocol(skip_registration: bool) -> std::io::Result<()> {
+    if skip_registration {
+        return Ok(());
+    }
     #[cfg(target_os = "windows")]
     register_protocol_windows(SUBKEY_SCHEME_NAME.to_string())?;
     #[cfg(target_os = "macos")]

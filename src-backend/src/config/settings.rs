@@ -16,6 +16,7 @@ pub struct Settings {
     pub modid: String,
     pub modauthor: String,
     pub moddescription: String,
+    pub deeplinks: bool,
 }
 
 pub fn check_settings() {
@@ -35,6 +36,7 @@ pub fn check_settings() {
             modid: "".to_string(),
             modauthor: "".to_string(),
             moddescription: "".to_string(),
+            deeplinks: true,
         };
         // serialize the config to a JSON string
         let json_data = serde_json::to_string_pretty(&default_settings)

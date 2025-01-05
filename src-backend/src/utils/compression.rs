@@ -2,7 +2,6 @@ use std::f32::consts::E;
 use std::fs::{self, File};
 use std::io::{self, Read, Seek, Write};
 use std::path::{Path, PathBuf};
-use unrar::Archive;
 use walkdir::WalkDir;
 use zip::write::SimpleFileOptions;
 use zip::{ZipArchive, ZipWriter};

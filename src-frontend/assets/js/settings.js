@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('mod-author').value = modauthor;
     const moddescription = await storage.get('settings-moddescription');
     document.getElementById('mod-description').value = moddescription;
+    const deeplinks = await storage.get('settings-deeplinks');
+    document.getElementById('dropdown-menu-deeplinks').value = deeplinks.toString();
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -46,6 +48,7 @@ async function saveSettings() {
     var modid = document.getElementById('mod-id').value;
     var modauthor = document.getElementById('mod-author').value;
     var moddescription = document.getElementById('mod-description').value;
+    var deeplinks = (document.getElementById('dropdown-menu-deeplinks').value === 'true');
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
@@ -58,9 +61,10 @@ async function saveSettings() {
     store.set('settings-modid', modid);
     store.set('settings-modauthor', modauthor);
     store.set('settings-moddescription', moddescription);
+    store.set('settings-deeplinks', deeplinks);
     store.save();   
     // set values
-    invoke('save_settings', { tcoaal, output, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription });
+    invoke('save_settings', { tcoaal, output, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription, deeplinks });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -101,6 +105,7 @@ function resetSettings() {
     store.set('settings-modid', '');
     store.set('settings-modauthor', '');
     store.set('settings-moddescription', '');
+    store.set('settings-deeplinks', true);
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
@@ -112,6 +117,8 @@ function resetSettings() {
     document.getElementById('mod-id').value = '';
     document.getElementById('mod-author').value = '';
     document.getElementById('mod-description').value = '';
+    document.getElementById('dropdown-menu-updates').value = 'true';
+    document.getElementById('dropdown-menu-deeplinks').value = 'true';
     // set values
     invoke('reset_settings', {});
 }
@@ -129,6 +136,42 @@ document.getElementById('remove-hausmaerchen-button').addEventListener('click', 
 // listen for click on install-dev-tools-button
 document.getElementById('install-dev-tools-button').addEventListener('click', function () {
     invoke('install_dev_tools', {});
+});
+
+// listen for click on remove-deeplinks-button
+document.getElementById('remove-deeplinks-button').addEventListener('click', async function () {
+    // ask if they want to disable it too
+    Swal.fire({
+        title: "Hey, listen!",
+        text: "Do you also wanna disable deeplinks from installing in the future? You can always change this later!",
+        showCancelButton: true,
+        confirmButtonText: "Yes plz!",
+        cancelButtonText: "No thanks..",
+        confirmButtonColor: "var(--main-colour)",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            invoke('uninstall_deeplinks', { turnOff: true });
+            const store = loadStorage();
+            store.set('settings-deeplinks', false);
+            store.save();
+            document.getElementById('dropdown-menu-deeplinks').value = 'false';
+        } else {
+            invoke('uninstall_deeplinks', { turnOff: false });
+        }
+    });
+});
+
+// listen for deeplinks removed
+listen('deeplinks-uninstalled', (event) => {
+    Swal.fire({
+        title: "Deeplinks have been removed!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: true,
+        confirmButtonText: "Yay!",
+        confirmButtonColor: "var(--main-colour)",
+        timer: 2000,
+    });
 });
 
 // listen for click on auto-button-tcoaal
@@ -174,6 +217,7 @@ listen('game-path', (event) => {
             position: "bottom-right",
             showConfirmButton: true,
             confirmButtonText: "Yay!",
+            confirmButtonColor: "var(--main-colour)",
             timer: 5000,
         });
     } else {
@@ -184,6 +228,7 @@ listen('game-path', (event) => {
             position: "bottom-right",
             showConfirmButton: true,
             confirmButtonText: "Oki..",
+            confirmButtonColor: "var(--main-colour)",
             timer: 5000,
         });
     }
@@ -202,6 +247,7 @@ listen('output-path', (event) => {
             position: "bottom-right",
             showConfirmButton: true,
             confirmButtonText: "Yay!",
+            confirmButtonColor: "var(--main-colour)",
             timer: 5000,
         });
     } else {
@@ -212,6 +258,7 @@ listen('output-path', (event) => {
             position: "bottom-right",
             showConfirmButton: true,
             confirmButtonText: "Oki..",
+            confirmButtonColor: "var(--main-colour)",
             timer: 5000,
         });
     }
@@ -225,6 +272,7 @@ listen('settings-saved', (event) => {
         position: "bottom-right",
         showConfirmButton: true,
         confirmButtonText: "Yay!",
+        confirmButtonColor: "var(--main-colour)",
         timer: 2000,
     });
 });
@@ -237,6 +285,7 @@ listen('settings-reset', (event) => {
         position: "bottom-right",
         showConfirmButton: true,
         confirmButtonText: "Yay!",
+        confirmButtonColor: "var(--main-colour)",
         timer: 2000,
     });
 });
@@ -249,6 +298,7 @@ listen('deno-removed', (event) => {
         position: "bottom-right",
         showConfirmButton: true,
         confirmButtonText: "Yay!",
+        confirmButtonColor: "var(--main-colour)",
         timer: 2000,
     });
 });
@@ -261,6 +311,7 @@ listen('hausmaerchen-removed', (event) => {
         position: "bottom-right",
         showConfirmButton: true,
         confirmButtonText: "Yay!",
+        confirmButtonColor: "var(--main-colour)",
         timer: 2000,
     });
 });
@@ -273,6 +324,7 @@ listen('dev-tools-installed', (event) => {
         position: "bottom-right",
         showConfirmButton: true,
         confirmButtonText: "Yay!",
+        confirmButtonColor: "var(--main-colour)",
         timer: 2000,
     });
 });

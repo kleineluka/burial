@@ -48,3 +48,32 @@
 .dropdown-container label {
     margin-right: 10px !important;
 }
+
+.download-info-name {
+    font-size: 3vmin;
+}
+
+.download-info-subheader {
+    font-size: 2.5vmin;
+}
+
+.kaomoji-loader {
+    padding-top: 2vmin;
+    padding-bottom: 1.5vmin;
+    font-size: 2rem;
+    color: var(--main-colour);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    animation: sway 1s infinite alternate;
+}
+
+@keyframes sway {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateX(10px);
+    }
+}

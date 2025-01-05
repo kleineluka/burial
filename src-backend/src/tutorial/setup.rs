@@ -59,6 +59,7 @@ pub fn setup_game(window: Window, in_path: String) {
         modid: String::from(""),
         modauthor: String::from(""),
         moddescription: String::from(""),
+        deeplinks: true,
     };
     // write the updated settings
     settings::write_settings(settings);

@@ -12,20 +12,23 @@
     <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/external.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <!-- body -->
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-items">
-            <a class="navigate-button hvr-grow" data-page="index.html">Mod Manager 📦</a>
-            <a class="navigate-button hvr-grow" data-page="modpacks.html">Mod Packs 🍱</a>
-            <a class="navigate-button hvr-grow" data-page="modloader.html">Mod Loader🪦</a>
-            <a class="navigate-button hvr-grow" data-page="browser.html">Mod Browser 🕹️</a>
-            <a class="navigate-button hvr-grow" data-page="installed.html">Installed Mods 🛍️</a>
-            <a class="navigate-button hvr-grow" data-page="profiles.html">Profiles 🎮</a>
-            <a class="navigate-button sidebar-current" data-page="external.html">External 📥</a>
+            <!--<img src="assets/img/start.png" class="start-image hvr-grow">-->
+            <a class="navigate-button hvr-grow" data-page="index.html">Knowledge 📔</a>
+            <a id="burial-links-button" class="navigate-button hvr-grow" data-page="burial.html">Burial Links 🔗</a>
+            <a id="burial-wiki-button" class="navigate-button hvr-grow" onclick="openBurialWiki()">Burial Wiki 🍅</a>
+            <a id="llamaware-button" class="navigate-button hvr-grow" data-page="llamaware.html">LLamawa.re 🦙</a>
+            <a id="modding-wiki-button" class="navigate-button hvr-grow"onclick="openCoffinWiki()">Modding Wiki 🔖</a>
+            <a id="playing-mods-button" class="navigate-button hvr-grow" onclick="openPlayingMods()">Playing Mods 🕹️</a>
+            <a id="making-mods-button" class="navigate-button hvr-grow" onclick="openMakingMods()">Making Mods 🛠️</a>
+            <a id="publish-mod-button" class="navigate-button hvr-grow" onclick="openPublishMod()">Publish a Mod 🌈</a>
+            <a id="cest-moi-button" class="navigate-button sidebar-current" data-page="cestmoi.html">KleineLuka 🌺</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -54,37 +57,25 @@
     <div class="main-content">
         <div class="sidebar-top-menu">
             <button id="toggleSidebar" class="hvr-shrink">☰</button>
-            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home
+                🍅</button>
         </div>
         <div class="container">
+            <!-- Horizontal Navbar -->
             <div class="page-navbar">
-                <p class="top-information" id="preview-information">External 📥 lets you download mods from third-party websites. 
-                    <b>Please use caution downloading these mods as they are not checked or associated with Burial!</b> 
-                    Currently, Burial can download from <b>GameBanana</b> and <b>ZIP URLs</b>.</p>
+                <p class="top-information">I am a smol developer who created and worked on Burial in my free time! 
+                    Maybe you wanna, I dunno.. check out my other work? 🥺👉👈</p>
             </div>
-            <!-- Menu to Open Specific Containers -->
-            <div id="sub-main" class="page-container hidden">
-                <input id="external-mod-url" type="text" class="file-path-input" placeholder="The URL to download..." value="">
-                <div class="buttons-section">
-                    <button id="download-button" class="button-action hvr-shrink">Install External Mod ⬇️</button>
+            <!-- Sub Container -->
+            <div id="sub-export" class="page-container">
+                <div class="scrollable-area">
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openKleineLukaWebsite()">Website 🌺</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openKleineLukaGithub()">Github 🐙</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openKleineLukaContacts()">Contacts 📱</button>
+                    <button class="decrypt-button button-action hvr-pulse-grow" onclick="openKleineLukaYoutube()">Youtube 📺</button>
                 </div>
-            </div>
-            <!-- Game Banana -->
-            <div id="sub-gamebanana" class="page-container">
-                <div class="download-info-name">Downloading a GameBanana mod...</div>
-                <div class="download-info-subheader">Remember: Plesae only download/play mods that you trust!</div>
-                <div class="kaomoji-loader">
-                    <span>(〜￣△￣)〜</span>
-                </div>
-            </div>
-            <!-- ZIP File -->
-            <div id="sub-zipfile" class="page-container hidden">
             </div>
         </div>
-    </div>
-    <!-- Progress -->
-    <div class="progress-container">
-        <a id="status" class="progress-text"></a>
     </div>
 </body>
 <!-- javascript -->
@@ -95,5 +86,6 @@
 <script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/external.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/cestmoi.js"></script>
 </html>

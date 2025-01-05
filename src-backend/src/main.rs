@@ -53,7 +53,7 @@ fn main() {
     let rt = tokio::runtime::Runtime::new().unwrap();
     let user_settings = config::settings::read_settings();
     let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings)).unwrap();
-    let _protocol_init = protocol::register_protocol();
+    let _protocol_init = protocol::register_protocol(user_settings.deeplinks);
     // build tauri app
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::default().build())
@@ -77,6 +77,7 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "settings-modid", serde_json::Value::String(user_settings.modid)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-modauthor", serde_json::Value::String(user_settings.modauthor)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-moddescription", serde_json::Value::String(user_settings.moddescription)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-deeplinks", serde_json::Value::Bool(user_settings.deeplinks)).unwrap();
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-metadata-server", serde_json::Value::String(app_config.metadata_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
@@ -106,6 +107,7 @@ fn main() {
             settings::install_dev_tools,
             settings::settings_auto_find,
             settings::output_auto_find,
+            settings::uninstall_deeplinks,
             metadata::get_local_version,
             commands::navigate,
             commands::folder_dialog,
@@ -159,6 +161,7 @@ fn main() {
             browser::mod_ready,
             browser::install_mod,
             browser::uninstall_mod,
+            external::download_external_mod,
             profiles::load_profiles,
             profiles::add_profile,
             profiles::remove_profile,

@@ -56,11 +56,11 @@ const splashTexts = [
     "Big words don't fit in your mouth.",
     "Oh, it's mom..",
     "Now unbanned in Australia!",
-    "Maybe we can make a deal?",
     "Star us on Github! Wait, can I put ads here?",
     "Don't talk about her like that.",
     "Releasing: in decades",
-    "Where are your robes?"
+    "Where are your robes?",
+    "Worst Regards,"
 ];
 
 function updateSplashText() {

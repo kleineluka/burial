@@ -9,6 +9,7 @@ use crate::utils::deno;
 use crate::utils::files;
 use crate::utils::game;
 use crate::utils::hausmaerchen;
+use crate::utils::protocol;
 
 // load settings
 #[command]
@@ -27,7 +28,7 @@ pub fn load_settings(window: Window) {
 pub fn save_settings(window: Window, tcoaal: String, output: String, 
     updates: bool, theme: String, animations: bool, 
     tooltips: bool, modname: String, modid: String, modauthor: String, 
-    moddescription: String) {
+    moddescription: String, deeplinks: bool) {
     // read the current settings
     let mut settings = settings::read_settings();
     // update the settings
@@ -41,6 +42,7 @@ pub fn save_settings(window: Window, tcoaal: String, output: String,
     settings.modid = modid;
     settings.modauthor = modauthor;
     settings.moddescription = moddescription;
+    settings.deeplinks = deeplinks;
     // write the updated settings
     settings::write_settings(settings);
     window.emit("settings-saved", {}).unwrap(); 
@@ -118,3 +120,16 @@ pub fn output_auto_find(window: Window) {
     // emit back an error
     window.emit("output-path", "empty").unwrap();
 }   
+
+// remove deeplinks
+#[command]
+pub fn uninstall_deeplinks(window: Window, turn_off: bool) {
+    protocol::unregister_protocol().unwrap();
+    if turn_off {
+        let mut settings = settings::read_settings();
+        settings.deeplinks = false;
+        // to-do: reset the cache variable too, although since it doesn't access until next run, this should be ok
+        settings::write_settings(settings);
+    }
+    window.emit("deeplinks-uninstalled", {}).unwrap();
+}

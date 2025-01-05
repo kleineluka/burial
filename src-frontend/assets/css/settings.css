@@ -28,7 +28,7 @@
 }
 
 .advanced-button-container {
-    display: flex;
+    display: flexbox;
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
@@ -43,6 +43,8 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 0.5vmin;
+    margin-bottom: 0.5vmin;
 }
 
 /* Container */

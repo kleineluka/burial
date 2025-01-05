@@ -147,6 +147,7 @@ body::after {
     text-align: center;
     gap: 1vmin;
     margin-bottom: 1vmin;
+    width: 100%;
 }
 
 .button-option {
@@ -239,7 +240,7 @@ body::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20%;
+    width: 15%;
     
 }
 
