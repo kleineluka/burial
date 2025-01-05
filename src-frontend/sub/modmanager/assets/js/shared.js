@@ -78,9 +78,3 @@ function combine_jsons() {
     combined_data = repo_data.concat(foreign_data);
     combined_status = true;
 }
-
-// reload the mod list
-listen('reload-mods', async (event) => {
-    // reload the browser
-    load_browser();
-});

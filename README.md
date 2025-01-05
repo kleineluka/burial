@@ -49,6 +49,8 @@ To compile the source code yourself, please see the [Contributing page](https://
 # Documentation 🥩
 Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! For help installing, go to the [Installation and Help page](https://github.com/kleineluka/burial/wiki/Installation-and-Help). For further help, check out the [Problems and Questions page](https://github.com/kleineluka/burial/wiki/Problems-and-Questions). And if all else fails? ~~Practice demonic magic with your favourite sibling-~~ Open an [issue on Github](https://github.com/kleineluka/burial/issues) or [contact me!](https://github.com/kleineluka).
 
+Want your mod featured in Burial? Submit it to the [Llamawa.re Mod Depository](https://github.com/Llamaware/Llamaware.github.io) here! If you want your modpack featured in Burial, please fork this repo with an updated [modpacks.json](https://github.com/kleineluka/burial/blob/main/api/modpacks.json)! 
+
 The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal dependencies), Python scripts to aid in development, TypeScript (Deno) for code deobfuscation, and Javascript for game modification. Wanna help? Check out the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki~
 
 <!-- Roadmap -->

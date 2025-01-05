@@ -254,6 +254,13 @@ document.querySelector('#refresh-mods').addEventListener('click', async () => {
     set_status("Mods refreshed!");
 });
 
+// listen for refresh-mods
+listen('refresh-mods', async () => {
+    load_installed();
+    set_status("Mods refreshed!");
+});
+
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

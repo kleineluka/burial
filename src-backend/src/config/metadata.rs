@@ -40,7 +40,8 @@ pub async fn get_metadata(app_config: &app::Config, user_settings: &Settings) ->
     }
     // since we are going to be blocking, it's a safe bet to set a timeout
     let timeout_duration = Duration::from_secs(app_config.metadata_timeout);
-    match time::timeout(timeout_duration, reqwest::get(&app_config.metadata_server)).await {
+    let metadata_url = format!("{}/metadata.json", app_config.api_server);
+    match time::timeout(timeout_duration, reqwest::get(&metadata_url)).await {
         // no timeout, try to parse the response
         Ok(Ok(response)) => {
             match response.json::<Metadata>().await {

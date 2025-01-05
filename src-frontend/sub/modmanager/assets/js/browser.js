@@ -269,6 +269,12 @@ function build_repo(sort_kind, filter_kind) {
     }
 }
 
+// reload the mod list
+listen('refresh-mods', async (event) => {
+    // reload the browser
+    load_browser();
+});
+
 // on sort dropdown update 
 const sortDropdown = document.querySelector('#sortDropdown');
 sortDropdown.addEventListener('change', async () => {

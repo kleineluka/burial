@@ -178,10 +178,10 @@ pub fn uninstall_mod(window: Window, mod_path: String) {
             return;
         }
         std::fs::remove_dir_all(mod_path).unwrap();
-        window.emit("reload-mods", "success").unwrap();
+        window.emit("refresh-mods", "success").unwrap();
         window.emit("status", "Mod uninstalled!").unwrap();
     } else {
-        window.emit("reload-mods", "error").unwrap();
+        window.emit("refresh-mods", "error").unwrap();
         window.emit("status", "There was an issue uninstalling the mod..").unwrap();
     }
 }

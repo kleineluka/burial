@@ -1,9 +1,48 @@
 {
-    "Side Dishes QoL": {
+    "Quality of Life!": {
         "lastUpdate": "2024-10-14T18:47:23Z",
+        "icon": "default",
+        "description": "Vanilla+ styled-gameplay for TCOAAL.",
         "modloaderVersion": "latest",
         "mods": {
             "sidedishes": {
+                "version": "latest"
+            },
+            "yep_x_messagebacklog": {
+                "version": "latest"
+            },
+            "san_analogmove": {
+                "version": "latest"
+            },
+            "visualcoffin": {
+                "version": "latest"
+            }
+        }
+    },
+    "Andy and Renee": {
+        "lastUpdate": "2024-10-14T18:47:23Z",
+        "icon": "default",
+        "description": "Mother and son bonding time!",
+        "modloaderVersion": "latest",
+        "mods": {
+            "andyandrenee": {
+                "version": "latest"
+            },
+            "yep_x_messagebacklog": {
+                "version": "latest"
+            }
+        }
+    },
+    "Developer's Toolbox": {
+        "lastUpdate": "2024-10-14T18:47:23Z",
+        "icon": "default",
+        "description": "Make your life hacking the game easier.",
+        "modloaderVersion": "latest",
+        "mods": {
+            "devactions": {
+                "version": "latest"
+            },
+            "devtools": {
                 "version": "latest"
             },
             "yep_x_messagebacklog": {

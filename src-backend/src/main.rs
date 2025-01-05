@@ -79,7 +79,7 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "settings-moddescription", serde_json::Value::String(user_settings.moddescription)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-deeplinks", serde_json::Value::Bool(user_settings.deeplinks)).unwrap();
             // set the config settings
-            config::storage::insert_into_store(&app.handle(), "config-metadata-server", serde_json::Value::String(app_config.metadata_server)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "config-api-server", serde_json::Value::String(app_config.api_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-mods-repository", serde_json::Value::String(app_config.mods_repository)).unwrap();
             // set the metadata

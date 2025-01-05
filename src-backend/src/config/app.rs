@@ -5,7 +5,7 @@ use serde::Deserialize;
 // config structure + default values
 #[derive(Debug, Deserialize)]
 pub struct Config {
-    pub metadata_server: String,
+    pub api_server: String,
     pub metadata_timeout: u64,
     pub mods_repository: String,
 }
@@ -13,7 +13,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Config {
-            metadata_server: "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/metadata.json".to_string(),
+            api_server: "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/".to_string(),
             metadata_timeout: 10,
             mods_repository: "test".to_string()
         }

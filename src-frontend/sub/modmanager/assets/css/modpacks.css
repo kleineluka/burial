@@ -26,33 +26,22 @@
     gap: 40px;
 }
 
-/* Search Row */
-.sort-search-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Header Section Button */
+.header-action-button {
+    border-radius: 10px;
+    padding: 2px 15px;
     font-size: 3vmin;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    color: var(--main-colour);
-    gap: 20px;
-    padding-bottom: 10px;
-}
-
-.search-bar {
-    border-radius: 9px;
-    padding: 2px 14px;
-    font-size: 2.75vmin;
     font-family: 'Nunito', sans-serif;
     background-color: var(--main-colour);
     appearance: none;
     cursor: pointer;
     transition: border-color 0.3s;
-    color: #000 I !important;
 }
 
-::placeholder {
-    color: #000 !important;
+.header-section-text {
+    font-size: 2.5vmin;
+    font-family: 'Nunito', sans-serif;
+    color: var(--main-colour);
 }
 
 /* Sorting Row */
@@ -83,7 +72,7 @@
 }
 
 /* Mod Entries */
-.mod-entry {
+.modpack-entry {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +83,7 @@
     border-radius: 10px;
 }
 
-.mod-row {
+.modpack-row {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -102,57 +91,57 @@
     width: 100%;
 }
 
-.mod-icon {
+.modpack-icon {
     flex: 0 0 60px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.mod-provided-icon {
+.modpack-provided-icon {
     width: 60px;
     height: 60px;
     border: 2px solid #000;
     border-radius: 10%;
 }
 
-.mod-details {
+.modpack-details {
     flex: 1;
     padding: 0 10px;
 }
 
-.mod-name {
+.modpack-name {
     font-size: 1.2em;
     margin: 0;
     text-align: left;
     font-family: 'Nunito', sans-serif;
 }
 
-.mod-author {
+.modpack-author {
     font-weight: normal;
     color: #666;
     font-size: 0.9em;
     text-align: left;
 }
 
-.mod-description {
+.modpack-description {
     margin: 5px 0 0;
     font-size: 0.85em;
     color: #444;
     text-align: left;
 }
 
-.mod-installed-text {
+.modpack-installed-text {
     font-weight: bold;
 }
 
-.mod-actions {
+.modpack-actions {
     flex: 0 0 auto;
     display: flex;
     gap: 5px;
 }
 
-.mod-download-icon {
+.modpack-download-icon {
     width: 40px;
     height: auto;
     cursor: pointer;
@@ -164,18 +153,18 @@
     margin-top: -20px;
 }
 
-.mod-download-icon:hover {
+.modpack-download-icon:hover {
     transform: scale(1.1);
     opacity: 0.8;
 }
 
-.mod-tags {
+.modpack-tags {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.mod-tag {
+.modpack-tag {
     background-color: var(--main-colour);
     color: #333;
     border-radius: 12px;
@@ -186,7 +175,7 @@
     white-space: nowrap;
 }
 
-.mod-open-link-symbol {
+.modpack-open-link-symbol {
     cursor: pointer;
     /* remove underline */
     text-decoration: none;
@@ -216,4 +205,46 @@
     100% {
         content: '...';
     }
+}
+
+/* Modpack Download Icon */
+.modpack-download-icon {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10%;
+    border: 2px solid #000;
+    transition: transform 0.3s, opacity 0.3s;
+    background-color: var(--main-colour);
+    background-blend-mode: screen;
+    margin-top: -20px;
+}
+
+.modpack-download-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* Mod Dropdown styles */
+.modpack-mods-list.hidden {
+    display: none;
+}
+
+.modpack-mods-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.modpack-mods-row {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.modpack-subtitle {
+    font-size: 2vmin;
+    padding-left: 0.5vmin;
+    color: #333;
+    text-align: left;
 }

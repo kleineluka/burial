@@ -34,7 +34,6 @@ listen('external-mod-source', async (event) => {
         default: // "Unsupported"
             // unsupported by default
             Swal.fire({
-                icon: 'error',
                 title: 'Unsupported Mod Source',
                 text: 'The mod source is not supported by the mod manager.',
                 showConfirmButton: false,
