@@ -77,3 +77,8 @@
         transform: translateX(10px);
     }
 }
+
+/* Extra Padding for Download Button */
+.download-button-padding {
+    margin-top: 2.5vmin;
+}
