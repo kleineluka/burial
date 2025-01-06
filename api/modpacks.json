@@ -46,7 +46,7 @@
         "icon": "default",
         "description": "Display two languages at once while playing.",
         "modloaderVersion": "latest",
-        "mods": [,
+        "mods": [
             "multilanguage"
         ]
     },
