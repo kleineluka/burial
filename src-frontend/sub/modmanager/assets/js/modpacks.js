@@ -12,14 +12,12 @@ function build_modpack_repo() {
     const container = document.querySelector(".mods-container");
     container.innerHTML = "";
     Object.entries(modpack_data).forEach(([packName, pack]) => {
-        // Create modpack entry
+        // create the entry
         const modpackEntry = document.createElement('div');
         modpackEntry.classList.add('modpack-entry');
-
         const firstRow = document.createElement('div');
         firstRow.classList.add('modpack-row');
-
-        // Modpack icon
+        // modpack icon
         const iconDiv = document.createElement('div');
         iconDiv.classList.add('modpack-icon');
         const iconImg = document.createElement('img');
@@ -32,8 +30,7 @@ function build_modpack_repo() {
         iconImg.alt = 'Modpack Icon';
         iconImg.classList.add('modpack-provided-icon', 'hvr-shrink');
         iconDiv.appendChild(iconImg);
-
-        // Modpack details
+        // modpack details
         const detailsDiv = document.createElement('div');
         detailsDiv.classList.add('modpack-details');
         const nameHeading = document.createElement('h3');
@@ -43,16 +40,13 @@ function build_modpack_repo() {
         nameTimestamp.classList.add('modpack-subtitle');
         nameTimestamp.textContent = `(Updated: ${new Date(pack.lastUpdate).toLocaleDateString()})`;
         nameHeading.appendChild(nameTimestamp);
-
         const modCount = Object.keys(pack.mods).length;
         const description = document.createElement('p');
         description.classList.add('modpack-description');
         description.textContent = `${pack.description} ${modCount} mod${modCount > 1 ? 's' : ''} included in this pack - click to expand.`;
-
         detailsDiv.appendChild(nameHeading);
         detailsDiv.appendChild(description);
-
-        // Actions
+        // download the modpack
         const actionsDiv = document.createElement('div');
         actionsDiv.classList.add('modpack-actions');
         const installButton = document.createElement('img');
@@ -62,31 +56,25 @@ function build_modpack_repo() {
             console.log(`Installing modpack..`);
             install_modpack(pack);
         });
-
         actionsDiv.appendChild(installButton);
-
-        // Build the first row
+        // build the first row
         firstRow.appendChild(iconDiv);
         firstRow.appendChild(detailsDiv);
         firstRow.appendChild(actionsDiv);
-
-        // Mods in the pack (Expandable/Collapsible)
+        // expandable mods list
         const modsList = document.createElement('div');
-        modsList.classList.add('modpack-mods-list', 'hidden'); // Initially hidden
-        Object.entries(pack.mods).forEach(([modId, modData]) => {
+        modsList.classList.add('modpack-mods-list', 'hidden');
+        pack.mods.forEach(modId => {
             const modEntry = document.createElement('p');
-            modEntry.textContent = `• ${modId} (${modData.version})`;
+            modEntry.textContent = `• ${modId}`;
             modEntry.classList.add('modpack-mods-row');
             modsList.appendChild(modEntry);
         });
-
-        // Add event listener to toggle mods list
+        // toggle mods list
         firstRow.addEventListener('click', () => {
             modsList.classList.toggle('hidden');
         });
-
-
-        // Append rows
+        // add rows
         modpackEntry.appendChild(firstRow);
         modpackEntry.appendChild(modsList);
         container.appendChild(modpackEntry);

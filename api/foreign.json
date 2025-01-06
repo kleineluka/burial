@@ -1,7 +1,8 @@
 [
     {
         "burial": {
-            "is_tomb": false
+            "is_tomb": false,
+            "source_url": "github"
         },
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
@@ -32,7 +33,8 @@
     },
     {
         "burial": {
-            "is_tomb": false
+            "is_tomb": false,
+            "source_url": "github"
         },
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
@@ -52,6 +54,36 @@
             "authors": [
                 "Mr-Archive",
                 "PomPomSqL"
+            ],
+            "version": "1.0.0",
+            "dependencies": {
+                "game": "*",
+                "spec": "*"
+            }
+        }
+    },
+    {
+        "burial": {
+            "is_tomb": false,
+            "source_url": "gamebanana"
+        },
+        "data": {
+            "lastUpdate": "2024-12-01T04:31:55.730Z",
+            "url": "https://gamebanana.com/mods/502919",
+            "source": "hhttps://gamebanana.com/mods/502919",
+            "sha256": "nohash",
+            "id": "newvisualcoffin",
+            "tags": [
+                "content",
+                "qol"
+            ]
+        },
+        "modJson": {
+            "id": "newvisualcoffin",
+            "name": "(New) Visual Coffin",
+            "description": "Add more expressive art to your gameplay!",
+            "authors": [
+                "Egorik_22_8"
             ],
             "version": "1.0.0",
             "dependencies": {
