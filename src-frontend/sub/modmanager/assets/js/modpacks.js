@@ -1,6 +1,11 @@
 let modpack_data = [];
 let modpack_status = null;
 
+// on button click, gather required mod downloads to send..
+function install_modpack(modpack) {
+    console.log(modpack);
+}
+
 // build the modpack repository
 function build_modpack_repo() {
     // populate the modpacks ui
@@ -42,7 +47,7 @@ function build_modpack_repo() {
         const modCount = Object.keys(pack.mods).length;
         const description = document.createElement('p');
         description.classList.add('modpack-description');
-        description.textContent = `${modCount} mod${modCount > 1 ? 's' : ''} included in this pack - click to expand.`;
+        description.textContent = `${pack.description} ${modCount} mod${modCount > 1 ? 's' : ''} included in this pack - click to expand.`;
 
         detailsDiv.appendChild(nameHeading);
         detailsDiv.appendChild(description);
@@ -54,8 +59,8 @@ function build_modpack_repo() {
         installButton.src = 'assets/img/download.png';
         installButton.classList.add('modpack-download-icon', 'hvr-shrink');
         installButton.addEventListener('click', () => {
-            console.log(`Installing modpack: ${pack.packName}`);
-            // Call the appropriate function to handle installation
+            console.log(`Installing modpack..`);
+            install_modpack(pack);
         });
 
         actionsDiv.appendChild(installButton);
@@ -90,6 +95,10 @@ function build_modpack_repo() {
 
 // On page load, initialize the modpack list
 window.addEventListener('load', async () => {
+    // build the mods list first
+    await download_repo(); 
+    await download_foreign(); 
+    combine_jsons();
     // load  the modpacks
     let api_server = await loadStorage().get('config-api-server');
     let modpacks_url = `${api_server}/modpacks.json`;

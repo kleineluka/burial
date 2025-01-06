@@ -1,0 +1,40 @@
+.kaomoji-wall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrolling-row {
+  display: flex;
+  white-space: nowrap;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  animation: scroll 10s linear infinite;
+}
+
+.scrolling-row span {
+  display: inline-block;
+  text-align: center;
+}
+
+.scrolling-row:nth-child(even) {
+  animation-direction: reverse;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

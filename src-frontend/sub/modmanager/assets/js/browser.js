@@ -405,6 +405,10 @@ listen('installed-mods', async (event) => {
     combine_jsons(); // build them together (bleh, they need to just use tomb..)
     build_search_cache(); // build the search cache
     build_repo('name', 'all');
+    // print all json
+    console.log('Installed Mods:', installed_cache);
+    console.log('Combined Data:', combined_data);
+    console.log('Search Cache:', search_cache);
 });
 
 // third-party mod warning
