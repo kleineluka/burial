@@ -7,7 +7,7 @@
 A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steampowered.com/app/2378900/The_Coffin_of_Andy_and_Leyley/) modding 💚🩷
 <br>
 
-[Features 🐰](#features-) • [Download & Install 🩸](#install-) • [Documentation 🥩](#documentation-) • [Roadmap 👁️](#roadmap-%EF%B8%8F)
+[Features 🐰](#features-) • [Download & Install 🩸](#installing-burial-) • [Documentation 🥩](#documentation-) • [Roadmap 👁️](#roadmap-%EF%B8%8F)
 
 [Contribute 🥰](https://github.com/kleineluka/burial/wiki/Contributing) • [Credits 🎉](https://github.com/kleineluka/burial/blob/main/ATTRIBUTIONS.md) • [View Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) • [Discord 🥰](https://www.discord.gg/WWxAjJMspk)
 
@@ -25,7 +25,7 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 # Features 🐰
 Burial is a program for TCOAAL **mod players**, **mod creators**, **content creators** and **data miners**~ 🍅
 
-- **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods, manage installed mods, install mods from external URLs, one-click mod installation from websites (burial:// protocol), and switch mods easily with a profile system.
+- **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods (from various sources), manage installed mods, install mods from external URLs, one-click mod installation from websites (burial:// protocol), and switch mods easily with a profile system.
 - **Resources** ✂️: Decrypt/encrypt .k9a files, export categories of resources, generate asset templates, parse/import dialogue, and decrypt/modify save files.
 - **Reversing** 🧬: Targeted code injection, export/deobfuscate/comment game run-time code, manage NW.js SDK's, manage developer tools, view game information, and create backups of your game files.
 - **Mod Tools** 🖍️:  Turn the game to an RPG Maker project, export an RPG Maker project to a mod, convert a non-Tomb mod to a Tomb mod, edit mod.json files, edit repo,json files, and generate mod version differences.
@@ -34,8 +34,8 @@ Burial is a program for TCOAAL **mod players**, **mod creators**, **content crea
 - **Quality of Life** 🌸: Pretty GUI with character-based themes, settings, built-in tutorials, update checking, lots of emojis..
 - **Fast, Small, and Open** 🦄: Built with Rust, a native webview (<30mb, no Electron!), and a forever open-source mindset.
 
-<!-- Install -->
-# Install 🩸
+<!-- Install (Burial) -->
+# Installing Burial 🩸
 **Executables will not be provided until a stable version is completed.**
 1. **Download** the latest app from [Github Releases](https://github.com/kleineluka/burial/releases), GameBanana, Itch.io, or Nexus Mods.
 2. **Run** the installer, silly!
@@ -45,11 +45,18 @@ Burial is a program for TCOAAL **mod players**, **mod creators**, **content crea
 
 To compile the source code yourself, please see the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki.
 
+<!-- Install (Mods) -->
+# Installing Mods 🔪
+
+Burial presents a one-click solution for installing mods in the **Mod Manager 📦** tab. These mods are primarily sourced from the [Llamawa.re Mod Depository](https://llamawa.re/mods/), but there is a curated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) list in the API to add non-Llamawa.re mods to the **Mod Browser 🕹️** tab. Burial also supports installing mods from many third-party websites directly through URL. Currently, this includes GameBanana, Github, hosted zip files, and hosted rar files. **Burial is not associated with any mods, hosted on any platform, and is simply a mod manager. Please only download mods that you trust.**
+
+Please note: Burial takes multiple steps when installing mods to ensure a smooth process - this includes checking for dangerous files and converting to the Tomb modloader. There are a number of formats supported for the best flexibility. For the best experience, make sure your mod has a Tomb-compatible version and don't include any dangerous files (like .exe's) in your mod. **Mods hosted on the Llamwa.re Mod Depository are already Tomb-compatible and are loosely vetted each update. I suggest this site! ^_^**
+
+**Want your mod featured in Burial?** Submit it to the [Llamawa.re Mod Depository](https://github.com/Llamaware/Llamaware.github.io) here! If you want your modpack featured in Burial, please fork this repo with an updated [modpacks.json](https://github.com/kleineluka/burial/blob/main/api/modpacks.json)! If you are not the creator of the mod, or your mod is not Tomb-compatible, please fork with an updated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) (or get the mod author to submit to the depository and/or convert to Tomb!).
+
 <!-- Documentation -->
 # Documentation 🥩
 Please view the [Wiki](https://github.com/kleineluka/burial/wiki)! For help installing, go to the [Installation and Help page](https://github.com/kleineluka/burial/wiki/Installation-and-Help). For further help, check out the [Problems and Questions page](https://github.com/kleineluka/burial/wiki/Problems-and-Questions). And if all else fails? ~~Practice demonic magic with your favourite sibling-~~ Open an [issue on Github](https://github.com/kleineluka/burial/issues) or [contact me!](https://github.com/kleineluka).
-
-Want your mod featured in Burial? Submit it to the [Llamawa.re Mod Depository](https://github.com/Llamaware/Llamaware.github.io) here! If you want your modpack featured in Burial, please fork this repo with an updated [modpacks.json](https://github.com/kleineluka/burial/blob/main/api/modpacks.json)! If you are not the creator of the mod, or your mod is not Tomb-compatible, please fork with an updated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) (or get the mod author to submit to the depository and/or convert to Tomb!).
 
 The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal dependencies), Python scripts to aid in development, TypeScript (Deno) for code deobfuscation, and Javascript for game modification. Wanna help? Check out the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki~
 
@@ -66,7 +73,8 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 - [ ] Symbolic Linking (for Profiles)
 - [ ] Disk Space Awareness
 - [ ] RAR, 7z, TAR Support (where ZIP is)
-- [ ] Tauri V2 Migration
+- [ ] Tauri V2 Migration (low priority)
+- [ ] NexusMods, Itch.Io Support (low priority)
 - [x] Game Instances (Profiles)
 - [x] More Tooltips
 - [x] Theming System
