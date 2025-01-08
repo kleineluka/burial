@@ -5,26 +5,30 @@ use std::option::Option;
 use crate::modmaking::converter;
 use crate::utils::game;
 use crate::utils::services::gamebanana::GamebananaMod;
+use crate::utils::services::github;
+use crate::utils::services::github::GithubMod;
 use crate::utils::services::llamaware::LlamawareMod;
 use crate::utils::services::standalone;
 use crate::utils::services::standalone::ModSource;
+use crate::utils::services::archived::ArchivedMod;
 use super::modloader;
 
-/*pub enum ModSource {
-    LLamaware, // assign-only for now
-    Gamebanana,
-    ZipUrl,
-    Github,
-    Unsupported,
-} */
-// deterministic installation of foreign mods
-// optionally support a window for status updates and a mod json for metadata
-pub async fn install_foreign_mod(window: Option<&Window>, in_path: String, mod_path: String, mod_json: Option<converter::ModJson>, mod_source: ModSource) -> String {
+// deterministic installation of foreign mods (optionally support a window for status updates and a mod json for metadata)
+pub async fn install_and_download(window: Option<&Window>, in_path: String, mod_path: String, mod_json: Option<converter::ModJson>, mod_hash: Option<String>, mod_source: ModSource) -> String {
    // branch based on mod source
     match mod_source {
-        ModSource::Gamebanana => {
-            return GamebananaMod::download_mod(window, in_path, mod_path).await;
+        ModSource::LLamaware => { // Installing Logic for Llamawa.re Mods
+            return LlamawareMod::install_mod(window, in_path, mod_path, mod_hash.unwrap()).await;
         }
+        ModSource::Gamebanana => { // Installing Logic for GameBanana Mods
+            return GamebananaMod::download_mod(window, in_path, mod_path, mod_json).await;
+        },
+        ModSource::Github => { // Installing Logic for Github Mods
+            return GithubMod::download_mod(window, in_path, mod_path, mod_json.unwrap()).await;
+        },
+        ModSource::Archived => { // Installing Logic for Direct .zip Mods
+            return ArchivedMod::install_mod(window, in_path, mod_path, mod_json).await;
+        },
         // default
         _ => {
             return "unsupported".to_string();
@@ -75,12 +79,7 @@ pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_
         mod_source = standalone::ModSource::LLamaware;
     }
     // install dependant based on that
-    let mut install_result = "";
-    if mod_source == standalone::ModSource::LLamaware {
-        install_result = &LlamawareMod::install_mod(Some(&window), in_path, mod_path, mod_hash).await;
-    } else {
-        install_result = &install_foreign_mod(Some(&window), in_path, mod_path, Some(mod_json), mod_source).await;
-    }
+    let mut install_result = install_and_download(Some(&window), in_path, mod_path, Some(mod_json), Some(mod_hash), mod_source).await;
 }
 
 // uninstall a mod

@@ -30,10 +30,26 @@ function filter_tags(tag) {
             return "New Content";
         case "mature":
             return "Mature Themes";
+        case "qol":
+            return "Quality of Life";
         case "foreign":
             return "Third-Party";
         default:
             return tag;
+    }
+}
+
+// filter source names
+function filter_source(source) {
+    switch (source) {
+        case "llamware":
+            return "Llamwa.re 💗";
+        case "gamebanana":
+            return "GameBanana 🍌";
+        case "github":
+            return "GitHub 🐙";
+        default:
+            return source;
     }
 }
 
@@ -52,7 +68,14 @@ async function download_repo() {
         console.error("Failed to parse repository data");
         return;
     }
-    repo_data = data;
+    const updatedData = data.map(mod => {
+        mod.burial = {
+            is_tomb: true,
+            source_url: "llamware"
+        };
+        return mod;
+    });
+    repo_data = updatedData;
     repo_status = true;
 }
 

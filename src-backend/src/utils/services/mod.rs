@@ -3,5 +3,6 @@ pub mod gamebanana;
 pub mod standalone;
 pub mod github;
 pub mod llamaware;
-pub mod zipurl;
-pub mod rarurl;
+pub mod archived;
+//pub mod nexusmods;
+//pub mod itchio;

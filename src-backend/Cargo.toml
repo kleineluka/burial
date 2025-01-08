@@ -38,6 +38,7 @@ json-patch = "3.0.1"
 rand = "0.8.5"
 image = "0.25.5"
 flate2 = "1.0.35"
+unrar = "0.5.7"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

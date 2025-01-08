@@ -48,7 +48,7 @@ To compile the source code yourself, please see the [Contributing page](https://
 <!-- Install (Mods) -->
 # Installing Mods 🔪
 
-Burial presents a one-click solution for installing mods in the **Mod Manager 📦** tab. These mods are primarily sourced from the [Llamawa.re Mod Depository](https://llamawa.re/mods/), but there is a curated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) list in the API to add non-Llamawa.re mods to the **Mod Browser 🕹️** tab. Burial also supports installing mods from many third-party websites directly through URL. Currently, this includes GameBanana, Github, hosted zip files, and hosted rar files. **Burial is not associated with any mods, hosted on any platform, and is simply a mod manager. Please only download mods that you trust.**
+Burial presents a **one-click solution for installing mods** in the **Mod Manager 📦** tab. These mods are primarily sourced from the [Llamawa.re Mod Depository](https://llamawa.re/mods/), but there is a curated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) list in the API to add non-Llamawa.re mods to the **Mod Browser 🕹️** tab. Burial also supports installing mods from many third-party websites directly through URL. Currently, this includes GameBanana, Github, hosted zip files, and hosted rar files. **Burial is not associated with any mods, hosted on any platform, and is simply a mod manager. Please only download mods that you trust.**
 
 Please note: Burial takes multiple steps when installing mods to ensure a smooth process - this includes checking for dangerous files and converting to the Tomb modloader. There are a number of formats supported for the best flexibility. For the best experience, make sure your mod has a Tomb-compatible version and don't include any dangerous files (like .exe's) in your mod. **Mods hosted on the Llamwa.re Mod Depository are already Tomb-compatible and are loosely vetted each update. I suggest this site! ^_^**
 
@@ -72,7 +72,8 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 - [ ] One-Click GameBanana Installation
 - [ ] Symbolic Linking (for Profiles)
 - [ ] Disk Space Awareness
-- [ ] RAR, 7z, TAR Support (where ZIP is)
+- [ ] Mod Compatability Checking
+- [ ] 7z, TAR Support (where ZIP/RAR is, low priority)
 - [ ] Tauri V2 Migration (low priority)
 - [ ] NexusMods, Itch.Io Support (low priority)
 - [x] Game Instances (Profiles)

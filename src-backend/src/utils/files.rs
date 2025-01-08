@@ -412,3 +412,25 @@ pub fn merge_directories(patch_directory: &Path, base_directory: &Path) -> io::R
     }
     Ok(())
 }
+
+pub fn move_me_up(src_dir: &Path) -> io::Result<()> {
+    if !src_dir.is_dir() {
+        return Err(io::Error::new(io::ErrorKind::InvalidInput, "Source is not a directory"));
+    }
+    let parent_dir = src_dir.parent().ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "No parent directory"))?;
+    // essentially, copy all files from the source directory to the parent directory (while maintaining the file structure)
+    for entry in fs::read_dir(src_dir)? {
+        let entry = entry?;
+        let path = entry.path();
+        let file_name = path.file_name().unwrap().to_str().unwrap();
+        let dest_path = parent_dir.join(file_name);
+        if path.is_dir() {
+            copy_directory(&path.to_string_lossy(), &dest_path.to_string_lossy())?;
+        } else {
+            copy_file(&path.to_string_lossy(), &dest_path.to_string_lossy());
+        }
+    }
+    // delete the source directory
+    delete_folder(src_dir.to_str().unwrap());
+    Ok(())
+}

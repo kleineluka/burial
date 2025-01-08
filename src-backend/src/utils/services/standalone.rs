@@ -7,7 +7,7 @@ use tauri::Window;
 use crate::modmaking::converter;
 use crate::config::{cache, downloads};
 use crate::utils::emitter::EventEmitter;
-use crate::utils::game;
+use crate::utils::{files, game};
 use crate::modmanager::modloader;
 
 // mod type enum
@@ -15,7 +15,7 @@ use crate::modmanager::modloader;
 pub enum ModSource {
     LLamaware, // assign-only for now
     Gamebanana,
-    ZipUrl,
+    Archived,
     Github,
     Unsupported,
 }
@@ -26,8 +26,8 @@ impl ModSource {
             ModSource::Gamebanana
         } else if url.contains("github.com") { // even for .zip on github, prioritize this method..
             ModSource::Github
-        } else if url.ends_with(".zip") {
-            ModSource::ZipUrl
+        } else if url.ends_with(".zip") || url.ends_with(".rar") {
+            ModSource::Archived
         } else {
             ModSource::Unsupported
         }
@@ -59,25 +59,39 @@ impl ModType {
         }
     }
 
-    pub fn formatted_path(&self) -> String {
-        // get where we will look, don't bother with bottom level paths
-        let mut upper_level = self.relative_path().to_string();
-        if (upper_level.is_empty()) {
-            return upper_level.to_string();
+    pub fn formatted_path(&self, in_path: &String) -> String {
+        // for unknown or bottom level, return empty string
+        if *self == ModType::Unknown || *self == ModType::BottomLevel {
+            return "".to_string();
         }
-        upper_level = upper_level.replace("%mod_name%", "");
-        // upper_path has two folders: MyMod1 and tomb. Find the first folder that is not tomb and get the name of the folder and save it as mod_name
-        let upper_path = upper_level.split("/").collect::<Vec<&str>>();
-        let mut mod_name = "";
-        for (_i, folder) in upper_path.iter().enumerate() {
-            if *folder != "tomb" {
-                mod_name = folder;
-                break;
+        // for lower mid level, return the single folder name
+        if *self == ModType::LowerMidLevel {
+            return Path::new(&in_path).read_dir().unwrap().next().unwrap().unwrap().path().file_name().unwrap().to_str().unwrap().to_string();
+        }
+        // for the upper mid level, navigate into the mods folder and then return the single folder name that ISN'T "tomb"
+        if *self == ModType::UpperMidLevel {
+            let mods_folder = Path::new(&in_path).join("mods");
+            for entry in mods_folder.read_dir().unwrap() {
+                let entry = entry.unwrap();
+                if entry.path().is_dir() && entry.path().file_name().unwrap() != "tomb" {
+                    return Path::new("mods").join(entry.path().file_name().unwrap()).to_str().unwrap().to_string();
+                }
             }
         }
-        // get the path of the mod
-        let final_format = self.relative_path().replace("%mod_name%", mod_name);
-        final_format
+        // for the top level, navigate into the tomb -> mods folder and then return the single folder name that IS "tomb"
+        if *self == ModType::TopLevel {
+            let tomb_folder = Path::new(&in_path).join("tomb");
+            let mods_folder = tomb_folder.join("mods");
+            // print mods_folder
+            println!("Mods folder: {:?}", mods_folder);
+            for entry in mods_folder.read_dir().unwrap() {
+                let entry = entry.unwrap();
+                if entry.path().is_dir() && entry.path().file_name().unwrap() != "tomb" {
+                    return Path::new("tomb").join("mods").join(entry.path().file_name().unwrap()).to_str().unwrap().to_string();
+                }
+            }
+        }
+        "".to_string()
     }
 
 }
@@ -186,7 +200,7 @@ pub fn get_mod_issues(in_path: String, mod_type: ModType) -> SpecialCases {
         });
     }
     // if in the formatted path, see if there is a tomb folder
-    if mod_type.formatted_path().contains("tomb") {
+    if mod_type.formatted_path(&in_path) == "tomb" {
         special_cases.special_cases.push(SpecialCase {
             special_case: Conditions::ContainsTomb,
             fatal_issue: false,
@@ -242,7 +256,15 @@ fn get_mod_id(mod_path: String) -> String {
 
 // install a standalone mod from a folder
 // note: don't pass emitter to keep it optional and simple..
-pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: String) -> String {
+pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: String, mod_json: Option<converter::ModJson>) -> String {
+    // mods like to rebundle themselves in folders, so if there is a single folder NOT called www, move everything up a level
+    let expected_dirs = ["www", "tomb", "mods"];
+    let is_acceptable = expected_dirs.iter().any(|x| Path::new(&mod_path).join(x).is_dir());
+    if !is_acceptable {
+        // get the single folder in the directory
+        let single_folder = Path::new(&mod_path).read_dir().unwrap().next().unwrap().unwrap().path();
+        files::move_me_up(&single_folder).unwrap();
+    }
     // verify the game path 
     let emitter = EventEmitter::new(window);
     emitter.emit("status", "Getting everything set up..");
@@ -263,7 +285,9 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
         emitter.emit("error", "This mod is not supported. Please ask the developers for a Tomb native version!");
         return "unsupported".to_string();
     }
-    let formatted_path = mod_type.formatted_path();
+    // print the modtype
+    println!("Mod type: {:?}", mod_type);
+    let formatted_path = mod_type.formatted_path(&mod_path);
     // get any issues with the mod
     emitter.emit("status", "Checking the mod for any issues..");
     let issues = get_mod_issues(mod_path.clone(), mod_type);
@@ -287,6 +311,7 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
     }
     // CASE: NotTomb~ we need to convert the mod folder first !
     let mut working_mod_path = mod_path.clone();
+    println!("Formatted path: {:?}", formatted_path);
     if formatted_path != "" {
         working_mod_path = Path::new(&mod_path).join(formatted_path).to_str().unwrap().to_string();
     }
@@ -294,8 +319,15 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
     let mod_id = get_mod_id(working_mod_path.clone());
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::NotTomb) {
         emitter.emit("status", "Compiling the mod..");
-        let mod_authors = vec![format!("{} Creator(s)", mod_name)];
-        let mod_desscription = format!("For a better experience, reach out to the creators of {} for a native Tomb port!", mod_name.clone());
+        // if a mod_json was passed, use that instead for the mod_authors and mod_description
+        let mod_authors = match mod_json.clone() {
+            Some(json) => json.authors,
+            None => vec![format!("{} Creator(s)", mod_name)],
+        };
+        let mod_desscription = match mod_json {
+            Some(json) => json.description,
+            None => format!("For a better experience, reach out to the creators of {} for a native Tomb port!", mod_name.clone()),
+        };
         let mod_version = "1.0.0".to_string();
         let out_path = downloads::downloads_folder();
         let conversion_result = converter::convert_to_tomb(mod_path.clone(), in_path.clone(), out_path.to_str().unwrap().to_string(), mod_name.clone(), mod_id.clone(), mod_authors, mod_desscription, mod_version);
@@ -310,6 +342,8 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
     std::fs::create_dir_all(&final_mod_path).map_err(|e| println!("Failed to create directory: {:?}", e)).ok();
     // copy all files inside working mod path to final mod path
     emitter.emit("status", "Moving the mod files..");
+    println!("Final mod path: {:?}", final_mod_path);
+    println!("Working mod path: {:?}", working_mod_path);
     for entry in fs::read_dir(&working_mod_path).unwrap() {
         let entry = entry.unwrap();
         let path = entry.path();

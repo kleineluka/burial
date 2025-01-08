@@ -2,6 +2,7 @@ use std::f32::consts::E;
 use std::fs::{self, File};
 use std::io::{self, Read, Seek, Write};
 use std::path::{Path, PathBuf};
+use unrar::Archive;
 use walkdir::WalkDir;
 use zip::write::SimpleFileOptions;
 use zip::{ZipArchive, ZipWriter};
@@ -24,7 +25,6 @@ pub fn get_archive_type(file_path: &Path) -> Result<&'static str, std::io::Error
         ))
     }
 }
-
 
 // zip a directory to an output file
 pub fn compress_directory<T>(src_dir: &Path, output_file: T) -> zip::result::ZipResult<()> where T: Write + Seek, {
@@ -112,6 +112,57 @@ pub fn decompress_zip_nosub(zip_file_path: &Path, output_folder: &Path) -> io::R
     Ok(())
 }
 
+// decompress a RAR file to a directory
+pub fn decompress_rar(rar_file_path: &Path, output_folder: &Path) -> io::Result<()> {
+    // Ensure output directory exists
+    let output_path = Path::new(output_folder);
+    if !output_path.exists() {
+        std::fs::create_dir_all(output_path)?;
+    }
+    // Open the RAR archive for processing
+    let mut archive = Archive::new(rar_file_path)
+        .open_for_processing()
+        .map_err(|e| format!("Failed to open archive: {}", e)).unwrap();
+
+    // Iterate over headers and extract files
+    while let Some(header) = archive.read_header().unwrap() {
+        let entry = header.entry();
+        let filename = output_path.join(entry.filename.to_string_lossy().to_string());
+
+        if entry.is_file() {
+            println!("Extracting file: {} ({} bytes)", filename.display(), entry.unpacked_size);
+            archive = header.extract_to(&filename).unwrap();
+        } else {
+            println!("Skipping directory: {}", filename.display());
+            archive = header.skip().unwrap();
+        }
+    }
+    println!("Extraction completed!");
+    Ok(())
+}
+
+// don't make sub folder inside of it..
+pub fn decompress_rar_nosub(rar_file_path: &Path, output_folder: &Path) -> io::Result<()> {
+    // decompress the directory first
+    decompress_rar(rar_file_path, output_folder)?;
+    // find the extracted folder by looking for the first subdirectory in the output folder
+    let extracted_folder_path = fs::read_dir(output_folder)?
+        .filter_map(|entry| entry.ok()) // ignore errors
+        .find(|entry| entry.path().is_dir()) // find the first directory
+        .map(|entry| entry.path()) // get its path
+        .ok_or_else(|| io::Error::new(io::ErrorKind::NotFound, "Extracted folder not found..?"))?;
+    // move files from the extracted folder to the output folder
+    for entry in fs::read_dir(&extracted_folder_path)? {
+        let entry = entry?;
+        let path = entry.path();
+        let new_path = output_folder.join(path.file_name().unwrap());
+        fs::rename(path, new_path)?;
+    }
+    // remove the original extracted folder
+    fs::remove_dir(extracted_folder_path)?;
+    Ok(())
+}
+
 // decompress EITHER a zip or rar
 pub fn decompress_archive(file_path: &Path, output_folder: &Path, no_sub: bool) -> Result<(), Box<dyn std::error::Error>> {
     match get_archive_type(file_path)? {
@@ -123,7 +174,11 @@ pub fn decompress_archive(file_path: &Path, output_folder: &Path, no_sub: bool) 
             }
         }
         "rar" => {
-            return Err("Rar decompression not yet implemented".into());
+            if no_sub {
+                decompress_rar_nosub(file_path, output_folder)?;
+            } else {
+                decompress_rar(file_path, output_folder)?;
+            }
         }
         _ => {
             return Err("Unsupported archive type".into());

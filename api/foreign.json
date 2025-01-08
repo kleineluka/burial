@@ -64,13 +64,13 @@
     },
     {
         "burial": {
-            "is_tomb": false,
+            "is_tomb": true,
             "source_url": "gamebanana"
         },
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
             "url": "https://gamebanana.com/mods/502919",
-            "source": "hhttps://gamebanana.com/mods/502919",
+            "source": "https://gamebanana.com/mods/502919",
             "sha256": "nohash",
             "id": "newvisualcoffin",
             "tags": [
@@ -81,10 +81,40 @@
         },
         "modJson": {
             "id": "newvisualcoffin",
-            "name": "(New) Visual Coffin",
+            "name": "Visual Coffin (New)",
             "description": "Add more expressive art to your gameplay!",
             "authors": [
                 "Egorik_22_8"
+            ],
+            "version": "1.0.0",
+            "dependencies": {
+                "game": "*",
+                "spec": "*"
+            }
+        }
+    },
+    {
+        "burial": {
+            "is_tomb": false,
+            "source_url": "gamebanana"
+        },
+        "data": {
+            "lastUpdate": "2024-12-01T04:31:55.730Z",
+            "url": "https://gamebanana.com/mods/523187",
+            "source": "https://gamebanana.com/mods/523187",
+            "sha256": "nohash",
+            "id": "squareaspectratio",
+            "tags": [
+                "qol",
+                "foreign"
+            ]
+        },
+        "modJson": {
+            "id": "squareaspectratio",
+            "name": "Square of Andy and Leyley",
+            "description": "4:3 Aspect Ratio support for TCOAAL.",
+            "authors": [
+                "SquareTV"
             ],
             "version": "1.0.0",
             "dependencies": {

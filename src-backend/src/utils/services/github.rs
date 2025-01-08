@@ -23,6 +23,17 @@ pub struct GithubMod {
 
 impl GithubMod {
 
+    pub fn from_modjson(mod_json: converter::ModJson, in_path: String) -> GithubMod {
+        GithubMod {
+            mod_url: in_path,
+            mod_name: mod_json.name,
+            mod_id: mod_json.id,
+            mod_authors: mod_json.authors,
+            mod_description: mod_json.description,
+            mod_version: mod_json.version,
+        }
+    }
+
     pub fn get_download(url: &str) -> Result<String, String> {
         // make sure we are downloading the github as a zip
         if url.ends_with("/archive/refs/heads/main.zip") {
@@ -39,9 +50,11 @@ impl GithubMod {
     }
 
     // download a github mod, expecting "www" format (assume non-tomb)
-    pub async fn download_mod(window: Option<&Window>, in_path: String, github_mod: GithubMod) -> String {
+    pub async fn download_mod(window: Option<&Window>, in_path: String, mod_path: String, mod_json: converter::ModJson) -> String {
         // now status updates are optional!
         let emitter = EventEmitter::new(window);
+        // make the github mod from a modjson
+        let github_mod = GithubMod::from_modjson(mod_json, mod_path);
         // format the url
         emitter.emit("status", "Preparing to download the mod..");
         let mod_url = GithubMod::get_download(&github_mod.mod_url).unwrap();

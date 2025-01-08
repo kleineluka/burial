@@ -27,9 +27,9 @@ listen('external-mod-source', async (event) => {
             document.getElementById('sub-main').classList.add('hidden');
             document.getElementById('sub-gamebanana').classList.remove('hidden');
             break;
-        case "ZipUrl":
+        case "Archived":
             document.getElementById('sub-main').classList.add('hidden');
-            document.getElementById('sub-zipurl').classList.remove('hidden');
+            document.getElementById('sub-archived').classList.remove('hidden');
             break;
         default: // "Unsupported"
             // unsupported by default
@@ -50,7 +50,7 @@ listen('external-mod-downloaded', async (event) => {
     // first, add hidden to all sub menus and show the main menu
     document.getElementById('sub-main').classList.remove('hidden');
     document.getElementById('sub-gamebanana').classList.add('hidden');
-    document.getElementById('sub-zipurl').classList.add('hidden');
+    document.getElementById('sub-archived').classList.add('hidden');
     // now, determine the message based on the response
     let message = '';
     switch (event.payload) {

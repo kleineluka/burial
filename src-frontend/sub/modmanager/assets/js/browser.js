@@ -51,6 +51,7 @@ function build_repo(sort_kind, filter_kind) {
         // get mod data
         const initialData = entry.data || {};
         const modData = entry.modJson || {};
+        const burialData = entry.burial || {};
         // first we need to get the tags and see if we are filtering for anything
         if (filter_kind && filter_kind !== 'all') {
             if (!initialData.tags || !initialData.tags.includes(filter_kind)) {
@@ -251,6 +252,12 @@ function build_repo(sort_kind, filter_kind) {
             tagSpan.textContent = tag_display;
             tagsDiv.appendChild(tagSpan);
         });
+        // and before we append the tags, also add the source repo it is from
+        const sourceRepoSpan = document.createElement('span');
+        sourceRepoSpan.classList.add('mod-tag', 'hvr-shrink');
+        let source_display = 'Hosted on: ' + filter_source(burialData.source_url);
+        sourceRepoSpan.textContent = source_display;
+        tagsDiv.appendChild(sourceRepoSpan);
         secondRow.appendChild(tagsDiv);
         // put it all together
         modEntry.appendChild(firstRow);

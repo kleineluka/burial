@@ -7,6 +7,7 @@ use std::fs;
 use std::path::PathBuf;
 
 use crate::config::{cache, downloads};
+use crate::modmaking::converter;
 use crate::utils::emitter::EventEmitter;
 use crate::utils::{compression, connection, emitter, files};
 
@@ -123,7 +124,7 @@ impl GamebananaMod {
     }
 
     // download a gamebanana mod
-    pub async fn download_mod(window: Option<&Window>, in_path: String, mod_url: String) -> String {
+    pub async fn download_mod(window: Option<&Window>, in_path: String, mod_url: String, mod_json: Option<converter::ModJson>) -> String {
         // now status updates are optional!
         let emitter = EventEmitter::new(window);
         emitter.emit("status", "Downloading the mod! Please wait, this may take a moment..");
@@ -147,8 +148,9 @@ impl GamebananaMod {
                     eprintln!("Failed to remove file: {}", e);
                 }
                 // and then we an install as a regular standalone mod
-                let standalone_installation = standalone::install_generic(window, in_path, extraction_path.to_str().unwrap().to_string());
+                let standalone_installation = standalone::install_generic(window, in_path, extraction_path.to_str().unwrap().to_string(), mod_json);
                 cache::clear_temp();
+                emitter.emit("status", "Mod installed!");
                 return standalone_installation;
             }
         }
