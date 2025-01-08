@@ -1,8 +1,6 @@
 // imports
 use tauri::Window;
 use tauri::command;
-use serde::Deserialize;
-use serde::Serialize;
 use std::fs;
 use crate::config::cache;
 use crate::utils::files;
@@ -13,40 +11,13 @@ use crate::utils::compression;
 use crate::config::downloads;
 use crate::utils::game;
 
-// mod type enum
-#[derive(Serialize, Deserialize, Clone, PartialEq)]
-pub enum ModSource {
-    Gamebanana,
-    ZipUrl,
-    Unsupported,
-}
-
-impl ModSource {
-    pub fn from_url(url: &str) -> Self {
-        if url.contains("gamebanana.com") {
-            ModSource::Gamebanana
-        } else if url.ends_with(".zip") {
-            ModSource::ZipUrl
-        } else {
-            ModSource::Unsupported
-        }
-    }
-}
-
-// sanitize a mod folder name (a-Z, 0-9, " " = _)
-fn sanitize_mod_folder_name(name: &str) -> String {
-    let mut sanitized_name = name.replace(" ", "_");
-    sanitized_name.retain(|c| c.is_alphanumeric() || c == '_');
-    sanitized_name
-}
-
 // download a gamebanana mod
 pub async fn download_gamebanana_mod(in_path: String, mod_url: String) -> String {
     if let Some(mod_instance) = gamebanana::GamebananaMod::extract_mod_url(mod_url).await {
         // get the first download link, and, well, download it..
         if let Some((file_id, download_link)) = mod_instance.get_download_link().await {
             // download the file
-            let sanitized_name = sanitize_mod_folder_name(&mod_instance.name);
+            let sanitized_name = standalone::sanitize_mod_folder_name(&mod_instance.name);
             let download_path = downloads::downloads_folder().join(&sanitized_name);
             fs::create_dir_all(&download_path).unwrap();
             let _download_result = connection::download_file(&download_link, &download_path.to_str().unwrap().to_string()).await;
@@ -60,7 +31,7 @@ pub async fn download_gamebanana_mod(in_path: String, mod_url: String) -> String
               eprintln!("Failed to remove file: {}", e);
             }
             // and then we an install as a regular standalone mod
-            let standalone_installation = standalone::install_standalone(in_path, extraction_path.to_str().unwrap().to_string());
+            let standalone_installation = standalone::install_generic(None, in_path, extraction_path.to_str().unwrap().to_string());
             cache::clear_temp();
             return standalone_installation;
         }
@@ -83,16 +54,16 @@ pub async fn download_zip_mod(in_path: String, mod_url: String) -> String {
       eprintln!("Failed to remove file: {}", e);
     }
     // and then we an install as a regular standalone mod
-    let standalone_installation = standalone::install_standalone(in_path, extraction_path.to_str().unwrap().to_string());
+    let standalone_installation = standalone::install_generic(None, in_path, extraction_path.to_str().unwrap().to_string());
     cache::clear_temp();
     standalone_installation
 }
 
 // download a mod from a url (determine which kind of mmod it is then act accordingly)
-pub async fn download_mod_url(in_path: String, mod_url: String, mod_source: ModSource) -> String {
-    if mod_source == ModSource::Gamebanana {
+pub async fn download_mod_url(in_path: String, mod_url: String, mod_source: standalone::ModSource) -> String {
+    if mod_source == standalone::ModSource::Gamebanana {
         return download_gamebanana_mod(in_path, mod_url).await;
-    } else if mod_source == ModSource::ZipUrl {
+    } else if mod_source == standalone::ModSource::ZipUrl {
         return download_zip_mod(in_path, mod_url).await;
     }
     "unsupported".to_string()
@@ -107,7 +78,7 @@ pub async fn download_external_mod(window: Window, in_path: String, mod_url: Str
         return;
     }
     // get the mod source
-    let mod_source = ModSource::from_url(&mod_url);
+    let mod_source = standalone::ModSource::from_url(&mod_url);
     window.emit("external-mod-source", mod_source.clone()).unwrap();
     let mod_downloaded = download_mod_url(in_path, mod_url, mod_source).await;
     window.emit("external-mod-downloaded", mod_downloaded).unwrap();

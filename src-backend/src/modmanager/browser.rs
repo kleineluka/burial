@@ -1,16 +1,36 @@
 // imports
 use tauri::Window;
 use tauri::command;
-use std::fs::File;
-use std::io::{BufReader, Read};
-use sha2::{Sha256, Digest};
-use crate::config::downloads;
+use std::option::Option;
 use crate::modmaking::converter;
-use crate::utils::compression;
-use crate::utils::connection;
 use crate::utils::game;
+use crate::utils::services::gamebanana::GamebananaMod;
+use crate::utils::services::llamaware::LlamawareMod;
+use crate::utils::services::standalone;
+use crate::utils::services::standalone::ModSource;
 use super::modloader;
-use std::vec;
+
+/*pub enum ModSource {
+    LLamaware, // assign-only for now
+    Gamebanana,
+    ZipUrl,
+    Github,
+    Unsupported,
+} */
+// deterministic installation of foreign mods
+// optionally support a window for status updates and a mod json for metadata
+pub async fn install_foreign_mod(window: Option<&Window>, in_path: String, mod_path: String, mod_json: Option<converter::ModJson>, mod_source: ModSource) -> String {
+   // branch based on mod source
+    match mod_source {
+        ModSource::Gamebanana => {
+            return GamebananaMod::download_mod(window, in_path, mod_path).await;
+        }
+        // default
+        _ => {
+            return "unsupported".to_string();
+        }
+    }
+}
 
 // verify that the user's current installation is ready to install mods
 #[command]
@@ -33,7 +53,7 @@ pub fn mod_ready(window: Window, in_path: String) {
 
 // install a (tomb or foreign mod)
 #[command]
-pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_hash: String, mod_tags: Vec<String>, sanitized_name: String, mod_json: converter::ModJson) {
+pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_hash: String, mod_tags: Vec<String>, mod_json: converter::ModJson) {
     // verify that the game path is right
     window.emit("status", "Making sure that everything is ready..").unwrap();
     let is_game = game::verify_game(&in_path).unwrap();
@@ -47,121 +67,20 @@ pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_
         window.emit("mod-install", "error_modloader").unwrap();
         return;
     }
-    // lock the ui
-    window.emit("lock-ui", "enable").unwrap();
-    // branch based on whether it is tomb native or not
+    // find out what kind of mod it is
+    let mut mod_source;
     if mod_tags.contains(&"foreign".to_string()) {
-        install_foreign_mod(window, in_path, mod_path, sanitized_name, mod_json).await;
+        mod_source = standalone::ModSource::from_url(&mod_path);
     } else {
-        install_tomb_mod(window, in_path, mod_path, mod_hash, sanitized_name).await;
+        mod_source = standalone::ModSource::LLamaware;
     }
-}
-
-// install a foreign mod
-pub async fn install_foreign_mod(window: Window, in_path: String, mod_path: String, sanitized_name: String, mod_json: converter::ModJson) {
-    // download mod_path into temp
-    let temp_path = downloads::downloads_folder().join(sanitized_name.clone());
-    window.emit("status", "Downloading the mod! Please wait, this may take a moment..").unwrap();
-    if let Err(e) = connection::download_file(&mod_path, &temp_path.to_string_lossy()).await {
-        window.emit("mod-install", "error_connection").unwrap();
-        return;
+    // install dependant based on that
+    let mut install_result = "";
+    if mod_source == standalone::ModSource::LLamaware {
+        install_result = &LlamawareMod::install_mod(Some(&window), in_path, mod_path, mod_hash).await;
+    } else {
+        install_result = &install_foreign_mod(Some(&window), in_path, mod_path, Some(mod_json), mod_source).await;
     }
-    // there should be a single file inside of the folder now, a zip file, find it
-    let mod_file = match temp_path.read_dir().unwrap().next() {
-        Some(f) => f.unwrap().path(),
-        None => {
-            window.emit("mod-install", "error_file_open").unwrap();
-            return;
-        }
-    };  
-    // extract that mod into a new folder in the same directory as the mod_file called "non_tomb"
-    window.emit("status", "Extracting the mod..").unwrap();
-    let mod_folder = temp_path.join("non_tomb");
-    compression::decompress_zip_nosub(&mod_file, &mod_folder).unwrap();
-    // and convert it
-    window.emit("status", "Converting the mod to use Tomb modloader..").unwrap();
-    let tomb_mod_folder = temp_path.join("tomb");
-    let converted_mod = converter::convert_to_tomb(mod_folder.to_str().unwrap().to_string(), in_path.clone(), tomb_mod_folder.to_str().unwrap().to_string(), mod_json.name, mod_json.id, mod_json.authors, mod_json.description, mod_json.version);
-    if converted_mod == "error:game_path" || converted_mod == "error:mod_path" {
-        window.emit("mod-install", "error_conversion").unwrap();
-        return;
-    }
-    // copy the converted mod to the game folder
-    window.emit("status", "Installing the mod..").unwrap();
-    // there should be a single file inside of tomb_mod_folder now, a folder, find it
-    let mod_folder = match tomb_mod_folder.read_dir().unwrap().next() {
-        Some(f) => f.unwrap().path(),
-        None => {
-            window.emit("mod-install", "error_conversion").unwrap();
-            return;
-        }
-    };
-    // move it to the game folder
-    let game_path = std::path::Path::new(&in_path);
-    let mod_path = game_path.join("tomb").join("mods");
-    std::fs::rename(&mod_folder, &mod_path.join(sanitized_name)).unwrap();
-    // clear the temp folder
-    window.emit("status", "Cleaning up..").unwrap();
-    downloads::clear_downloads().unwrap();
-    // all done!
-    window.emit("status", "Mod installed successfully!").unwrap();
-    window.emit("mod-install", "success").unwrap();
-    window.emit("lock-ui", "disable").unwrap();
-}
-
-// install a tomb mod
-pub async fn install_tomb_mod(window: Window, in_path: String, mod_path: String, mod_hash: String, sanitized_name: String) {
-    // start downloading the mod
-    window.emit("status", "Downloading the mod! Please wait, this may take a moment..").unwrap();
-    let downloads = downloads::downloads_folder();
-    if let Err(e) = connection::download_file(&mod_path, &downloads.to_string_lossy()).await {
-        window.emit("mod-install", "error_connection").unwrap();
-        return;
-    }
-    // get the name of the zip file and then open it
-    window.emit("status", "Verifying the hash of the mod..").unwrap();
-    let mod_name = mod_path.split("/").last().unwrap();
-    let mod_file = downloads.join(mod_name);
-    let file = match File::open(&mod_file) {
-        Ok(f) => f,
-        Err(_) => {
-            window.emit("mod-install", "error_file_open").unwrap();
-            return;
-        }
-    };
-    // verify the hash of the newly downloaded zip
-    let mut hasher = Sha256::new();
-    let mut buf_reader = BufReader::new(file);
-    let mut buffer = vec![0; 8192];
-    while let Ok(read_bytes) = buf_reader.read(&mut buffer) {
-        if read_bytes == 0 {
-            break;
-        }
-        hasher.update(&buffer[..read_bytes]);
-    }
-    let computed_hash = format!("{:x}", hasher.finalize());
-    if computed_hash != mod_hash {
-        window.emit("mod-install", "error_hash_mismatch").unwrap();
-        return;
-    }
-    // extract the mod contents into the game folder/tomb/mods/<mod name>
-    window.emit("status", "Extracting the mod into the game directory..").unwrap();
-    let mod_folder = format!("{}/tomb/mods/{}", in_path.clone(), sanitized_name);
-    let mod_folder_path = std::path::Path::new(&mod_folder);
-    // if the mod folder already exists, delete it
-    if mod_folder_path.exists() {
-        window.emit("status", "Removing the previous installation of the mod..").unwrap();
-        std::fs::remove_dir_all(&mod_folder).unwrap();
-    }
-    compression::decompress_zip(&mod_file, &mod_folder_path).unwrap();
-    // delete the downloads folder 
-    window.emit("status", "Cleaning up..").unwrap();
-    std::fs::remove_file(&mod_file).unwrap();
-    downloads::clear_downloads().unwrap();
-    // all done!
-    window.emit("status", "Mod installed successfully!").unwrap();
-    window.emit("mod-install", "success").unwrap();
-    window.emit("lock-ui", "disable").unwrap();
 }
 
 // uninstall a mod

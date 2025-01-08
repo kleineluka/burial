@@ -8,12 +8,12 @@ use crate::utils::modmaker;
 use crate::utils::files;
 use crate::utils::compression;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Burial {
     pub is_tomb: bool,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Data {
     pub last_update: String, 
     pub url: String,
@@ -23,13 +23,13 @@ pub struct Data {
     pub tags: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Dependencies {
     pub game: String,
     pub spec: String,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ModJson {
     pub id: String,
     pub name: String,
@@ -39,7 +39,7 @@ pub struct ModJson {
     pub dependencies: Dependencies,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ForeignRepo {
     pub burial: Burial,
     pub data: Data,

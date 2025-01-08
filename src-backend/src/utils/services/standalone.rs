@@ -3,10 +3,36 @@ use std::fs;
 use std::path::Path;
 use chrono::format;
 use serde::{Deserialize, Serialize};
+use tauri::Window;
 use crate::modmaking::converter;
 use crate::config::{cache, downloads};
+use crate::utils::emitter::EventEmitter;
 use crate::utils::game;
 use crate::modmanager::modloader;
+
+// mod type enum
+#[derive(Serialize, Deserialize, Clone, PartialEq)]
+pub enum ModSource {
+    LLamaware, // assign-only for now
+    Gamebanana,
+    ZipUrl,
+    Github,
+    Unsupported,
+}
+
+impl ModSource {
+    pub fn from_url(url: &str) -> Self {
+        if url.contains("gamebanana.com") {
+            ModSource::Gamebanana
+        } else if url.contains("github.com") { // even for .zip on github, prioritize this method..
+            ModSource::Github
+        } else if url.ends_with(".zip") {
+            ModSource::ZipUrl
+        } else {
+            ModSource::Unsupported
+        }
+    }
+}
 
 // identify what kind of mod is being installed from the folder. the cases we have are:
 // - contains a "tomb" folder (aka top-level)
@@ -83,6 +109,21 @@ pub enum Conditions {
     UnsafeMod,
     NotTomb,
     Unsupported,
+}
+// sanitize a mod folder name (a-Z, 0-9, " " = _)
+pub fn sanitize_mod_folder_name(name: &str) -> String {
+    // remove file extension (maybe!)
+    let name = name.split('.').next().unwrap_or(name);
+    // standard filtering
+    let mut sanitized_name = name.replace(" ", "_");
+    sanitized_name.retain(|c| c.is_alphanumeric() || c == '_');
+    // remove numbers (if safe to do so)
+    let without_numbers: String = sanitized_name.chars().filter(|c| !c.is_numeric()).collect();
+    if without_numbers.is_empty() {
+        sanitized_name
+    } else {
+        without_numbers
+    }
 }
 
 // get what kind of mod a folder is
@@ -200,39 +241,48 @@ fn get_mod_id(mod_path: String) -> String {
 }
 
 // install a standalone mod from a folder
-pub fn install_standalone(in_path: String, mod_path: String) -> String {
-    // verify the game path
+// note: don't pass emitter to keep it optional and simple..
+pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: String) -> String {
+    // verify the game path 
+    let emitter = EventEmitter::new(window);
+    emitter.emit("status", "Getting everything set up..");
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
+        emitter.emit("error", "Please set your game path in the settings first!");
         return "nogame".to_string();
     }
     // verify that tomb is installed
     let is_tomb = modloader::modloader_prescence(in_path.clone());
     if !is_tomb {
+        emitter.emit("error", "Please install Tomb inside of the Modloader 🪦 tab first!");
         return "notomb".to_string();
     }
     // first, get the type of mod and the formatted path
     let mod_type = get_mod_type(mod_path.clone());
     if mod_type == ModType::Unknown {
+        emitter.emit("error", "This mod is not supported. Please ask the developers for a Tomb native version!");
         return "unsupported".to_string();
     }
-    // print the mod type
     let formatted_path = mod_type.formatted_path();
     // get any issues with the mod
+    emitter.emit("status", "Checking the mod for any issues..");
     let issues = get_mod_issues(mod_path.clone(), mod_type);
     // CASE: TombOnly~ we can delete the mod folder and return the message
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::TombOnly) {
         std::fs::remove_dir_all(&mod_path).unwrap();
+        emitter.emit("error", &issues.special_cases.iter().find(|x| x.special_case == Conditions::TombOnly).unwrap().error_message.clone());
         return issues.special_cases.iter().find(|x| x.special_case == Conditions::TombOnly).unwrap().error_message.clone();
     }
     // CASE: BurialOnly~ we can delete the mod folder and return the message
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::BurialOnly) {
         std::fs::remove_dir_all(&mod_path).unwrap();
+        emitter.emit("error", &issues.special_cases.iter().find(|x| x.special_case == Conditions::BurialOnly).unwrap().error_message.clone());
         return issues.special_cases.iter().find(|x| x.special_case == Conditions::BurialOnly).unwrap().error_message.clone();
     }
     // CASE: UnsafeMod~ we can delete the mod folder and return the message
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::UnsafeMod) {
         std::fs::remove_dir_all(&mod_path).unwrap();
+        emitter.emit("error", &issues.special_cases.iter().find(|x| x.special_case == Conditions::UnsafeMod).unwrap().error_message.clone());
         return issues.special_cases.iter().find(|x| x.special_case == Conditions::UnsafeMod).unwrap().error_message.clone();
     }
     // CASE: NotTomb~ we need to convert the mod folder first !
@@ -243,6 +293,7 @@ pub fn install_standalone(in_path: String, mod_path: String) -> String {
     let mod_name = get_mod_name(working_mod_path.clone());
     let mod_id = get_mod_id(working_mod_path.clone());
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::NotTomb) {
+        emitter.emit("status", "Compiling the mod..");
         let mod_authors = vec![format!("{} Creator(s)", mod_name)];
         let mod_desscription = format!("For a better experience, reach out to the creators of {} for a native Tomb port!", mod_name.clone());
         let mod_version = "1.0.0".to_string();
@@ -253,10 +304,12 @@ pub fn install_standalone(in_path: String, mod_path: String) -> String {
         fs::remove_dir_all(&mod_path).unwrap();
     }
     // now, after converting the mod or if we are just doing a normal installation, install it!
+    emitter.emit("status", "Installing the mod..");
     let game_mods_folder = Path::new(&in_path.clone()).join("tomb").join("mods");
     let final_mod_path = game_mods_folder.join(mod_id.clone());
     std::fs::create_dir_all(&final_mod_path).map_err(|e| println!("Failed to create directory: {:?}", e)).ok();
     // copy all files inside working mod path to final mod path
+    emitter.emit("status", "Moving the mod files..");
     for entry in fs::read_dir(&working_mod_path).unwrap() {
         let entry = entry.unwrap();
         let path = entry.path();
@@ -264,6 +317,7 @@ pub fn install_standalone(in_path: String, mod_path: String) -> String {
         fs::rename(path, new_path).map_err(|e| println!("Failed to move file: {:?}", e)).ok();
     }
     // delete the original mod folder
+    emitter.emit("status", "Cleaning up..");
     std::fs::remove_dir_all(&working_mod_path).unwrap();
     downloads::clear_downloads().unwrap();
     "success".to_string()

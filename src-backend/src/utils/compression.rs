@@ -13,6 +13,8 @@ pub fn get_archive_type(file_path: &Path) -> Result<&'static str, std::io::Error
     file.read_exact(&mut buffer)?;
     if buffer == [0x50, 0x4B, 0x03, 0x04] || buffer == [0x50, 0x4B, 0x05, 0x06] {
         Ok("zip")
+    } else if &buffer == b"Rar!" { // different kind of rar..
+        Ok("rar")
     } else if buffer == [0x52, 0x61, 0x72, 0x21] {
         Ok("rar")
     } else {

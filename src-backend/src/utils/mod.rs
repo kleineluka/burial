@@ -19,3 +19,4 @@ pub mod nemlang;
 pub mod olid;
 pub mod services; // folder
 pub mod protocol;
+pub mod emitter;
