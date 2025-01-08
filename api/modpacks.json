@@ -3,19 +3,17 @@
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "default",
         "description": "Vanilla+ styled-gameplay for TCOAAL.",
-        "modloaderVersion": "latest",
         "mods": [
             "sidedishes",
             "yep_x_messagebacklog",
             "san_analogmove",
-            "visualcoffin"
+            "newvisualcoffin"
         ]
     },
     "Andy and Renee": {
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "default",
         "description": "Mother and son bonding time!",
-        "modloaderVersion": "latest",
         "mods": [
             "andyandrenee",
             "yep_x_messagebacklog"
@@ -25,7 +23,6 @@
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "default",
         "description": "Add a voice acting framework to your game (does not come with voices!).",
-        "modloaderVersion": "latest",
         "mods": [
             "voiceactingframework",
             "yep_x_messagebacklog"
@@ -35,7 +32,6 @@
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "default",
         "description": "A cross-over with another Nemlei game.",
-        "modloaderVersion": "latest",
         "mods": [
             "candyscabs",
             "yep_x_messagebacklog"
@@ -45,7 +41,6 @@
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "default",
         "description": "Display two languages at once while playing.",
-        "modloaderVersion": "latest",
         "mods": [
             "multilanguage"
         ]
@@ -54,7 +49,6 @@
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "default",
         "description": "Make your life hacking the game easier.",
-        "modloaderVersion": "latest",
         "mods": [
             "devactions",
             "devtools",

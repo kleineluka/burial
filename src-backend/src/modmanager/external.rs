@@ -2,6 +2,8 @@
 use tauri::Window;
 use tauri::command;
 use crate::utils::game;
+use crate::utils::services::standalone;
+use super::browser;
 
 // command to download a mod
 #[command]
@@ -12,8 +14,8 @@ pub async fn download_external_mod(window: Window, in_path: String, mod_url: Str
         return;
     }
     // get the mod source
-    //let mod_source = standalone::ModSource::from_url(&mod_url);
-    //window.emit("external-mod-source", mod_source.clone()).unwrap();
-    //let mod_downloaded = download_mod_url(in_path, mod_url, mod_source).await;
-    //window.emit("external-mod-downloaded", mod_downloaded).unwrap();
+    let mod_source = standalone::ModSource::from_url(&mod_url);
+    window.emit("external-mod-source", mod_source.clone()).unwrap();
+    let mod_downloaded = browser::install_and_download(Some(&window), in_path, mod_url, None, None, mod_source).await;
+    window.emit("external-mod-downloaded", mod_downloaded).unwrap();
 }

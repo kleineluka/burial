@@ -5,7 +5,6 @@ use std::option::Option;
 use crate::modmaking::converter;
 use crate::utils::game;
 use crate::utils::services::gamebanana::GamebananaMod;
-use crate::utils::services::github;
 use crate::utils::services::github::GithubMod;
 use crate::utils::services::llamaware::LlamawareMod;
 use crate::utils::services::standalone;
@@ -79,7 +78,7 @@ pub async fn install_mod(window: Window, in_path: String, mod_path: String, mod_
         mod_source = standalone::ModSource::LLamaware;
     }
     // install dependant based on that
-    let mut install_result = install_and_download(Some(&window), in_path, mod_path, Some(mod_json), Some(mod_hash), mod_source).await;
+    let install_result = install_and_download(Some(&window), in_path, mod_path, Some(mod_json), Some(mod_hash), mod_source).await;
 }
 
 // uninstall a mod

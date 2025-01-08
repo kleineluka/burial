@@ -2,8 +2,35 @@ let modpack_data = [];
 let modpack_status = null;
 
 // on button click, gather required mod downloads to send..
-function install_modpack(modpack) {
-    console.log(modpack);
+function install_modpack(inPath, modpack, packName) {
+    // for each mod in the modpack, we need to find that mod in the combined_data
+    let modEntries = [];
+    modpack.mods.forEach(modId => {
+        const modEntry = combined_data.find(entry => entry.data.id === modId);
+        modEntries.push(modEntry);
+    });
+    let modpackMods = [];
+    modEntries.forEach(modEntry => {
+        // build the info we need for each mod in the modpack
+        let mod_name = modEntry.data.id;
+        let mod_sha256 = modEntry.data.sha256 || 'unknown_hash';
+        let mod_tags = modEntry.data.tags || ['No Tags Yet'];
+        let mod_url = modEntry.data.url;
+        let modPackMod = {
+            name: mod_name,
+            sha256: mod_sha256,
+            tags: mod_tags,
+            modJson: modEntry.modJson,
+            modUrl: mod_url
+        };
+        modpackMods.push(modPackMod);
+    });
+    // set the modpack.mods to the modpackMods
+    modpack.mods = modpackMods;
+    // add a value to modpack.name  
+    modpack.name = packName;
+    // call the back-end
+    invoke('install_modpack', { inPath, modpackEntry: modpack });
 }
 
 // build the modpack repository
@@ -52,9 +79,9 @@ function build_modpack_repo() {
         const installButton = document.createElement('img');
         installButton.src = 'assets/img/download.png';
         installButton.classList.add('modpack-download-icon', 'hvr-shrink');
-        installButton.addEventListener('click', () => {
-            console.log(`Installing modpack..`);
-            install_modpack(pack);
+        installButton.addEventListener('click', async () => {
+            let inPath = await loadStorage().get('settings-tcoaal');
+            install_modpack(inPath, pack, packName);
         });
         actionsDiv.appendChild(installButton);
         // build the first row
@@ -71,6 +98,9 @@ function build_modpack_repo() {
             modsList.appendChild(modEntry);
         });
         // toggle mods list
+        actionsDiv.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+        });
         firstRow.addEventListener('click', () => {
             modsList.classList.toggle('hidden');
         });

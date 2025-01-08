@@ -104,6 +104,19 @@ pub async fn install_latest(in_path: String) -> String {
     "success".to_string()
 }
 
+pub fn uninstall_current_modloader(in_path: &String) -> bool {
+    // delete tomb
+    let tomb_dir = format!("{}\\tomb", in_path);
+    files::delete_folder(&tomb_dir);
+    // edit the package.json file
+    let game_package_json = format!("{}\\package.json", in_path);
+    let package_edited = edit_package(game_package_json, "uninstall".to_string());
+    if !package_edited {
+        return false;
+    }
+    true
+}
+
 // public-facing command to download and install tomb
 #[command]
 pub async fn install_modloader(window: Window, in_path: String, in_name: String) {

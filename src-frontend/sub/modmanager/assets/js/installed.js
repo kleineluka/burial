@@ -61,6 +61,10 @@ async function build_list() {
         detailsDiv.classList.add('mod-details');
         const nameHeading = document.createElement('h3');
         nameHeading.classList.add('mod-name');
+        // hacky fix for tomb's core mod
+        if (entry.modjson.id === 'tomb') {
+            entry.modjson.authors = ['Basil'];
+        }
         let nameHTML = `
         ${entry.modjson.name || 'Unnamed Mod'}
         <span class="mod-author">(by ${entry.modjson.authors ? entry.modjson.authors.join(', ') : 'Unknown Author'}) [v${entry.modjson.version || '0.0'}]</span>
@@ -123,9 +127,8 @@ async function build_list() {
                 const modPath = initialData.url || 'unknown_name';
                 const modHash = initialData.sha256 || 'unknown_hash';
                 const modTags = initialData.tags || ['No Tags Yet'];
-                const sanitizedName = modData.name.replace(/[^a-zA-Z0-9]/g, '_');
                 const modJson = combined_data.find(entry => entry.data.id === initialData.id).modJson;
-                invoke('install_mod', { inPath, modPath, modHash, modTags, sanitizedName, modJson });
+                invoke('install_mod', { inPath, modPath, modHash, modTags, modJson });
             });
         }
         if (entry.modjson.id !== 'tomb') {

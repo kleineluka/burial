@@ -37,6 +37,7 @@ use tutorial::setup;
 use tutorial::finished;
 use modmanager::installed;
 use modmanager::modloader;
+use modmanager::modpacks;
 use modmanager::browser;
 use modmanager::profiles;
 use modmanager::external;
@@ -155,6 +156,8 @@ fn main() {
             modloader::uninstall_modloader,
             modloader::modloader_version,
             modloader::modloader_versions,
+            modpacks::install_modpack,
+            modpacks::uninstall_modpack,
             installed::installed_mods,
             installed::disable_mod,
             installed::enable_mod,
