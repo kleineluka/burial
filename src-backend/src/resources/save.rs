@@ -25,6 +25,23 @@ pub fn backup_rpgsave_files(dir: &PathBuf, backup: &PathBuf) {
     }
 }
 
+// iterate over the save folder (recursive)
+pub fn delete_rpgsave_files(dir: &PathBuf) {
+    if dir.is_dir() {
+        for entry in fs::read_dir(dir).expect("Failed to read directory") {
+            let entry = entry.expect("Failed to get directory entry");
+            let path = entry.path();
+            if path.is_dir() {
+                delete_rpgsave_files(&path);
+            } else if let Some(extension) = path.extension() {
+                if extension == "rpgsave" {
+                    fs::remove_file(&path).expect("Failed to delete file");
+                }
+            }
+        }
+    }
+    }
+
 // find all saves in the save folder
 #[command]
 pub fn find_saves(window: Window) {
@@ -133,22 +150,6 @@ pub fn delete_all(window: Window) {
     if !save_folder.exists() {
         window.emit("error", "Save folder does not exist.").unwrap();
         return;
-    }
-    // iterate over the save folder (recursive)
-    fn delete_rpgsave_files(dir: &PathBuf) {
-        if dir.is_dir() {
-            for entry in fs::read_dir(dir).expect("Failed to read directory") {
-                let entry = entry.expect("Failed to get directory entry");
-                let path = entry.path();
-                if path.is_dir() {
-                    delete_rpgsave_files(&path);
-                } else if let Some(extension) = path.extension() {
-                    if extension == "rpgsave" {
-                        fs::remove_file(&path).expect("Failed to delete file");
-                    }
-                }
-            }
-        }
     }
     // call the recursive function
     delete_rpgsave_files(&save_folder);

@@ -30,6 +30,7 @@
 .header-action-button {
     border-radius: 10px;
     padding: 2px 15px;
+    margin-right: 1.5vmin;
     font-size: 3vmin;
     font-family: 'Nunito', sans-serif;
     background-color: var(--main-colour);
@@ -247,4 +248,10 @@
     padding-left: 0.5vmin;
     color: #333;
     text-align: left;
+}
+
+/* Header Section Row */
+.header-section-row {
+    font-size: 3vmin;
+    margin-left: 1.5vmin;
 }

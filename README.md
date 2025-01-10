@@ -52,7 +52,7 @@ Burial presents a **one-click solution for installing mods** in the **Mod Manage
 
 Please note: Burial takes multiple steps when installing mods to ensure a smooth process - this includes checking for dangerous files and converting to the Tomb modloader. There are a number of formats supported for the best flexibility. For the best experience, make sure your mod has a Tomb-compatible version and don't include any dangerous files (like .exe's) in your mod. **Mods hosted on the Llamwa.re Mod Depository are already Tomb-compatible and are loosely vetted each update. I suggest this site! ^_^**
 
-**Want your mod featured in Burial?** Submit it to the [Llamawa.re Mod Depository](https://github.com/Llamaware/Llamaware.github.io) here! If you want your modpack featured in Burial, please fork this repo with an updated [modpacks.json](https://github.com/kleineluka/burial/blob/main/api/modpacks.json)! If you are not the creator of the mod, or your mod is not Tomb-compatible, please fork with an updated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) (or get the mod author to submit to the depository and/or convert to Tomb!).
+**Want your mod featured in Burial?** Submit it to the [Llamawa.re Mod Depository](https://github.com/Llamaware/Llamaware.github.io) here! If you want your modpack featured in Burial, please fork this repo with an updated [modpacks.json](https://github.com/kleineluka/burial/blob/main/api/modpacks.json)! If you are not the creator of the mod, or your mod is not Tomb-compatible, please fork with an updated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) (or get the mod author to submit to the depository and/or convert to Tomb!). **If you are a mod creator** (or tool creator) and want to work directly with me and/or Burial in any capacity, please add me on Discord: `kleineluka`~
 
 <!-- Documentation -->
 # Documentation 🥩
@@ -64,7 +64,7 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 # Roadmap 👁️
 (In no particular order and beyond basic planned features, aka luxury things that mostly™ will start after the first release..)
 - [ ] Language Support
-- [ ] Steam Deck / Linux Improvements
+- [ ] Steam Deck / Linux Improvements (high priority)
 - [ ] Better Folder & File Dialog Handling 
 - [ ] Easier Save Editor
 - [ ] Cleanup (Code, UI, Responsiveness, Code Warnings, Var Ownership, Structure, JS -> Rust, Logging, Async I/O)

@@ -300,9 +300,9 @@ async fn init_installation(in_path: String) -> String {
     // see if tomb is installed, and if not, install it
     let is_modded = modloader::modloader_prescence(installation_path.to_string_lossy().to_string());
     if !is_modded {
-        let install_modloar = modloader::install_latest(installation_path.to_string_lossy().to_string()).await;
-        if install_modloar != "success" {
-            return install_modloar;
+        let install_modloader = modloader::install_latest(installation_path.to_string_lossy().to_string()).await;
+        if install_modloader != "success" {
+            return install_modloader;
         }
     }
     // update the profiles database

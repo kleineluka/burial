@@ -157,6 +157,7 @@ fn main() {
             modloader::modloader_version,
             modloader::modloader_versions,
             modpacks::install_modpack,
+            modpacks::current_modpack,
             modpacks::uninstall_modpack,
             installed::installed_mods,
             installed::disable_mod,

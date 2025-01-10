@@ -1,8 +1,46 @@
 let modpack_data = [];
 let modpack_status = null;
+let current_modpack = 'None';
+let current_updated = 'never';
+
+// checks before downloading the modpacks
+function install_check(inPath, modpack, packName, outPath) {
+    // ask the user if they are sure they want to install the modpack
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `You are about to install the modpack: ${packName}. This will overwrite any existing mods in your mods folder. Are you sure you want to continue?`,
+        showCancelButton: true,
+        confirmButtonText: 'Yes, install the modpack!',
+        confirmButtonColor: "var(--main-colour)"
+    }).then((result) => {
+        let backupSaves = false;
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Hey, wait!",
+                text: "Do you want to reset your saves? Don't worry, Burial will back them up for you!",
+                showCancelButton: true,
+                confirmButtonText: "Yes, reset my saves!",
+                confirmButtonColor: "var(--main-colour)"
+            }).then((result) => {
+                backupSaves = result.isConfirmed;
+                install_modpack(inPath, modpack, packName, backupSaves, outPath);
+            });
+        } else {
+            Swal.fire({
+                title: "No worries, Burial won't install it!",
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: true,
+                confirmButtonText: "Oki..",
+                confirmButtonColor: "var(--main-colour)",
+                timer: 2000,
+            });
+        }
+    });
+}
 
 // on button click, gather required mod downloads to send..
-function install_modpack(inPath, modpack, packName) {
+function install_modpack(inPath, modpack, packName, backupSaves, outPath) {
     // for each mod in the modpack, we need to find that mod in the combined_data
     let modEntries = [];
     modpack.mods.forEach(modId => {
@@ -30,7 +68,7 @@ function install_modpack(inPath, modpack, packName) {
     // add a value to modpack.name  
     modpack.name = packName;
     // call the back-end
-    invoke('install_modpack', { inPath, modpackEntry: modpack });
+    invoke('install_modpack', { inPath, modpackEntry: modpack, backupSaves, outPath });
 }
 
 // build the modpack repository
@@ -81,7 +119,8 @@ function build_modpack_repo() {
         installButton.classList.add('modpack-download-icon', 'hvr-shrink');
         installButton.addEventListener('click', async () => {
             let inPath = await loadStorage().get('settings-tcoaal');
-            install_modpack(inPath, pack, packName);
+            let outPath = await loadStorage().get('settings-output');
+            install_check(inPath, pack, packName, outPath); // pass to check first
         });
         actionsDiv.appendChild(installButton);
         // build the first row
@@ -111,7 +150,7 @@ function build_modpack_repo() {
     });
 }
 
-// On page load, initialize the modpack list
+// on page load, initialize the modpack list
 window.addEventListener('load', async () => {
     // build the mods list first
     await download_repo(); 
@@ -125,6 +164,58 @@ window.addEventListener('load', async () => {
     modpack_status = (modpack_data !== null);
     // build the list
     build_modpack_repo();
+    // try to get the user's current modpack
+    invoke('current_modpack');
+});
+
+// listen for current-modpack
+listen('current-modpack', (event) => {
+    // set the current modpack
+    current_modpack = event.payload.name;
+    current_updated = event.payload.lastUpdate;
+    const currentModpack = document.querySelector('#current-modpack');
+    let modpack_name = (current_modpack === 'vanilla') ? 'None' : current_modpack;
+    currentModpack.textContent = modpack_name;
+    // determine if there is an update for the modpack
+    if (current_modpack !== 'vanilla') {
+        // find the modpack in the modpack_data
+        const modpack = modpack_data[current_modpack];
+        // check if the modpack is up to date
+        let modpackUpdated = new Date(modpack.lastUpdate);
+        let currentUpdated = new Date(current_updated);
+        if (modpackUpdated > currentUpdated) {
+            Swal.fire({
+                title: "Update Available!",
+                text: `There is an update available for the modpack: ${current_modpack}.`,
+                toast: true,
+                timer: 2000,
+                position: "bottom-right",
+                showConfirmButton: true,
+                confirmButtonText: "Oki!",
+                confirmButtonColor: "var(--main-colour)"
+            });
+        }
+    }
+});
+
+// listen for click on reset-modpack
+document.querySelector('#reset-modpack').addEventListener('click', async () => {
+    let inPath = await loadStorage().get('settings-tcoaal');
+    invoke('uninstall_modpack', { inPath });
+});
+
+// listen for modpack-uninstalled
+listen('modpack-uninstalled', (event) => {
+    Swal.fire({
+        title: "Modpack Uninstalled!",
+        text: "Your game is back to vanilla - but don't worry, you can always play another modpack!",
+        toast: true,
+        position: "bottom-right",
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    // reload the current modpack
+    invoke('current_modpack');
 });
 
 // tooltips

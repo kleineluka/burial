@@ -1,6 +1,12 @@
+use std::f32::consts::E;
+use std::fs;
+
 use serde::{Deserialize, Serialize};
 use tauri::{command, Window};
+use crate::config::appdata::{self, save_folder};
 use crate::modmanager::browser;
+use crate::resources::save;
+use crate::utils::compression;
 use crate::{config::cache, modmaking::converter, utils::game};
 use crate::utils::services::standalone;
 
@@ -24,7 +30,7 @@ pub struct ModPackMod {
     pub modUrl: String,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ModpackLock {
     pub name: String,
     pub lastUpdate: String,
@@ -67,12 +73,37 @@ pub fn read_modpack() -> ModpackLock {
 // install modpack
 //window: Window, in_path: String, mod_path: String, mod_hash: String, mod_tags: Vec<String>, mod_json: converter::ModJson
 #[command]
-pub async fn install_modpack(window: Window, in_path: String, modpack_entry: ModPack) {
+pub async fn install_modpack(window: Window, in_path: String, modpack_entry: ModPack, backup_saves: bool, out_path: String) {
     // first, clean out the game
     let is_game = game::verify_game(&in_path).unwrap();
     if !is_game {
         window.emit("error", "Please set a valid game directory in the settings first!").unwrap();
         return;
+    }
+    // (optionally backup saves)
+    if backup_saves {
+        window.emit("status", "Backing up save files..").unwrap();
+        let save_folder = appdata::save_folder();
+        if !save_folder.exists() {
+            window.emit("status", "No saves were found, skipping save backup..").unwrap();
+        } else {
+            // passed sanity check, now backup the saves (out_dir = out_path/"pre"_modpack_name_timestamp)
+            let sanitized_modpack_name = standalone::sanitize_mod_folder_name(&modpack_entry.name);
+            let out_dir = save_folder.join(out_path)
+                .join("Saves")
+                .join("Saves_Pre_".to_string() + 
+                &sanitized_modpack_name + "_" +
+                &chrono::Local::now().format("%Y-%m-%d_%H-%M-%S").to_string());
+            std::fs::create_dir_all(&out_dir).unwrap();
+            save::backup_rpgsave_files(&save_folder, &out_dir);
+            // zip the backup (+del original)
+            let out_file_path = out_dir.with_extension("zip");
+            let out_file = fs::File::create(&out_file_path).unwrap();
+            compression::compress_directory(&out_dir, &out_file).unwrap();  
+            std::fs::remove_dir_all(&out_dir).unwrap();
+            // delete the saves
+            save::delete_rpgsave_files(&save_folder);
+        }
     }
     // determine if already modded
     window.emit("status", "Cleaning up..").unwrap();
@@ -94,7 +125,17 @@ pub async fn install_modpack(window: Window, in_path: String, modpack_entry: Mod
     // double-triple-x100 check that the mods folder is empty (butchered past installations)
     let mods_folder = std::path::Path::new(&in_path).join("tomb").join("mods");
     if mods_folder.exists() {
-        std::fs::remove_dir_all(mods_folder).unwrap();
+        // delete any folder inside of the top level except "tomb"
+        for entry in std::fs::read_dir(mods_folder).unwrap() {
+            let entry = entry.unwrap();
+            let path = entry.path();
+            if path.is_dir() {
+                if path.ends_with("tomb") {
+                    continue;
+                }
+                std::fs::remove_dir_all(path).unwrap();
+            }
+        }
     }
     // go through every mod and install it
     for mod_entry in modpack_entry.mods {
@@ -112,8 +153,34 @@ pub async fn install_modpack(window: Window, in_path: String, modpack_entry: Mod
     window.emit("status", "Modpack installed! Have fun ^_^").unwrap();
 }
 
+// get the current modpack from the lock
+#[command]
+pub fn current_modpack(window: Window) {
+    let modpack = read_modpack();
+    window.emit("current-modpack", modpack).unwrap();
+}
+
 // uninstall modpack
 #[command]
 pub fn uninstall_modpack(window: Window, in_path: String) {
-
+    // see if a modpack is installed
+    let modpack = read_modpack();
+    if modpack.name == "vanilla" {
+        window.emit("error", "No modpack is currently installed.").unwrap();
+        return;
+    }
+    // make sure the game is valid
+    let is_game = game::verify_game(&in_path).unwrap();
+    if !is_game {
+        window.emit("error", "Please set a valid game directory in the settings first!").unwrap();
+        return;
+    }
+    // uninstall the modpack
+    window.emit("status", "Uninstalling modpack..").unwrap();
+    write_modpack(ModpackLock {
+        name: "vanilla".to_string(),
+        lastUpdate: "never".to_string(),
+    });
+    modloader::uninstall_current_modloader(&in_path);
+    window.emit("modpack-uninstalled", "success").unwrap();
 }
