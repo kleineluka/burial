@@ -50,9 +50,7 @@ To compile the source code yourself, please see the [Contributing page](https://
 
 Burial presents a **one-click solution for installing mods** in the **Mod Manager 📦** tab. These mods are primarily sourced from the [Llamawa.re Mod Depository](https://llamawa.re/mods/), but there is a curated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) list in the API to add non-Llamawa.re mods to the **Mod Browser 🕹️** tab. Burial also supports installing mods from many third-party websites directly through URL. Currently, this includes GameBanana, Github, hosted zip files, and hosted rar files. **Burial is not associated with any mods, hosted on any platform, and is simply a mod manager. Please only download mods that you trust.**
 
-Please note: Burial takes multiple steps when installing mods to ensure a smooth process - this includes checking for dangerous files and converting to the Tomb modloader. There are a number of formats supported for the best flexibility. For the best experience, make sure your mod has a Tomb-compatible version and don't include any dangerous files (like .exe's) in your mod. **Mods hosted on the Llamwa.re Mod Depository are already Tomb-compatible and are loosely vetted each update. I suggest this site! ^_^**
-
-**Want your mod featured in Burial?** Submit it to the [Llamawa.re Mod Depository](https://github.com/Llamaware/Llamaware.github.io) here! If you want your modpack featured in Burial, please fork this repo with an updated [modpacks.json](https://github.com/kleineluka/burial/blob/main/api/modpacks.json)! If you are not the creator of the mod, or your mod is not Tomb-compatible, please fork with an updated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) (or get the mod author to submit to the depository and/or convert to Tomb!). **If you are a mod creator** (or tool creator) and want to work directly with me and/or Burial in any capacity, please add me on Discord: `kleineluka`~
+Further reading: [Submit my mod to Burial](https://github.com/kleineluka/burial/wiki/Adding-Mods-&-Packs#i-want-to-submit-a-mod-i-made), [submit somebody else's mod to Burial](https://github.com/kleineluka/burial/wiki/Adding-Mods-&-Packs#i-want-to-submit-somebody-elses-mod), and [submitting a modpack to Burial](https://github.com/kleineluka/burial/wiki/Adding-Mods-&-Packs#i-want-to-submit-a-modpack). If you are having trouble with a third-party mod, please see [why doesn't Burial support this or that mod?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-does-burial-not-support-this-or-that-mod)
 
 <!-- Documentation -->
 # Documentation 🥩
@@ -65,7 +63,7 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 (In no particular order and beyond basic planned features, aka luxury things that mostly™ will start after the first release..)
 - [ ] Language Support
 - [ ] Steam Deck / Linux Improvements (high priority)
-- [ ] Better Folder & File Dialog Handling 
+- [ ] Better Dialog Handling (accept copy as path, take zips in place of folders)
 - [ ] Easier Save Editor
 - [ ] Cleanup (Code, UI, Responsiveness, Code Warnings, Var Ownership, Structure, JS -> Rust, Logging, Async I/O)
 - [ ] Self Updating

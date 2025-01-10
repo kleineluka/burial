@@ -1,0 +1,85 @@
+/* Override Default Styles to Fit Into Horiz Navbar */
+.page-navbar {
+    flex-direction: column !important;
+}
+
+.dropdown-container {
+    color: var(--main-colour) !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    width: 100%;
+}
+
+.dropdown-menu {
+    color: #000 !important;
+    background-color: var(--main-colour);
+}
+
+.page-navbar {
+    gap: 2vmin !important;
+}
+
+.bottom-padding {
+    margin-bottom: 2vmin !important;
+}
+
+/* Overrides for this page specifically */
+.dropdown-menu-header {
+    padding: 5px;
+    font-size: 3vmin;
+    border-radius: 5px;
+    border: 1px solid var(--main-colour);
+    background-color: var(--main-colour);
+    color: #030000;
+    width: 40vmin;
+    text-align: center;
+}
+
+.dropdown-container-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vmin;
+    margin-top: 2vmin;
+}
+
+.dropdown-container-header label {
+    font-size: 3vmin;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.full-width-input {
+    width: 85% !important;
+}
+
+.dropdown-label {
+    font-size: 3vmin;
+    margin-right: 30px;
+    text-align: center;
+}
+
+.no-extra-space {
+    margin-bottom: 0px !important;
+    margin-top: 5px !important;
+}
+
+/* Text Information (At Top) */
+.top-information {
+    font-size: 2.5vmin;
+    padding-right: 5vmin;
+    padding-left: 5vmin;
+    color: var(--main-colour);
+}
+
+/* Scrolling Container */
+.scrollable-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 1vmin;
+    max-height: 40vh;
+}

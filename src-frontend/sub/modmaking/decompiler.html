@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/repojson.css">
+    <link rel="stylesheet" href="assets/css/decompiler.css">
 </head>
 <!-- body -->
 <body>
@@ -22,9 +22,9 @@
             <a class="navigate-button hvr-grow" data-page="index.html">Mod Tools 🖍️</a>
             <a class="navigate-button hvr-grow" data-page="bundler.html">Bundler ⚔️</a>
             <a class="navigate-button hvr-grow" data-page="converter.html">Converter ♻️</a>
-            <a class="navigate-button hvr-grow" data-page="decompiler.html">Decompiler 🪄</a>
+            <a class="navigate-button sidebar-current" data-page="decompiler.html">Decompiler 🪄</a>
             <a class="navigate-button hvr-grow" data-page="modjson.html">Mod JSON 🍱</a>
-            <a class="navigate-button sidebar-current" data-page="repojson.html">Repo JSON 🌧️</a>
+            <a class="navigate-button hvr-grow" data-page="repojson.html">Repo JSON 🌧️</a>
             <a class="navigate-button hvr-grow" data-page="differences.html">Differences ♊</a>
         </div>
         <div class="sidebar-footer">
@@ -53,71 +53,33 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-            <button id="toggleSidebar" class="hvr-shrink">☰</button>
-            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+        <button id="toggleSidebar" class="hvr-shrink">☰</button>
+        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
         </div>
         <div class="container">
             <!-- Horizontal Navbar -->
             <div class="page-navbar">
-                <div class="file-path-container">
-                    <input id="input-repojson" type="text" class="file-path-input" placeholder="Path to either load or save.." value="">
-                    <button id="browse-button-out" class="browse-button hvr-shrink">Browse</button>
-                </div>
-                <div class="button-row">
-                    <button id="load-repojson" class="browse-button navbar-browse-button hvr-shrink">Load JSON ⬆️</button>
-                    <button id="save-repojson" class="browse-button navbar-browse-button hvr-shrink">Save JSON ⬇️</button>
-                </div>
-                <div class="button-row">
-                    <button id="clear-repojson" class="browse-button navbar-browse-button hvr-shrink">Clear Fields ♻️</button>
-                    <button id="example-repojson" class="browse-button navbar-browse-button hvr-shrink">Load Example 🍹</button>
-                </div>
+                <p class="top-information" id="preview-information">The mod folder should either have a <b>www</b> folder (non-Tomb) inside of it or a <b>mod.json</b> file (Tomb) inside of it. This only works if your game is <b>not modded</b> when generating.</p>
             </div>
             <!-- Sub Container -->
             <div class="page-container">
                 <div class="scrollable-area">
-                    <!-- Last Updated -->
-                    <div class="multi-container">
-                        <div class="first-row">
-                        <p id="last-updated-label">Last Updated:</p>
-                        <input id="input-date" type="text" class="file-path-input" value="">
-                        <button id="set-date" class="browse-button hvr-shrink">Set</button>
-                        </div>
+                    <div class="file-path-container">
+                        <input id="tcoaal-path" type="text" class="file-path-input file-path-navbar"
+                            placeholder="Your TCOAAL Installation" value="">
+                        <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
                     </div>
-                    <!-- URL -->
-                    <div class="text-container">
-                        <p id="zip-url-label">Zip URL:</p>
-                        <input id="input-url" type="text" class="file-path-input" value="">
+                    <div class="file-path-container">
+                        <input id="mod-path" type="text" class="file-path-input file-path-navbar"
+                            placeholder="Path to Mod to Decompile" value="">
+                        <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
                     </div>
-                    <!-- Source -->
-                    <div class="text-container">
-                        <p id="source-url-label">Source URL:</p>
-                        <input id="input-source" type="text" class="file-path-input" value="">
+                    <div class="file-path-container">
+                        <input id="output-path" type="text" class="file-path-input file-path-navbar"
+                            placeholder="Where will the folder for the mod be decompiled to?" value="">
+                        <button id="browse-button-in" class="browse-button hvr-shrink button-navbar">Browse</button>
                     </div>
-                    <!-- SHA256 -->
-                    <div class="multi-container">
-                        <div class="first-row">
-                            <p id="sha-256-label">SHA-256:</p>
-                            <input id="input-sha256" type="text" class="file-path-input" value="">
-                            <button id="set-sha256" class="browse-button hvr-shrink">Calc</button>
-                        </div>
-                    </div>
-                    <!-- Tags -->
-                    <div id="tags-container" class="multi-container">
-                        <div class="selection-row">
-                            <p id="tags-label">Tags:</p>
-                            <div class="file-path-container dropdown-container">
-                                <select id="dropdown-menu-tags" class="dropdown-menu">
-                                    <option value="content">New Content</option>
-                                    <option value="dev">Developer Tool</option>
-                                    <option value="qol">Quality of Life</option>
-                                    <option value="lib">Code Library</option>
-                                    <option value="mature">Mature Themes</option>
-                                    <option value="gen-ai">Generative AI</option>
-                                </select>
-                            </div>
-                            <button id="add-tag" class="browse-button hvr-shrink">+</button>
-                        </div>
-                    </div>
+                    <button id="decompile-button" class="button-action hvr-shrink">Decompile 💋</button>
                 </div>
             </div>
         </div>
@@ -135,5 +97,5 @@
 <script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/repojson.js"></script>
+<script src="assets/js/decompiler.js"></script>
 </html>
