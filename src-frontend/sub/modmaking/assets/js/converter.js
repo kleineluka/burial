@@ -23,6 +23,28 @@ document.getElementById('convert-button').addEventListener('click', async functi
     invoke('convert_mod', { inPath, gamePath, outPath, modName, modId, modAuthors, modDescription, modVersion });
 });
 
+// mod path browse
+document.getElementById('browse-button-mod').addEventListener('click', (event) => {
+    Swal.fire({
+        title: 'Hey, wait!',
+        text: 'Do you want to select a folder or a file?',
+        showCancelButton: true,
+        confirmButtonColor: 'var(--main-colour)',
+        confirmButtonText: 'Folder',
+        cancelButtonText: 'File'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            invoke('folder_dialog', { emitEvent: 'selected-mod-path' });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            invoke('file_dialog', { emitEvent: 'selected-mod-path', fileType: 'all' });
+        }
+    });
+});
+
+listen('selected-mod-path', (event) => {
+    document.getElementById('mod-path').value = event.payload;
+});
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

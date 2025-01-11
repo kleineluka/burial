@@ -8,6 +8,15 @@ document.getElementById('decompile-button').addEventListener('click', async () =
     invoke('decompile_mod', { inPath, modPath, outPath} );
 });
 
+// mod path browse
+document.getElementById('browse-button-mod').addEventListener('click', (event) => {
+    invoke('folder_dialog', { emitEvent: 'selected-mod-path' });
+});
+
+listen('selected-mod-path', (event) => {
+    document.getElementById('mod-path').value = event.payload;
+});
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

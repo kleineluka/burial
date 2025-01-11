@@ -69,30 +69,6 @@ document.getElementById('sift-button').addEventListener('click', () => {
         }) 
 });
 
-// send and listen for the selected input path
-document.getElementById('browse-button-in').addEventListener('click', (event) => {
-    var emitEvent = 'selected-input-folder';
-    window.__TAURI__.invoke('folder_dialog', { emitEvent });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    listen('selected-input-folder', (event) => {
-        document.getElementById('tcoaal-path').value = event.payload;
-    });
-});
-
-// send and listen for the selected output path
-document.getElementById('browse-button-out').addEventListener('click', (event) => {
-    var emitEvent = 'selected-output-folder';
-    window.__TAURI__.invoke('folder_dialog', { emitEvent });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    listen('selected-output-folder', (event) => {
-        document.getElementById('output-path').value = event.payload;
-    });
-});
-
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

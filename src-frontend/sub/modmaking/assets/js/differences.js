@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             supportedDifferences = Object.keys(data);
-            console.log(supportedDifferences);
             const dropdown = document.getElementById('dropdown-menu-difference');
             supportedDifferences.forEach((difference) => {
                 const option = document.createElement('option');
@@ -40,6 +39,24 @@ function createDifferences() {
 // listen for backend response
 listen('diff-result', (event) => {
     console.log(event.payload);
+});
+
+// mod one path browse
+document.getElementById('browse-button-mod-one').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-mod-one', fileType: 'zip' });
+});
+
+listen('selected-mod-one', (event) => {
+    document.getElementById('mod-one-path').value = event.payload;
+});
+
+// mod two path browse
+document.getElementById('browse-button-mod-two').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-mod-two', fileType: 'zip' });
+});
+
+listen('selected-mod-two', (event) => {
+    document.getElementById('mod-two-path').value = event.payload;
 });
 
 // tooltips

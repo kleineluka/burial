@@ -78,4 +78,10 @@ function knowledgeTooltips() {
         placement: 'right',
         theme: 'burial'
     });
+    tippy('#cest-moi-button', {
+        content: 'Hey, I made Burial!',
+        animation: 'perspective-subtle',
+        placement: 'right',
+        theme: 'burial'
+    });
 }

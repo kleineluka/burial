@@ -426,6 +426,15 @@ listen("load-modjson", (event) => {
     loadModjson(modData);
 });
 
+// mod.json browse
+document.getElementById('browse-button-modjson').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-modjson', fileType: 'json' });
+});
+
+listen('selected-modjson', (event) => {
+    document.getElementById('input-modjson').value = event.payload;
+});
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

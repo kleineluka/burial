@@ -54,11 +54,8 @@ pub async fn file_dialog(window: Window, emit_event: String, file_type: String) 
                 // Send back to front-end
                 if let Err(e) = window.emit(&emit_event, Some(path.display().to_string())) {
                     println!("Error emitting event: {:?}", e);
-                } else {
-                    println!("Event emitted successfully");
-                }
+                } 
             } else {
-                println!("No file selected");
                 window.emit("error", Some("No file selected!".to_string())).unwrap();
             }
         });

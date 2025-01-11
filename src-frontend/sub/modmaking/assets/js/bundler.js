@@ -36,7 +36,7 @@ document.getElementById('project-button').addEventListener('click', function() {
     var inPath = document.getElementById('tcoaal-path').value;
     var outPath = document.getElementById('output-path').value;
     var projectName = document.getElementById('project-name').value;
-    if (projectName === '') projectName = 'my_project';
+    if (projectName === '' || !projectName) projectName = 'my_project';
     invoke('export_rpg_project', { inPath, outPath, projectName });
 });
 
@@ -44,7 +44,7 @@ document.getElementById('project-button').addEventListener('click', function() {
 document.getElementById('mod-button').addEventListener('click', async function () {
     // get the in path
     var inPath = document.getElementById('rpg-project-path').value;
-    var gamePath = document.getElementById('tcoaal-path-mod').value;
+    var gamePath = document.getElementById('tcoaal-path-two').value;
     var outPath = document.getElementById('mod-path').value;
     var folderName = document.getElementById('mod-folder').value;
     let modVersion = document.getElementById('mod-version').value;
@@ -58,6 +58,33 @@ document.getElementById('mod-button').addEventListener('click', async function (
     let modAuthor = (await store.get('settings-modauthor')) || 'The Author';
     let modDescription = (await store.get('settings-moddescription')) || 'A mod that certainly does something..';
     invoke('export_mod_folder', { inPath, gamePath, outPath, folderName, autoZip, modName, modId, modAuthor, modDescription, modVersion });
+});
+
+// rpg project path browse
+document.getElementById('browse-button-rpg-project').addEventListener('click', (event) => {
+    invoke('folder_dialog', { emitEvent: 'selected-rpg-project'});
+});
+
+listen('selected-rpg-project', (event) => {
+    document.getElementById('rpg-project-path').value = event.payload;
+});
+
+// tcoaal two path browse
+document.getElementById('browse-button-rpg-project').addEventListener('click', (event) => {
+    invoke('folder_dialog', { emitEvent: 'selected-rpg-project' });
+});
+
+listen('selected-rpg-project', (event) => {
+    document.getElementById('rpg-project-path').value = event.payload;
+});
+
+// mod path browse
+document.getElementById('browse-button-mod').addEventListener('click', (event) => {
+    invoke('folder_dialog', { emitEvent: 'selected-mod-path' });
+});
+
+listen('selected-mod-path', (event) => {
+    document.getElementById('mod-path').value = event.payload;
 });
 
 // tooltips

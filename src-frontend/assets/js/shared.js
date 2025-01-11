@@ -204,6 +204,28 @@ window.onload = async () => {
             navigatePage(pageToNavigate);
         });
     }
+    // if tcoaal-path exists, add an event for clicking and listener (for the file dialog)
+    let tcoaalPath = document.getElementById('tcoaal-path');
+    if (tcoaalPath) {
+        let browseButtonTcoaal = document.getElementById('browse-button-tcoaal');
+        browseButtonTcoaal.addEventListener('click', (event) => {
+            invoke('folder_dialog', { emitEvent: 'selected-input-folder' });
+        });
+        listen('selected-input-folder', (event) => {
+            tcoaalPath.value = event.payload;
+        });
+    }
+    // if output-path exists, add an event for clicking and listener (for the file dialog)
+    let outputPath = document.getElementById('output-path');
+    if (outputPath) {
+        let browseButtonOut = document.getElementById('browse-button-out');
+        browseButtonOut.addEventListener('click', (event) => {
+            invoke('folder_dialog', { emitEvent: 'selected-output-folder' });
+        });
+        listen('selected-output-folder', (event) => {
+            outputPath.value = event.payload;
+        });
+    }
 };
 
 // listeners for various updates and conditions

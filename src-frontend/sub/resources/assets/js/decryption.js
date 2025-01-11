@@ -9,22 +9,10 @@ document.getElementById('browse-button-in').addEventListener('click', (event) =>
     }
 });
 
-document.getElementById('browse-button-out').addEventListener('click', (event) => {
-    var emitEvent = 'selected-output-folder';
-    window.__TAURI__.invoke('folder_dialog', { emitEvent });
-});
-
 // listen to put the selected data back in the input path
 document.addEventListener('DOMContentLoaded', () => {
     listen('selected-input-folder', (event) => {
         document.getElementById('input-path').value = event.payload;
-    });
-});
-
-// listen to put the selected data back in the output path
-document.addEventListener('DOMContentLoaded', () => {
-    listen('selected-output-folder', (event) => {
-        document.getElementById('output-path').value = event.payload;
     });
 });
 

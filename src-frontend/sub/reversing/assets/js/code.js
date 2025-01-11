@@ -221,6 +221,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// click on deobfuscate browse
+document.getElementById('browse-button-code-deobfuscate').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-code-deobfuscate-file', fileType: 'all' });
+});
+
+listen('selected-code-deobfuscate-file', (event) => {
+    document.getElementById('code-path-deobfuscate').value = event.payload;
+});
+
+// click on beautify browse
+document.getElementById('browse-button-code-beautify').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-code-beautify-file', fileType: 'all' });
+});
+
+listen('selected-code-beautify-file', (event) => {
+    document.getElementById('code-path-beautify').value = event.payload;
+});
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

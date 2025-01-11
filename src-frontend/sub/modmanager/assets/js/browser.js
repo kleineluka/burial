@@ -421,7 +421,7 @@ function notifyForeign() {
         text: 'Please be cautious when downloading and installing it. You may inspect the code yourself if you want. We do not vet third-party mods or gurantee their safety. This mod will automatically be translated to Tomb, so it may take more time to install or it may break. The developer of this mod may convert their mod to Tomb Modloader if they wish - feel free to ask them to so that TCOAAL modding can be more accessible!',
         closeOnConfirm: true,
         reverseButtons: true,
-        confirmButtonText: 'I Understood',
+        confirmButtonText: 'I Understand',
         confirmButtonColor: "var(--main-colour)",
     });
 }

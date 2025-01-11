@@ -161,6 +161,15 @@ function previewCopyButton() {
     set_status('Copied to clipboard!');
 }
 
+// code path browse
+document.getElementById('browse-button-code').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-code-file', fileType: 'all' });
+});
+
+listen('selected-code-file', (event) => {
+    document.getElementById('code-path').value = event.payload;
+});
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;

@@ -168,6 +168,15 @@ listen("load-repojson", (event) => {
     loadRepojson(repoData);
 });
 
+// repo.json browse
+document.getElementById('browse-button-repojson').addEventListener('click', (event) => {
+    invoke('file_dialog', { emitEvent: 'selected-repojson', fileType: 'json' });
+});
+
+listen('selected-repojson', (event) => {
+    document.getElementById('input-repojson').value = event.payload;
+});
+
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {
     if (await skipTooltips()) return;
