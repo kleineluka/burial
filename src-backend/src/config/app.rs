@@ -15,7 +15,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Config {
-            api_server: "https://www.luka.moe/api/ubrial/".to_string(),
+            api_server: "https://www.luka.moe/api/burial/".to_string(),
             api_backup_server: "https//raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/".to_string(),
             repo_server: "https://llamawa.re/".to_string(),
             metadata_timeout: 10,

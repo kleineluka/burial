@@ -1,7 +1,7 @@
 [package]
 name = "burial"
-version = "0.0.1"
-description = "Tools for TCOAAL"
+version = "0.0.2"
+description = "A pretty one-stop-shop for The Coffin of Andy and Leyley modding! 💚🩷"
 authors = ["kleineluka"]
 edition = "2021"
 
@@ -33,12 +33,14 @@ open = "5.3.0"
 regex = "1.10.6"
 blake3 = "1.5.4"
 diff = "0.1.13"
-winreg = "0.52.0"
 json-patch = "3.0.1"
 rand = "0.8.5"
 image = "0.25.5"
 flate2 = "1.0.35"
 unrar = "0.5.7"
+
+[target.'cfg(windows)'.dependencies] 
+winreg = "0.52.0"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!

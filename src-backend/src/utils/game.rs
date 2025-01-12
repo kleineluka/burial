@@ -1,10 +1,7 @@
-// imports
 use std::fs::{self, File};
 use std::path::{Path, PathBuf};
 use std::error::Error;
 use std::io::{self, BufRead, BufReader};
-use winreg::enums::*;
-use winreg::RegKey;
 use regex::Regex;
 
 // make sure that a game directory is actually a tcoaal game directory
@@ -45,12 +42,12 @@ pub fn get_mainjs(dir_path: &str) -> PathBuf {
 // get the game version from the files
 pub fn game_version(in_path: String) -> String {
     // navigate from in_path to www/js/main.js
-     let main_js_path = format!("{}//www//js//main.js", in_path);
+    let main_js_path = format!("{}//www//js//main.js", in_path);
     // open main.js
     let file = File::open(main_js_path).unwrap();
     let reader = BufReader::new(file);
     // find const GAME_VERSION = "ANYTHING GOES HERE";
-     for line in reader.lines() {
+    for line in reader.lines() {
         let line = line.unwrap();
         // Look for the line that contains the GAME_VERSION constant
         if line.contains("const GAME_VERSION") {
@@ -68,7 +65,11 @@ pub fn game_version(in_path: String) -> String {
     return "Unknown".to_string();
 }
 
+#[cfg(target_os = "windows")]
 pub fn find_installation() -> Result<Option<PathBuf>, Box<dyn Error>> {
+    // windows-only imports
+    use winreg::enums::*;
+    use winreg::RegKey;
     // find the steam installation
     let hk_local_machine = RegKey::predef(HKEY_LOCAL_MACHINE);
     let steam_key = hk_local_machine
@@ -99,5 +100,11 @@ pub fn find_installation() -> Result<Option<PathBuf>, Box<dyn Error>> {
         }
     }
     // womp, womp..
+    Ok(None)
+}
+
+#[cfg(not(target_os = "windows"))]
+pub fn find_installation() -> Result<Option<PathBuf>, Box<dyn Error>> {
+    // no autofind for mac or linux as of now
     Ok(None)
 }
