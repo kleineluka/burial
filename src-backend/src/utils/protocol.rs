@@ -150,6 +150,7 @@ pub fn unregister_protocol_macos(app_name: &str, scheme_name: &str) -> std::io::
 pub fn register_protocol_linux(app_name: String, entry_name: String, scheme_name: String) -> std::io::Result<()> {
     // linux-only imports
     use std::fs;
+    use std::path::Path;
     use std::process::Command;
     // path to the .desktop file
     let desktop_file_path = format!(
