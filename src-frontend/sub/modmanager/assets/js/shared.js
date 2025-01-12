@@ -1,6 +1,4 @@
 // keep track of the repository data
-const repo = "https://llamawa.re/repo.json";
-const foreign = "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/foreign.json";
 let repo_data = null;
 let repo_status = false;
 let foreign_data = null;
@@ -56,13 +54,31 @@ function filter_source(source) {
 // download json into a structured object
 async function download_repo() {
     // gather the data
-    const response = await fetch(repo);
-    if (!response.ok) {
+    let storage = loadStorage();
+    let repo = await storage.get("config-repo-server");
+    let repo_url = `${repo}repo.json`;
+    const repo_response = await fetch(repo_url);
+    if (!repo_response.ok) {
+        // try backup server
+        let backup = await storage.get("config-api-server-backup");
+        let user_hash = await storage.get("state-user-hash");
+        let app_ver = await storage.get("state-app-ver");
+        let backup_url = `${backup}repo.json`;
+        repo_response = await fetch(backup_url,
+            {
+                method: 'GET',
+                headers: {
+                'hwid': user_hash,
+                'appver': app_ver,
+            },
+        });
+    }
+    if (!repo_response.ok) {
         repo_status = false;
         console.error("Failed to fetch repository data");
         return;
     }
-    const data = await response.json();
+    const data = await repo_response.json();
     if (!data) {
         repo_status = false;
         console.error("Failed to parse repository data");
@@ -82,7 +98,24 @@ async function download_repo() {
 // download foreign json into a structured object
 async function download_foreign() {
     // gather the data
-    const response = await fetch(foreign);
+    let storage = loadStorage();
+    let foreign_server = await storage.get("config-api-server");
+    let foreign_url = `${foreign_server}foreign.json`;
+    let user_hash = await storage.get("state-user-hash");
+    let app_ver = await storage.get("state-app-ver");
+    const response = await fetch(foreign_url, {
+        method: 'GET', 
+        headers: {
+            'hwid': user_hash,
+            'appver': app_ver,
+        },
+    });
+    if (!response.ok) {
+        // try backup server
+        let backup_server = await storage.get("config-api-server-backup");
+        let backup_url = `${backup_server}foreign.json`;
+        response = await fetch(backup_url);
+    }
     if (!response.ok) {
         console.error("Failed to fetch foreign data");
         return;

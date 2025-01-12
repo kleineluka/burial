@@ -157,10 +157,19 @@ window.addEventListener('load', async () => {
     await download_foreign(); 
     combine_jsons();
     // load  the modpacks
-    let api_server = await loadStorage().get('config-api-server');
-    let modpacks_url = `${api_server}/modpacks.json`;
-    modpack_data = await fetch(modpacks_url).then(response => response.json());
-    console.log(modpack_data);
+    const storage = loadStorage();
+    let api_server = await storage.get('config-api-server');
+    let modpacks_url = `${api_server}modpacks.json`;
+    let user_hash = await storage.get("state-user-hash");
+    let app_ver = await storage.get("state-app-ver");
+    const modpack_response = await fetch(modpacks_url, {
+        method: 'GET',
+        headers: {
+            'hwid': user_hash,
+            'appver': app_ver,
+        },
+    });
+    modpack_data = await modpack_response.json();
     modpack_status = (modpack_data !== null);
     // build the list
     build_modpack_repo();

@@ -54,7 +54,8 @@ fn main() {
     let app_config = app::load_config();
     let rt = tokio::runtime::Runtime::new().unwrap();
     let user_settings = config::settings::read_settings();
-    let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings)).unwrap();
+    let user_hash = utils::environment::get_hwid();
+    let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings, &user_hash)).unwrap();
     let _protocol_init = protocol::register_protocol(user_settings.deeplinks);
     // build tauri app
     tauri::Builder::default()
@@ -63,11 +64,11 @@ fn main() {
             // set the baseline persistent storage 
             config::storage::clear_store(&app.handle()).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-first-run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
-            config::storage::insert_into_store(&app.handle(), "state-hwid", serde_json::Value::String(utils::environment::get_hwid())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-local-version", serde_json::Value::String(metadata::get_local_version())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-operating-system", serde_json::Value::String(utils::environment::get_os().to_owned())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-bundled-resources", serde_json::Value::String(utils::environment::get_resources(app).to_string_lossy().to_string())).unwrap();
-            config::storage::insert_into_store(&app.handle(), "state-starting-page", serde_json::Value::String("home".to_string())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-user-hash", serde_json::Value::String(user_hash)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-app-ver", serde_json::Value::String(env!("CARGO_PKG_VERSION").to_string())).unwrap();
             // set user settings
             config::storage::insert_into_store(&app.handle(), "settings-tcoaal", serde_json::Value::String(user_settings.tcoaal)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-output", serde_json::Value::String(user_settings.output)).unwrap();
@@ -82,6 +83,8 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "settings-deeplinks", serde_json::Value::Bool(user_settings.deeplinks)).unwrap();
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-api-server", serde_json::Value::String(app_config.api_server)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "config-api-backup-server", serde_json::Value::String(app_config.api_backup_server)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "config-repo-server", serde_json::Value::String(app_config.repo_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-mods-repository", serde_json::Value::String(app_config.mods_repository)).unwrap();
             // set the metadata

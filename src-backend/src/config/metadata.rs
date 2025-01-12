@@ -33,24 +33,32 @@ impl Default for Metadata {
 }
 
 // load the metadata from the url
-pub async fn get_metadata(app_config: &app::Config, user_settings: &Settings) -> Result<Metadata, Error> {
+pub async fn get_metadata(app_config: &app::Config, user_settings: &Settings, user_hash: &String) -> Result<Metadata, Error> {
     // if the user doesn't want to fetch metadata, return the default (RESPECT PRIVACY!!!!!!!!!!!!)
     if !user_settings.updates {
         return Ok(Metadata::default());
     }
-    // since we are going to be blocking, it's a safe bet to set a timeout
+    // set the timeout duration
     let timeout_duration = Duration::from_secs(app_config.metadata_timeout);
-    let metadata_url = format!("{}/metadata.json", app_config.api_server);
-    match time::timeout(timeout_duration, reqwest::get(&metadata_url)).await {
-        // no timeout, try to parse the response
+    let metadata_url = format!("{}metadata.json", app_config.api_server);
+    let client = reqwest::Client::new();
+    let request = client
+        .get(&metadata_url)
+        .header("hwid", user_hash)
+        .header("appver", env!("CARGO_PKG_VERSION"))
+        .build()
+        .expect("Failed to build request");
+    // try to fetch the metadata
+    match time::timeout(timeout_duration, client.execute(request)).await {
+        // no timeout, try to parse the response 
         Ok(Ok(response)) => {
             match response.json::<Metadata>().await {
                 Ok(metadata) => Ok(metadata), // yipee !
                 Err(_) => Ok(Metadata::default()), // parsing failure
             }
         }
-        // timeout, or error
-        Ok(Err(_)) | Err(_) => Ok(Metadata::default()),
+        // return the default metadata on timeout
+        _ => Ok(Metadata::default()),
     }
 }
 
