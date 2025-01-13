@@ -20,7 +20,8 @@ function install_check(inPath, modpack, packName, outPath) {
                 text: "Do you want to reset your saves? Don't worry, Burial will back them up for you!",
                 showCancelButton: true,
                 confirmButtonText: "Yes, reset my saves!",
-                confirmButtonColor: "var(--main-colour)"
+                confirmButtonColor: "var(--main-colour)",
+                cancelButtonText: "No, keep my saves!"
             }).then((result) => {
                 backupSaves = result.isConfirmed;
                 install_modpack(inPath, modpack, packName, backupSaves, outPath);

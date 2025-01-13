@@ -60,7 +60,7 @@ const splashTexts = [
     "Don't talk about her like that.",
     "Releasing: in decades",
     "Where are your robes?",
-    "Worst Regards,"
+    "Worst Regards"
 ];
 
 function updateSplashText() {

@@ -20,6 +20,11 @@
 - [**RPG Save Converter**](https://github.com/13xforever/rpgsave-converter) (MIT) was a great read for understanding the save format of RPG Maker MV games.
 - [**Concursus**](https://github.com/MadMax1960/Concursus) was an awesome reference for GameBanana's endpoints implementation!
 
+<!-- Thank Yous -->
+# Thank Yous 🥰
+- **[basil](https://basil.cafe/)** and **[onehalf](https://onehalf.dev/)** for general help with TCOAAL modding.
+- **[peachy](https://linktr.ee/estrohoe)** for helping with Linux debugging.
+
 <!-- Licenses -->
 # Licenses 📖
 - [**Tauri**](https://github.com/tauri-apps/tauri), the Rust-based front-end framework, is licensed under MIT/Apache.

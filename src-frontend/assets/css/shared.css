@@ -199,6 +199,8 @@ body::after {
     color: var(--main-colour);
     width: 40vmin;
     text-align: center;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 .dropdown-container {

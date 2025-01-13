@@ -69,22 +69,20 @@
   pointer-events: none; 
   transform: rotate(-10deg) scale(1);
   animation: growInOut 3s ease-in-out infinite;
-  left: 55%;
+  left: 52.5%;
   bottom: 7.5px;
   z-index: 1000;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes growInOut {
   0% {
-    opacity: 0.8;
     transform: rotate(-10deg) scale(1);
   }
   50% {
-    opacity: 1;
     transform: rotate(-10deg) scale(1.2);
   }
   100% {
-    opacity: 0.8;
     transform: rotate(-10deg) scale(1);
   }
 }

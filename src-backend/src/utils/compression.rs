@@ -114,30 +114,25 @@ pub fn decompress_zip_nosub(zip_file_path: &Path, output_folder: &Path) -> io::R
 
 // decompress a RAR file to a directory
 pub fn decompress_rar(rar_file_path: &Path, output_folder: &Path) -> io::Result<()> {
-    // Ensure output directory exists
+    // ensure output directory exists
     let output_path = Path::new(output_folder);
     if !output_path.exists() {
         std::fs::create_dir_all(output_path)?;
     }
-    // Open the RAR archive for processing
+    // open the RAR archive for processing
     let mut archive = Archive::new(rar_file_path)
         .open_for_processing()
         .map_err(|e| format!("Failed to open archive: {}", e)).unwrap();
-
-    // Iterate over headers and extract files
+    // iterate over headers and extract files
     while let Some(header) = archive.read_header().unwrap() {
         let entry = header.entry();
         let filename = output_path.join(entry.filename.to_string_lossy().to_string());
-
         if entry.is_file() {
-            println!("Extracting file: {} ({} bytes)", filename.display(), entry.unpacked_size);
             archive = header.extract_to(&filename).unwrap();
         } else {
-            println!("Skipping directory: {}", filename.display());
             archive = header.skip().unwrap();
         }
     }
-    println!("Extraction completed!");
     Ok(())
 }
 

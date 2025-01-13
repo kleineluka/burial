@@ -82,8 +82,6 @@ impl ModType {
         if *self == ModType::TopLevel {
             let tomb_folder = Path::new(&in_path).join("tomb");
             let mods_folder = tomb_folder.join("mods");
-            // print mods_folder
-            println!("Mods folder: {:?}", mods_folder);
             for entry in mods_folder.read_dir().unwrap() {
                 let entry = entry.unwrap();
                 if entry.path().is_dir() && entry.path().file_name().unwrap() != "tomb" {
@@ -285,8 +283,6 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
         emitter.emit("error", "This mod is not supported. Please ask the developers for a Tomb native version!");
         return "unsupported".to_string();
     }
-    // print the modtype
-    println!("Mod type: {:?}", mod_type);
     let formatted_path = mod_type.formatted_path(&mod_path);
     // get any issues with the mod
     emitter.emit("status", "Checking the mod for any issues..");
@@ -311,7 +307,6 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
     }
     // CASE: NotTomb~ we need to convert the mod folder first !
     let mut working_mod_path = mod_path.clone();
-    println!("Formatted path: {:?}", formatted_path);
     if formatted_path != "" {
         working_mod_path = Path::new(&mod_path).join(formatted_path).to_str().unwrap().to_string();
     }
@@ -342,8 +337,6 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
     std::fs::create_dir_all(&final_mod_path).map_err(|e| println!("Failed to create directory: {:?}", e)).ok();
     // copy all files inside working mod path to final mod path
     emitter.emit("status", "Moving the mod files..");
-    println!("Final mod path: {:?}", final_mod_path);
-    println!("Working mod path: {:?}", working_mod_path);
     for entry in fs::read_dir(&working_mod_path).unwrap() {
         let entry = entry.unwrap();
         let path = entry.path();

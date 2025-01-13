@@ -36,14 +36,14 @@ Burial is a program for TCOAAL **mod players**, **mod creators**, **content crea
 
 <!-- Install (Burial) -->
 # Installing Burial 🩸
-**Executables will not be provided until a stable version is completed.**
+**Burial is stable on Windows, but Linux and Mac builds are experimental!**
 1. **Download** the latest app from [Github Releases](https://github.com/kleineluka/burial/releases), GameBanana, Itch.io, or Nexus Mods.
 2. **Run** the installer, silly!
     <br>
     Questions: [Why does Windows Defender appear?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-does-windows-defender-or-whatever-antivirus-im-using-flag-burial) and [Why is the program not portable?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-isnt-burial-portable-ex-an-exe-w-no-installer)
 3. **Open** the program and **enjoy**!
 
-To compile the source code yourself, please see the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki. **Burial is stable for Windows, but Linux and Mac builds are experimental!**
+To compile the source code yourself, please see the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki.
 
 <!-- Install (Mods) -->
 # Installing Mods 🔪
@@ -61,8 +61,8 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 <!-- Roadmap -->
 # Roadmap 👁️
 (In no particular order and beyond basic planned features, aka luxury things that mostly™ will start after the first release..)
-- [ ] Language Support
-- [ ] Steam Deck / Linux Improvements (high priority)
+- [ ] Steam Deck Optimization (high priority)
+- [ ] Language Support (medium priority)
 - [ ] Better Dialog Handling (accept copy as path, take zips in place of folders)
 - [ ] Easier Save Editor
 - [ ] Cleanup (Code, UI, Responsiveness, Code Warnings, Var Ownership, Structure, JS -> Rust, Logging, Async I/O)
@@ -71,14 +71,14 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 - [ ] Symbolic Linking (for Profiles)
 - [ ] Disk Space Awareness
 - [ ] Mod Compatability Checking
-- [ ] 7z, TAR Support (where ZIP/RAR is, low priority)
-- [ ] Tauri V2 Migration (low priority)
+- [ ] 7z, TAR Support (switch to 7Zip, low priority)
 - [ ] NexusMods, Itch.Io Support (low priority)
 - [x] Game Instances (Profiles)
 - [x] More Tooltips
 - [x] Theming System
 - [x] Settings System
 - [x] Development Build Scripts
+- [x] Linux, MacOS Beta Builds
 
 <!-- Footer -->
 <div align="center">

@@ -100,7 +100,7 @@ fn enforce_extensions(files: Vec<PathBuf>, rule_extensions: Vec<String>) -> Vec<
 pub fn export_resources(window: Window, in_path: String, out_path: String, 
     rule_paths: Vec<String>, rule_files: Vec<String>, rule_prefixes: Vec<String>, rule_extensions: Vec<String>) {
     // sanity checks..
-    window.emit("status", Some("Setting up..".to_string())).unwrap();
+    window.emit("status", "Setting up..").unwrap();
     let in_path = Path::new(&in_path);
     let is_game = game::verify_game(&in_path.to_string_lossy()).unwrap();
     if !in_path.exists() || !is_game {
@@ -136,5 +136,5 @@ pub fn export_resources(window: Window, in_path: String, out_path: String,
             }
         }
     }
-    window.emit("status", Some("Desired assets have been exported!".to_string())).unwrap();
+    window.emit("status", "Desired assets have been exported!").unwrap();
 }

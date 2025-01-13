@@ -17,10 +17,9 @@ pub async fn download_file(url: &str, dest_folder: &str) -> Result<(), Box<dyn s
     let file_path = Path::new(dest_folder).join(file_name);
     // start the download
     let response = reqwest::get(url.clone()).await?;
-    // create the file (asynchronously) with `.await`
     let mut file = tokio::fs::File::create(&file_path).await?;
-    // write the content to the file
     let mut content = response.bytes().await?;
     file.write_all_buf(&mut content).await?;
+    file.flush().await?; 
     Ok(())
 }
