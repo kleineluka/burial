@@ -59,7 +59,7 @@ pub async fn install_sdk(window: Window, in_url: String, in_path: String) {
     // extract the sdk
     window.emit("status", Some("Download complete, extracting.. (this may take some time)".to_string())).unwrap();
     let sdk_name = in_url.split("/").last().unwrap();
-    let sdk_file_location = format!("{}\\{}", downloads_dir, sdk_name);
+    let sdk_file_location = format!("{}/{}", downloads_dir, sdk_name);
     let path_sdk = Path::new(&sdk_file_location);
     let path_extracted = Path::new(&downloads_dir);
     compression::decompress_zip(&path_sdk, &path_extracted).unwrap();

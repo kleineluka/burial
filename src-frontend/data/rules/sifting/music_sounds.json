@@ -1,8 +1,8 @@
 {
     "paths": [
-        "www\\audio\\bgs",
-        "www\\audio\\me",
-        "www\\audio\\se"
+        "www/audio/bgs",
+        "www/audio/me",
+        "www/audio/se"
     ],
     "files": [
         "all"

@@ -4,14 +4,14 @@
             {
                 "sprite_name": "Andrew Template #1",
                 "sprite_bytes": "b_ahh[BUST].bytes",
-                "sprite_location": "www\\img\\faces\\b_ahh[BUST].k9a"
+                "sprite_location": "www/img/faces/b_ahh[BUST].k9a"
             }
         ],
         "Ashley": [
             {
                 "sprite_name": "Ashley Template #1",
                 "sprite_bytes": "s_heh[BUST].bytes",
-                "sprite_location": "www\\img\\faces\\s_heh[BUST].k9a"
+                "sprite_location": "www/img/faces/s_heh[BUST].k9a"
             }
         ]
     },
@@ -20,14 +20,14 @@
             {
                 "sprite_name": "Andrew Template #1",
                 "sprite_bytes": "a_heh[FACE].bytes",
-                "sprite_location": "www\\img\\faces\\a_heh[FACE].k9a"
+                "sprite_location": "www/img/faces/a_heh[FACE].k9a"
             }
         ],
         "Ashley": [
             {
                 "sprite_name": "Ashley Template #1",
                 "sprite_bytes": "s_heh[FACE].bytes",
-                "sprite_location": "www\\img\\faces\\s_heh[FACE].k9a"
+                "sprite_location": "www/img/faces/s_heh[FACE].k9a"
             }
         ]
     },
@@ -36,14 +36,14 @@
             {
                 "sprite_name": "Andrew Template #1",
                 "sprite_bytes": "a_heh[SPRITE].bytes",
-                "sprite_location": "www\\img\\sprites\\a_heh[SPRITE].k9a"
+                "sprite_location": "www/img/sprites/a_heh[SPRITE].k9a"
             }
         ],
         "Ashley": [
             {
                 "sprite_name": "Ashley Template #1",
                 "sprite_bytes": "s_heh[SPRITE].bytes",
-                "sprite_location": "www\\img\\sprites\\s_heh[SPRITE].k9a"
+                "sprite_location": "www/img/sprites/s_heh[SPRITE].k9a"
             }
         ]
     }

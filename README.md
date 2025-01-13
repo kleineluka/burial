@@ -43,7 +43,7 @@ Burial is a program for TCOAAL **mod players**, **mod creators**, **content crea
     Questions: [Why does Windows Defender appear?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-does-windows-defender-or-whatever-antivirus-im-using-flag-burial) and [Why is the program not portable?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-isnt-burial-portable-ex-an-exe-w-no-installer)
 3. **Open** the program and **enjoy**!
 
-To compile the source code yourself, please see the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki.
+To compile the source code yourself, please see the [Contributing page](https://github.com/kleineluka/burial/wiki/Contributing) on the Wiki. **Burial is stable for Windows, but Linux and Mac builds are experimental!**
 
 <!-- Install (Mods) -->
 # Installing Mods 🔪

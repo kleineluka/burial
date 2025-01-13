@@ -67,7 +67,7 @@ fn win_to_posix(win_path: String) -> String {
 fn get_game_path(in_path: &String, file_path: &String, game_path: &String) -> String {
     // get file_path - in_path, then add it to game_path - if it doesn't exist, it's new
     let relative_path = file_path.split(*&in_path).collect::<Vec<&str>>()[1].to_string();
-    let new_output = format!("{}\\www{}", game_path, relative_path);
+    let new_output = format!("{}/www{}", game_path, relative_path);
     // BUT! the original would be in k9a, so.. cut off the extension then add .k9a
     let new_output = new_output.split(".").collect::<Vec<&str>>()[0].to_string();
     let new_output = format!("{}.k9a", new_output);
@@ -93,7 +93,7 @@ fn format_mod_path(in_path: &String, file_path: &String, out_path: &String) -> S
 fn relative_language_path(file_path: &String) -> String {
     let path = Path::new(&file_path);
     let folder = path.parent().unwrap().file_name().unwrap().to_str().unwrap();
-    let new_output = format!("languages\\{}.json", folder);
+    let new_output = format!("languages/{}.json", folder);
     new_output
 }
 
@@ -101,7 +101,7 @@ fn relative_language_path(file_path: &String) -> String {
 fn format_language_path(file_path: &String, out_path: &String) -> String {
     let path = Path::new(&file_path);
     let folder = path.parent().unwrap().file_name().unwrap().to_str().unwrap();
-    let new_output = format!("{}\\languages\\{}.json", out_path, folder);
+    let new_output = format!("{}/languages/{}.json", out_path, folder);
     new_output
 }
 
@@ -135,7 +135,7 @@ pub fn verify_rpg_project(in_path: &String) -> bool {
         return false;
     }
     // see if in the folder, the file Game.rpgproject exists
-    let game_path = format!("{}\\Game.rpgproject", in_path);
+    let game_path = format!("{}/Game.rpgproject", in_path);
     if !Path::new(&game_path).exists() {
         return false;
     }
@@ -155,7 +155,7 @@ fn hardcore_parameters(in_plugin: &Plugin, plugin_text: &String) -> String {
 // step one: generate difference between project data (aka the json files from rpg maker)
 pub fn difference_data(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // get all files (recursively) in in_path/data
-    let files = files::collect_files_recursive(format!("{}\\data", in_path));
+    let files = files::collect_files_recursive(format!("{}/data", in_path));
     for file in files {
         // only handle .json files
         if let Some(extension) = file.extension() {
@@ -201,8 +201,8 @@ pub fn difference_data(in_path: &String, out_path: &String, game_path: &String, 
 // step two: generate difference between project languages
 pub fn difference_languages(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // what sections we are looking for changes in
-    let game_path = format!("{}\\www", game_path);
-    let lang_folders = format!("{}\\languages", in_path);
+    let game_path = format!("{}/www", game_path);
+    let lang_folders = format!("{}/languages", in_path);
     let lang_files = files::collect_files_recursive(lang_folders.clone());
     // go through every entry 
     for file in lang_files {
@@ -278,7 +278,7 @@ pub fn difference_languages(in_path: &String, out_path: &String, game_path: &Str
 // step three: generate difference between project images
 pub fn difference_images(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // first, see if images even exist
-    let images_path = format!("{}\\img", in_path);
+    let images_path = format!("{}/img", in_path);
     if !Path::new(&images_path).exists() {
         return mod_json;
     }
@@ -349,7 +349,7 @@ pub fn difference_audio(in_path: &String, out_path: &String, game_path: &String,
     ];
     // go through every entry
     for folder in folders.iter() {
-        let folder_path = format!("{}\\audio\\{}", in_path, folder);
+        let folder_path = format!("{}/audio/{}", in_path, folder);
         if !Path::new(&folder_path).exists() {
             continue;
         }
@@ -387,7 +387,7 @@ pub fn difference_audio(in_path: &String, out_path: &String, game_path: &String,
 // step five: generate difference between videos
 pub fn difference_videos(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // collect all files inside of the movies folder
-    let movies_path = format!("{}\\movies", in_path);
+    let movies_path = format!("{}/movies", in_path);
     if !Path::new(&movies_path).exists() {
         return mod_json;
     }
@@ -419,7 +419,7 @@ pub fn difference_videos(in_path: &String, out_path: &String, game_path: &String
 // step six: generate differences between plugins
 pub fn difference_plugins(in_path: &String, out_path: &String, game_path: &String, mut mod_json: ModJSON) -> ModJSON {
     // parse plugins from the project and from the game
-    let project_plugins_path = format!("{}\\js\\plugins.js", in_path);
+    let project_plugins_path = format!("{}/js/plugins.js", in_path);
     let project_plugins = if let Ok(plugins) = info::parse_plugins(project_plugins_path) {
         plugins
     } else {
@@ -427,7 +427,7 @@ pub fn difference_plugins(in_path: &String, out_path: &String, game_path: &Strin
         return mod_json; // or handle the error appropriately
     };
     let project_array: Vec<Plugin> = serde_json::from_value(project_plugins).unwrap();
-    let game_plugins_path = format!("{}\\www\\js\\plugins.js", game_path);
+    let game_plugins_path = format!("{}/www/js/plugins.js", game_path);
     let game_plugins = if let Ok(plugins) = info::parse_plugins(game_plugins_path) {
         plugins
     } else {
@@ -453,7 +453,7 @@ pub fn difference_plugins(in_path: &String, out_path: &String, game_path: &Strin
             continue;
         }
         // copy the file over
-        let file = format!("{}\\js\\plugins\\{}.js", in_path, plugin.name);
+        let file = format!("{}/js/plugins/{}.js", in_path, plugin.name);
         let file_path = Path::new(&file);
         let file_path_str = file_path.to_str().unwrap().to_string();
         fs::copy(file_path_str.clone(), format_mod_path(in_path, &file_path_str, out_path)).unwrap();
@@ -516,7 +516,7 @@ pub fn project_to_mod(in_path: &String, out_path: &String, game_path: &String,
     mod_json = difference_plugins(&in_path, &out_path, &game_path, mod_json);
     mod_json = sanitize_json(mod_json);
     // in the mod output folder, write the mod.json
-    let mod_json_path = format!("{}\\mod.json", out_path);
+    let mod_json_path = format!("{}/mod.json", out_path);
     let mod_json_str = to_string_pretty(&mod_json).unwrap();
     fs::write(mod_json_path, mod_json_str).unwrap();
 }

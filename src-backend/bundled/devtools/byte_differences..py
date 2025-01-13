@@ -21,7 +21,7 @@ def compare_and_generate_diff(old_file, new_file, diff_output):
         for i in range(len(old_bytes), len(new_bytes)):
             differences.append((i, new_bytes[i]))
     # write the differences to the output file
-    output_file = f"{diff_output}\\diff_output.txt"
+    output_file = f"{diff_output}/diff_output.txt"
     with open(output_file, 'w') as diff_f:
         for i, (pos, byte) in enumerate(differences):
             if i < len(differences) - 1:

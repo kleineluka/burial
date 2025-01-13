@@ -21,9 +21,9 @@ const MODLOADER_FILE : &str = "tomb.zip";
 // check if a modloader is present
 pub fn modloader_prescence(in_path: String) -> bool {
     // there should be a "mods" and "tomb" folder in the game directory
-    let tomb_dir = format!("{}\\tomb", in_path);
-    let tomb_js_path = format!("{}\\tomb\\tomb\\tomb.js", in_path);
-    let tomb_index_path = format!("{}\\tomb\\index.html", in_path);
+    let tomb_dir = format!("{}/tomb", in_path);
+    let tomb_js_path = format!("{}/tomb/tomb/tomb.js", in_path);
+    let tomb_index_path = format!("{}/tomb/index.html", in_path);
     let tomb_exists = Path::new(&tomb_dir).exists();
     let tomb_js_exists = Path::new(&tomb_js_path).exists();
     let tomb_index_exists = Path::new(&tomb_index_path).exists();
@@ -78,24 +78,24 @@ pub async fn install_latest(in_path: String) -> String {
         return "downloadfail".to_string();
     }
     // extract the tomb modloader
-    let tomb_file_location_str = format!("{}\\{}", downloads_dir, MODLOADER_FILE);
+    let tomb_file_location_str = format!("{}/{}", downloads_dir, MODLOADER_FILE);
     let tomb_file_location = Path::new(&tomb_file_location_str);
-    let extraction_destination_str = format!("{}\\{}", downloads_dir, "modloader");
+    let extraction_destination_str = format!("{}/{}", downloads_dir, "modloader");
     let extraction_destination = Path::new(&extraction_destination_str);
     compression::decompress_zip(&tomb_file_location, &extraction_destination).unwrap();
     // edit the package.json file
-    let game_package_json = format!("{}\\package.json", in_path);
+    let game_package_json = format!("{}/package.json", in_path);
     let package_edited = edit_package(game_package_json, "install".to_string());
     if !package_edited {
         return "packagefail".to_string();
     }
     // in the game directory, make a "tomb" folder if it doesn't exist
-    let tomb_dir = format!("{}\\tomb", in_path);
+    let tomb_dir = format!("{}/tomb", in_path);
     if !Path::new(&tomb_dir).exists() {
         fs::create_dir_all(&tomb_dir).unwrap();
     }
     // copy the tomb modloader to the game directory
-    let game_destination = format!("{}\\tomb", in_path);
+    let game_destination = format!("{}/tomb", in_path);
     files::copy_directory(&extraction_destination.to_string_lossy(), &game_destination).unwrap();
     // cleanup
     files::delete_file(&tomb_file_location_str);
@@ -106,10 +106,10 @@ pub async fn install_latest(in_path: String) -> String {
 
 pub fn uninstall_current_modloader(in_path: &String) -> bool {
     // delete tomb
-    let tomb_dir = format!("{}\\tomb", in_path);
+    let tomb_dir = format!("{}/tomb", in_path);
     files::delete_folder(&tomb_dir);
     // edit the package.json file
-    let game_package_json = format!("{}\\package.json", in_path);
+    let game_package_json = format!("{}/package.json", in_path);
     let package_edited = edit_package(game_package_json, "uninstall".to_string());
     if !package_edited {
         return false;
@@ -142,14 +142,14 @@ pub async fn install_modloader(window: Window, in_path: String, in_name: String)
     }
     // extract the tomb modloader
     window.emit("status", "Extracting mod loader..").unwrap();
-    let tomb_file_location_str = format!("{}\\{}", downloads_dir, MODLOADER_FILE);
+    let tomb_file_location_str = format!("{}/{}", downloads_dir, MODLOADER_FILE);
     let tomb_file_location = Path::new(&tomb_file_location_str);
-    let extraction_destination_str = format!("{}\\{}", downloads_dir, "modloader");
+    let extraction_destination_str = format!("{}/{}", downloads_dir, "modloader");
     let extraction_destination = Path::new(&extraction_destination_str);
     compression::decompress_zip(&tomb_file_location, &extraction_destination).unwrap();
     // edit the package.json file
     window.emit("status", "Rewriting package.json..").unwrap();
-    let game_package_json = format!("{}\\package.json", in_path);
+    let game_package_json = format!("{}/package.json", in_path);
     let package_edited = edit_package(game_package_json, "install".to_string());
     if !package_edited {
         window.emit("error", "Failed to edit package.json!").unwrap();
@@ -157,13 +157,13 @@ pub async fn install_modloader(window: Window, in_path: String, in_name: String)
         return;
     }
     // in the game directory, make a "tomb" folder if it doesn't exist
-    let tomb_dir = format!("{}\\tomb", in_path);
+    let tomb_dir = format!("{}/tomb", in_path);
     if !Path::new(&tomb_dir).exists() {
         fs::create_dir_all(&tomb_dir).unwrap();
     }
     // copy the tomb modloader to the game directory
     window.emit("status", "Copying to game installation..").unwrap();
-    let game_destination = format!("{}\\tomb", in_path);
+    let game_destination = format!("{}/tomb", in_path);
     files::copy_directory(&extraction_destination.to_string_lossy(), &game_destination).unwrap();
     // cleanup
     window.emit("status", "Cleaning up..").unwrap();
@@ -193,11 +193,11 @@ pub fn uninstall_modloader(window: Window, in_path: String) {
     }
     // delete the tomb modloader
     window.emit("status", "Uninstalling mod loader..").unwrap();
-    let tomb_dir = format!("{}\\tomb", in_path);
+    let tomb_dir = format!("{}/tomb", in_path);
     files::delete_folder(&tomb_dir);
     // edit the package.json file
     window.emit("status", "Rewriting package.json..").unwrap();
-    let game_package_json = format!("{}\\package.json", in_path);
+    let game_package_json = format!("{}/package.json", in_path);
     let package_edited = edit_package(game_package_json, "uninstall".to_string());
     if !package_edited {
         window.emit("error", "Failed to edit package.json!").unwrap();
@@ -243,7 +243,7 @@ pub fn modloader_version(window: Window, in_path: String) {
         return;
     }
     // open in_path + tomb/tomb.js
-    let tomb_js_path = format!("{}\\tomb\\tomb\\tomb.js", &in_path);  
+    let tomb_js_path = format!("{}/tomb/tomb/tomb.js", &in_path);  
     let tomb_js_file = File::open(tomb_js_path).unwrap();
     let tomb_js_reader = io::BufReader::new(tomb_js_file);
     // find the first line before the version is declared, as it is unique, then extract the version..

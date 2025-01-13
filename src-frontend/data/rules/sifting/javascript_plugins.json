@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\js\\plugins"
+        "www/js/plugins"
     ],
     "files": [
         "all"

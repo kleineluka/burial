@@ -22,7 +22,7 @@ pub fn export_rpg_project(window: Window, in_path: String, out_path: String, pro
         fs::create_dir_all(&out_path).unwrap();
     }
     // and then make output out_path/exported_project (or whatever name is available)
-    let out_path = files::verify_folder_multiple(&format!("{}\\{}", out_path, project_name));
+    let out_path = files::verify_folder_multiple(&format!("{}/{}", out_path, project_name));
     // step one: copy the game's folder
     window.emit("status", "Copying your game's files..").unwrap();
     rpgmaker::copy_game(&in_path, &out_path);
@@ -62,7 +62,7 @@ pub fn export_mod_folder(window: Window, in_path: String, game_path: String, out
         fs::create_dir_all(&out_path).unwrap();
     }
     // mod out path = out_path + folder_name.. rebuild if it already exists
-    let mod_out_path = files::verify_folder_multiple(&format!("{}\\{}", out_path, folder_name));
+    let mod_out_path = files::verify_folder_multiple(&format!("{}/{}", out_path, folder_name));
     if Path::new(&mod_out_path).exists() {
         fs::remove_dir_all(&mod_out_path).unwrap();
     }
@@ -112,13 +112,13 @@ pub fn export_mod_folder(window: Window, in_path: String, game_path: String, out
     mod_json = modmaker::sanitize_json(mod_json);
     // in the mod output folder, write the mod.json
     window.emit("status", "Writing your mod.json..").unwrap();
-    let mod_json_path = format!("{}\\mod.json", mod_out_path);
+    let mod_json_path = format!("{}/mod.json", mod_out_path);
     let mod_json_str = to_string_pretty(&mod_json).unwrap();
     fs::write(mod_json_path, mod_json_str).unwrap();
     // if auto_zip is true, zip the folder
     if auto_zip {
         window.emit("status", "Zipping your mod folder..").unwrap();
-        let zip_path = format!("{}\\{}.zip", out_path, folder_name);
+        let zip_path = format!("{}/{}.zip", out_path, folder_name);
         let zip_file = fs::File::create(&zip_path).unwrap();
         compression::compress_directory(Path::new(&mod_out_path), zip_file).unwrap();
         fs::remove_dir_all(&mod_out_path).unwrap();

@@ -1,59 +1,59 @@
 {
   "Index.html": {
     "Head - Before": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_head_before.json",
       "kind": "HTML"
     },
     "Head - After": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_head_after.json",
       "kind": "HTML"
     },
     "Body - Before": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_body_before.json",
       "kind": "HTML"
     },
     "Body - Before RPG Maker": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_body_before_rpgmaker.json",
       "kind": "HTML"
     },
     "Body - Before Plugins": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_body_before_plugins.json",
       "kind": "HTML"
     },
     "Body - Before Main": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_body_before_main.json",
       "kind": "HTML"
     },
     "Body - After": {
-      "file": "www\\index.html",
+      "file": "www/index.html",
       "location": "index_body_after.json",
       "kind": "HTML"
     }
   },
   "Main.js": {
     "Plugin Manager - Before": {
-      "file": "wwww\\js\\main.js",
+      "file": "wwww/js/main.js",
       "location": "mainjs_pluginmanager_before.json",
       "kind": "Javascript"
     },
     "Plugin Manager - After": {
-      "file": "wwww\\js\\main.js",
+      "file": "wwww/js/main.js",
       "location": "mainjs_pluginmanager_after.json",
       "kind": "Javascript"
     },
     "OnLoad - Before Scene Manager": {
-      "file": "wwww\\js\\main.js",
+      "file": "wwww/js/main.js",
       "location": "mainjs_onload_before_scenemanager.json",
       "kind": "Javascript"
     },
     "OnLoad - After Scene Manager": {
-      "file": "wwww\\js\\main.js",
+      "file": "wwww/js/main.js",
       "location": "mainjs_onload_after_scenemanager.json",
       "kind": "Javascript"
     }

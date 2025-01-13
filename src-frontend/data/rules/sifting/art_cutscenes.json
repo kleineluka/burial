@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\img\\pictures"
+        "www/img/pictures"
     ],
     "files": [
         "all"

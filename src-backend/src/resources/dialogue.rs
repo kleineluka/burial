@@ -156,7 +156,7 @@ fn generate_dialogue(window: &Window, in_path: &String, language_details: &Langu
         return "Error".to_string();
     }
     // ensure that the file can be found at in_path + language_details.path
-    let file_path = format!("{}\\{}", in_path, language_details.path);
+    let file_path = format!("{}/{}", in_path, language_details.path);
     if !Path::new(&file_path).exists() {
         window.emit("error", "The file could not be found!").unwrap();
         return "Error".to_string();
@@ -242,7 +242,7 @@ pub fn export_dialogue(window: Window, in_path: String, out_path: String, langua
     }
     // write the output to the out_path + language_details.shortcode + "_output_timestamp" + format_details.extension
     let now = chrono::Local::now().format("%d-%m-%Y-%H-%M-%S").to_string();
-    let output_path = format!("{}\\{}_{}_output_{}.{}", out_path, language_details.shortcode, content_details.content, now, format_details.extension);
+    let output_path = format!("{}/{}_{}_output_{}.{}", out_path, language_details.shortcode, content_details.content, now, format_details.extension);
     window.emit("status", "Writing output file..").unwrap();
     std::fs::write(&output_path, output).unwrap();
     window.emit("status", "Exported the dialogue!").unwrap();
@@ -277,7 +277,7 @@ pub fn import_dialogue(window: Window, in_path: String, out_path: String, langua
         return;
     }
     // if a file already exists at out_path + language_details.path, back it up incrementally
-    let file_path = format!("{}\\{}", out_path, language_details.path);
+    let file_path = format!("{}/{}", out_path, language_details.path);
     if (Path::new(&file_path).exists()) {
         window.emit("status", "Backing up the existing language file..").unwrap();
         let _ = files::backup_file_multiple(&file_path);

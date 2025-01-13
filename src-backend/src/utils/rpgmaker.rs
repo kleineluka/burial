@@ -10,7 +10,7 @@ use crate::utils::files;
 pub fn format_rpg_path(in_path: &String, out_path: &String, extension: &String) -> String {
     let relative_path = in_path.split("www").collect::<Vec<&str>>()[1].to_string();
     let relative_path = relative_path.split(".").collect::<Vec<&str>>()[0].to_string();
-    let new_output = format!("{}\\{}.{}", out_path, relative_path, extension);
+    let new_output = format!("{}/{}.{}", out_path, relative_path, extension);
     let path = Path::new(&new_output).parent().unwrap().to_str().unwrap();
     fs::create_dir_all(path).unwrap();
     new_output
@@ -19,7 +19,7 @@ pub fn format_rpg_path(in_path: &String, out_path: &String, extension: &String) 
 // step one: copy the game's folder
 pub fn copy_game(in_path: &String, out_path: &String) {
     // get all files (recursively) in in_path/wwww
-    let files = files::collect_files_recursive(format!("{}\\www", in_path));
+    let files = files::collect_files_recursive(format!("{}/www", in_path));
     for file in files {
         // get the file's path and ext
         let path = Path::new(&file);

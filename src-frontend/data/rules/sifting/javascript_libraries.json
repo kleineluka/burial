@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\js\\libs"
+        "www/js/libs"
     ],
     "files": [
         "all"

@@ -1,8 +1,8 @@
 {
     "paths": [
-        "www\\img\\tilesets",
-        "www\\img\\tiles1",
-        "www\\img\\tiles2"
+        "www/img/tilesets",
+        "www/img/tiles1",
+        "www/img/tiles2"
     ],
     "files": [
         "all"

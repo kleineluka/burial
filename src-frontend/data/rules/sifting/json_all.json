@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\data"
+        "www/data"
     ],
     "files": [
         "all"

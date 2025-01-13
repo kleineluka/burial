@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\audio\\bgm"
+        "www/audio/bgm"
     ],
     "files": [
         "all"

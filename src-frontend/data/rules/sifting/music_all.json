@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\audio"
+        "www/audio"
     ],
     "files": [
         "all"

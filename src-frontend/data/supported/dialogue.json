@@ -3,7 +3,7 @@
         "languages": {
             "English": {
                 "shortcode": "en",
-                "path": "www\\languages\\english\\dialogue.loc"
+                "path": "www/languages/english/dialogue.loc"
             }
         },
         "contents": {
@@ -78,7 +78,7 @@
         "languages": {
             "English": {
                 "shortcode": "en",
-                "path": "www\\languages\\english\\dialogue.loc"
+                "path": "www/languages/english/dialogue.loc"
             }
         },
         "contents": {

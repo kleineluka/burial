@@ -1,6 +1,6 @@
 {
     "paths": [
-        "www\\js"
+        "www/js"
     ],
     "files": [
         "all"

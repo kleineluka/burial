@@ -194,6 +194,7 @@ MimeType=x-scheme-handler/{};",
 pub fn unregister_protocol_linux(app_name: String, scheme_name: String) -> std::io::Result<()> {
     // linux-only imports
     use std::fs;
+    use std::path::Path;
     use std::process::Command;
     // path to the .desktop file
     let desktop_file_path = format!(
