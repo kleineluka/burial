@@ -68,7 +68,10 @@ pub fn enable_mod_folder(in_path: String, game_path: String) -> Result<(), Strin
 // get all of the installed mods
 pub fn get_installed_mods(in_path: String) -> Vec<ModFolder> {
     // mods will be present: in_path + www + mods and there each folder will be a mod, and inside that folder, a mod.json file
-    let mods_path = format!("{}//tomb//mods", in_path);
+    let mods_path = format!("{}/tomb/mods", in_path);
+    if !Path::new(&mods_path).exists() {
+        return Vec::new();
+    }
     let mut mods: Vec<ModFolder> = Vec::new();
     // read all the folders in the mods folder
     for entry in std::fs::read_dir(mods_path).unwrap() {

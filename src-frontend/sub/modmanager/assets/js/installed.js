@@ -52,6 +52,10 @@ async function build_list() {
         const iconDiv = document.createElement('div');
         iconDiv.classList.add('mod-icon');
         const iconImg = document.createElement('img');
+        iconImg.referrerPolicy = 'no-referrer';
+        iconImg.onerror = () => {
+            iconImg.src = 'assets/img/default.png';
+        };
         iconImg.src = entry.modjson.icon || 'assets/img/default.png'; 
         iconImg.alt = 'Mod Icon';
         iconImg.classList.add('mod-provided-icon', 'hvr-shrink');

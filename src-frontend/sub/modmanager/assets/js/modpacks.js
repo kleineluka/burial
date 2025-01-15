@@ -93,6 +93,10 @@ function build_modpack_repo() {
             && pack.icon !== 'default') {
             iconImg.src = pack.icon;
         }
+        iconImg.referrerPolicy = 'no-referrer';
+        iconImg.onerror = () => {
+            iconImg.src = 'assets/img/default.png';
+        };
         iconImg.alt = 'Modpack Icon';
         iconImg.classList.add('modpack-provided-icon', 'hvr-shrink');
         iconDiv.appendChild(iconImg);
@@ -210,21 +214,34 @@ listen('current-modpack', (event) => {
 
 // listen for click on reset-modpack
 document.querySelector('#reset-modpack').addEventListener('click', async () => {
-    let inPath = await loadStorage().get('settings-tcoaal');
-    invoke('uninstall_modpack', { inPath });
+    // ask if the user is sure
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'You are about to reset your modpack to vanilla. This will remove all mods from your mods folder. Are you sure you want to continue?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, reset my modpack!',
+        confirmButtonColor: "var(--main-colour)"
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            let inPath = await loadStorage().get('settings-tcoaal');
+            invoke('uninstall_modpack', { inPath });
+        } else {
+            Swal.fire({
+                title: "No worries, Burial won't reset it!",
+                toast: true,
+                position: "bottom-right",
+                showConfirmButton: true,
+                confirmButtonText: "Oki..",
+                confirmButtonColor: "var(--main-colour)",
+                timer: 2000,
+            });
+        }
+    });
 });
 
 // listen for modpack-uninstalled
 listen('modpack-uninstalled', (event) => {
-    Swal.fire({
-        title: "Modpack Uninstalled!",
-        text: "Your game is back to vanilla - but don't worry, you can always play another modpack!",
-        toast: true,
-        position: "bottom-right",
-        showConfirmButton: false,
-        timer: 2000,
-    });
-    // reload the current modpack
+    // daisy chain to reload the current modpack
     invoke('current_modpack');
 });
 

@@ -1,8 +1,8 @@
 {
     "Quality of Life!": {
         "lastUpdate": "2024-10-14T18:47:23Z",
-        "icon": "default",
-        "description": "Vanilla+ styled-gameplay for TCOAAL.",
+        "icon": "https://i.imgur.com/ttORtmk.png",
+        "description": "Vanilla+ styled-gameplay for TCOAAL featuring Sidedishes.",
         "mods": [
             "sidedishes",
             "yep_x_messagebacklog",
@@ -12,16 +12,25 @@
     },
     "Andy and Renee": {
         "lastUpdate": "2024-10-14T18:47:23Z",
-        "icon": "default",
+        "icon": "https://i.imgur.com/sHCLyW0.png",
         "description": "Mother and son bonding time!",
         "mods": [
             "andyandrenee",
             "yep_x_messagebacklog"
         ]
     },
+    "Cali!": {
+        "lastUpdate": "2024-10-14T18:47:23Z",
+        "icon": "https://i.imgur.com/i4THKVM.png",
+        "description": "Ashley and Andrew, but now also Cali!",
+        "mods": [
+            "thecoffinofandyandlili",
+            "yep_x_messagebacklog"
+        ]
+    },
     "Let Them Speak!": {
         "lastUpdate": "2024-10-14T18:47:23Z",
-        "icon": "default",
+        "icon": "https://i.imgur.com/dyg4TBn.png",
         "description": "Add a voice acting framework to your game (does not come with voices!).",
         "mods": [
             "voiceactingframework",
@@ -30,7 +39,7 @@
     },
     "Candy Scabs": {
         "lastUpdate": "2024-10-14T18:47:23Z",
-        "icon": "default",
+        "icon": "https://i.imgur.com/3MGYIa3.png",
         "description": "A cross-over with another Nemlei game.",
         "mods": [
             "candyscabs",
@@ -39,7 +48,7 @@
     },
     "Language Learning": {
         "lastUpdate": "2024-10-14T18:47:23Z",
-        "icon": "default",
+        "icon": "https://i.imgur.com/pC6INtX.png",
         "description": "Display two languages at once while playing.",
         "mods": [
             "multilanguage"
@@ -47,7 +56,7 @@
     },
     "Developer's Toolbox": {
         "lastUpdate": "2024-10-14T18:47:23Z",
-        "icon": "default",
+        "icon": "https://i.imgur.com/wsyJ8jv.png",
         "description": "Make your life hacking the game easier.",
         "mods": [
             "devactions",

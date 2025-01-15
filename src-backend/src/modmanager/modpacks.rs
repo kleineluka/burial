@@ -182,5 +182,6 @@ pub fn uninstall_modpack(window: Window, in_path: String) {
         lastUpdate: "never".to_string(),
     });
     modloader::uninstall_current_modloader(&in_path);
+    window.emit("status", "Modpack uninstalled!").unwrap();
     window.emit("modpack-uninstalled", "success").unwrap();
 }

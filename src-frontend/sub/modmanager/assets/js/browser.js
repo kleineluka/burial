@@ -84,14 +84,24 @@ function build_repo(sort_kind, filter_kind) {
         const iconDiv = document.createElement('div');
         iconDiv.classList.add('mod-icon');
         const iconImg = document.createElement('img');
+        iconImg.referrerPolicy = 'no-referrer';
         iconImg.src = modData.icon;
         if (!modData.icon) {
             if (is_foreign) {
                 iconImg.src = 'assets/img/foreign.png';
+                iconImg.setAttribute('localation', 'foreign');
+            } else {
+                iconImg.src = 'assets/img/default.png';
+                iconImg.setAttribute('localation', 'default');
+            }
+        }
+        iconImg.onerror = () => {
+            if (iconImg.getAttribute('localation') === 'foreign') {
+                iconImg.src = 'assets/img/foreign.png';
             } else {
                 iconImg.src = 'assets/img/default.png';
             }
-        }
+        };
         iconImg.alt = 'Mod Icon';
         iconImg.classList.add('mod-provided-icon', 'hvr-shrink');
         iconDiv.appendChild(iconImg);
@@ -336,7 +346,7 @@ listen('mod-ready', (event) => {
             mod_ready = status_message;
             break;
         case "error_modloader":
-            status_message = 'Please install the Tomb modloader first, or use the Mod Pack page to do it all for you!';
+            status_message = 'Please install the Tomb modloader first, or use the Mod Packs 🍱 page to automatically set everything up!';
             set_status(status_message);
             mod_ready = status_message;
             break;
@@ -411,7 +421,7 @@ listen('installed-mods', async (event) => {
     build_search_cache(); // build the search cache
     build_repo('name', 'all');
     let mod_count = combined_data.length;
-    set_status(`Found ${mod_count} mods!`);
+    if (mod_ready === 'ready') set_status(`Found ${mod_count} mods!`);
 });
 
 // third-party mod warning
