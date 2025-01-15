@@ -122,5 +122,35 @@
                 "spec": "*"
             }
         }
+    },
+    {
+        "burial": {
+            "is_tomb": false,
+            "source_url": "archived"
+        },
+        "data": {
+            "lastUpdate": "2024-12-01T04:31:55.730Z",
+            "url": "https://files.catbox.moe/y07z4z.rar",
+            "source": "https://www.youtube.com/@Cali_fr",
+            "sha256": "nohash",
+            "id": "thecoffinofandyandlili",
+            "tags": [
+                "content",
+                "foreign"
+            ]
+        },
+        "modJson": {
+            "id": "thecoffinofandyandlili",
+            "name": "The Coffin of Andy and Lili",
+            "description": "The classic plot of the game but with a new character: Cali Smith.",
+            "authors": [
+                "Cali_fr"
+            ],
+            "version": "1.0.0",
+            "dependencies": {
+                "game": "*",
+                "spec": "*"
+            }
+        }
     }
 ]

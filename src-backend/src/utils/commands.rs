@@ -88,10 +88,8 @@ pub fn launch_game(window: Window, in_path: String) {
 pub async fn open_folder(window: Window, in_path: String) {
     #[cfg(target_os = "windows")]
     {
-        Command::new("explorer")
-            .arg(format!("\"{}\"", in_path))
-            .spawn()
-            .unwrap();
+        let win_path = in_path.replace("/", "\\");
+        Command::new("explorer").arg(win_path).spawn().unwrap();
     }
     #[cfg(target_os = "macos")]
     {

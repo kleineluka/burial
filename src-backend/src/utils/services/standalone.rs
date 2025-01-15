@@ -310,8 +310,8 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
     if formatted_path != "" {
         working_mod_path = Path::new(&mod_path).join(formatted_path).to_str().unwrap().to_string();
     }
-    let mod_name = get_mod_name(working_mod_path.clone());
-    let mod_id = get_mod_id(working_mod_path.clone());
+    let mod_name = mod_json.as_ref().map_or_else(|| get_mod_name(working_mod_path.clone()), |json| json.name.clone());
+    let mod_id = mod_json.as_ref().map_or_else(|| get_mod_id(working_mod_path.clone()), |json| json.id.clone());
     if issues.special_cases.iter().any(|x| x.special_case == Conditions::NotTomb) {
         emitter.emit("status", "Compiling the mod..");
         // if a mod_json was passed, use that instead for the mod_authors and mod_description
@@ -319,11 +319,11 @@ pub fn install_generic(window: Option<&Window>, in_path: String, mod_path: Strin
             Some(json) => json.authors,
             None => vec![format!("{} Creator(s)", mod_name)],
         };
-        let mod_desscription = match mod_json {
+        let mod_desscription = match mod_json.clone() {
             Some(json) => json.description,
             None => format!("For a better experience, reach out to the creators of {} for a native Tomb port!", mod_name.clone()),
         };
-        let mod_version = "1.0.0".to_string();
+        let mod_version = mod_json.as_ref().map_or("1.0.0".to_string(), |json| json.version.clone());
         let out_path = downloads::downloads_folder();
         let conversion_result = converter::convert_to_tomb(mod_path.clone(), in_path.clone(), out_path.to_str().unwrap().to_string(), mod_name.clone(), mod_id.clone(), mod_authors, mod_desscription, mod_version);
         let tomb_mod_path = Path::new(&out_path).join(conversion_result);

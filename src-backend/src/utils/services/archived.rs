@@ -31,9 +31,10 @@ impl ArchivedMod {
         let _download_result = connection::download_file(&mod_url, &download_path.to_str().unwrap().to_string()).await;
         // extract it from the archive
         emitter.emit("status", "Extracting mod..");
+        let downloaded_file = fs::read_dir(&download_path).unwrap().next().unwrap().unwrap().path();
         let extraction_path = downloads::downloads_folder().join("archived_mod_extracted");
         files::validate_path(extraction_path.to_str().unwrap());
-        let _extraction_result = compression::decompress_archive(&download_path, &extraction_path, false);
+        let _extraction_result = compression::decompress_archive(&downloaded_file, &extraction_path, false);
         // delete the archive path
         emitter.emit("status", "Cleaning up...");
         if let Err(e) = fs::remove_file(&download_path) {
