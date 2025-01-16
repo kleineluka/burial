@@ -116,6 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// update click
+document.getElementById('update-button').addEventListener('click', async () => {
+    const store = loadStorage();
+    const downloadWebsite = await store.get('metadata-website');
+    invoke('open_browser', { url: downloadWebsite });
+});
 
 // tooltips
 document.addEventListener('DOMContentLoaded', async () => {

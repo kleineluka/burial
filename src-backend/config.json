@@ -1,7 +1,5 @@
 {
     "api_server": "https://www.luka.moe/api/burial/",
     "api_backup_server": "https://raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/",
-    "repo_server": "https://llamawa.re/",
-    "metadata_timeout": 10,
-    "mods_repository": "test"
+    "metadata_timeout": 20
 }

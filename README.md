@@ -25,7 +25,7 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 # Features 🐰
 Burial is a program for TCOAAL **mod players**, **mod creators**, **content creators** and **data miners**~ 🍅
 
-- **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods (from various sources), manage installed mods, install mods from external URLs, one-click mod installation from websites (burial:// protocol), and switch mods easily with a profile system.
+- **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods (from various sources), manage installed mods, install mods from external URLs, one-click mod installation from websites (burial:// protocol), switch mods easily with a profile system, and preview upcoming mods.
 - **Resources** ✂️: Decrypt/encrypt .k9a files, export categories of resources, generate asset templates, parse/import dialogue, and decrypt/modify save files.
 - **Reversing** 🧬: Targeted code injection, export/deobfuscate/comment game run-time code, manage NW.js SDK's, manage developer tools, view game information, and create backups of your game files.
 - **Mod Tools** 🖍️:  Turn the game to an RPG Maker project, export an RPG Maker project to a mod, convert a non-Tomb mod to a Tomb mod, decompile a mod, edit mod.json files, edit repo.json files, and generate mod version differences.
@@ -48,7 +48,9 @@ To compile the source code yourself, please see the [Contributing page](https://
 <!-- Install (Mods) -->
 # Installing Mods 🔪
 
-Burial presents a **one-click solution for installing mods** in the **Mod Manager 📦** tab. These mods are primarily sourced from the [Llamawa.re Mod Depository](https://llamawa.re/mods/), but there is a curated [foreign.json](https://github.com/kleineluka/burial/blob/main/api/foreign.json) list in the API to add non-Llamawa.re mods. Burial also supports installing mods from many third-party websites directly through URL. Currently, this includes GameBanana, Github, hosted zip files, and hosted rar files. **Burial is not associated with any mods and is simply a mod manager. Please only download mods that you trust.** Burial does not host or distribute any mods and will only add mods when they can be downloaded from their official source.
+Burial has dedicated sections for installing mods and Tomb (modloader), or you can do everything in one-click in the modpacks section. Mod metadata is fetched from [Llamawa.re](https://llamawa.re/mods/), [Burial's curated list](https://github.com/kleineluka/burial/blob/main/api/foreign.json), and [Peachy's Visions](https://peachy.codeberg.page/visions). Burial also supports downloading mods from URLs, including GameBanana, Github, and direct links. 
+
+**Burial is not associated with any mods and is simply a mod manager. Please only download mods that you trust. Burial does not host or distribute any mods and will only add mods when they can be downloaded from their official source.**
 
 Further reading: [Submit my mod to Burial](https://github.com/kleineluka/burial/wiki/Adding-Mods-&-Packs#i-want-to-submit-a-mod-i-made), [submit somebody else's mod to Burial](https://github.com/kleineluka/burial/wiki/Adding-Mods-&-Packs#i-want-to-submit-somebody-elses-mod), and [submitting a modpack to Burial](https://github.com/kleineluka/burial/wiki/Adding-Mods-&-Packs#i-want-to-submit-a-modpack). If you are having trouble with a third-party mod, please see [why doesn't Burial support this or that mod?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-does-burial-not-support-this-or-that-mod)
 
@@ -62,14 +64,14 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 # Roadmap 👁️
 (In no particular order and beyond basic planned features, aka luxury things that mostly™ will start after the first release..)
 - [ ] Steam Deck Optimization (high priority)
+- [ ] Disk Space Awareness (high priority)
 - [ ] Language Support (medium priority)
 - [ ] Better Dialog Handling (accept copy as path, take zips in place of folders)
-- [ ] Easier Save Editor
+- [ ] Easier Save Editor (low priority)
 - [ ] Cleanup (Code, UI, Responsiveness, Code Warnings, Var Ownership, Structure, JS -> Rust, Logging, Async I/O)
-- [ ] Self Updating
-- [ ] One-Click GameBanana Installation
-- [ ] Symbolic Linking (for Profiles)
-- [ ] Disk Space Awareness
+- [ ] Self Updating (medium priority)
+- [ ] One-Click GameBanana Installation (high priority)
+- [ ] Symbolic Linking Mod Installations (medium priority)
 - [ ] Mod Compatability Checking
 - [ ] 7z, TAR Support (switch to 7Zip, low priority)
 - [ ] NexusMods, Itch.Io Support (low priority)

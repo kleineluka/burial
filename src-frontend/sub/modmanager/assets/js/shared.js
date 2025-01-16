@@ -55,7 +55,7 @@ function filter_source(source) {
 async function download_repo() {
     // gather the data
     let storage = loadStorage();
-    let repo = await storage.get("config-repo-server");
+    let repo = await storage.get("metadata-repo-server");
     let repo_url = `${repo}repo.json`;
     const repo_response = await fetch(repo_url);
     if (!repo_response.ok) {

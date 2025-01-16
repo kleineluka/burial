@@ -7,9 +7,7 @@ use serde::Deserialize;
 pub struct Config {
     pub api_server: String,
     pub api_backup_server: String,
-    pub repo_server: String,
-    pub metadata_timeout: u64,
-    pub mods_repository: String,
+    pub metadata_timeout: u64
 }
 
 impl Default for Config {
@@ -17,9 +15,7 @@ impl Default for Config {
         Config {
             api_server: "https://www.luka.moe/api/burial/".to_string(),
             api_backup_server: "https//raw.githubusercontent.com/kleineluka/burial/refs/heads/main/api/".to_string(),
-            repo_server: "https://llamawa.re/".to_string(),
             metadata_timeout: 10,
-            mods_repository: "test".to_string()
         }
     }
 }

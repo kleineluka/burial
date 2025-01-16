@@ -29,6 +29,16 @@ function clear_status() {
     logElement.innerHTML = '';
 }
 
+// fetch a url with a timeout and error handling
+const fetchWithTimeout = (url, options, timeout = 5000) => {
+    return Promise.race([
+        fetch(url, options),
+        new Promise((_, reject) =>
+            setTimeout(() => reject(new Error("Request timed out")), timeout)
+        ),
+    ]);
+};
+
 // load the persistant storage
 function loadStorage() {
     let store;

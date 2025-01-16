@@ -1,9 +1,11 @@
 {
     "version": "0.0.2",
     "discord": "https://discord.gg/WWxAjJMspk",
-    "github": "https://github.com/kleineluka/burial",
-    "website": "https://github.com/kleineluka/burial",
+    "github": "https://www.github.com/kleineluka/burial",
+    "website": "https://www.luka.moe/burial",
     "itchio": "",
     "gamebanana": "",
-    "nexusmods": ""
+    "nexusmods": "",
+    "repo_server": "https://llamawa.re/",
+    "news_server": "https://codeberg.org/peachy/visions/raw/branch/main/mods.json"
 }

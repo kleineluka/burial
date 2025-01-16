@@ -15,6 +15,8 @@ pub struct Metadata {
     pub itchio: String,
     pub gamebanana: String,
     pub nexusmods: String,
+    pub repo_server: String,
+    pub news_server: String
 }
 
 // construct a default metadata in the case of an error
@@ -25,9 +27,11 @@ impl Default for Metadata {
             discord: "https://discord.gg/WWxAjJMspk".to_string(),
             github: "https://github.com/kleineluka/burial/".to_string(),
             website: "https://github.com/kleineluka/burial/".to_string(),
-            itchio: "".to_string(),
-            gamebanana: "".to_string(),
-            nexusmods: "".to_string()
+            itchio: "https://www.luka.moe/go/burial_itch".to_string(),
+            gamebanana: "https://www.luka.moe/go/burial_gamebanana".to_string(),
+            nexusmods: "https://www.luka.moe/go/burial_nexusmods".to_string(),
+            repo_server: "https://llamawa.re/".to_string(),
+            news_server: "https://codeberg.org/peachy/visions/raw/branch/main/mods.json".to_string()
         }
     }
 }

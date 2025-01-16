@@ -1,6 +1,6 @@
 [package]
 name = "burial"
-version = "0.0.2"
+version = "0.0.1"
 description = "A pretty one-stop-shop for The Coffin of Andy and Leyley modding! 💚🩷"
 authors = ["kleineluka"]
 edition = "2021"
@@ -38,6 +38,7 @@ rand = "0.8.5"
 image = "0.25.5"
 flate2 = "1.0.35"
 unrar = "0.5.7"
+tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/tauri-plugin-single-instance/", branch = "dev" }
 
 [target.'cfg(windows)'.dependencies] 
 winreg = "0.52.0"

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <!-- head -->
 <head>
     <meta charset="UTF-8">
@@ -12,21 +11,21 @@
     <link rel="stylesheet" href="../../assets/ext/tippy.min.css">
     <link rel="stylesheet" href="../../assets/css/shared.css">
     <link rel="stylesheet" href="assets/css/shared.css">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/upcoming.css">
 </head>
 <!-- body -->
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-items">
-            <a class="navigate-button sidebar-current" data-page="index.html">Mod Manager 📦</a>
+            <a class="navigate-button hvr-grow" data-page="index.html">Mod Manager 📦</a>
             <a class="navigate-button hvr-grow" data-page="modpacks.html">Mod Packs 🍱</a>
             <a class="navigate-button hvr-grow" data-page="modloader.html">Mod Loader🪦</a>
             <a class="navigate-button hvr-grow" data-page="browser.html">Mod Browser 🕹️</a>
             <a class="navigate-button hvr-grow" data-page="installed.html">Installed Mods 🛍️</a>
             <a class="navigate-button hvr-grow" data-page="profiles.html">Profiles 🎮</a>
             <a class="navigate-button hvr-grow" data-page="external.html">External 📥</a>
-            <a class="navigate-button hvr-grow" data-page="upcoming.html">Upcoming 📰</a>
+            <a class="navigate-button sidebar-current" data-page="upcoming.html">Upcoming 📰</a>
         </div>
         <div class="sidebar-footer">
             <a id="github-link" class="sidebar-hide-link" target="_blank">
@@ -54,33 +53,35 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="sidebar-top-menu">
-        <button id="toggleSidebar" class="hvr-shrink">☰</button>
-        <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home 🍅</button>
+            <button id="toggleSidebar" class="hvr-shrink">☰</button>
+            <button id="sidebarHome" class="navigate-button hvr-shrink" data-page="../../index.html">Go Back Home
+                🍅</button>
         </div>
         <div class="container">
-            <img src="assets/img/resources.png" alt="" class="header-image hvr-shrink">
-            <div class="small-title">
-                <p>The tools in <b>Mod Manager</b> install and manage mods.</p>
+            <div class="page-navbar">
+                <p class="top-information" id="preview-information">Upcoming 📰 features mods that haven't released yet but are in development! If you want your mod featured here - Burial uses <a class="hyperlink" id="news-repo-link">Peachy's Visions</a> repo.</p>
             </div>
-            <div class="items-list">
-                <p>🍱 <b>Mod Packs</b> are an easy one-click setup for modded TCOAAL</p>
-                <p>🪦 <b>Mod Loader</b> sets up the Tomb modloader for you.</p>
-                <p>🕹️ <b>Mod Browser</b> lets you search and install mods.</p>
-                <p>🛍️ <b>Installed Mods</b> manages your installed mods.</p>
-                <p>🎮 <b>Profiles</b> let you launch different sets of mods.</p>
-                <p>📥 <b>External</b> is for downloading mods from third-party websites.</p>
-                <p>📰 <b>Upcoming</b> features mods that haven't released yet.</p>
+            <div class="page-container">
+                <div class="news-container">
+                    <!-- Loading -->
+                    <div class="loading">Loading the Visions repository<span class="dots"></span></div>
+                </div>
             </div>
         </div>
+    </div>
+    <!-- Progress -->
+    <div class="progress-container">
+        <a id="status" class="progress-text"></a>
     </div>
 </body>
 <!-- javascript -->
 <script src="../../assets/ext/store.min.js"></script>
 <script src="../../assets/ext/wow.min.js"></script>
 <script src="../../assets/ext/sweetalert2.min.js"></script>
+<script src="../../assets/ext/fuse.min.js"></script>
 <script src="../../assets/ext/popper.min.js"></script>
 <script src="../../assets/ext/tippy.min.js"></script>
 <script src="../../assets/js/shared.js"></script>
 <script src="assets/js/shared.js"></script>
-<script src="assets/js/index.js"></script>
+<script src="assets/js/upcoming.js"></script>
 </html>

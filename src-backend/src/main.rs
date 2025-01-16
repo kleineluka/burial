@@ -48,6 +48,13 @@ use modmaking::bundler;
 use modmaking::converter;
 use modmaking::decompiler;
 
+// accepting cli arguments (and deeplinking)
+#[derive(Clone, serde::Serialize, Debug)]
+struct Payload {
+  args: Vec<String>,
+  cwd: String,
+}
+
 // main
 fn main() {
     // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..) + set up protocol (if not already)
@@ -59,6 +66,14 @@ fn main() {
     let _protocol_init = protocol::register_protocol(user_settings.deeplinks);
     // build tauri app
     tauri::Builder::default()
+        .plugin(tauri_plugin_single_instance::init(|app, argv, cwd| {
+            let payload = Payload {
+                args: argv.to_vec(),
+                cwd: cwd.to_string(),
+            };
+            println!("payload: {:?}", payload);
+            // to-do
+        }))
         .plugin(tauri_plugin_store::Builder::default().build())
         .setup(move |app| {
             // set the baseline persistent storage 
@@ -84,9 +99,7 @@ fn main() {
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-api-server", serde_json::Value::String(app_config.api_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-api-backup-server", serde_json::Value::String(app_config.api_backup_server)).unwrap();
-            config::storage::insert_into_store(&app.handle(), "config-repo-server", serde_json::Value::String(app_config.repo_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-metadata-timeout", serde_json::Value::Number(serde_json::Number::from(app_config.metadata_timeout))).unwrap();
-            config::storage::insert_into_store(&app.handle(), "config-mods-repository", serde_json::Value::String(app_config.mods_repository)).unwrap();
             // set the metadata
             config::storage::insert_into_store(&app.handle(), "metadata-version", serde_json::Value::String(metadata.version)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-discord", serde_json::Value::String(metadata.discord)).unwrap();
@@ -95,6 +108,8 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "metadata-itchio", serde_json::Value::String(metadata.itchio)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-gamebanana", serde_json::Value::String(metadata.gamebanana)).unwrap();
             config::storage::insert_into_store(&app.handle(), "metadata-nexusmods", serde_json::Value::String(metadata.nexusmods)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-repo-server", serde_json::Value::String(metadata.repo_server)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "metadata-news-server", serde_json::Value::String(metadata.news_server)).unwrap();
             Ok(())
         }).on_window_event(|event| {
             if let tauri::WindowEvent::CloseRequested { .. } = event.event() {
