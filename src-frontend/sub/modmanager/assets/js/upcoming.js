@@ -104,7 +104,7 @@ function renderNews() {
 
 // listen for click to open the visions repo
 document.getElementById('news-repo-link').addEventListener('click', () => {
-    invoke('open_browser', { url: 'https://codeberg.org/peachy/visions '});
+    invoke('open_browser', { url: 'https://peachy.codeberg.page/visions/'});
 });
 
 // tooltips

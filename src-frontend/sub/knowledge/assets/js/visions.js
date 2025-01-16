@@ -15,17 +15,3 @@ async function openBurialNexusMods() {
     const burial_nexusmods = await store.get('metadata-nexusmods');
     invoke('open_browser', { url: burial_nexusmods });
 }
-
-async function openBurialWebsite() {
-    const store = loadStorage();
-    const burial_website = await store.get('metadata-website');
-    invoke('open_browser', { url: burial_website });
-}
-
-function openBurialWiki() {
-    invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki' });
-}
-
-function openBurialContributing() {
-    invoke('open_browser', { url: 'https://github.com/kleineluka/burial/wiki/Contributing' });
-}
