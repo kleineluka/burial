@@ -412,3 +412,18 @@ body::after {
     border-top-color: var(--main-colour);
 }
 
+/* Lil Row of Mojers */
+#smol-moji-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.smol-moji {
+  transform-origin: center; 
+  transition: transform 0.5s ease-in-out;
+  width: 8.5vmin; 
+  height: auto;
+}
