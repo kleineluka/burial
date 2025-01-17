@@ -27,6 +27,14 @@
             "yep_x_messagebacklog"
         ]
     },
+    "Expressive Artwork": {
+        "lastUpdate": "2024-10-14T18:47:23Z",
+        "icon": "https://i.imgur.com/n4as5d4.png",
+        "description": "More expressive and colourful artwork featuring Visual Coffin.",
+        "mods": [
+            "newvisualcoffin"
+        ]
+    },
     "Let Them Speak!": {
         "lastUpdate": "2024-10-14T18:47:23Z",
         "icon": "https://i.imgur.com/dyg4TBn.png",

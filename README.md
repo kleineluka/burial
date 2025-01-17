@@ -1,4 +1,4 @@
-<!-- Header -->
+<!-- Header + Navigation -->
 <div align="center">
     
 <img src="https://github.com/kleineluka/burial/blob/main/preview/leyley.png" width="65" height="65">
@@ -13,17 +13,14 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 
 </div>
 
-<!-- Navigation + Preview -->
-<div align="center">
-    
-<img src="https://github.com/kleineluka/burial/blob/main/preview/app.gif" style="width: 75%; height: auto;" alt="Loading large Burial preview.. sorry Github doesn't support webm :'( or you are previewing this markdown in VSCode, if so, thanks for working on Burial!">
+<!-- Preview -->
 
-</div>
+![](preview/banner.webp)
 
 
 <!-- Features -->
 # Features 🐰
-Burial is a program for TCOAAL **mod players**, **mod creators**, **content creators** and **data miners**~ 🍅
+Burial is a program for TCOAAL mod players, mod creators, or just about anybody who likes the game~ 🍅
 
 - **Mod Manager** 🍱: One-click install of modpacks, modloader manager, browse/download mods (from various sources), manage installed mods, install mods from external URLs, one-click mod installation from websites (burial:// protocol), switch mods easily with a profile system, and preview upcoming mods.
 - **Resources** ✂️: Decrypt/encrypt .k9a files, export categories of resources, generate asset templates, parse/import dialogue, and decrypt/modify save files.
