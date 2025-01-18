@@ -7,7 +7,7 @@
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
             "url": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee/archive/refs/heads/main.zip",
-            "source": "https://github.com/PomPomSqL/The-Coffin-of-Andrew-and-Renee",
+            "source": "https://www.nexusmods.com/thecoffinofandyandleyley/mods/9",
             "sha256": "nohash",
             "id": "andyandrenee",
             "tags": [
@@ -19,10 +19,9 @@
         "modJson": {
             "id": "andyandrenee",
             "name": "The Coffin of Andrew and Renee",
-            "description": "Reimagined storyline with Andrew and his mother bonding.",
+            "description": "Reimagined storyline with Andrew and his mother bonding. For full credits, please open the mod's link!",
             "authors": [
-                "PomPomSqL",
-                "FlamerL13"
+                "Graveyard Shift"
             ],
             "version": "1.0.0",
             "dependencies": {
@@ -39,7 +38,7 @@
         "data": {
             "lastUpdate": "2024-12-01T04:31:55.730Z",
             "url": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs/archive/refs/heads/main.zip",
-            "source": "https://github.com/Mr-Archive/The-Coffin-of-Candy-Scabs",
+            "source": "https://www.nexusmods.com/thecoffinofandyandleyley/mods/13",
             "sha256": "nohash",
             "id": "candyscabs",
             "tags": [
@@ -50,10 +49,9 @@
         "modJson": {
             "id": "candyscabs",
             "name": "The Coffin of Candy Scabs",
-            "description": "TCOAAL x Candy Scabs crossover.",
+            "description": "TCOAAL x Candy Scabs crossover. For full credits, please open the mod's link!",
             "authors": [
-                "Mr-Archive",
-                "PomPomSqL"
+                "Dayshift Studios"
             ],
             "version": "1.0.0",
             "dependencies": {
@@ -81,7 +79,7 @@
         },
         "modJson": {
             "id": "newvisualcoffin",
-            "name": "Visual Coffin (New)",
+            "name": "Visual Coffin",
             "description": "Add more expressive art to your gameplay!",
             "authors": [
                 "Egorik_22_8"
