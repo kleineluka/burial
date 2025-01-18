@@ -34,7 +34,7 @@ Burial is a program for TCOAAL mod players, mod creators, or just about anybody 
 <!-- Install (Burial) -->
 # Installing Burial 🩸
 **Burial is stable on Windows, but Linux and Mac builds are experimental!**
-1. **Download** the latest app from [Github Releases](https://github.com/kleineluka/burial/releases), [GameBanana](https://www.nexusmods.com/thecoffinofandyandleyley/mods/14), [Itch.io](https://kleineluka.itch.io/burial), or [Nexus Mods](https://gamebanana.com/tools/18941).
+1. **Download** the latest app from [Github Releases](https://github.com/kleineluka/burial/releases), [GameBanana](https://gamebanana.com/tools/18941), [Itch.io](https://kleineluka.itch.io/burial), or [Nexus Mods](https://www.nexusmods.com/thecoffinofandyandleyley/mods/14).
 2. **Run** the installer, silly!
     <br>
     Questions: [Why does Windows Defender appear?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-does-windows-defender-or-whatever-antivirus-im-using-flag-burial) and [Why is the program not portable?](https://github.com/kleineluka/burial/wiki/Problems-and-Questions#question-why-isnt-burial-portable-ex-an-exe-w-no-installer)
