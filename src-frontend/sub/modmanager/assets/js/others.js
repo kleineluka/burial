@@ -23,14 +23,14 @@ function renderNews() {
     container.innerHTML = "";
     Object.entries(news_data).forEach(([key, news]) => {
         // only add unreleased mods
-        if (!news.released) {
+        if (!news.released && news.genre !== 'ROM Hack') {
             // entry
             const newsEntry = document.createElement('div');
             newsEntry.classList.add('news-entry');
             // thumbnail
             const thumbnailDiv = document.createElement('div');
             thumbnailDiv.classList.add('news-thumbnail');
-            let previewImages = news.media.previews || [];
+            let previewImages = (news.media) ? news.media.previews || [] : [];
             // format the preview images
             previewImages = previewImages.map(preview => 'https://codeberg.org/peachy/visions/raw/branch/main/' + preview);
             let currentPreviewIndex = 0;
@@ -76,10 +76,14 @@ function renderNews() {
             creatorInfo.classList.add('news-creator');
             // creators is an array, format it pretty
             let creators = news.creator;
-            if (creators.length > 1) {
-                creators = creators.join(', ');
+            if (creators) {
+                if (creators.length > 1) {
+                    creators = creators.join(', ');
+                } else {
+                    creators = creators[0];
+                }
             } else {
-                creators = creators[0];
+                creators = 'Unknown';
             }
             creatorInfo.textContent = `Created by ${creators || 'Unknown'}`;
             detailsDiv.appendChild(creatorInfo);
