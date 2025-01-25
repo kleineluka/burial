@@ -93,5 +93,6 @@ pub fn toggle_devtools(window: Window, in_path: String, injected_code: String, t
         }
         // write the new content to the main.js file
         std::fs::write(mainjs_path_clone, new_content).unwrap();
+        window.emit("status", "Devtools have been toggled!").unwrap();
     }
 }

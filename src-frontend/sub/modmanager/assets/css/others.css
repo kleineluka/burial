@@ -152,3 +152,7 @@
 .news-link:hover {
     text-decoration: underline;
 }
+
+.page-navbar-option {
+    width: 25vmin;
+}

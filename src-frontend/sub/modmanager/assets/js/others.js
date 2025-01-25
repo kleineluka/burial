@@ -94,7 +94,7 @@ function renderNews() {
                 sourceLink.href = news.src;
                 sourceLink.target = '_blank';
                 sourceLink.classList.add('news-link');
-                sourceLink.textContent = 'Learn More 🔗';
+                sourceLink.textContent = 'Source Code 🔗';
                 linksDiv.appendChild(sourceLink);
             }
             // putting it all together
