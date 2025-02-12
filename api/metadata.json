@@ -7,5 +7,5 @@
     "gamebanana": "",
     "nexusmods": "",
     "repo_server": "https://llamawa.re/",
-    "news_server": "https://codeberg.org/peachy/visions/raw/branch/main/mods.json"
+    "news_server": "https://codeberg.org/peachy/visions/raw/branch/main/database/repo/mods.json"
 }
