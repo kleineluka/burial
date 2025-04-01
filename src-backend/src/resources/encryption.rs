@@ -12,10 +12,6 @@ fn encrypt_file_output(window: &Window, in_path: String, out_path: String, advan
     // sanity check.. (and a nifty little log)
     let file_name = files::file_name(&in_path);
     let file_extension = files::file_extension(&in_path);
-    if file_extension == "k9a" {
-        window.emit("error", Some("You cannot encrypt a .k9a file!".to_string())).unwrap();
-        return;
-    }
     window.emit("status", Some(format!("Encrypting file: {}.{}", file_name, file_extension))).unwrap();
     // get the decrypted data + new name and file extension
     let (encrypted_data, file_name_with_extension) = cipher::encrypt_file(&in_path, advanced_positions);

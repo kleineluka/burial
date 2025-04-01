@@ -39,6 +39,7 @@ image = "0.25.5"
 flate2 = "1.0.35"
 unrar = "0.5.7"
 tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/tauri-plugin-single-instance/", branch = "dev" }
+tree_magic = "0.2.3"
 
 [target.'cfg(windows)'.dependencies] 
 winreg = "0.52.0"

@@ -1,8 +1,9 @@
-// imports
+use std::fs;
+use std::io; // Keep io for error type if needed, though not returned
 use std::path::Path;
-use crate::utils::files;
+use tree_magic;
 
-// the file extension is stored in the header of the file..
+// LEGACY: the file extension is stored in the header of the file..
 pub fn parse_header(data: &[u8]) -> String {
     // sanity check: data is empty
     if data.is_empty() {
@@ -21,7 +22,7 @@ pub fn parse_header(data: &[u8]) -> String {
     }
 }
 
-// create header based on file extension
+// LEGACY: create header based on file extension
 pub fn create_header(extension: &str) -> Vec<u8> {
     let mut header = Vec::new();
     header.push(extension.len() as u8);
@@ -29,109 +30,178 @@ pub fn create_header(extension: &str) -> Vec<u8> {
     header
 }
 
-// use file name to generate a mask with how the bytes are scrambled
-pub fn make_mask(input_string: &str) -> i32 {
-    // create empty mask + extract filename in uppercase
-    let mut mask_value = 0;
-    let decoded_filename = Path::new(input_string)
-        .file_stem()
-        .unwrap()
-        .to_str()
-        .unwrap()
-        .to_uppercase();
-    // for each value in the name, shift the bit left 1 and xor with the ascii
-    for c in decoded_filename.chars() {
-        mask_value = (mask_value << 1) ^ c as i32;
+// lol lazy
+pub fn get_extension_from_mime(data: &[u8]) -> &'static str {
+    let mime = tree_magic::from_u8(data);
+    match mime.as_str() {
+        "image/png" => "png",
+        "image/gif" => "gif",
+        "audio/ogg" => "ogg",
+        "text/plain" => "txt",
+        "application/json" => "json",
+        _ => "dat", // fallback extension
     }
-    // return the mask
+}
+
+const ASSET_SIG: &[u8] = b"TCOAAL";
+const SIG_LEN: usize = ASSET_SIG.len();
+
+// Generates a value based on the file stem (name without extension) in uppercase.
+fn make_mask(input_path_str: &str) -> i32 {
+    let path = Path::new(input_path_str);
+    let filename_stem = path
+        .file_stem()
+        .unwrap_or_default()
+        .to_str()
+        .unwrap_or_default()
+        .to_uppercase();
+
+    if filename_stem.is_empty() {
+        return 0;
+    }
+
+    let mut mask_value: i32 = 0;
+    for c in filename_stem.chars() {
+        mask_value = mask_value.wrapping_shl(1) ^ (c as i32);
+    }
     mask_value
 }
 
-// take a .k9a file and unscramble it to the original file..
+// decrypt
 pub fn decrypt(data: &[u8], file_path: &str) -> Vec<u8> {
-    // get the header length and data length
-    let header_length = data[0] as usize;
-    let data_length = data[1 + header_length] as usize;
-    let mut encrypted_data = vec![0u8; data.len() - 2 - header_length];
-    encrypted_data.copy_from_slice(&data[2 + header_length..]);
-    // create a mask from the file path
-    let mut new_mask = make_mask(file_path);
-    // if the data length is 0, set it to the length of the encrypted data
-    let data_length = if data_length == 0 {
-        encrypted_data.len()
-    } else {
-        data_length
-    };
-    // create a new vector to store the decrypted data
-    let mut decrypted_data = encrypted_data.clone();
-    // for each byte in the encrypted data, xor with the mask and store in the decrypted data
-    for i in 0..data_length {
-        let encrypted_byte = encrypted_data[i];
-        decrypted_data[i] = ((encrypted_byte as i32 ^ new_mask) % 256) as u8;
-        new_mask = (new_mask << 1) ^ encrypted_byte as i32;
+    if data.len() < SIG_LEN + 1 || !data.starts_with(ASSET_SIG) {
+        return data.to_vec(); 
     }
-    // return the decrypted data
-    decrypted_data
+    let bytes_to_decrypt_indicator = data[SIG_LEN];
+    let payload = &data[SIG_LEN + 1..];
+    let payload_len = payload.len();
+    if payload_len == 0 {
+        return Vec::new();
+    }
+    let num_bytes_to_decrypt = if bytes_to_decrypt_indicator == 0 {
+        payload_len
+    } else {
+        (bytes_to_decrypt_indicator as usize).min(payload_len)
+    };
+    let mask_val = make_mask(file_path);
+    let mut xor_key: u8 = mask_val.wrapping_add(1).rem_euclid(256) as u8;
+    let mut decrypted_payload = payload.to_vec();
+    for i in 0..num_bytes_to_decrypt {
+        let encrypted_byte = payload[i];
+        decrypted_payload[i] = encrypted_byte ^ xor_key;
+        xor_key = xor_key.wrapping_shl(1) ^ encrypted_byte;
+    }
+    decrypted_payload
 }
 
-// take a file, decrypt it and  the data and filename+extension
-pub fn decrypt_file(file_path: &str) -> (Vec<u8>, String) {
-    // read the file and decrypt it..
-    let data = files::read_file(file_path);
-    let decrypted_data = decrypt(&data, file_path);
-    // get the file name extension
-    let file_name = files::file_name(file_path);
-    let file_extension = parse_header(&data);
-    // return the decrypted data and the file name + extension
-    (decrypted_data, format!("{}.{}", file_name, file_extension))
-}
 
-// take a file and make it a .k9a file..
+// encrypt
 pub fn encrypt(data: &[u8], file_path: &str, advanced_positions: bool) -> Vec<u8> {
-    // extract the file extension
-    let extension = Path::new(file_path)
-        .extension()
-        .unwrap_or_default()
-        .to_str()
-        .unwrap_or("");
-    // create the header
-    let mut encrypted_data = create_header(extension);
-    // add the data length (use 0 for files larger than 255 bytes)
-    encrypted_data.push(if data.len() > 255 { 0 } else { data.len() as u8 });
-    // create a mask from the file path
-    let mut mask = make_mask(file_path);
-    // determine what length of bytes to encrypt
-    let (start, end) = if advanced_positions {
-        match extension {
-            "json" => (0, data.len()),           // fully encrypt
-            "png" => (0, 100.min(data.len())),   // encrypt first 100 bytes, or fewer if the file is smaller
-            "ogg" => (0, 200.min(data.len())),   // encrypt first 200 bytes, or fewer if the file is smaller
-            _ => (0, data.len()),                // default: fully encrypt
+    let data_len = data.len();
+    let (num_bytes_to_encrypt, indicator) = if advanced_positions {
+        let extension = Path::new(file_path)
+            .extension()
+            .unwrap_or_default()
+            .to_str()
+            .unwrap_or("");
+        let limit = match extension {
+            _ => data_len, // Default to full length for now, k9a not used anymore
+        };
+        let potential_encrypt_count = limit.min(data_len);
+        if potential_encrypt_count >= data_len || potential_encrypt_count > 255 {
+             (data_len, 0u8) // Encrypt all, indicator 0
+        } else {
+            (potential_encrypt_count, potential_encrypt_count as u8) 
         }
     } else {
-        (0, data.len()) // default: fully encrypt  
+        (data_len, 0u8) 
     };
-    // encrypt the data with the given range
-    for (i, &byte) in data.iter().enumerate() {
-        if i >= start && i < end {
-            let encrypted_byte = ((byte as i32 ^ mask) % 256) as u8;
+    let mut encrypted_data = Vec::with_capacity(SIG_LEN + 1 + data_len);
+    encrypted_data.extend_from_slice(ASSET_SIG);
+    encrypted_data.push(indicator);
+    let mask_val = make_mask(file_path);
+    let mut xor_key: u8 = mask_val.wrapping_add(1).rem_euclid(256) as u8;
+    for i in 0..data_len {
+        let original_byte = data[i];
+        if i < num_bytes_to_encrypt {
+            let encrypted_byte = original_byte ^ xor_key;
             encrypted_data.push(encrypted_byte);
-            mask = (mask << 1) ^ encrypted_byte as i32;
+            xor_key = xor_key.wrapping_shl(1) ^ encrypted_byte;
         } else {
-            encrypted_data.push(byte);  // Append unencrypted data
+            encrypted_data.push(original_byte); 
         }
     }
     encrypted_data
 }
 
-// take a file, encrypt it and return the data and the new file name + extension
+
+// --- File Handling Functions with Original Signatures ---
+
+/// Reads an encrypted file (assumed to have no extension), decrypts its content,
+/// and returns the data along with the filename stem.
+/// **If file reading fails, prints error to stderr and returns `(Vec::new(), String::new())`.**
+/// **The caller is responsible for determining and appending the correct original extension to the returned stem.**
+pub fn decrypt_file(file_path: &str) -> (Vec<u8>, String) {
+    // Read the encrypted file, handle error internally
+    let data = match fs::read(file_path) {
+        Ok(bytes) => bytes,
+        Err(e) => {
+            eprintln!("[Error] Failed to read file for decryption '{}': {}", file_path, e);
+            return (Vec::new(), String::new()); // Return empty tuple on error
+        }
+    };
+
+    // Decrypt the data using the file path for key derivation
+    let decrypted_data = decrypt(&data, file_path);
+
+    // Extract the file stem from the input path
+    let file_stem = Path::new(file_path)
+        .file_stem()
+        .unwrap_or_default()
+        .to_str()
+        .unwrap_or_default();
+
+    if file_stem.is_empty() {
+        // Handle cases like trying to decrypt a file named just ".something"
+        eprintln!("[Warning] Could not extract a valid file stem from '{}' for decryption output.", file_path);
+        // Return decrypted data but maybe a placeholder name
+        (decrypted_data, "decrypted_noname".to_string())
+    } else {
+        // Return the data and the stem. Caller adds the extension.
+        (decrypted_data, file_stem.to_string())
+    }
+}
+
+
+/// Reads a file, encrypts its content using the new logic, and returns the
+/// encrypted data along with the new filename (original stem only, no extension).
+/// **If file reading fails, prints error to stderr and returns `(Vec::new(), String::new())`.**
 pub fn encrypt_file(file_path: &str, advanced_positions: bool) -> (Vec<u8>, String) {
-    // read the file and encrypt it..
-    let data = files::read_file(file_path);
+    // Read the original file, handle error internally
+    let data = match fs::read(file_path) {
+        Ok(bytes) => bytes,
+        Err(e) => {
+            eprintln!("[Error] Failed to read file for encryption '{}': {}", file_path, e);
+            return (Vec::new(), String::new()); // Return empty tuple on error
+        }
+    };
+
+    // Encrypt the data using the file path for key derivation
     let encrypted_data = encrypt(&data, file_path, advanced_positions);
-    // get the file name and extension
-    let file_name = files::file_name(file_path);
-    let file_extension = "k9a";
-    // return the encrypted data and the new file name + extension
-    (encrypted_data, format!("{}.{}", file_name, file_extension))
+
+    // Generate the output filename (stem only)
+    let file_stem = Path::new(file_path)
+        .file_stem()
+        .unwrap_or_default()
+        .to_str()
+        .unwrap_or_default();
+
+    let output_filename = if file_stem.is_empty() {
+         eprintln!("[Warning] Could not extract a valid file stem from '{}' for encryption output.", file_path);
+         "encrypted_noname".to_string() // Return placeholder name
+    } else {
+        file_stem.to_string() // Just the stem
+    };
+
+    (encrypted_data, output_filename)
 }

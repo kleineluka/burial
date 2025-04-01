@@ -13,14 +13,16 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 
 </div>
 
+<!-- Warning -->
+<div align="center">
+<h2>Warning: Big Burial Update In Progress.</h2>
+<p><b>Burial is currently porting features to work with TCOAAL V3 (Decay Part 1). Asset encryption and decryption has been updated (in under 1 hour it was cracked!) but other features such as compiling mods will take more time to update. Similarly, I will add support for old encryption/decryption again soon, for archival purposes. This is all because Nemlei changed the encryption again. If she spent this much time on making the game as she does on anti-piracy, the game may be done by now. But don't worry, we're working on it :)</b></p>
+<br><br>
+</div>
+
 <!-- Preview -->
 
 ![](preview/banner.webp)
-
-<!-- Warning -->
-<div align="center">
-<b>Burial is currently broken with version 3. This is because Nemlei changed the encryption again. If she spent this much time on making the game as she does on anti-piracy, the game may be done by now. But don't worry, we're working on it :)</b>
-</div>
 
 
 <!-- Features -->
