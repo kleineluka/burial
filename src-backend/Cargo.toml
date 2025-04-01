@@ -1,6 +1,6 @@
 [package]
 name = "burial"
-version = "1.0.0"
+version = "1.5.0"
 description = "A pretty one-stop-shop for The Coffin of Andy and Leyley modding! 💚🩷"
 authors = ["kleineluka"]
 edition = "2021"
