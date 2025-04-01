@@ -17,6 +17,11 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 
 ![](preview/banner.webp)
 
+<!-- Warning -->
+<div align="center">
+**Burial is currently broken with version 3. This is because Nemlei changed the encryption again. If she spent this much time on making the game as she does on anti-piracy, the game may be done by now. But don't worry, we're working on it :)**
+</div>
+
 
 <!-- Features -->
 # Features 🐰
