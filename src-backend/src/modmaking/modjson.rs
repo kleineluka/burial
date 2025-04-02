@@ -1,7 +1,7 @@
 // imports
 use tauri::Window;
 use tauri::command;
-use crate::utils::files;
+use crate::utils::helpers::files;
 
 // read mod json
 #[command]

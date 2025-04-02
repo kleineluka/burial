@@ -3,7 +3,6 @@ use std::process::{Command, Child, Stdio};
 use std::io;
 use std::result;
 
-
 pub struct ProcessHandle {
     child: Option<Child>,
 }
@@ -51,7 +50,7 @@ pub fn kill_process(process_name: &str) -> result::Result<(), String> {
         .output()
         .map_err(|e| format!("Failed to execute command: {}", e))?;
 
-    // on Unix-like systems (Linux, macOS), use pkill
+    // on unix-like systems (linux, macos), use pkill
     #[cfg(not(target_os = "windows"))]
     let output = Command::new("pkill")
         .arg(process_name)

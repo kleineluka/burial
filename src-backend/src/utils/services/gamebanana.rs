@@ -8,8 +8,9 @@ use std::path::PathBuf;
 
 use crate::config::{cache, downloads};
 use crate::modmaking::converter;
-use crate::utils::emitter::EventEmitter;
-use crate::utils::{compression, connection, emitter, files};
+use crate::utils::frontend::emitter;
+use crate::utils::frontend::emitter::EventEmitter;
+use crate::utils::helpers::{compression, connection, files};
 
 use super::standalone;
 

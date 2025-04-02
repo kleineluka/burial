@@ -2,12 +2,10 @@
 use tauri::Window;
 use serde::{Deserialize, Serialize};
 use crate::modmaking::converter;
-use crate::utils::emitter::EventEmitter;
-use crate::utils::files;
-use crate::utils::connection;
-use crate::utils::compression;
+use crate::utils::frontend::emitter::EventEmitter;
+use crate::utils::helpers::connection;
+use crate::utils::helpers::compression;
 use crate::config::downloads;
-use crate::utils::game;
 use crate::utils::services::standalone;
 
 //mod_json.name, mod_json.id, mod_json.authors, mod_json.description, mod_json.version

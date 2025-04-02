@@ -7,7 +7,7 @@ use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 use crate::config::disabled;
-use crate::utils::game;
+use crate::utils::operating::game;
 use super::modloader;
 
 // structure containing mod folder and mod.json file

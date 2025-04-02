@@ -1,7 +1,7 @@
 // imports
 use tauri::Window;
 use tauri::command;
-use crate::utils::game;
+use crate::utils::operating::game;
 use crate::utils::services::standalone;
 use super::browser;
 

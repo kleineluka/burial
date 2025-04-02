@@ -2,7 +2,7 @@
 use tauri::Window;
 use tauri::command;
 use open;
-use crate::utils::files;
+use crate::utils::helpers::files;
 
 // re-used error message for non-existent files
 fn verify_file(window: &Window, file_path: &str) -> bool {

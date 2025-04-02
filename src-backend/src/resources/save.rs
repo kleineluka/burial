@@ -4,8 +4,8 @@ use std::path::PathBuf;
 use tauri::Window;
 use tauri::command;
 use crate::config::appdata;
-use crate::utils::files;
-use crate::utils::rpgsave;
+use crate::utils::helpers::files;
+use crate::utils::helpers::rpgsave;
 
 // recursive backup of save files
 pub fn backup_rpgsave_files(dir: &PathBuf, backup: &PathBuf) {

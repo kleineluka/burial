@@ -2,11 +2,11 @@
 use serde::{Deserialize, Serialize};
 use tauri::{command, Window};
 use crate::config::cache;
-use crate::utils::game;
-use crate::utils::rpgmaker;
-use crate::utils::modmaker;
-use crate::utils::files;
-use crate::utils::compression;
+use crate::utils::operating::game;
+use crate::utils::tomb::rpgmaker;
+use crate::utils::tomb::modmaker;
+use crate::utils::helpers::files;
+use crate::utils::helpers::compression;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Burial {

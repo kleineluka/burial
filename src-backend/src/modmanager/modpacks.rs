@@ -6,8 +6,8 @@ use tauri::{command, Window};
 use crate::config::appdata::{self, save_folder};
 use crate::modmanager::browser;
 use crate::resources::save;
-use crate::utils::compression;
-use crate::{config::cache, modmaking::converter, utils::game};
+use crate::utils::helpers::compression;
+use crate::{config::cache, modmaking::converter, utils::operating::game};
 use crate::utils::services::standalone;
 
 use super::modloader;

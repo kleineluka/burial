@@ -3,10 +3,10 @@ use tauri::Window;
 use tauri::command;
 use std::path::Path;
 use crate::config::downloads;
-use crate::utils::files;
-use crate::utils::game;
-use crate::utils::connection;
-use crate::utils::compression;
+use crate::utils::helpers::files;
+use crate::utils::operating::game;
+use crate::utils::helpers::connection;
+use crate::utils::helpers::compression;
 
 // detect if the developer or player sdk is installed
 pub fn sdk_prescence(in_path: String) -> String {

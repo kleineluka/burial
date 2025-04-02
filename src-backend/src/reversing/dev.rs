@@ -1,7 +1,7 @@
 // imports
 use tauri::Window;
 use tauri::command;
-use crate::utils::game;
+use crate::utils::operating::game;
 
 // check devtools status
 fn devtools_presence(in_path: &str) -> bool {

@@ -1,7 +1,7 @@
 // imports
 use serde_json::Value;
 use reqwest::Error;
-use crate::utils::connection;
+use crate::utils::helpers::connection;
 
 // take in a repo and get the codeberg api for it
 pub fn get_codeberg_api(url: &str) -> String {

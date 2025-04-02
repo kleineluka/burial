@@ -1,13 +1,12 @@
-use std::fs;
 // imports
+use std::fs;
 use std::path::Path;
-use chrono::format;
 use serde::{Deserialize, Serialize};
 use tauri::Window;
 use crate::modmaking::converter;
-use crate::config::{cache, downloads};
-use crate::utils::emitter::EventEmitter;
-use crate::utils::{files, game};
+use crate::config::downloads;
+use crate::utils::frontend::emitter::EventEmitter;
+use crate::utils::{helpers::files, operating::game};
 use crate::modmanager::modloader;
 
 // mod type enum

@@ -3,7 +3,7 @@ use tauri::Window;
 use tauri::command;
 use std::option::Option;
 use crate::modmaking::converter;
-use crate::utils::game;
+use crate::utils::operating::game;
 use crate::utils::services::gamebanana::GamebananaMod;
 use crate::utils::services::github::GithubMod;
 use crate::utils::services::llamaware::LlamawareMod;

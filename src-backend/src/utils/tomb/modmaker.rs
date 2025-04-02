@@ -4,11 +4,11 @@ use std::{fs, path::Path};
 use json_patch::diff;
 use serde::{Deserialize, Serialize};
 use serde_json::{to_string_pretty, Value};
-use super::files;
-use super::cipher;
-use super::nemlang;
-use super::olid;
-use super::game;
+use crate::utils::helpers::files;
+use crate::utils::nemlei::cipher;
+use crate::utils::nemlei::nemlang;
+use crate::utils::tomb::olid;
+use crate::utils::operating::game;
 use crate::reversing::info;
 
 // mod.json structure

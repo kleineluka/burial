@@ -1,6 +1,6 @@
 // imports
 use std::path::Path;
-use crate::utils::files;
+use crate::utils::helpers::files;
 
 // the file extension is stored in the header of the file..
 pub fn parse_header(data: &[u8]) -> String {

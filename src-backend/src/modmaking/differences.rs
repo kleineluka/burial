@@ -9,7 +9,7 @@ use std::path::Path;
 use std::path::PathBuf;
 use blake3::Hasher;
 use crate::config::cache;
-use crate::utils::compression;
+use crate::utils::helpers::compression;
 
 // fast hash, good enough for changes
 fn fast_hash(file_path: &Path) -> u32 {

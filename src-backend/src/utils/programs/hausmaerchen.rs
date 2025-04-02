@@ -1,8 +1,7 @@
-use tauri::Manager;
-
 // imports
-use crate::utils::files;
-use crate::utils::deno;
+use tauri::Manager;
+use crate::utils::programs::deno;
+use crate::utils::helpers::files;
 use crate::config::cache;
 use crate::config::storage;
 

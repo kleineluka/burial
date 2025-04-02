@@ -6,11 +6,11 @@ use std::fs;
 use crate::config::cache;
 use crate::config::downloads;
 use crate::modmaking::converter;
-use crate::utils::compression;
-use crate::utils::connection;
-use crate::utils::files;
+use crate::utils::helpers::compression;
+use crate::utils::helpers::connection;
+use crate::utils::helpers::files;
 use crate::utils::services::standalone;
-use crate::utils::emitter::EventEmitter;
+use crate::utils::frontend::emitter::EventEmitter;
 
 // shell just for an easy wrapper
 #[derive(Serialize, Deserialize, Debug)]

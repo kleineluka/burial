@@ -3,8 +3,8 @@ use std::io::Write;
 use std::path::Path;
 use serde_json::{from_str, to_string_pretty, Value};
 use crate::resources::dialogue;
-use crate::utils::cipher;
-use crate::utils::files;
+use crate::utils::nemlei::cipher;
+use crate::utils::helpers::files;
 
 // take a file from the game directory and format it for the rpg directory
 pub fn format_rpg_path(in_path: &String, out_path: &String, extension: &String) -> String {

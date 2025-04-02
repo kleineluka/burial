@@ -5,11 +5,11 @@ use tauri::command;
 use crate::config::settings;
 use crate::config::storage;
 use crate::config::cache;
-use crate::utils::deno;
-use crate::utils::files;
-use crate::utils::game;
-use crate::utils::hausmaerchen;
-use crate::utils::protocol;
+use crate::utils::programs::deno;
+use crate::utils::programs::hausmaerchen;
+use crate::utils::helpers::files;
+use crate::utils::operating::game;
+use crate::utils::operating::protocol;
 
 // load settings
 #[command]
@@ -28,7 +28,7 @@ pub fn load_settings(window: Window) {
 pub fn save_settings(window: Window, tcoaal: String, output: String, 
     updates: bool, theme: String, animations: bool, 
     tooltips: bool, modname: String, modid: String, modauthor: String, 
-    moddescription: String, deeplinks: bool) {
+    moddescription: String, deeplinks: bool, gametarget: String) {
     // read the current settings
     let mut settings = settings::read_settings();
     // update the settings
@@ -43,6 +43,7 @@ pub fn save_settings(window: Window, tcoaal: String, output: String,
     settings.modauthor = modauthor;
     settings.moddescription = moddescription;
     settings.deeplinks = deeplinks;
+    settings.gametarget = gametarget;
     // write the updated settings
     settings::write_settings(settings);
     window.emit("settings-saved", {}).unwrap(); 

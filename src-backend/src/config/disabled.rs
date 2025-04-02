@@ -1,6 +1,6 @@
 // imports
 use std::path::PathBuf;
-use crate::utils::files;
+use crate::utils::helpers::files;
 use dirs::config_dir;
 
 // return disabled folder path

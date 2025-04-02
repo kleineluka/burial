@@ -6,10 +6,10 @@ use std::fs::File;
 use std::io::{BufReader, Read};
 use sha2::{Sha256, Digest};
 use crate::config::downloads;
-use crate::utils::compression;
-use crate::utils::connection;
+use crate::utils::helpers::compression;
+use crate::utils::helpers::connection;
 use crate::utils::services::standalone;
-use crate::utils::emitter::EventEmitter;
+use crate::utils::frontend::emitter::EventEmitter;
 
 // shell just for an easy wrapper
 #[derive(Serialize, Deserialize, Debug)]

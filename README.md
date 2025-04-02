@@ -1,3 +1,10 @@
+<!-- Warning -->
+<div align="center">
+<h2>Warning!! Big Burial Update In Progress~</h2>
+<p><b>Currently, support for the current game version (3.0.0 / Decay Part One) is limited to asset decryption/encryption. The rest was built with 2.0.14 in mind. This is because of senseless encryption and file path changes to the game. I'm working on it!!</b></p>
+<br><br>
+</div>
+
 <!-- Header + Navigation -->
 <div align="center">
     
@@ -11,13 +18,6 @@ A (pretty) one-stop-shop for [The Coffin of Andy and Leyley](https://store.steam
 
 [Contribute 🥰](https://github.com/kleineluka/burial/wiki/Contributing) • [Credits 🎉](https://github.com/kleineluka/burial/blob/main/ATTRIBUTIONS.md) • [Website 🔪](https://www.luka.moe/burial) • [Changelog 🍅](https://github.com/kleineluka/burial/wiki/Changelog) • [Discord 🥰](https://www.discord.gg/WWxAjJMspk)
 
-</div>
-
-<!-- Warning -->
-<div align="center">
-<h2>Warning: Big Burial Update In Progress.</h2>
-<p><b>Currently, support for the current game version (3.0.0) is limited to asset decryption/encryption. The rest was built with 2.0.14 in mind.</b></p>
-<br><br>
 </div>
 
 <!-- Preview -->

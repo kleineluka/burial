@@ -4,7 +4,7 @@ use tauri::Manager;
 use tauri::command;
 use crate::config::storage;
 use crate::utils;
-use crate::utils::game;
+use crate::utils::operating::game;
 use crate::config::settings;
 
 // try and automatically find the game path for the user, if it's empty
@@ -45,7 +45,7 @@ pub fn setup_game(window: Window, in_path: String) {
  #[command]
  pub fn setup_settings(window: Window, in_path: String) {
     // try and get a default output path, if possible
-    let output_path = utils::files::find_output().unwrap_or_default();
+    let output_path = utils::helpers::files::find_output().unwrap_or_default();
     let output_path_string = output_path.to_str().unwrap_or("").to_string();
      // save the game path
     let settings = settings::Settings {
@@ -60,6 +60,7 @@ pub fn setup_game(window: Window, in_path: String) {
         modauthor: String::from(""),
         moddescription: String::from(""),
         deeplinks: true,
+        gametarget: String::from("latest"),
     };
     // write the updated settings
     settings::write_settings(settings);

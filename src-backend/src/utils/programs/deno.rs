@@ -2,7 +2,8 @@
 use std::path::PathBuf;
 use serde::{Deserialize, Serialize};
 use crate::config::cache;
-use super::{compression, connection};
+use crate::utils::helpers::compression;
+use crate::utils::helpers::connection;
 
 // distribution and deno structures for JSON parsing
 #[derive(Debug, Deserialize, Serialize)]

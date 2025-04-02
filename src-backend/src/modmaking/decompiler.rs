@@ -1,17 +1,11 @@
+// imports
 use std::fs;
 use std::path::Path;
-
-// imports
-use serde::{Deserialize, Serialize};
 use tauri::{command, Window};
-use crate::config::cache;
-use crate::utils::emitter::EventEmitter;
-use crate::utils::game;
-use crate::utils::rpgmaker;
-use crate::utils::modmaker;
-use crate::modmanager::modloader;
-use crate::utils::files;
-use crate::utils::compression;
+use crate::utils::frontend::emitter::EventEmitter;
+use crate::utils::operating::game;
+use crate::utils::tomb::rpgmaker;
+use crate::utils::helpers::files;
 
 // use game + rpg maker export to decompile a mod
 pub async fn decompile_mod_to_project(window: Option<&Window>, in_path: String, mod_path: String, out_path: String) -> String {

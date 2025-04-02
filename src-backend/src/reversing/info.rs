@@ -5,7 +5,7 @@ use tauri::command;
 use std::fs::File;
 use std::io::Read;
 use serde_json::json;
-use crate::utils::game;
+use crate::utils::operating::game;
 use crate::reversing::sdk;
 use crate::modmanager::modloader;
 

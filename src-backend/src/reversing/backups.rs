@@ -4,9 +4,9 @@ use tauri::command;
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
-use crate::utils::files;
-use crate::utils::game;
-use crate::utils::compression;
+use crate::utils::helpers::files;
+use crate::utils::operating::game;
+use crate::utils::helpers::compression;
 use crate::config::backups;
 
 // create a backup

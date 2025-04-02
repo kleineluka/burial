@@ -4,12 +4,12 @@ use tauri::command;
 use std::fs;
 use std::io;
 use std::path::Path;
-use crate::utils::hausmaerchen;
-use crate::utils::files;
-use crate::utils::game;
-use crate::utils::process::kill_process;
-use crate::utils::process::ProcessHandle;
-use crate::utils::deno;
+use crate::utils::programs::hausmaerchen;
+use crate::utils::programs::deno;
+use crate::utils::helpers::files;
+use crate::utils::operating::game;
+use crate::utils::operating::process::kill_process;
+use crate::utils::operating::process::ProcessHandle;
 
 // replace string in a file (assuming it can be read as text)
 fn replace_text(file_path: &str, old_text: &str, new_text: &str) -> io::Result<()> {

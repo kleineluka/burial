@@ -5,7 +5,7 @@ use tauri::api::dialog::FileDialogBuilder;
 use tauri::command;
 use tauri::Window;
 use webbrowser;
-use super::game;
+use crate::utils::operating::game;
 
 // navigate to different pages
 #[command]

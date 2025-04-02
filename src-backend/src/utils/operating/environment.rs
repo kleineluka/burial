@@ -1,5 +1,5 @@
 // imports
-use sysinfo::{ Components, Disks, Networks, System };
+use sysinfo::System;
 use blake3::Hasher;
 
 // get the operating system

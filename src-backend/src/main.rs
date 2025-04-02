@@ -16,9 +16,9 @@ mod modmaking;
 use tauri::Manager;
 
 // (local) imports
-use utils::files;
-use utils::commands;
-use utils::protocol;
+use utils::helpers::files;
+use utils::frontend::commands;
+use utils::operating::protocol;
 use config::app;
 use config::metadata;
 use resources::decryption;
@@ -61,7 +61,7 @@ fn main() {
     let app_config = app::load_config();
     let rt = tokio::runtime::Runtime::new().unwrap();
     let user_settings = config::settings::read_settings();
-    let user_hash = utils::environment::get_hwid();
+    let user_hash = utils::operating::environment::get_hwid();
     let metadata = rt.block_on(metadata::get_metadata(&app_config, &user_settings, &user_hash)).unwrap();
     let _protocol_init = protocol::register_protocol(user_settings.deeplinks);
     // build tauri app
@@ -80,8 +80,8 @@ fn main() {
             config::storage::clear_store(&app.handle()).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-first-run", serde_json::Value::Bool(config::settings::first_run())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-local-version", serde_json::Value::String(metadata::get_local_version())).unwrap();
-            config::storage::insert_into_store(&app.handle(), "state-operating-system", serde_json::Value::String(utils::environment::get_os().to_owned())).unwrap();
-            config::storage::insert_into_store(&app.handle(), "state-bundled-resources", serde_json::Value::String(utils::environment::get_resources(app).to_string_lossy().to_string())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-operating-system", serde_json::Value::String(utils::operating::environment::get_os().to_owned())).unwrap();
+            config::storage::insert_into_store(&app.handle(), "state-bundled-resources", serde_json::Value::String(utils::operating::environment::get_resources(app).to_string_lossy().to_string())).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-user-hash", serde_json::Value::String(user_hash)).unwrap();
             config::storage::insert_into_store(&app.handle(), "state-app-ver", serde_json::Value::String(env!("CARGO_PKG_VERSION").to_string())).unwrap();
             // set user settings
@@ -96,6 +96,7 @@ fn main() {
             config::storage::insert_into_store(&app.handle(), "settings-modauthor", serde_json::Value::String(user_settings.modauthor)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-moddescription", serde_json::Value::String(user_settings.moddescription)).unwrap();
             config::storage::insert_into_store(&app.handle(), "settings-deeplinks", serde_json::Value::Bool(user_settings.deeplinks)).unwrap();
+            config::storage::insert_into_store(&app.handle(), "settings-gametarget", serde_json::Value::String(user_settings.gametarget)).unwrap();
             // set the config settings
             config::storage::insert_into_store(&app.handle(), "config-api-server", serde_json::Value::String(app_config.api_server)).unwrap();
             config::storage::insert_into_store(&app.handle(), "config-api-backup-server", serde_json::Value::String(app_config.api_backup_server)).unwrap();

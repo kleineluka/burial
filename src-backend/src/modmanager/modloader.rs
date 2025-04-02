@@ -8,11 +8,10 @@ use std::path::Path;
 use std::io::{self, BufRead, BufReader, Write};
 use regex::Regex;
 use crate::config::downloads;
-use crate::utils::codeberg;
-use crate::utils::game;
-use crate::utils::compression;
-use crate::utils::files;
-use crate::utils::commands;
+use crate::utils::services::codeberg;
+use crate::utils::operating::game;
+use crate::utils::helpers::compression;
+use crate::utils::helpers::files;
 
 // there should be a better way to store/fetch these
 const MODLOADER_REPO: &str = "https://codeberg.org/basil/tomb";

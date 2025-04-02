@@ -1,11 +1,11 @@
 use std::{fs, path::Path};
 use serde_json::to_string_pretty;
 use tauri::{command, Window};
-use crate::utils::compression;
-use crate::utils::files;
-use crate::utils::game;
-use crate::utils::modmaker;
-use crate::utils::rpgmaker;
+use crate::utils::helpers::compression;
+use crate::utils::helpers::files;
+use crate::utils::operating::game;
+use crate::utils::tomb::modmaker;
+use crate::utils::tomb::rpgmaker;
 
 // public facing game to rpg command for project.html
 #[command]

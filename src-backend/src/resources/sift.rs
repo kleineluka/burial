@@ -5,9 +5,9 @@ use tauri::Window;
 use tauri::command;
 use walkdir::WalkDir;
 use crate::utils;
-use crate::utils::game;
-use crate::utils::files;
-use crate::utils::cipher;
+use crate::utils::operating::game;
+use crate::utils::helpers::files;
+use crate::utils::nemlei::cipher;
 
 // first rule: recursively see what paths to traverse (all paths in rule_paths, or if all, then all paths recursively)
 fn enforce_paths(in_path: &Path, rule_paths: Vec<String>) -> Vec<PathBuf> {
@@ -109,7 +109,7 @@ pub fn export_resources(window: Window, in_path: String, out_path: String,
     }
     // make sure the out path exists via PathBuf
     let out_path = Path::new(&out_path).to_path_buf();
-    utils::files::verify_folder(&out_path).unwrap();
+    utils::helpers::files::verify_folder(&out_path).unwrap();
     // filter resources through all the rules
     window.emit("status", Some("Filtering assets..".to_string())).unwrap();
     let paths = enforce_paths(in_path, rule_paths);

@@ -5,8 +5,8 @@ use std::collections::HashMap;
 use std::path::Path;
 use serde::Serialize;
 use serde::Deserialize;
-use crate::utils::game;
-use crate::utils::files;
+use crate::utils::operating::game;
+use crate::utils::helpers::files;
 
 // structure from the game's language files
 #[allow(non_snake_case)] // can also handle converting camel, but might need to do LUT specifically since its all caps

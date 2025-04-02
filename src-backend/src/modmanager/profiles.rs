@@ -5,9 +5,9 @@ use serde::{Deserialize, Serialize};
 use dirs::config_dir;
 use tauri::{command, Window};
 use crate::modmanager::installed;
-use crate::utils::{files, game};
+use crate::utils::{helpers::files, operating::game};
 use crate::modmanager::modloader;
-use crate::utils::commands;
+use crate::utils::frontend::commands;
 
 // structure containing mod folder and mod.json file
 #[derive(Serialize, Deserialize, Debug, Clone)]

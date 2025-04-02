@@ -4,8 +4,8 @@ use tauri::command;
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
-use crate::utils::cipher;
-use crate::utils::files;
+use crate::utils::nemlei::cipher;
+use crate::utils::helpers::files;
 
 // perform cipher on a single file
 fn encrypt_file_output(window: &Window, in_path: String, out_path: String, advanced_positions: bool) {

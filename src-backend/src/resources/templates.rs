@@ -4,10 +4,10 @@ use tauri::command;
 use std::fs;
 use std::path::Path;
 use base64::{engine::general_purpose, Engine as _};
-use crate::utils::cipher;
-use crate::utils::game;
-use crate::utils::files;
-use crate::utils::bytes;
+use crate::utils::nemlei::cipher;
+use crate::utils::operating::game;
+use crate::utils::helpers::files;
+use crate::utils::helpers::bytes;
 
 // get old file, copy to new folder, decrypt the new file, then patch the new file
 #[command]
