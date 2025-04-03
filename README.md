@@ -67,17 +67,15 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 <!-- Roadmap -->
 # Roadmap 👁️
 (In no particular order and beyond basic planned features, aka luxury things that mostly™ will start after the first release..)
+- [ ] Version Branching (immediate priority)
 - [ ] Steam Deck Optimization (high priority)
 - [ ] Disk Space Awareness (high priority)
 - [ ] Language Support (medium priority)
 - [ ] Better Dialog Handling (accept copy as path, take zips in place of folders)
 - [ ] Easier Save Editor (low priority)
-- [ ] Cleanup (Code, UI, Responsiveness, Code Warnings, Var Ownership, Structure, JS -> Rust, Logging, Async I/O)
 - [ ] Self Updating (medium priority)
 - [ ] One-Click GameBanana Installation (high priority)
 - [ ] Symbolic Linking Mod Installations (medium priority)
-- [ ] Mod Compatability Checking
-- [ ] 7z, TAR Support (switch to 7Zip, low priority)
 - [ ] NexusMods, Itch.Io Support (low priority)
 - [x] Game Instances (Profiles)
 - [x] More Tooltips

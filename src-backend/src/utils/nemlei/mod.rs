@@ -3,3 +3,4 @@ pub mod cipher;
 pub mod k9a;
 pub mod nfe;
 pub mod nemlang;
+pub mod versions;

@@ -55,7 +55,6 @@ struct Payload {
   cwd: String,
 }
 
-// main
 fn main() {
     // load the config for the app + user settings + (optional) fetch metadata (w/ blocking..) + set up protocol (if not already)
     let app_config = app::load_config();
