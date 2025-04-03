@@ -67,7 +67,7 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 <!-- Roadmap -->
 # Roadmap 👁️
 (In no particular order and beyond basic planned features, aka luxury things that mostly™ will start after the first release..)
-- [ ] Version Branching (immediate priority)
+- [ ] Automatic Version Switching (high priority)
 - [ ] Steam Deck Optimization (high priority)
 - [ ] Disk Space Awareness (high priority)
 - [ ] Language Support (medium priority)
@@ -77,6 +77,7 @@ The tech stack is a Rust back-end (Tauri framework), a web front-end (minimal de
 - [ ] One-Click GameBanana Installation (high priority)
 - [ ] Symbolic Linking Mod Installations (medium priority)
 - [ ] NexusMods, Itch.Io Support (low priority)
+- [x] Version Branching
 - [x] Game Instances (Profiles)
 - [x] More Tooltips
 - [x] Theming System

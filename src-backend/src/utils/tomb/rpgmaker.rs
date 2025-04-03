@@ -4,6 +4,7 @@ use std::path::Path;
 use serde_json::{from_str, to_string_pretty, Value};
 use crate::resources::dialogue;
 use crate::utils::nemlei::cipher;
+use crate::utils::nemlei::k9a;
 use crate::utils::helpers::files;
 
 // take a file from the game directory and format it for the rpg directory
@@ -30,7 +31,7 @@ pub fn copy_game(in_path: &String, out_path: &String) {
             "k9a" => {
                 // get the file extension via header
                 let file_data = fs::read(&path).unwrap();
-                let extension = cipher::parse_header(&file_data);
+                let extension = k9a::parse_header(&file_data);
                 // read and decrypt the file
                 let encrypted_data = fs::read(&path).unwrap(); 
                 let decrypted_data = cipher::decrypt(&encrypted_data, path.to_str().unwrap());

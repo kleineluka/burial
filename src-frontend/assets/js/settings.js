@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('mod-description').value = moddescription;
     const deeplinks = await storage.get('settings-deeplinks');
     document.getElementById('dropdown-menu-deeplinks').value = deeplinks.toString();
+    const gametarget = await storage.get('settings-gametarget');
+    document.getElementById('dropdown-game-version').value = gametarget;
     // set footer based on operating system
     let os = await storage.get('state-operating-system');
     var template = document.getElementById('footer').innerHTML; // replace %x% with os
@@ -49,6 +51,7 @@ async function saveSettings() {
     var modauthor = document.getElementById('mod-author').value;
     var moddescription = document.getElementById('mod-description').value;
     var deeplinks = (document.getElementById('dropdown-menu-deeplinks').value === 'true');
+    var gametarget = document.getElementById('dropdown-game-version').value;
     // update settings in local storage
     const store = new Store('.cache.json');
     store.set('settings-tcoaal', tcoaal);
@@ -62,9 +65,10 @@ async function saveSettings() {
     store.set('settings-modauthor', modauthor);
     store.set('settings-moddescription', moddescription);
     store.set('settings-deeplinks', deeplinks);
+    store.set('settings-gametarget', gametarget);
     store.save();   
     // set values
-    invoke('save_settings', { tcoaal, output, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription, deeplinks });
+    invoke('save_settings', { tcoaal, output, updates, theme, animations, tooltips, modname, modid, modauthor, moddescription, deeplinks, gametarget });
     // reload theme
     document.documentElement.setAttribute('data-theme', theme);
     const imgs = document.querySelectorAll('img.sidebar-icon');
@@ -106,6 +110,7 @@ function resetSettings() {
     store.set('settings-modauthor', '');
     store.set('settings-moddescription', '');
     store.set('settings-deeplinks', true);
+    store.set('settings-gametarget', 'latest');
     store.save();
     // set the values to empty
     document.getElementById('tcoaal-path').value = '';
@@ -119,6 +124,7 @@ function resetSettings() {
     document.getElementById('mod-description').value = '';
     document.getElementById('dropdown-menu-updates').value = 'true';
     document.getElementById('dropdown-menu-deeplinks').value = 'true';
+    document.getElementById('game-version').value = 'latest';
     // set values
     invoke('reset_settings', {});
 }
@@ -368,6 +374,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     tippy('#profiles-copy-label', {
         content: 'Profiles use a second copy of the game and don\'t affect the original',
+        animation: 'perspective-subtle',
+        placement: 'top',
+        theme: 'burial'
+    });
+    tippy('#game-version-label', {
+        content: 'The target version of the game you want to mod. If unknown, leave it as latest!',
         animation: 'perspective-subtle',
         placement: 'top',
         theme: 'burial'

@@ -4,8 +4,8 @@ use tauri::command;
 use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
-use crate::utils::nemlei::cipher;
 use crate::utils::helpers::files;
+use crate::utils::nemlei::cipher;
 
 // perform cipher on a single file
 fn decrypt_file_output(window: &Window, in_path: String, out_path: String) {
@@ -15,10 +15,8 @@ fn decrypt_file_output(window: &Window, in_path: String, out_path: String) {
     window.emit("status", Some(format!("Decrypting file: {}.{}", file_name, file_extension))).unwrap();
     // get the decrypted data + new name and file extension
     let (decrypted_data, file_name_with_extension) = cipher::decrypt_file(&in_path);
-    let detected_extension = cipher::get_extension_from_mime(&decrypted_data);
-    let proper_path = format!("{}.{}", file_name_with_extension, detected_extension);
     // create the new file path
-    let new_out_path = Path::new(&out_path).join(&proper_path);
+    let new_out_path = Path::new(&out_path).join(&file_name_with_extension);
     // write the decrypted data to the new file
     files::write_file(&new_out_path.to_string_lossy(), &decrypted_data);
     window.emit("status", Some(format!("File {} has been decrypted.", file_name_with_extension))).unwrap();
@@ -34,10 +32,12 @@ fn decrypt_folder_output(window: &Window, in_path: String, out_path: String) {
         return;
     }
     // index the directory to get count + locations
-    let desired_folders: HashSet<_> = files::index_directory_all(&in_path).1.into_iter().collect();
+    window.emit("status", Some("Indexing directory for decryption..".to_string())).unwrap();
+    let (file_count, folders) = files::index_directory_all(&in_path);
+    let desired_folders: HashSet<String> = folders.into_iter().collect();
     let mut processed_files = 0;
     // recursively traverse the folder
-    fn process_directory(window: &Window, in_dir: &Path, out_dir: &Path, desired_folders: &HashSet<String>, processed_files: &mut usize) {
+    fn process_directory(window: &Window, in_dir: &Path, out_dir: &Path, desired_folders: &HashSet<String>, processed_files: &mut usize, file_count: usize) {
         for entry in fs::read_dir(in_dir).expect("Failed to read directory") {
             let entry = entry.expect("Failed to read directory entry");
             let path = entry.path();
@@ -53,23 +53,22 @@ fn decrypt_folder_output(window: &Window, in_path: String, out_path: String) {
                     fs::create_dir_all(&new_out_dir).expect("Failed to create directory.");
                 }
                 window.emit("status", Some(format!("Decrypting files in folder: {}", folder_name))).unwrap();
-                process_directory(window, &path, &new_out_dir, desired_folders, processed_files);
+                process_directory(window, &path, &new_out_dir, desired_folders, processed_files, file_count);
             } else {
-                // decrypt files in the folder
                 *processed_files += 1;
-                window.emit("status", Some(format!("Processed Files: {}", processed_files))).unwrap();
+                let file_name = files::file_name(&path.to_string_lossy());
+                let file_extension = files::file_extension(&path.to_string_lossy());
+                window.emit("status", Some(format!("Current Progress: {}/{} (decrypting {})", processed_files, file_count, file_name))).unwrap();
                 let (decrypted_data, file_name_with_extension) = cipher::decrypt_file(&path.to_string_lossy());
-                let detected_extension = cipher::get_extension_from_mime(&decrypted_data);
-                let proper_name = format!("{}.{}", file_name_with_extension, detected_extension);
-                let out_path = Path::new(&out_dir).join(&proper_name);
+                let out_path = Path::new(&out_dir).join(file_name_with_extension);
                 files::write_file(&out_path.to_string_lossy(), &decrypted_data);
                 *processed_files += 1;
             }
         }
     }
     // start the process
-    process_directory(window, &in_path, &out_path, &desired_folders, &mut processed_files);
-    window.emit("status", Some("All .k9a files have been decrypted.")).unwrap();
+    process_directory(window, &in_path, &out_path, &desired_folders, &mut processed_files, file_count);
+    window.emit("status", Some("All files (that could be) have been decrypted.")).unwrap();
 }
 
 // perform cipher to decrypt

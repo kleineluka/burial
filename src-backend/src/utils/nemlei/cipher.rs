@@ -10,7 +10,7 @@ pub fn decrypt(data: &[u8], file_path: &str) -> Vec<u8> {
     }
 }
 
-// decrypt file, wrapper for different game versions
+// decrypt file, wrapper for different game versions (with extension)
 pub fn decrypt_file(file_path: &str) -> (Vec<u8>, String) {
     match versions::get_user_version() {
         versions::GameVersions::V3_0_2 => nfe::decrypt_file(file_path),
@@ -19,6 +19,7 @@ pub fn decrypt_file(file_path: &str) -> (Vec<u8>, String) {
 }
 
 // encrypt data, wrapper for different game versions
+#[allow(dead_code)]
 pub fn encrypt(data: &[u8], file_path: &str, advanced_positions: bool) -> Vec<u8> {
     match versions::get_user_version() {
         versions::GameVersions::V3_0_2 => nfe::encrypt(data, file_path, advanced_positions),

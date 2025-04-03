@@ -5,13 +5,24 @@ use tree_magic;
 // lol lazy
 pub fn get_extension_from_mime(data: &[u8]) -> &'static str {
     let mime = tree_magic::from_u8(data);
+    println!("MIME: {}", mime);
     match mime.as_str() {
         "image/png" => "png",
         "image/gif" => "gif",
+        "image/jpeg" => "jpg",
+        "image/bmp" => "bmp",
+        "image/webp" => "webp",
+        "image/tiff" => "tiff",
         "audio/ogg" => "ogg",
+        "audio/x-vorbis+ogg" => "ogg",
+        "audio/mpeg" => "mp3",
+        "audio/wav" => "wav",
+        "audio/x-wav" => "wav",
+        "audio/x-mpeg" => "mp3",
+        "audio/x-mpeg-3" => "mp3",
         "text/plain" => "txt",
         "application/json" => "json",
-        _ => "dat", // fallback extension
+        _ => "dat", // fallback extension, it i
     }
 }
 
@@ -31,7 +42,6 @@ fn make_mask(input_path_str: &str) -> i32 {
     if filename_stem.is_empty() {
         return 0;
     }
-
     let mut mask_value: i32 = 0;
     for c in filename_stem.chars() {
         mask_value = mask_value.wrapping_shl(1) ^ (c as i32);
@@ -68,11 +78,6 @@ pub fn decrypt(data: &[u8], file_path: &str) -> Vec<u8> {
 pub fn encrypt(data: &[u8], file_path: &str, advanced_positions: bool) -> Vec<u8> {
     let data_len = data.len();
     let (num_bytes_to_encrypt, indicator) = if advanced_positions {
-        let extension = Path::new(file_path)
-            .extension()
-            .unwrap_or_default()
-            .to_str()
-            .unwrap_or("");
         if data_len >= data_len || data_len > 255 {
              (data_len, 0u8) // Encrypt all, indicator 0
         } else {
@@ -108,17 +113,20 @@ pub fn decrypt_file(file_path: &str) -> (Vec<u8>, String) {
         }
     };
     let decrypted_data = decrypt(&data, file_path);
+    let file_extension = get_extension_from_mime(&decrypted_data);
     let file_stem = Path::new(file_path)
         .file_stem()
         .unwrap_or_default()
         .to_str()
         .unwrap_or_default();
-    if file_stem.is_empty() {
-        eprintln!("[Warning] Could not extract a valid file stem from '{}' for decryption output.", file_path);
-        (decrypted_data, "decrypted_noname".to_string())
+    let output_filename = if file_stem.is_empty() {
+         eprintln!("[Warning] Could not extract a valid file stem from '{}' for decryption output.", file_path);
+         "decrypted_noname".to_string()
     } else {
-        (decrypted_data, file_stem.to_string())
-    }
+        file_stem.to_string() 
+    };
+    let output_filename = format!("{}.{}", output_filename, file_extension);
+    (decrypted_data, output_filename)
 }
 
 pub fn encrypt_file(file_path: &str, advanced_positions: bool) -> (Vec<u8>, String) {

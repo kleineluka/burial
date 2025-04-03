@@ -23,10 +23,7 @@ pub fn file_name(file_path: &str) -> String {
 pub fn file_extension(file_path: &str) -> String {
     PathBuf::from(file_path)
         .extension()
-        .unwrap()
-        .to_str()
-        .unwrap()
-        .to_string()
+        .map_or(String::new(), |ext| ext.to_str().unwrap().to_string())
 }
 
 // delete a file from a given path
