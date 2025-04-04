@@ -85,7 +85,7 @@ function defaultTooltips() {
     });
     // attributions link
     tippy('#attributions-link', {
-        content: 'View the attributions for the game',
+        content: 'View the attributions for Burial!',
         animation: 'perspective-subtle',
         placement: 'top',
         theme: 'burial'

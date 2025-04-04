@@ -112,6 +112,16 @@ document.getElementById('navigate-edit-button').addEventListener('click', (event
     invoke('read_save', { saveName });
 });
 
+// save the save
+document.getElementById('edit-save-button').addEventListener('click', (event) => {
+    console.log('edit-save-button clicked!');
+    // get the contents of the save file (document.getElementById('textarea-save').value)
+    let saveName = document.getElementById('dropdown-menu-save-main').value;
+    let saveData = document.getElementById('textarea-save').value;
+    // call rust to save file
+    invoke('write_save', { saveName, saveData });
+});
+
 // listen for when the save was read
 let saveContent = '';
 listen('load-save', (event) => {
