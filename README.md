@@ -3,6 +3,7 @@
 <h2>Warning!! Big Burial Update In Progress~</h2>
 <p><b>Currently, support for the current game version (3.0.0 / Decay Part One) is limited to asset decryption/encryption. The rest was built with 2.0.14 in mind. This is because of senseless encryption and file path changes to the game. I'm working on it!!</b></p>
 <br><br>
+<p><b>First up is a new modloader for version 3 to then be incorporated into Burial, and that is making good progress, so don't worry I am working daily on it even if updates aren't pushed! Modloader injection and debugging tools are done for V3, patching and RPG Maker project exporting next, then Burial's big update using it.</b></p>
 </div>
 
 <!-- Header + Navigation -->
